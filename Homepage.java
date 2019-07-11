@@ -7,6 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,8 +32,9 @@ import net.proteanit.sql.DbUtils;
  */
 public class Homepage extends javax.swing.JFrame {
 public Connection con;
-public PreparedStatement st, st1, st2;
+public PreparedStatement st, st1, st2,sta;
 public ResultSet rs, rs1, rs2; 
+
 
     public Homepage() {
         initComponents();
@@ -53,7 +59,6 @@ public ResultSet rs, rs1, rs2;
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         CardPC = new javax.swing.JPanel();
-        pcBG = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         addPC = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -109,6 +114,7 @@ public ResultSet rs, rs1, rs2;
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        pcBG = new javax.swing.JTextField();
         search = new javax.swing.JLabel();
         refresh = new javax.swing.JLabel();
         add = new javax.swing.JButton();
@@ -326,8 +332,6 @@ public ResultSet rs, rs1, rs2;
         jPanel2.setLayout(new java.awt.CardLayout());
 
         CardPC.setLayout(null);
-        CardPC.add(pcBG);
-        pcBG.setBounds(0, 0, 1030, 840);
 
         jPanel13.setLayout(new java.awt.CardLayout());
 
@@ -409,6 +413,11 @@ public ResultSet rs, rs1, rs2;
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton5.setText("Add");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addPCLayout = new javax.swing.GroupLayout(addPC);
         addPC.setLayout(addPCLayout);
@@ -733,6 +742,8 @@ public ResultSet rs, rs1, rs2;
 
         CardPC.add(jPanel13);
         jPanel13.setBounds(50, 170, 930, 510);
+        CardPC.add(pcBG);
+        pcBG.setBounds(0, 0, 1030, 840);
 
         search.setText("***");
         CardPC.add(search);
@@ -1078,6 +1089,11 @@ public ResultSet rs, rs1, rs2;
         search1.setBounds(360, 460, 24, 20);
 
         refresh1.setText("***");
+        refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh1MouseClicked(evt);
+            }
+        });
         CardCC.add(refresh1);
         refresh1.setBounds(950, 470, 30, 16);
 
@@ -2256,6 +2272,11 @@ public ResultSet rs, rs1, rs2;
         jPanel1.add(CCTV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 270, 70));
 
         LOGOUT.setText("LOGOUT");
+        LOGOUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LOGOUTActionPerformed(evt);
+            }
+        });
         jPanel1.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 730, 270, 70));
 
         PRINTER.setText("PRINTER INVENTORY");
@@ -2373,6 +2394,14 @@ showPC();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void PCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCActionPerformed
+         jPanel13.setVisible(false);
+         pcBG.setVisible(false);
+        compBran.setText("");
+        compDept.setText("");
+        compName.setText("");
+        compProc.setText("");
+        compRam.setText("");
+        compHdd.setText("");
 showPC();
 initBranch();
 CardLayout card = (CardLayout)jPanel2.getLayout();
@@ -2381,6 +2410,13 @@ card.show(jPanel2, "CardPC");
     }//GEN-LAST:event_PCActionPerformed
 
     private void CCTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCTVActionPerformed
+         jPanel13.setVisible(false);
+         pcBG.setVisible(false);
+        ccBran.setText("");
+        ccSupp.setText("");
+        ccNum.setText("");
+        ccUN.setText("");
+        ccPW.setText("");  
 showCC();
 initBranch();
 CardLayout card = (CardLayout)jPanel2.getLayout();
@@ -2389,6 +2425,8 @@ card.show(jPanel2, "CardCC");
     }//GEN-LAST:event_CCTVActionPerformed
 
     private void PRINTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTERActionPerformed
+         jPanel13.setVisible(false);
+         pcBG.setVisible(false);
 CardLayout card = (CardLayout)jPanel2.getLayout();
 card.show(jPanel2, "CardPR"); 
 initBranch();// TODO add your handling code here:
@@ -2432,6 +2470,38 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
         */
         // TODO add your handling code here:
     }//GEN-LAST:event_ccTblMouseClicked
+
+    private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
+
+    try {
+        con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
+        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+        Statement sta = con.createStatement();
+        String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('" + utype+"','Logout','"+dt.format(date)+"','"+tm.format(time)+"')";					
+        sta.execute(newsql);        // TODO add your handling code here:
+    } catch (SQLException ex) {
+        Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+        Login l = new Login();
+        l.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_LOGOUTActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
+        ccBran.setText("");
+        ccSupp.setText("");
+        ccNum.setText("");
+        ccUN.setText("");
+        ccPW.setText("");       // TODO add your handling code here:
+    }//GEN-LAST:event_refresh1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -2738,6 +2808,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JButton viewHis3;
     // End of variables declaration//GEN-END:variables
    public String sql,sql1; 
+   public String utype;
     
 public void showPC(){
    try {

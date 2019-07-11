@@ -154,6 +154,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 String uname = username.getText();
 String pword = password.getText();
+
         try {
 					
 					
@@ -166,6 +167,7 @@ String pword = password.getText();
                                         String ans = rs.getString("Utype");
                                                 if(ans.equals("admin")){
 						Homepage o = new Homepage();
+                                                o.utype = ans;
                                                 o.setVisible(true);
 						dispose();
                                                 }
@@ -185,7 +187,7 @@ String pword = password.getText();
             Date time = new Date(); 
             Statement sta = con.createStatement();
             String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('" + ans +"','Login','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.executeQuery(newsql);
+            sta.execute(newsql);
             
                                         }
 					else {
