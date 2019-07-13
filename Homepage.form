@@ -6,9 +6,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1860, 982]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -189,25 +186,30 @@
                                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                               <Component id="PCinfo" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="countHis1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="pcSort" min="-2" pref="182" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="pcSearchtxt" min="-2" pref="179" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="pcSearch" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="ccAdd1" min="-2" pref="164" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="ccDel1" min="-2" pref="152" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="countPC" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="pcSort" min="-2" pref="182" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="pcSearchtxt" min="-2" pref="179" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="pcSearch" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+                                                          <Component id="pcAdd" min="-2" pref="164" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="pcDel" min="-2" pref="152" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="PCtable" min="-2" pref="1070" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -225,8 +227,8 @@
                                       <Component id="pcSearchtxt" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="pcSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ccDel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ccAdd1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="pcDel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="pcAdd" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -235,7 +237,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="countHis1" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="countPC" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -315,7 +317,11 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="pcEdit" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="pcUpdate" min="-2" pref="120" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                                      <Component id="pcEdit" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
@@ -364,7 +370,10 @@
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       <Component id="jScrollPane13" min="-2" pref="80" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="pcEdit" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="pcEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="pcUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -566,6 +575,7 @@
                               <SubComponents>
                                 <Component class="javax.swing.JTextArea" name="compRem">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="16" style="0"/>
@@ -575,6 +585,20 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JButton" name="pcUpdate">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Update"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcUpdateActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                              </AuxValues>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JScrollPane" name="PCtable">
@@ -623,6 +647,10 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pcSearchtxtMouseClicked"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pcSearchtxtKeyReleased"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="pcSort">
                           <Properties>
@@ -767,7 +795,7 @@
                             <Property name="text" type="java.lang.String" value="Computer History"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="ccAdd1">
+                        <Component class="javax.swing.JButton" name="pcAdd">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -775,20 +803,23 @@
                             <Property name="text" type="java.lang.String" value="Add"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="ccDel1">
+                        <Component class="javax.swing.JButton" name="pcDel">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcDelActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel47">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Computer/s Found:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="countHis1">
+                        <Component class="javax.swing.JLabel" name="countPC">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -850,7 +881,7 @@
                                                       <Group type="102" attributes="0">
                                                           <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="countHis4" min="-2" pref="50" max="-2" attributes="0"/>
+                                                          <Component id="countCC" min="-2" pref="50" max="-2" attributes="0"/>
                                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
@@ -893,7 +924,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel77" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="countHis4" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="countCC" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                   <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
@@ -957,7 +988,8 @@
                             <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ccSearchtxtActionPerformed"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ccSearchtxtMouseClicked"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ccSearchtxtKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="ccSort">
@@ -1052,6 +1084,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ccDelActionPerformed"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JPanel" name="CCinfo">
                           <Properties>
@@ -1118,7 +1153,11 @@
                                                       <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="354" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="ccEdit" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="ccUpdate" min="-2" pref="110" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                                      <Component id="ccEdit" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  </Group>
                                                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
@@ -1160,7 +1199,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="76" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ccEdit" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="ccEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ccUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1315,6 +1357,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Edit"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ccEditActionPerformed"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                               </AuxValues>
@@ -1326,14 +1371,29 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                                <Component class="javax.swing.JTextArea" name="ccRem">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JButton" name="ccUpdate">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Update"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ccUpdateActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                              </AuxValues>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Component class="javax.swing.JLabel" name="jLabel70">
@@ -1366,7 +1426,7 @@
                             <Property name="text" type="java.lang.String" value="CCTV/s Found:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="countHis4">
+                        <Component class="javax.swing.JLabel" name="countCC">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1416,7 +1476,7 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel89" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="PRcount1" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Component id="countPR" min="-2" pref="50" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="prSort" min="-2" pref="182" max="-2" attributes="0"/>
@@ -1456,7 +1516,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="PRcount1" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="countPR" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jLabel89" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -1518,6 +1578,10 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="prSearchtxtMouseClicked"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="prSearchtxtKeyReleased"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="prSort">
                           <Properties>
@@ -1554,6 +1618,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PRdelActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel88">
                           <Properties>
@@ -1618,7 +1685,11 @@
                                               </Group>
                                           </Group>
                                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Component id="prEdit" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="prUpdate" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                                  <Component id="prEdit" min="-2" pref="120" max="-2" attributes="0"/>
+                                              </Group>
                                               <Component id="jScrollPane16" min="-2" pref="428" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1654,7 +1725,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane16" min="-2" pref="85" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="prEdit" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="prEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="prUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1771,8 +1845,9 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="prRem2">
+                                <Component class="javax.swing.JTextArea" name="prRem">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
                                   </Properties>
@@ -1793,6 +1868,20 @@
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                               </AuxValues>
                             </Component>
+                            <Component class="javax.swing.JButton" name="prUpdate">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Update"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prUpdateActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                              </AuxValues>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Component class="javax.swing.JLabel" name="jLabel89">
@@ -1800,7 +1889,7 @@
                             <Property name="text" type="java.lang.String" value="Printer/s found:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="PRcount1">
+                        <Component class="javax.swing.JLabel" name="countPR">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1951,7 +2040,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                                   <Component id="jPanel2" min="-2" pref="626" max="-2" attributes="0"/>
-                                  <EmptySpace pref="137" max="32767" attributes="0"/>
+                                  <EmptySpace pref="150" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

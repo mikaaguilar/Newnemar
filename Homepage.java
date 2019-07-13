@@ -32,8 +32,13 @@ public ResultSet rs, rs1, rs2;
 
     public Homepage() {
         initComponents();
+        initBranch();
+        initEdit();
+        setIcon();
         showDate();
         showTime();
+        showPC();
+        pcSet();
 
     }
 
@@ -89,6 +94,7 @@ public ResultSet rs, rs1, rs2;
         pcEdit = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         compRem = new javax.swing.JTextArea();
+        pcUpdate = new javax.swing.JButton();
         PCtable = new javax.swing.JScrollPane();
         compTbl = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
@@ -101,10 +107,10 @@ public ResultSet rs, rs1, rs2;
         countHis = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        ccAdd1 = new javax.swing.JButton();
-        ccDel1 = new javax.swing.JButton();
+        pcAdd = new javax.swing.JButton();
+        pcDel = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
-        countHis1 = new javax.swing.JLabel();
+        countPC = new javax.swing.JLabel();
         CCcard = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         ccTbl = new javax.swing.JTable();
@@ -130,12 +136,13 @@ public ResultSet rs, rs1, rs2;
         jLabel74 = new javax.swing.JLabel();
         ccEdit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ccRem = new javax.swing.JTextArea();
+        ccUpdate = new javax.swing.JButton();
         jLabel70 = new javax.swing.JLabel();
         countHis3 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
-        countHis4 = new javax.swing.JLabel();
+        countCC = new javax.swing.JLabel();
         PRcard = new javax.swing.JPanel();
         jScrollPane27 = new javax.swing.JScrollPane();
         prTbl = new javax.swing.JTable();
@@ -157,10 +164,11 @@ public ResultSet rs, rs1, rs2;
         prManu = new javax.swing.JTextField();
         jLabel82 = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        prRem2 = new javax.swing.JTextArea();
+        prRem = new javax.swing.JTextArea();
         prEdit = new javax.swing.JButton();
+        prUpdate = new javax.swing.JButton();
         jLabel89 = new javax.swing.JLabel();
-        PRcount1 = new javax.swing.JLabel();
+        countPR = new javax.swing.JLabel();
         PChistable1 = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
         hisTbl3 = new javax.swing.JTable();
@@ -362,7 +370,6 @@ public ResultSet rs, rs1, rs2;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1860, 982));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -485,10 +492,19 @@ public ResultSet rs, rs1, rs2;
             }
         });
 
+        compRem.setEditable(false);
         compRem.setColumns(20);
         compRem.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         compRem.setRows(5);
         jScrollPane13.setViewportView(compRem);
+
+        pcUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        pcUpdate.setText("Update");
+        pcUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PCinfoLayout = new javax.swing.GroupLayout(PCinfo);
         PCinfo.setLayout(PCinfoLayout);
@@ -532,7 +548,10 @@ public ResultSet rs, rs1, rs2;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(PCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pcEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfoLayout.createSequentialGroup()
+                                .addComponent(pcUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(pcEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfoLayout.createSequentialGroup()
                                 .addComponent(jLabel40)
                                 .addGap(355, 355, 355)))))
@@ -570,7 +589,9 @@ public ResultSet rs, rs1, rs2;
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pcEdit)
+                .addGroup(PCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pcEdit)
+                    .addComponent(pcUpdate))
                 .addContainerGap())
         );
 
@@ -598,6 +619,16 @@ public ResultSet rs, rs1, rs2;
 
         pcSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
         pcSearchtxt.setText("Search");
+        pcSearchtxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pcSearchtxtMouseClicked(evt);
+            }
+        });
+        pcSearchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pcSearchtxtKeyReleased(evt);
+            }
+        });
 
         pcSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
         pcSort.addActionListener(new java.awt.event.ActionListener() {
@@ -657,16 +688,21 @@ public ResultSet rs, rs1, rs2;
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
         jLabel42.setText("Computer History");
 
-        ccAdd1.setBackground(new java.awt.Color(255, 255, 255));
-        ccAdd1.setText("Add");
+        pcAdd.setBackground(new java.awt.Color(255, 255, 255));
+        pcAdd.setText("Add");
 
-        ccDel1.setBackground(new java.awt.Color(255, 255, 255));
-        ccDel1.setText("Delete");
+        pcDel.setBackground(new java.awt.Color(255, 255, 255));
+        pcDel.setText("Delete");
+        pcDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcDelActionPerformed(evt);
+            }
+        });
 
         jLabel47.setText("Computer/s Found:");
 
-        countHis1.setBackground(new java.awt.Color(255, 255, 255));
-        countHis1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        countPC.setBackground(new java.awt.Color(255, 255, 255));
+        countPC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout PCcardLayout = new javax.swing.GroupLayout(PCcard);
         PCcard.setLayout(PCcardLayout);
@@ -681,23 +717,26 @@ public ResultSet rs, rs1, rs2;
                             .addComponent(jLabel42)
                             .addComponent(jLabel28)
                             .addComponent(PCinfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
                         .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PCcardLayout.createSequentialGroup()
-                                .addComponent(jLabel47)
+                                .addGap(30, 30, 30)
+                                .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PCcardLayout.createSequentialGroup()
+                                        .addComponent(jLabel47)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(countPC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(PCcardLayout.createSequentialGroup()
+                                        .addComponent(pcSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pcSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pcSearch)
+                                        .addGap(345, 345, 345)
+                                        .addComponent(pcAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pcDel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(PCcardLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(countHis1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(PCcardLayout.createSequentialGroup()
-                                    .addComponent(pcSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(pcSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(pcSearch)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ccAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ccDel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(PCtable, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         PCcardLayout.setVerticalGroup(
@@ -709,15 +748,15 @@ public ResultSet rs, rs1, rs2;
                     .addComponent(pcSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pcSearch)
                     .addComponent(jLabel28)
-                    .addComponent(ccDel1)
-                    .addComponent(ccAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pcDel)
+                    .addComponent(pcAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PCtable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(PCinfo, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(countHis1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countPC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel42)
@@ -756,9 +795,14 @@ public ResultSet rs, rs1, rs2;
 
         ccSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
         ccSearchtxt.setText("Search");
-        ccSearchtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ccSearchtxtActionPerformed(evt);
+        ccSearchtxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ccSearchtxtMouseClicked(evt);
+            }
+        });
+        ccSearchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ccSearchtxtKeyReleased(evt);
             }
         });
 
@@ -790,6 +834,11 @@ public ResultSet rs, rs1, rs2;
 
         ccDel.setBackground(new java.awt.Color(255, 255, 255));
         ccDel.setText("Delete");
+        ccDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccDelActionPerformed(evt);
+            }
+        });
 
         CCinfo.setBackground(new java.awt.Color(204, 204, 204));
         CCinfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -853,10 +902,24 @@ public ResultSet rs, rs1, rs2;
 
         ccEdit.setBackground(new java.awt.Color(255, 255, 255));
         ccEdit.setText("Edit");
+        ccEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccEditActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ccRem.setEditable(false);
+        ccRem.setColumns(20);
+        ccRem.setRows(5);
+        jScrollPane1.setViewportView(ccRem);
+
+        ccUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        ccUpdate.setText("Update");
+        ccUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CCinfoLayout = new javax.swing.GroupLayout(CCinfo);
         CCinfo.setLayout(CCinfoLayout);
@@ -892,7 +955,10 @@ public ResultSet rs, rs1, rs2;
                             .addGroup(CCinfoLayout.createSequentialGroup()
                                 .addComponent(jLabel74)
                                 .addGap(354, 354, 354))
-                            .addComponent(ccEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(CCinfoLayout.createSequentialGroup()
+                                .addComponent(ccUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(ccEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 29, Short.MAX_VALUE))))
         );
@@ -924,7 +990,9 @@ public ResultSet rs, rs1, rs2;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ccEdit)
+                .addGroup(CCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ccEdit)
+                    .addComponent(ccUpdate))
                 .addGap(25, 25, 25))
         );
 
@@ -938,8 +1006,8 @@ public ResultSet rs, rs1, rs2;
 
         jLabel77.setText("CCTV/s Found:");
 
-        countHis4.setBackground(new java.awt.Color(255, 255, 255));
-        countHis4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        countCC.setBackground(new java.awt.Color(255, 255, 255));
+        countCC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout CCcardLayout = new javax.swing.GroupLayout(CCcard);
         CCcard.setLayout(CCcardLayout);
@@ -969,7 +1037,7 @@ public ResultSet rs, rs1, rs2;
                                     .addGroup(CCcardLayout.createSequentialGroup()
                                         .addComponent(jLabel77)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(countCC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(CCcardLayout.createSequentialGroup()
                                         .addComponent(ccSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1001,7 +1069,7 @@ public ResultSet rs, rs1, rs2;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(countCC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel70)
                 .addGap(18, 18, 18)
@@ -1044,6 +1112,16 @@ public ResultSet rs, rs1, rs2;
 
         prSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
         prSearchtxt.setText("Search");
+        prSearchtxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prSearchtxtMouseClicked(evt);
+            }
+        });
+        prSearchtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                prSearchtxtKeyReleased(evt);
+            }
+        });
 
         prSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
         prSort.addActionListener(new java.awt.event.ActionListener() {
@@ -1059,6 +1137,11 @@ public ResultSet rs, rs1, rs2;
 
         PRdel.setBackground(new java.awt.Color(255, 255, 255));
         PRdel.setText("Delete");
+        PRdel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRdelActionPerformed(evt);
+            }
+        });
 
         jLabel88.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
         jLabel88.setForeground(new java.awt.Color(51, 51, 51));
@@ -1109,15 +1192,24 @@ public ResultSet rs, rs1, rs2;
         jLabel82.setForeground(new java.awt.Color(51, 51, 51));
         jLabel82.setText("Remarks:");
 
-        prRem2.setColumns(20);
-        prRem2.setRows(5);
-        jScrollPane16.setViewportView(prRem2);
+        prRem.setEditable(false);
+        prRem.setColumns(20);
+        prRem.setRows(5);
+        jScrollPane16.setViewportView(prRem);
 
         prEdit.setBackground(new java.awt.Color(255, 255, 255));
         prEdit.setText("Edit");
         prEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prEditActionPerformed(evt);
+            }
+        });
+
+        prUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        prUpdate.setText("Update");
+        prUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prUpdateActionPerformed(evt);
             }
         });
 
@@ -1147,7 +1239,10 @@ public ResultSet rs, rs1, rs2;
                             .addComponent(prManu)
                             .addComponent(prName, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PRinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(prEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PRinfoLayout.createSequentialGroup()
+                            .addComponent(prUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(45, 45, 45)
+                            .addComponent(prEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -1175,14 +1270,16 @@ public ResultSet rs, rs1, rs2;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prEdit)
+                .addGroup(PRinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(prEdit)
+                    .addComponent(prUpdate))
                 .addContainerGap())
         );
 
         jLabel89.setText("Printer/s found:");
 
-        PRcount1.setBackground(new java.awt.Color(255, 255, 255));
-        PRcount1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        countPR.setBackground(new java.awt.Color(255, 255, 255));
+        countPR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         PChistable1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1248,7 +1345,7 @@ public ResultSet rs, rs1, rs2;
                             .addGroup(PRcardLayout.createSequentialGroup()
                                 .addComponent(jLabel89)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PRcount1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(countPR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PRcardLayout.createSequentialGroup()
                                 .addComponent(prSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1279,7 +1376,7 @@ public ResultSet rs, rs1, rs2;
                     .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(9, 9, 9)
                 .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PRcount1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countPR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel89))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel88)
@@ -1905,7 +2002,7 @@ public ResultSet rs, rs1, rs2;
             .addGroup(AddingLayout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         INVcard.add(Adding, "card5");
@@ -2873,8 +2970,8 @@ public ResultSet rs, rs1, rs2;
     }// </editor-fold>//GEN-END:initComponents
 
     private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
-        this.dispose();
-        new Login().setVisible(true);
+   logoutLog();
+   LoginOpen();
     }//GEN-LAST:event_LOGOUTActionPerformed
 
     private void LOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGActionPerformed
@@ -2885,6 +2982,7 @@ public ResultSet rs, rs1, rs2;
        Filter.setVisible(false);
        INVmaincard.setVisible(false);
        HISmaincard.setVisible(true);
+       showHis();
     }//GEN-LAST:event_HISActionPerformed
 
     private void INVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INVActionPerformed
@@ -2893,57 +2991,26 @@ public ResultSet rs, rs1, rs2;
      PCcard.setVisible(true);
      CCcard.setVisible(false);
      PRcard.setVisible(false);
+        showPC();
+        refreshPC();
+        pcSet();
     }//GEN-LAST:event_INVActionPerformed
 
     private void CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCActionPerformed
      PCcard.setVisible(false);
      CCcard.setVisible(true);
      PRcard.setVisible(false);
+        showCC();
+        ccSet();
     }//GEN-LAST:event_CCActionPerformed
 
     private void PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRActionPerformed
      PCcard.setVisible(false);
      CCcard.setVisible(false);
      PRcard.setVisible(true);
+        showPR();
+        prSet();
     }//GEN-LAST:event_PRActionPerformed
-
-    private void compTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compTblMouseClicked
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_compTblMouseClicked
-
-    private void pcSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcSortActionPerformed
-     
-
-    }//GEN-LAST:event_pcSortActionPerformed
-
-    private void pcEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcEditActionPerformed
-    
-    }//GEN-LAST:event_pcEditActionPerformed
-
-    private void ccTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ccTblMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccTblMouseClicked
-
-    private void ccSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccSortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccSortActionPerformed
-
-    private void prTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prTblMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prTblMouseClicked
-
-    private void prSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prSortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prSortActionPerformed
-
-    private void ccSearchtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccSearchtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccSearchtxtActionPerformed
-
-    private void prEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prEditActionPerformed
 
     private void HISsearchfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HISsearchfActionPerformed
         // TODO add your handling code here:
@@ -2957,6 +3024,8 @@ public ResultSet rs, rs1, rs2;
      PCcard.setVisible(true);
      CCcard.setVisible(false);
      PRcard.setVisible(false);
+        showPC();
+        pcSet();
     }//GEN-LAST:event_PCActionPerformed
 
     private void hisHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hisHideActionPerformed
@@ -2994,6 +3063,105 @@ public ResultSet rs, rs1, rs2;
     private void pcEdit8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcEdit8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pcEdit8ActionPerformed
+
+    private void pcSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcSortActionPerformed
+pcSort(); 
+pcSet();
+    }//GEN-LAST:event_pcSortActionPerformed
+
+    private void ccSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccSortActionPerformed
+ccSort(); 
+ccSet(); 
+    }//GEN-LAST:event_ccSortActionPerformed
+
+    private void prSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prSortActionPerformed
+prSort(); 
+prSet();        // TODO add your handling code here:
+    }//GEN-LAST:event_prSortActionPerformed
+
+    private void compTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compTblMouseClicked
+ pcSet();       // TODO add your handling code here:
+    }//GEN-LAST:event_compTblMouseClicked
+
+    private void ccTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ccTblMouseClicked
+ccSet();        // TODO add your handling code here:
+    }//GEN-LAST:event_ccTblMouseClicked
+
+    private void prTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prTblMouseClicked
+prSet();        // TODO add your handling code here:
+    }//GEN-LAST:event_prTblMouseClicked
+
+    private void pcSearchtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pcSearchtxtMouseClicked
+pcSearchtxt.setText("");     
+    }//GEN-LAST:event_pcSearchtxtMouseClicked
+
+    private void ccSearchtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ccSearchtxtMouseClicked
+ccSearchtxt.setText("");  
+    }//GEN-LAST:event_ccSearchtxtMouseClicked
+
+    private void prSearchtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prSearchtxtMouseClicked
+prSearchtxt.setText("");     
+    }//GEN-LAST:event_prSearchtxtMouseClicked
+
+    private void pcSearchtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pcSearchtxtKeyReleased
+searchPC();      
+    }//GEN-LAST:event_pcSearchtxtKeyReleased
+
+    private void ccSearchtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ccSearchtxtKeyReleased
+searchCC();
+    }//GEN-LAST:event_ccSearchtxtKeyReleased
+
+    private void prSearchtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prSearchtxtKeyReleased
+searchPR();
+    }//GEN-LAST:event_prSearchtxtKeyReleased
+
+    private void pcEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcEditActionPerformed
+pcEditable();
+    }//GEN-LAST:event_pcEditActionPerformed
+
+    private void ccEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccEditActionPerformed
+ccEditable(); 
+    }//GEN-LAST:event_ccEditActionPerformed
+
+    private void prEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prEditActionPerformed
+prEditable();
+    }//GEN-LAST:event_prEditActionPerformed
+
+    private void pcUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcUpdateActionPerformed
+pcUpdate();    
+pcNonEditable();
+    }//GEN-LAST:event_pcUpdateActionPerformed
+
+    private void ccUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccUpdateActionPerformed
+ccUpdate(); 
+ccNonEditable();
+    }//GEN-LAST:event_ccUpdateActionPerformed
+
+    private void prUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prUpdateActionPerformed
+prUpdate(); 
+prNonEditable();
+    }//GEN-LAST:event_prUpdateActionPerformed
+
+    private void pcDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcDelActionPerformed
+pcDel();
+PCaddArchives();
+refreshPC();
+pcSet();
+    }//GEN-LAST:event_pcDelActionPerformed
+
+    private void ccDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccDelActionPerformed
+ccDel();
+CCaddArchives();
+refreshCC();
+ccSet();       
+    }//GEN-LAST:event_ccDelActionPerformed
+
+    private void PRdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRdelActionPerformed
+prDel();
+PRaddArchives();
+refreshPR();
+prSet();        // TODO add your handling code here:
+    }//GEN-LAST:event_PRdelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3076,15 +3244,12 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JButton PR;
     private javax.swing.JButton PRadd;
     private javax.swing.JPanel PRcard;
-    private javax.swing.JLabel PRcount1;
     private javax.swing.JButton PRdel;
     private javax.swing.JPanel PRinfo;
     private javax.swing.JTable allHisTbl;
     private javax.swing.JButton ccAdd;
-    private javax.swing.JButton ccAdd1;
     private javax.swing.JTextField ccBran;
     private javax.swing.JButton ccDel;
-    private javax.swing.JButton ccDel1;
     public static javax.swing.JButton ccEdit;
     private javax.swing.JTextField ccHisAct;
     private javax.swing.JTextField ccHisBran;
@@ -3102,6 +3267,7 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JTextField ccPW;
     private javax.swing.JTextField ccPW1;
     private javax.swing.JTextField ccPW2;
+    private javax.swing.JTextArea ccRem;
     private javax.swing.JLabel ccSearch;
     private javax.swing.JTextField ccSearchtxt;
     public static javax.swing.JComboBox ccSort;
@@ -3112,6 +3278,7 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JTextField ccUN;
     private javax.swing.JTextField ccUN1;
     private javax.swing.JTextField ccUN2;
+    public static javax.swing.JButton ccUpdate;
     private javax.swing.JTextField compBran;
     private javax.swing.JTextField compDept;
     private javax.swing.JTextField compDept1;
@@ -3128,12 +3295,13 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JTable compTbl;
     private javax.swing.JTextField compUps;
     private javax.swing.JTextField compUps1;
+    private javax.swing.JLabel countCC;
     private javax.swing.JLabel countHis;
-    private javax.swing.JLabel countHis1;
     private javax.swing.JLabel countHis2;
     private javax.swing.JLabel countHis3;
-    private javax.swing.JLabel countHis4;
     private javax.swing.JLabel countHis5;
+    private javax.swing.JLabel countPC;
+    private javax.swing.JLabel countPR;
     private javax.swing.JLabel datefield;
     private javax.swing.JButton hisGo;
     private javax.swing.JButton hisHide;
@@ -3278,7 +3446,6 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea14;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
@@ -3287,6 +3454,8 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JTextField jTextField73;
     private javax.swing.JTextField jTextField79;
     private javax.swing.JTextField jTextField81;
+    private javax.swing.JButton pcAdd;
+    private javax.swing.JButton pcDel;
     public static javax.swing.JButton pcEdit;
     public static javax.swing.JButton pcEdit1;
     public static javax.swing.JButton pcEdit2;
@@ -3310,6 +3479,7 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JLabel pcSearch;
     private javax.swing.JTextField pcSearchtxt;
     public static javax.swing.JComboBox pcSort;
+    public static javax.swing.JButton pcUpdate;
     private javax.swing.JTextField prBran;
     private javax.swing.JTextField prDept;
     public static javax.swing.JButton prEdit;
@@ -3326,11 +3496,12 @@ public ResultSet rs, rs1, rs2;
     private javax.swing.JTextField prHisSTime;
     private javax.swing.JTextField prManu;
     private javax.swing.JTextField prName;
-    private javax.swing.JTextArea prRem2;
+    private javax.swing.JTextArea prRem;
     private javax.swing.JLabel prSearch;
     private javax.swing.JTextField prSearchtxt;
     public static javax.swing.JComboBox prSort;
     private javax.swing.JTable prTbl;
+    public static javax.swing.JButton prUpdate;
     private javax.swing.JLabel timefield;
     // End of variables declaration//GEN-END:variables
     public String sql,sql1; 
@@ -3353,6 +3524,7 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+compTbl.setRowSelectionInterval(0,0);
 }
 public void showCC(){
    try {
@@ -3369,6 +3541,7 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+   ccTbl.setRowSelectionInterval(0,0);
 }
 public void showPR(){
    try {
@@ -3385,6 +3558,7 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+   prTbl.setRowSelectionInterval(0,0);
 }
 public void showHis(){
    try {
@@ -3411,10 +3585,10 @@ public void showHisPC(){
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
 sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'Computer' AND ITEM_ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
+rs=st.executeQuery(sql); 
 TableColumnModel columnModel = hisTbl.getColumnModel();
 hisTbl.setModel(DbUtils.resultSetToTableModel(rs));
-      }
+   }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
@@ -3486,11 +3660,11 @@ setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/N
 public void searchPC(){
 String ID = pcSearchtxt.getText();
 String Branch = pcSort.getSelectedItem().toString(); 
-if(Branch == "ALL"){
+if((Branch == "ALL")||(ID == "")){
 try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor,RAM as Memory,HARDDISK as HardDisk  FROM dbo.invPC WHERE BRANCH LIKE '"+ID+"%' OR DEPARTMENT LIKE '"+ID+"%' OR OWNER LIKE '%"+ID+"%' OR PROCESSOR LIKE '%"+ID+"%' OR RAM LIKE '"+ID+"%' OR HARDDISK LIKE '"+ID+"%';";         
+sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor,RAM as Memory,HARDDISK as HardDisk, ID  FROM dbo.invPC WHERE BRANCH LIKE '"+ID+"%' OR DEPARTMENT LIKE '"+ID+"%' OR OWNER LIKE '%"+ID+"%' OR PROCESSOR LIKE '%"+ID+"%' OR RAM LIKE '"+ID+"%' OR HARDDISK LIKE '"+ID+"%';";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = compTbl.getColumnModel();
 compTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3506,7 +3680,7 @@ else{
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor,RAM as Memory,HARDDISK as HardDisk  FROM dbo.invPC WHERE BRANCH = '"+Branch+"' AND DEPARTMENT LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND OWNER LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND PROCESSOR LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND RAM LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND HARDDISK LIKE '"+ID+"%';";         
+sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor,RAM as Memory,HARDDISK as HardDisk, ID   FROM dbo.invPC WHERE BRANCH = '"+Branch+"' AND DEPARTMENT LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND OWNER LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND PROCESSOR LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND RAM LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND HARDDISK LIKE '"+ID+"%';";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = compTbl.getColumnModel();
 compTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3518,17 +3692,17 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }    
 }
-refreshPC();
+compTbl.setRowSelectionInterval(0,0);
 pcSet();
 }
 public void searchCC(){
 String ID = ccSearchtxt.getText();  
 String Branch = ccSort.getSelectedItem().toString();
-if(Branch == "ALL"){
+if((Branch == "ALL")||(ID == "")){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password  FROM dbo.invCC WHERE Branch LIKE '"+Branch+"%' OR SP LIKE  '%"+ID+"%' OR CAM LIKE '%"+ID+"%' OR uN = '"+ID+"' OR Pw = '"+ID+"' ";         
+sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID FROM dbo.invCC WHERE Branch LIKE '"+Branch+"%' OR SP LIKE  '%"+ID+"%' OR CAM LIKE '%"+ID+"%' OR uN = '"+ID+"' OR Pw = '"+ID+"' ";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = ccTbl.getColumnModel();
 ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3544,7 +3718,7 @@ else{
 try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password  FROM dbo.invCC WHERE Branch = '"+Branch+"' AND SP LIKE  '%"+ID+"%' OR Branch = '"+Branch+"' AND CAM LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND uN = '"+ID+"' OR Branch = '"+Branch+"' AND Pw = '"+ID+"' ";         
+sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID   FROM dbo.invCC WHERE Branch = '"+Branch+"' AND SP LIKE  '%"+ID+"%' OR Branch = '"+Branch+"' AND CAM LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND uN = '"+ID+"' OR Branch = '"+Branch+"' AND Pw = '"+ID+"' ";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = ccTbl.getColumnModel();
 ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3555,18 +3729,18 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-}
-refreshCC();
+
+ccTbl.setRowSelectionInterval(0,0);}
 ccSet();
 }
 public void searchPR(){
 String ID = prSearchtxt.getText();
 String Branch = prSort.getSelectedItem().toString();
-if(Branch == "ALL"){
+if((Branch == "ALL")||(ID == "")){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Manufacturer,Printername as Name,Department FROM dbo.invPR WHERE Branch LIKE '"+ID+"%' OR Manufacturer LIKE '%"+ID+"%' OR Printername LIKE '%"+ID+"%' OR Department LIKE '"+ID+"%'";         
+sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID  FROM dbo.invPR WHERE Branch LIKE '"+ID+"%' OR Manufacturer LIKE '%"+ID+"%' OR Printername LIKE '%"+ID+"%' OR Department LIKE '"+ID+"%'";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = prTbl.getColumnModel();
 prTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3582,7 +3756,7 @@ else{
 try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Manufacturer,Printername as Name,Department FROM dbo.invPR WHERE Branch = '"+Branch+"' AND Manufacturer LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Printername LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Department LIKE '"+ID+"%'";         
+sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID  FROM dbo.invPR WHERE Branch = '"+Branch+"' AND Manufacturer LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Printername LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Department LIKE '"+ID+"%'";         
 ResultSet rs=st.executeQuery(sql); 
 TableColumnModel columnModel = prTbl.getColumnModel();
 prTbl.setModel(DbUtils.resultSetToTableModel(rs));
@@ -3594,45 +3768,26 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-refreshPR();
+prTbl.setRowSelectionInterval(0,0);
 prSet();
 }
 //End of Search Function ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//**************************************************************************TO EDIT**************************************************************************************************************
+
 //Refreshing Screen Content------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void refreshPC(){
-compBran.setText("");
-compDept.setText("");
-compName.setText("");
-compProc.setText("");
-compRam.setText("");
-compHdd.setText("");
-/*
-compRem.setText(""); 
-compUps.setText(""); 
-*/
+pcSearchtxt.setText("Search");
+pcSort.setSelectedItem("ALL");
 compTbl.setRowSelectionInterval(0,0);
 
 }
 public void refreshCC(){
-ccBran.setText("");
-ccSupp.setText("");
-ccNum.setText("");
-ccUN.setText("");
-ccPW.setText("");
-/*
-ccRem.setText("");  
-*/
+ccSearchtxt.setText("Search");
+ccSort.setSelectedItem("ALL");
 ccTbl.setRowSelectionInterval(0,0);
 }
 public void refreshPR(){
-prBran.setText("");
-prManu.setText("");
-prName.setText("");
-prDept.setText(""); 
-/*
-prRem.setText("");  
-*/
+prSearchtxt.setText("Search");
+prSort.setSelectedItem("ALL");
 prTbl.setRowSelectionInterval(0,0);
 }
 public void refreshHIS(){
@@ -3672,9 +3827,6 @@ prRem.setText("");
 */
 }
 //End of Screen Content Refresh------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//**********************************************************************************************************************************************************************************************
-
-
 
 //Opening Other Window------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void LoginOpen(){
@@ -3709,10 +3861,8 @@ String s3 = compName.getText();
 String s4 = compProc.getText();
 String s5 = compRam.getText();
 String s6 = compHdd.getText();
-/*
-String s7 = compRem.getText();
-String s8 = compUps.getText();
-*/
+String s7 = compUps.getText();
+String s8 = compRem.getText();
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3720,11 +3870,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.invPC (BRANCH,DEPARTMENT,OWNER,PROCESSOR,RAM,HARDDISK)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"')";         
+ String sql ="INSERT INTO dbo.invPC (BRANCH,DEPARTMENT,OWNER,PROCESSOR,RAM,HARDDISK,UPS,REM)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'Computer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3740,9 +3890,7 @@ String s2 = ccSupp.getText();
 String s3 = ccUN.getText();
 String s4 = ccPW.getText();
 String s5 = ccNum.getText();
-/*
 String s6 = ccRem.getText();
-*/
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3750,11 +3898,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.invCC (Branch,SP,CAM,uN,pW)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"')";         
+ String sql ="INSERT INTO dbo.invCC (Branch,SP,CAM,uN,pW,REM)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'CCTV','"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3769,9 +3917,7 @@ String s1 = prBran.getText();
 String s2 = prManu.getText();
 String s3 = prName.getText();
 String s4 = prDept.getText();
-/*
 String s5 = prRem.getText();
-*/
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3779,11 +3925,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.invCC (Branch,Manufacturer,Printername,Department)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')";         
+ String sql ="INSERT INTO dbo.invCC (Branch,Manufacturer,Printername,Department,REM)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'Printer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3806,10 +3952,8 @@ String s3 = compName.getText();
 String s4 = compProc.getText();
 String s5 = compRam.getText();
 String s6 = compHdd.getText();
-/*
-String s7 = compRem.getText();
-String s8 = compUps.getText();
-*/
+String s7 = compUps.getText();
+String s8 = compRem.getText();
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3817,11 +3961,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
-String sql ="UPDATE dbo.invPC SET BRANCH = '"+s1+"',DEPARTMENT = '"+s2+"',OWNER = '"+s3+"',PROCESSOR = '"+s4+"',RAM = '"+s5+"',HARDDISK = '"+s6+"' WHERE ID = '"+ID+"'";         
+String sql ="UPDATE dbo.invPC SET BRANCH = '"+s1+"',DEPARTMENT = '"+s2+"',OWNER = '"+s3+"',PROCESSOR = '"+s4+"',RAM = '"+s5+"',HARDDISK = '"+s6+"',UPS = '"+s7+"',REM = '"+s8+"' WHERE ID = '"+ID+"'";         
 st.executeUpdate(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Edit', 'Computer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Edit', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3840,9 +3984,7 @@ String s2 = ccSupp.getText();
 String s3 = ccUN.getText();
 String s4 = ccPW.getText();
 String s5 = ccNum.getText();
-/*
 String s6 = ccRem.getText();
-*/
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3850,11 +3992,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"' WHERE ID = '"+ID+"'";         
+ String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"',REM = '"+s6+"' WHERE ID = '"+ID+"'";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'CCTV','"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3872,9 +4014,7 @@ String s1 = prBran.getText();
 String s2 = prManu.getText();
 String s3 = prName.getText();
 String s4 = prDept.getText();
-/*
 String s5 = prRem.getText();
-*/
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -3882,11 +4022,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="UPDATE dbo.invCC Branch = '"+s1+"',Manufacturer = '"+s2+"',Printername = '"+s3+"' ,Department = '"+s4+"' WHERE ID = '"+ID+"'";         
+ String sql ="UPDATE dbo.invCC Branch = '"+s1+"',Manufacturer = '"+s2+"',Printername = '"+s3+"' ,Department = '"+s4+"',REM = '"+s5+"' WHERE ID = '"+ID+"'";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'Printer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -3900,17 +4040,22 @@ refreshPR();
 
 //Basic Deleting Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void pcDel(){
+        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
 String s1 = compBran.getText();
 String s2 = compDept.getText();
 String s3 = compName.getText();
 String s4 = compProc.getText();
 String s5 = compRam.getText();
 String s6 = compHdd.getText();
-/*
-String s7 = compRem.getText();
-String s8 = compUps.getText();
-*/
-Object[] options = { "OK", "CANCEL" };
+String s7 = compUps.getText();
+String s8 = compRem.getText();
+       DefaultTableModel model = (DefaultTableModel) compTbl.getModel();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = model.getValueAt(selectedRowIndex,6).toString();
+        Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 null, options, options[0]);
@@ -3919,9 +4064,12 @@ null, options, options[0]);
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invPC WHERE BRANCH = '"+s1+"' AND DEPARTMENT = '"+s2+"' AND OWNER = '"+s3+"' AND PROCESSOR = '"+s4+"' AND RAM = '"+s5+"' AND HARDDISK = "
-         + "'"+s6+"' ";         
-st.executeUpdate(sql);
+ String sql ="DELETE FROM dbo.invPC WHERE ID = '"+ID+"'";
+st.execute(sql);
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
 }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -3941,17 +4089,22 @@ jDateChooser1.setCalendar(null);
 jTextField3.setText("");
 */
     }
-refreshPC();
 }
 public void ccDel(){
+        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
 String s1 = ccBran.getText();
 String s2 = ccSupp.getText();
 String s3 = ccUN.getText();
 String s4 = ccPW.getText();
 String s5 = ccNum.getText();
-/*
 String s6 = ccRem.getText();
-*/
+       DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
+       int selectedRowIndex = ccTbl.getSelectedRow();
+       String ID = model.getValueAt(selectedRowIndex,5).toString();
+
 Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -3961,8 +4114,12 @@ null, options, options[0]);
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invCC WHERE Branch = '"+s1+"' AND SP = '"+s2+"' AND CAM = '"+s3+"' AND uN = '"+s4+"' AND pW = '"+s5+"'";         
-st.executeUpdate(sql);
+ String sql ="DELETE FROM dbo.invCC WHERE ID = '"+ID+"'";         
+st.execute(sql);
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
 }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -3982,16 +4139,21 @@ jDateChooser1.setCalendar(null);
 jTextField3.setText("");
 */
     }
-refreshCC();
 }
 public void prDel(){
+        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
 String s1 = prBran.getText();
 String s2 = prManu.getText();
 String s3 = prName.getText();
 String s4 = prDept.getText();
-/*
 String s5 = prRem.getText();
-*/
+       DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
+       int selectedRowIndex = prTbl.getSelectedRow();
+       String ID = model.getValueAt(selectedRowIndex,4).toString();
+
 Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -4001,8 +4163,12 @@ null, options, options[0]);
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invPR WHERE Branch = '"+s1+"' AND Manufacturer = '"+s2+"' AND Printername = '"+s3+"' AND Department = '"+s4+"'";         
-st.executeUpdate(sql);
+ String sql ="DELETE FROM dbo.invPR WHERE ID = '"+ID+"'";         
+st.execute(sql);
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
 }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -4022,7 +4188,6 @@ jDateChooser1.setCalendar(null);
 jTextField3.setText("");
 */
     }
-refreshPR();
 }
 //End of Basic Deleting Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -4036,9 +4201,8 @@ public void pcSet(){
         compProc.setText(model.getValueAt(selectedRowIndex,3).toString());
         compRam.setText(model.getValueAt(selectedRowIndex,4).toString());
         compHdd.setText(model.getValueAt(selectedRowIndex,5).toString());
-        /*compUps.setText(model.getValueAt(selectedRowIndex,3).toString());
-        compRem.setText(model.getValueAt(selectedRowIndex,4).toString());
-        */
+        showHisPC();
+        setPCRem();
 }
 public void ccSet(){
         DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
@@ -4051,10 +4215,12 @@ public void ccSet(){
         /*
         ccRem.setText(model.getValueAt(selectedRowIndex,4).toString());
         */
+        showHisCC();
+        setCCRem();
 }
 public void prSet(){
-        DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
-        int selectedRowIndex = ccTbl.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
+        int selectedRowIndex = prTbl.getSelectedRow();
         prBran.setText(model.getValueAt(selectedRowIndex,0).toString());
         prManu.setText(model.getValueAt(selectedRowIndex,1).toString());
         prName.setText(model.getValueAt(selectedRowIndex,2).toString());
@@ -4062,6 +4228,69 @@ public void prSet(){
         /*
         prRem.setText(model.getValueAt(selectedRowIndex,4).toString());
         */
+        showHisPR();
+        setPRRem();
+}
+public void setPCRem(){
+        DefaultTableModel model = (DefaultTableModel) compTbl.getModel();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = model.getValueAt(selectedRowIndex,6).toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT UPS, REM FROM dbo.invPC WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String UPS = rs.getString("UPS");
+String Rem = rs.getString("REM");
+compUps.setText(UPS);
+compRem.setText(Rem);
+      }
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void setCCRem(){
+        DefaultTableModel model = (DefaultTableModel) compTbl.getModel();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = model.getValueAt(selectedRowIndex,6).toString();
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT REM FROM dbo.invCC WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String Rem = rs.getString("REM");
+ccRem.setText(Rem);
+      }
+   }
+      
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void setPRRem(){
+        DefaultTableModel model = (DefaultTableModel) compTbl.getModel();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = model.getValueAt(selectedRowIndex,6).toString();
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT REM FROM dbo.invPR WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String Rem = rs.getString("REM");
+prRem.setText(Rem);
+      }
+   }
+      
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
 }
 //End of Contents Setting Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -4090,6 +4319,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
+compTbl.setRowSelectionInterval(0,0);
 }
 public void ccSort(){
 String Branch1 = ccSort.getSelectedItem().toString();    
@@ -4113,6 +4343,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
+ccTbl.setRowSelectionInterval(0,0);
 }
 public void prSort(){
 String Branch2 = prSort.getSelectedItem().toString();    
@@ -4136,6 +4367,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }  
 }
+prTbl.setRowSelectionInterval(0,0);
 }
 //End of Sort Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -4147,10 +4379,8 @@ String s3 = compName.getText();
 String s4 = compProc.getText();
 String s5 = compRam.getText();
 String s6 = compHdd.getText();
-/*
-String s7 = compRem.getText();
-String s8 = compUps.getText();
-*/
+String s7 = compUps.getText();
+String s8 = compRem.getText();
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
@@ -4158,11 +4388,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.pcArchives (BRANCH,DEPARTMENT,OWNER,PROCESSOR,RAM,HARDDISK)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"')";         
+ String sql ="INSERT INTO dbo.pcArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Computer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -4188,11 +4418,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.ccArchives (Branch,SP,CAM,uN,pW)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"')";         
+ String sql ="INSERT INTO dbo.ccArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'CCTV','"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -4217,11 +4447,11 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.ccArchives(Branch,Manufacturer,Printername,Department)  VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')";         
+ String sql ="INSERT INTO dbo.prArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 
 Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Printer','"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
             sta.execute(newsql);
 }
  catch (SQLException ex) {    
@@ -4241,10 +4471,10 @@ compName.setEditable(true);
 compProc.setEditable(true);
 compRam.setEditable(true);
 compHdd.setEditable(true);
-/*
 compRem.setEditable(true);
 compUps.setEditable(true);
-*/    
+pcUpdate.setVisible(true);
+pcEdit.setVisible(false);
 }
 public void ccEditable(){
 ccBran.setEditable(true);
@@ -4252,18 +4482,18 @@ ccSupp.setEditable(true);
 ccUN.setEditable(true);
 ccPW.setEditable(true);
 ccNum.setEditable(true);
-/*
 ccRem.setEditable(true);
-*/    
+ccUpdate.setVisible(true);
+ccEdit.setVisible(false);
 }
 public void prEditable(){
 prBran.setEditable(true);
 prManu.setEditable(true);
 prName.setEditable(true);
 prDept.setEditable(true);
-/*
 prRem.setEditable(true);
-*/    
+prUpdate.setVisible(true);
+prEdit.setVisible(false);
 }
 public void pcHisEditable(){
 pcHisBran.setEditable(true);
@@ -4308,10 +4538,10 @@ compName.setEditable(false);
 compProc.setEditable(false);
 compRam.setEditable(false);
 compHdd.setEditable(false);
-/*
 compRem.setEditable(false);
-compUps.setEditable(false);
-*/    
+compUps.setEditable(false);  
+pcUpdate.setVisible(false);
+pcEdit.setVisible(true);
 }
 public void ccNonEditable(){
 ccBran.setEditable(false);
@@ -4319,18 +4549,18 @@ ccSupp.setEditable(false);
 ccUN.setEditable(false);
 ccPW.setEditable(false);
 ccNum.setEditable(false);
-/*
-ccRem.setEditable(false);
-*/    
+ccRem.setEditable(false); 
+ccUpdate.setVisible(false);
+ccEdit.setVisible(true);
 }
 public void prNonEditable(){
 prBran.setEditable(false);
 prManu.setEditable(false);
 prName.setEditable(false);
 prDept.setEditable(false);
-/*
 prRem.setEditable(false);
-*/    
+prEdit.setVisible(true);
+prUpdate.setVisible(false);
 }
 public void pcHisNonEditable(){
 pcHisBran.setEditable(false);
@@ -4364,6 +4594,11 @@ prHisSTime.setEditable(false);
 prHisETime.setEditable(false);
 prHisPric.setEditable(false);
 prHisRem.setEditable(false); 
+}
+public void initEdit(){
+pcNonEditable();
+ccNonEditable();
+prNonEditable();
 }
 //End of Text Box non-Editable function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
