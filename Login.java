@@ -153,6 +153,14 @@ String pword = password.getText();
 					rs = st1.executeQuery(sql);
 					if (rs.next()) {
                                         String ans = rs.getString("Utype");
+                                         con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+        Statement sta = con.createStatement();
+        String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('"+ans+"','Login','"+dt.format(date)+"','"+tm.format(time)+"')";					
+        sta.execute(newsql);
                                                 if(ans.equals("admin")){
 						Homepage o = new Homepage();
                                                 o.setVisible(true);
@@ -169,14 +177,7 @@ String pword = password.getText();
                                                 dispose();
                                                 }*/
                                                 
-        con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
-        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-        Statement sta = con.createStatement();
-        String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('" + ans+"','Login','"+dt.format(date)+"','"+tm.format(time)+"')";					
-        sta.execute(newsql);       
+              
             
                                         }
 					else {
