@@ -22,15 +22,20 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.proteanit.sql.DbUtils;
 
@@ -59,6 +64,7 @@ public static String z;
         ULogcount();
         setJTableColumnsWidth(compTbl, 480, 2, 10, 15, 40, 40, 2, 2,1);
         Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
+        FilterJtable(compTbl, pcSearchtxt);
        
         
         
@@ -6743,6 +6749,43 @@ public static void setCellsAlignment1(JTable table1, int alignment)
         
         ((DefaultTableCellRenderer)table1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
+
+public void FilterJtable(JTable jTable, JTextField jtfFilter) {
+    TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
 
 //END-OF-FUNCTIONS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 }
