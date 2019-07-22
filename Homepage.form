@@ -692,12 +692,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="33" green="33" red="33" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pcSearchtxtMouseClicked"/>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pcSearchtxtKeyReleased"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="pcSort">
                           <Properties>
@@ -876,6 +871,7 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="compTblMouseClicked"/>
+                                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="compTblMousePressed"/>
                                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="compTblKeyTyped"/>
                               </Events>
                             </Component>
@@ -1195,12 +1191,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="33" green="33" red="33" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ccSearchtxtMouseClicked"/>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ccSearchtxtKeyReleased"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="ccSort">
                           <Properties>
@@ -1396,7 +1387,7 @@
                                       <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                                      <EmptySpace pref="35" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1793,7 +1784,7 @@
                                           <Component id="jScrollPane27" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                                  <EmptySpace pref="29" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1815,11 +1806,9 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="33" green="33" red="33" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Search"/>
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="prSearchtxtMouseClicked"/>
-                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="prSearchtxtKeyReleased"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="prSort">
@@ -1929,7 +1918,7 @@
                                           </Group>
                                           <Component id="jScrollPane16" min="-2" pref="428" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                                      <EmptySpace pref="75" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2417,7 +2406,7 @@
                                               </Group>
                                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel41" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jScrollPane23" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane23" alignment="0" pref="482" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                                   <Group type="102" attributes="0">
@@ -2457,7 +2446,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                                      <EmptySpace pref="34" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2927,7 +2916,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                                      <EmptySpace pref="33" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -6012,7 +6001,7 @@
                                   <Component id="jLabel142" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane25" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                                  <EmptySpace pref="99" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="hisAddCan" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="hisSave" alignment="3" min="-2" max="-2" attributes="0"/>
