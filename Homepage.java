@@ -101,6 +101,22 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jPanel1 = new javax.swing.JPanel();
         Maincard = new javax.swing.JPanel();
+        Home = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        repTbl = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        shipTbl = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        reqTbl = new javax.swing.JTable();
+        repDone = new javax.swing.JButton();
+        repAdd = new javax.swing.JButton();
+        repSearch = new javax.swing.JTextField();
+        shipSearch = new javax.swing.JTextField();
+        shipDone = new javax.swing.JButton();
+        shipAdd = new javax.swing.JButton();
+        reqSearch = new javax.swing.JTextField();
+        reqDone = new javax.swing.JButton();
+        reqAdd = new javax.swing.JButton();
         INVmaincard = new javax.swing.JPanel();
         PC = new javax.swing.JButton();
         CC = new javax.swing.JButton();
@@ -534,6 +550,128 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         Maincard.setPreferredSize(new java.awt.Dimension(1700, 982));
         Maincard.setLayout(new java.awt.CardLayout());
+
+        Home.setBackground(new java.awt.Color(255, 255, 255));
+        Home.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        repTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(repTbl);
+
+        shipTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(shipTbl);
+
+        reqTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(reqTbl);
+
+        repDone.setText("Done");
+
+        repAdd.setText("Add");
+
+        repSearch.setText("jTextField1");
+
+        shipSearch.setText("jTextField1");
+
+        shipDone.setText("Delivered");
+
+        shipAdd.setText("Ship");
+
+        reqSearch.setText("jTextField1");
+
+        reqDone.setText("Received");
+
+        reqAdd.setText("Request");
+
+        javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
+        Home.setLayout(HomeLayout);
+        HomeLayout.setHorizontalGroup(
+            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomeLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(reqSearch)
+                        .addComponent(reqDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reqAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(shipSearch)
+                        .addComponent(shipDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(shipAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(repSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                        .addComponent(repDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(repAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(566, Short.MAX_VALUE))
+        );
+        HomeLayout.setVerticalGroup(
+            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomeLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HomeLayout.createSequentialGroup()
+                        .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(repDone)
+                        .addGap(18, 18, 18)
+                        .addComponent(repAdd)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HomeLayout.createSequentialGroup()
+                        .addComponent(shipSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(shipDone)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(shipAdd)))
+                .addGap(66, 66, 66)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HomeLayout.createSequentialGroup()
+                        .addComponent(reqSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(reqDone)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(reqAdd)))
+                .addGap(25, 25, 25))
+        );
+
+        Maincard.add(Home, "card7");
 
         INVmaincard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
         INVmaincard.setPreferredSize(new java.awt.Dimension(1700, 982));
@@ -4685,6 +4823,7 @@ prAdd();        // TODO add your handling code here:
     private javax.swing.JButton HISrepair;
     private javax.swing.JButton HISreplace;
     private javax.swing.JTextField HISsearchf;
+    private javax.swing.JPanel Home;
     private javax.swing.JButton INV;
     private javax.swing.JPanel INVcard;
     private javax.swing.JPanel INVmaincard;
@@ -5009,6 +5148,9 @@ prAdd();        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JButton pcAdd;
     public static javax.swing.JButton pcAddCan;
     private javax.swing.JButton pcDel;
@@ -5082,6 +5224,18 @@ prAdd();        // TODO add your handling code here:
     public static javax.swing.JComboBox prSort;
     private javax.swing.JTable prTbl;
     public static javax.swing.JButton prUpdate;
+    private javax.swing.JButton repAdd;
+    private javax.swing.JButton repDone;
+    private javax.swing.JTextField repSearch;
+    private javax.swing.JTable repTbl;
+    private javax.swing.JButton reqAdd;
+    private javax.swing.JButton reqDone;
+    private javax.swing.JTextField reqSearch;
+    private javax.swing.JTable reqTbl;
+    private javax.swing.JButton shipAdd;
+    private javax.swing.JButton shipDone;
+    private javax.swing.JTextField shipSearch;
+    private javax.swing.JTable shipTbl;
     private javax.swing.JLabel timefield;
     private javax.swing.JLabel uLogCnt;
     private javax.swing.JButton ulogrefresh;
@@ -5718,7 +5872,7 @@ public void pcTransfer(String sb){
 public void ccTransfer(String sb){
 
             int selectedRowIndex = ccTbl.getSelectedRow();
-            String ID = model.getValueAt(selectedRowIndex,5).toString();
+            String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
             String s2 = ccSupp.getText();
             String s3 = ccUN.getText();
             String s4 = ccPW.getText();
@@ -5746,9 +5900,8 @@ public void ccTransfer(String sb){
  //showCC();
 }
 public void prTransfer(String sb){
-            DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
             int selectedRowIndex = prTbl.getSelectedRow();
-            String ID = model.getValueAt(selectedRowIndex,4).toString();
+            String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
             String s2 = prManu.getText();
             String s3 = prName.getText();
             String s4 = prDept.getText();
@@ -5789,9 +5942,8 @@ String s5 = compRam.getText();
 String s6 = compHdd.getText();
 String s7 = compUps.getText();
 String s8 = compRem.getText();
-       DefaultTableModel model = (DefaultTableModel) compTbl.getModel();
         int selectedRowIndex = compTbl.getSelectedRow();
-        String ID = model.getValueAt(selectedRowIndex,7).toString();
+        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
         Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -5839,9 +5991,8 @@ String s3 = ccUN.getText();
 String s4 = ccPW.getText();
 String s5 = ccNum.getText();
 String s6 = ccRem.getText();
-       DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
        int selectedRowIndex = ccTbl.getSelectedRow();
-       String ID = model.getValueAt(selectedRowIndex,5).toString();
+       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
 
 Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
@@ -5889,9 +6040,8 @@ String s2 = prManu.getText();
 String s3 = prName.getText();
 String s4 = prDept.getText();
 String s5 = prRem.getText();
-       DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
        int selectedRowIndex = prTbl.getSelectedRow();
-       String ID = model.getValueAt(selectedRowIndex,4).toString();
+       String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
 
 Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
@@ -5941,34 +6091,31 @@ public void pcSet(){
         compMboard.setText(compTbl.getValueAt(selectedRowIndex,4).toString());
         compRam.setText(compTbl.getValueAt(selectedRowIndex,5).toString());
         compHdd.setText(compTbl.getValueAt(selectedRowIndex,6).toString());
-        showHisPC();
-        setPCRem();
+        //showHisPC();
+        //setPCRem();
 }
 public void ccSet(){
-        DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
         int selectedRowIndex = ccTbl.getSelectedRow();
-        ccBran.setText(model.getValueAt(selectedRowIndex,0).toString());
-        ccSupp.setText(model.getValueAt(selectedRowIndex,1).toString());
-        ccNum.setText(model.getValueAt(selectedRowIndex,2).toString());
-        ccUN.setText(model.getValueAt(selectedRowIndex,3).toString());
-        ccPW.setText(model.getValueAt(selectedRowIndex,4).toString());
-        showHisCC();
-        setCCRem();
+        ccBran.setText(ccTbl.getValueAt(selectedRowIndex,0).toString());
+        ccSupp.setText(ccTbl.getValueAt(selectedRowIndex,1).toString());
+        ccNum.setText(ccTbl.getValueAt(selectedRowIndex,2).toString());
+        ccUN.setText(ccTbl.getValueAt(selectedRowIndex,3).toString());
+        ccPW.setText(ccTbl.getValueAt(selectedRowIndex,4).toString());
+        //showHisCC();
+        //setCCRem();
 }
 public void prSet(){
-        DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
         int selectedRowIndex = prTbl.getSelectedRow();
-        prBran.setText(model.getValueAt(selectedRowIndex,0).toString());
-        prDept.setText(model.getValueAt(selectedRowIndex,1).toString());
-        prManu.setText(model.getValueAt(selectedRowIndex,2).toString());
-        prName.setText(model.getValueAt(selectedRowIndex,3).toString());
-        showHisPR();
-        setPRRem();
+        prBran.setText(prTbl.getValueAt(selectedRowIndex,0).toString());
+        prDept.setText(prTbl.getValueAt(selectedRowIndex,1).toString());
+        prManu.setText(prTbl.getValueAt(selectedRowIndex,2).toString());
+        prName.setText(prTbl.getValueAt(selectedRowIndex,3).toString());
+        //showHisPR();
+        //setPRRem();
 }
 public void hisSet(){
-        DefaultTableModel model = (DefaultTableModel) allHisTbl.getModel();
         int selectedRowIndex = allHisTbl.getSelectedRow();
-        String categ = model.getValueAt(selectedRowIndex,2).toString();
+        String categ = allHisTbl.getValueAt(selectedRowIndex,2).toString();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         System.out.print(categ);
         if(categ.equals("Computer")){
@@ -5976,16 +6123,16 @@ public void hisSet(){
         HISpc.setVisible(true);
         HIScc.setVisible(false);
         HISpr.setVisible(false);
-        pcHisBran.setText(model.getValueAt(selectedRowIndex,0).toString());
-        pcHisName.setText(model.getValueAt(selectedRowIndex,1).toString());
-        pcHisAct.setText(model.getValueAt(selectedRowIndex,3).toString());
-        pcHisPerf.setText(model.getValueAt(selectedRowIndex,4).toString());
-        pcHisSDate.setText(model.getValueAt(selectedRowIndex,5).toString());
-        pcHisEDate.setText(model.getValueAt(selectedRowIndex,6).toString());
-        pcHisSTime.setText(model.getValueAt(selectedRowIndex,7).toString());
-        pcHisETime.setText(model.getValueAt(selectedRowIndex,8).toString());
-        pcHisPric.setText(model.getValueAt(selectedRowIndex,9).toString());
-        pcHisRem.setText(model.getValueAt(selectedRowIndex,10).toString());
+        pcHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        pcHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        pcHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        pcHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        pcHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        pcHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        pcHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        pcHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        pcHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        pcHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
    
         }
         else if(categ.equals("CCTV")){
@@ -5993,32 +6140,32 @@ public void hisSet(){
         HISpc.setVisible(false);
         HIScc.setVisible(true);
         HISpr.setVisible(false);
-        ccHisBran.setText(model.getValueAt(selectedRowIndex,0).toString());
-        ccHisName.setText(model.getValueAt(selectedRowIndex,1).toString());
-        ccHisAct.setText(model.getValueAt(selectedRowIndex,3).toString());
-        ccHisPerf.setText(model.getValueAt(selectedRowIndex,4).toString());
-        ccHisSDate.setText(model.getValueAt(selectedRowIndex,5).toString());
-        ccHisEDate.setText(model.getValueAt(selectedRowIndex,6).toString());
-        ccHisSTime.setText(model.getValueAt(selectedRowIndex,7).toString());
-        ccHisETime.setText(model.getValueAt(selectedRowIndex,8).toString());
-        ccHisPric.setText(model.getValueAt(selectedRowIndex,9).toString());
-        ccHisRem.setText(model.getValueAt(selectedRowIndex,10).toString());
+        ccHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        ccHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        ccHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        ccHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        ccHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        ccHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        ccHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        ccHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        ccHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        ccHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
         }
         else if(categ.equals("Printer")){
         HISdetails.setVisible(true);
         HISpc.setVisible(false);
         HIScc.setVisible(false);
         HISpr.setVisible(true);
-        prHisBran.setText(model.getValueAt(selectedRowIndex,0).toString());
-        prHisName.setText(model.getValueAt(selectedRowIndex,1).toString());
-        prHisAct.setText(model.getValueAt(selectedRowIndex,3).toString());
-        prHisPerf.setText(model.getValueAt(selectedRowIndex,4).toString());
-        prHisSDate.setText(model.getValueAt(selectedRowIndex,5).toString());
-        prHisEDate.setText(model.getValueAt(selectedRowIndex,6).toString());
-        prHisSTime.setText(model.getValueAt(selectedRowIndex,7).toString());
-        prHisETime.setText(model.getValueAt(selectedRowIndex,8).toString());
-        prHisPric.setText(model.getValueAt(selectedRowIndex,9).toString());
-        prHisRem.setText(model.getValueAt(selectedRowIndex,10).toString());
+        prHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        prHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        prHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        prHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        prHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        prHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        prHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        prHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        prHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        prHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
         }
         
 }
@@ -6048,9 +6195,8 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 }
 public void setCCRem(){
-        DefaultTableModel model = (DefaultTableModel) ccTbl.getModel();
         int selectedRowIndex = ccTbl.getSelectedRow();
-        String ID = model.getValueAt(selectedRowIndex,5).toString();
+        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
     try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
@@ -6068,9 +6214,8 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 }
 public void setPRRem(){
-        DefaultTableModel model = (DefaultTableModel) prTbl.getModel();
         int selectedRowIndex = prTbl.getSelectedRow();
-        String ID = model.getValueAt(selectedRowIndex,4).toString();
+        String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
     try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
@@ -6113,7 +6258,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-compTbl.setRowSelectionInterval(0,0);
+//compTbl.setRowSelectionInterval(0,0);
 }
 public void ccSort(){
 String Branch1 = ccSort.getSelectedItem().toString();    
@@ -6137,7 +6282,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-ccTbl.setRowSelectionInterval(0,0);
+//ccTbl.setRowSelectionInterval(0,0);
 }
 public void prSort(){
 String Branch2 = prSort.getSelectedItem().toString();    
@@ -6161,7 +6306,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }  
 }
-prTbl.setRowSelectionInterval(0,0);
+//prTbl.setRowSelectionInterval(0,0);
 }
 public void alogSort(){
         SimpleDateFormat sdf = new SimpleDateFormat("MMM/dd/yy");
@@ -6170,7 +6315,6 @@ public void alogSort(){
         System.out.print(startD+endD);
 
         try {
-            DefaultTableModel model1 = (DefaultTableModel) actlogTbl.getModel();
             con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
             ResultSet rs;
             Statement st=con.createStatement();
@@ -6190,7 +6334,6 @@ public void ulogSort(){
         System.out.print(startD+endD);
 
         try {
-            DefaultTableModel model1 = (DefaultTableModel) userlogTbl.getModel();
             con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
             ResultSet rs;
             Statement st=con.createStatement();
@@ -6217,7 +6360,6 @@ String Branch2 = hisSortCateg.getSelectedItem().toString();
             Statement st=con.createStatement();         
             sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE Categ = '"+Branch2+"'";  
             ResultSet rs=st.executeQuery(sql); 
-            TableColumnModel columnModel = allHisTbl.getColumnModel();
             allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
             rs.close();
             st.close();
@@ -6276,7 +6418,7 @@ String endD = sdf.format(hisSortEDate.getDate());
 
 //Data Archives Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void PCaddArchives(){
-    String s1 = compBran.getText();
+String s1 = compBran.getText();
 String s2 = compDept.getText();
 String s3 = compName.getText();
 String s4 = compProc.getText();
@@ -6303,7 +6445,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-refreshPC();
+//refreshPC();
 }
 public void CCaddArchives(){
 String s1 = ccBran.getText();
@@ -6333,7 +6475,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-refreshCC();    
+//refreshCC();    
 }
 public void PRaddArchives(){
 String s1 = prBran.getText();
@@ -6362,7 +6504,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-refreshPR();    
+//refreshPR();    
 }
 //End of Data Archive Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
