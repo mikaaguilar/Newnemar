@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,6 +31,7 @@ public String sb;
      */
     public transferBranch2() {
         initComponents();
+         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         initBranch();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSize().height/2);

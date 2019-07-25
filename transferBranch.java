@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,10 +26,12 @@ public PreparedStatement st, st1, st2,sta;
 public ResultSet rs, rs1, rs2; 
 public String sb;
 
+
     /**
      * Creates new form transferBranch
      */
     public transferBranch() {
+         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
         initBranch();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
