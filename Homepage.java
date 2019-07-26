@@ -4989,7 +4989,7 @@ pcNonEditable();
     public String sql,sql1; 
     public String utype;
 //FUNCTIONS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public void FilterJtable( final JTable jTable,  final JTextField jtfFilter) {
+public void FilterPC( final JTable jTable,  final JTextField jtfFilter) {
     final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
     jTable.setRowSorter(rowSorter);
     jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
@@ -5036,12 +5036,60 @@ pcNonEditable();
                  setJTableColumnsWidth(jTable, 480, 1, 1, 1, 80, 80, 1, 1,1);
                  Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
 }
+public void FilterCC( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+                 setJTableColumnsWidth(ccTbl, 480, 6, 42, 6, 20, 20, 6);
+                 Homepage.setCellsAlignment(ccTbl, SwingConstants.CENTER);
+}
 //FOR PC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showPC(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID FROM dbo.invPC ORDER by BRANCH";         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 compTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -5055,7 +5103,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  //setJTableColumnsWidth(compTbl, 480, 1, 1, 1, 80, 80, 1, 1,1);
 // Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
  
- FilterJtable(compTbl,pcSearchtxt);
+ FilterPC(compTbl,pcSearchtxt);
 }    
 public void pcSet(){
         int selectedRowIndex = compTbl.getSelectedRow();
@@ -5111,7 +5159,7 @@ else
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor,MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID  FROM dbo.invPC WHERE BRANCH = '"+Branch+"' ORDER BY Branch ";         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor,MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID  FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
 rs=st.executeQuery(sql); 
 compTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -5122,7 +5170,7 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-FilterJtable(compTbl,pcSearchtxt);
+FilterPC(compTbl,pcSearchtxt);
 }
 //compTbl.setRowSelectionInterval(0,0);
 }    
@@ -5170,7 +5218,10 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
 String sql ="UPDATE dbo.invPC SET Branch = '"+s1+"',Dept = '"+s2+"',Owner = '"+s3+"',Proce = '"+s4+"',MBoard = '"+s11+"', Ram = '"+s5+"',HDD = '"+s6+"',UPS = '"+s7+"',KeyB = '"+s8+"',Mouse = '"+s9+"',Moni = '"+s12+"' ,Rem = '"+s10+"' WHERE ID = '"+ID+"'";         
 st.executeUpdate(sql);
-JOptionPane.showMessageDialog(null,"Item Updated!"); 
+
+String sql1 ="UPDATE dbo.Inv SET Branch = '"+s1+"',Dept = '"+s2+"',Owner = '"+s3+"' WHERE ID = '"+ID+"'";         
+st.executeUpdate(sql1);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
 
 Statement sta = con.createStatement();
             String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'PC','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
@@ -5212,13 +5263,159 @@ compMou.setEditable(false);
 pcUpdate.setVisible(false);
 pcEdit.setVisible(true);
 }
-//Output Table Contents------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void pcDel(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+String s1 = compBran.getText();
+String s2 = compDept.getText();
+String s3 = compName.getText();
+String s4 = compProc.getText();
+String s5 = compRam.getText();
+String s6 = compHdd.getText();
+String s7 = compUps.getText();
+String s8 = compKeyb.getText();
+String s9 = compMou.getText();
+String s10 = compRem.getText();
+String s11 = compMboard.getText();
+String s12 = compMoni.getText();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+        Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ 
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invPC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql1);
 
+Statement sta = con.createStatement();
+            String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+s1+"','Disposed', 'PC','"+s2+"-"+s3+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','N/A','N/A')";
+            sta.execute(newsql1);
+
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', 'PC','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Device Disposed!"); 
+addArchives();
+}
+    if(n == JOptionPane.NO_OPTION){ 
+/*
+jDateChooser1.setCalendar(null);
+jTextField13.setText("");
+*/
+    }
+    if(n == JOptionPane.CLOSED_OPTION){
+/*
+jDateChooser1.setCalendar(null);
+jTextField3.setText("");
+*/
+    }
+}
+public void addArchives(){
+String s1 = compBran.getText();
+String s2 = compDept.getText();
+String s3 = compName.getText();
+String s4 = compProc.getText();
+String s5 = compRam.getText();
+String s6 = compHdd.getText();
+String s7 = compUps.getText();
+String s8 = compRem.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="INSERT INTO dbo.Archives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+st.execute(sql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+//refreshPC();
+}
+public void pcTransfer(String sb){  
+                int selectedRowIndex = compTbl.getSelectedRow();
+                String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+                String s2 = compDept.getText();
+                String s3 = compName.getText();
+                String s4 = compProc.getText();
+                String s5 = compRam.getText();
+                String s6 = compHdd.getText();
+                String s7 = compUps.getText();
+                String s8 = compRem.getText();
+                try{
+                    Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
+                    DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = new Date();
+                    DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+                    Date time = new Date();
+                    Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                    String sql ="UPDATE dbo.invPC SET BRANCH = '"+sb+"' WHERE ID = '"+ID+"'";
+                    st.executeUpdate(sql);
+                    
+                    Statement sta = con.createStatement();
+                    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transfered', 'Computer','"+sb+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')"; 
+                    sta.execute(newsql);
+                    JOptionPane.showMessageDialog(null,"Device transfered!");
+                }
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
+                }              
+                //refreshPC();
+                //showPC();
+
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//PC HISTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void pcHisEditable(){
+pcHisBran.setEditable(true);
+pcHisName.setEditable(true);
+pcHisAct.setEditable(true);
+pcHisSDate.setEnabled(true);
+pcHisEDate.setEnabled(true);
+pcHisSTime.setEditable(true);
+pcHisETime.setEditable(true);
+pcHisPric.setEditable(true);
+pcHisRem.setEditable(true); 
+}
+public void pcHisNonEditable(){
+pcHisBran.setEditable(false);
+pcHisName.setEditable(false);
+pcHisAct.setEditable(false);
+pcHisSDate.setEnabled(false);
+pcHisEDate.setEnabled(false);
+pcHisSTime.setEditable(false);
+pcHisETime.setEditable(false);
+pcHisPric.setEditable(false);
+pcHisRem.setEditable(false); 
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//END OF ALL PC------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//FOR CC------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showCC(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID FROM dbo.invCC ORDER by Branch";         
+sql = "SELECT Branch, SP as ServiceProvider,CNum as Quantity,uN as Username,pW as Password, ID FROM dbo.invCC WHERE Stat = 'WORKING' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -5228,10 +5425,198 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-/*ccTbl.setRowSelectionInterval(0,0);
-    setJTableColumnsWidth(ccTbl, 480, 6, 42, 6, 20, 20, 6);
-    Homepage.setCellsAlignment1(ccTbl, SwingConstants.CENTER);*/
+ FilterCC(ccTbl,ccSearchtxt);
 }
+public void ccSet(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        ccBran.setText(ccTbl.getValueAt(selectedRowIndex,0).toString());
+        ccSupp.setText(ccTbl.getValueAt(selectedRowIndex,1).toString());
+        ccNum.setText(ccTbl.getValueAt(selectedRowIndex,2).toString());
+        ccUN.setText(ccTbl.getValueAt(selectedRowIndex,3).toString());
+        ccPW.setText(ccTbl.getValueAt(selectedRowIndex,4).toString());
+        showHisCC();
+        CChiscount();
+        setCCRem();
+}
+public void setCCRem(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT REM FROM dbo.invCC WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String Rem = rs.getString("REM");
+ccRem.setText(Rem);
+      }
+   }
+      
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void CCcount(){
+int rowCount = ccTbl.getRowCount();
+countCC.setText(String.valueOf(rowCount));
+}
+public void ccSort(){
+String Branch1 = ccSort.getSelectedItem().toString();    
+if(Branch1.equals("ALL")){
+showCC();
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password,ID  FROM dbo.invCC WHERE Branch = '"+Branch1+"' AND Stat = 'WORKING'";   
+ResultSet rs=st.executeQuery(sql); 
+TableColumnModel columnModel = ccTbl.getColumnModel();
+ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+FilterCC(ccTbl,ccSearchtxt);
+}
+public void showHisCC(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'CC' AND ITEM_ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql);
+hisTbl2.setModel(DbUtils.resultSetToTableModel(rs));
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void CChiscount(){
+int rowCount = hisTbl2.getRowCount();
+countHis3.setText(String.valueOf(rowCount));
+}
+public void ccUpdate(){
+int selectedRowIndex = ccTbl.getSelectedRow();
+String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+String s1 = ccBran.getText();
+String s2 = ccSupp.getText();
+String s3 = ccUN.getText();
+String s4 = ccPW.getText();
+String s5 = ccNum.getText();
+String s6 = ccRem.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"',REM = '"+s6+"' WHERE ID = '"+ID+"'";         
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Branch = '"+s1+"',Owner = '"+s2+"',Dept = 'N/A' WHERE ID = '"+ID+"'";         
+st.execute(sql1);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'CC','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+
+//refreshCC();    
+}
+public void ccEditable(){
+ccBran.setEditable(true);
+ccSupp.setEditable(true);
+ccUN.setEditable(true);
+ccPW.setEditable(true);
+ccNum.setEditable(true);
+ccRem.setEditable(true);
+ccUpdate.setVisible(true);
+ccEdit.setVisible(false);
+}
+public void ccNonEditable(){
+ccBran.setEditable(false);
+ccSupp.setEditable(false);
+ccUN.setEditable(false);
+ccPW.setEditable(false);
+ccNum.setEditable(false);
+ccRem.setEditable(false); 
+ccUpdate.setVisible(false);
+ccEdit.setVisible(true);
+}
+public void ccDel(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+String s1 = ccBran.getText();
+String s2 = ccSupp.getText();
+String s3 = ccUN.getText();
+String s4 = ccPW.getText();
+String s5 = ccNum.getText();
+String s6 = ccRem.getText();
+       int selectedRowIndex = ccTbl.getSelectedRow();
+       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ 
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invCC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql1);
+
+
+Statement sta = con.createStatement();
+            String newsql1 ="INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+s1+"','Disposed', 'CC','"+s2+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','N/A','N/A')";
+            sta.execute(newsql1);
+            
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', 'CC','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Device Disposed!"); 
+addArchives();
+}
+    if(n == JOptionPane.NO_OPTION){ 
+/*
+jDateChooser1.setCalendar(null);
+jTextField13.setText("");
+*/
+    }
+    if(n == JOptionPane.CLOSED_OPTION){
+/*
+jDateChooser1.setCalendar(null);
+jTextField3.setText("");
+*/
+    }
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 public void showPR(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
@@ -5266,21 +5651,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
  //allHisTbl.setRowSelectionInterval(0,0);
 }
-public void showHisCC(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'CCTV' AND ITEM_ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql);
-hisTbl2.setModel(DbUtils.resultSetToTableModel(rs));
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
+
 public void showHisPR(){
         int selectedRowIndex = prTbl.getSelectedRow();
         String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
@@ -5517,7 +5888,7 @@ public void AddRepOpen(){
 //Logs----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void logoutLog(){
     Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Logout",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 null, options, options[0]);
  
@@ -5556,36 +5927,7 @@ jTextField3.setText("");
 
 //Basic Editing Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-public void ccUpdate(){
-int selectedRowIndex = ccTbl.getSelectedRow();
-String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-String s1 = ccBran.getText();
-String s2 = ccSupp.getText();
-String s3 = ccUN.getText();
-String s4 = ccPW.getText();
-String s5 = ccNum.getText();
-String s6 = ccRem.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"',REM = '"+s6+"' WHERE ID = '"+ID+"'";         
-st.execute(sql);
 
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Item Added!"); 
-//refreshCC();    
-}
 public void prUpdate(){
 int selectedRowIndex = prTbl.getSelectedRow();
 String ID = prTbl.getValueAt(selectedRowIndex,4).toString();   
@@ -5617,41 +5959,7 @@ JOptionPane.showMessageDialog(null,"Item Updated!");
 }
 //End of Editing Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//TRANFER CODE
-public void pcTransfer(String sb){  
-                int selectedRowIndex = compTbl.getSelectedRow();
-                String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-                String s2 = compDept.getText();
-                String s3 = compName.getText();
-                String s4 = compProc.getText();
-                String s5 = compRam.getText();
-                String s6 = compHdd.getText();
-                String s7 = compUps.getText();
-                String s8 = compRem.getText();
-                try{
-                    Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
-                    DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-                    Date date = new Date();
-                    DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-                    Date time = new Date();
-                    Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                    String sql ="UPDATE dbo.invPC SET BRANCH = '"+sb+"' WHERE ID = '"+ID+"'";
-                    st.executeUpdate(sql);
-                    
-                    Statement sta = con.createStatement();
-                    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transfered', 'Computer','"+sb+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')"; 
-                    sta.execute(newsql);
-                    JOptionPane.showMessageDialog(null,"Device transfered!");
-                }
-                catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
-                    JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
-                }              
-                //refreshPC();
-                //showPC();
-
-
-}
+//TRANFER CODe
 public void ccTransfer(String sb){
 
             int selectedRowIndex = ccTbl.getSelectedRow();
@@ -5712,107 +6020,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 }
 
 //Basic Deleting Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcDel(){
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-String s1 = compBran.getText();
-String s2 = compDept.getText();
-String s3 = compName.getText();
-String s4 = compProc.getText();
-String s5 = compRam.getText();
-String s6 = compHdd.getText();
-String s7 = compUps.getText();
-String s8 = compRem.getText();
-        int selectedRowIndex = compTbl.getSelectedRow();
-        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-        Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
-JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-null, options, options[0]);
- 
-    if(n == JOptionPane.OK_OPTION){ 
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invPC WHERE ID = '"+ID+"'";
-st.execute(sql);
 
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-PCaddArchives();
-}
-    if(n == JOptionPane.NO_OPTION){ 
-/*
-jDateChooser1.setCalendar(null);
-jTextField13.setText("");
-*/
-    }
-    if(n == JOptionPane.CLOSED_OPTION){
-/*
-jDateChooser1.setCalendar(null);
-jTextField3.setText("");
-*/
-    }
-}
-public void ccDel(){
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-String s1 = ccBran.getText();
-String s2 = ccSupp.getText();
-String s3 = ccUN.getText();
-String s4 = ccPW.getText();
-String s5 = ccNum.getText();
-String s6 = ccRem.getText();
-       int selectedRowIndex = ccTbl.getSelectedRow();
-       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-
-Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
-JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-null, options, options[0]);
- 
-    if(n == JOptionPane.OK_OPTION){ 
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invCC WHERE ID = '"+ID+"'";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-CCaddArchives();
-}
-    if(n == JOptionPane.NO_OPTION){ 
-/*
-jDateChooser1.setCalendar(null);
-jTextField13.setText("");
-*/
-    }
-    if(n == JOptionPane.CLOSED_OPTION){
-/*
-jDateChooser1.setCalendar(null);
-jTextField3.setText("");
-*/
-    }
-}
 public void prDel(){
         DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
         Date date = new Date();
@@ -5866,16 +6074,7 @@ jTextField3.setText("");
 
 //Click Set Contents Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-public void ccSet(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        ccBran.setText(ccTbl.getValueAt(selectedRowIndex,0).toString());
-        ccSupp.setText(ccTbl.getValueAt(selectedRowIndex,1).toString());
-        ccNum.setText(ccTbl.getValueAt(selectedRowIndex,2).toString());
-        ccUN.setText(ccTbl.getValueAt(selectedRowIndex,3).toString());
-        ccPW.setText(ccTbl.getValueAt(selectedRowIndex,4).toString());
-        //showHisCC();
-        //setCCRem();
-}
+
 public void prSet(){
         int selectedRowIndex = prTbl.getSelectedRow();
         prBran.setText(prTbl.getValueAt(selectedRowIndex,0).toString());
@@ -5942,25 +6141,6 @@ public void hisSet(){
         
 }
 
-public void setCCRem(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-    try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT REM FROM dbo.invCC WHERE ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
-if(rs.next()){
-String Rem = rs.getString("REM");
-ccRem.setText(Rem);
-      }
-   }
-      
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
 public void setPRRem(){
         int selectedRowIndex = prTbl.getSelectedRow();
         String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
@@ -5985,30 +6165,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 
 //Choose Sort Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-public void ccSort(){
-String Branch1 = ccSort.getSelectedItem().toString();    
-if(Branch1.equals("ALL")){
-showCC();
-}
-else
-{
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password,ID  FROM dbo.invCC WHERE Branch = '"+Branch1+"'";   
-ResultSet rs=st.executeQuery(sql); 
-TableColumnModel columnModel = ccTbl.getColumnModel();
-ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-//ccTbl.setRowSelectionInterval(0,0);
-}
+
 public void prSort(){
 String Branch2 = prSort.getSelectedItem().toString();    
 if(Branch2.equals("ALL")){
@@ -6142,36 +6299,6 @@ String endD = sdf.format(hisSortEDate.getDate());
 //End of Sort Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Data Archives Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void PCaddArchives(){
-String s1 = compBran.getText();
-String s2 = compDept.getText();
-String s3 = compName.getText();
-String s4 = compProc.getText();
-String s5 = compRam.getText();
-String s6 = compHdd.getText();
-String s7 = compUps.getText();
-String s8 = compRem.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.pcArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-//refreshPC();
-}
 public void CCaddArchives(){
 String s1 = ccBran.getText();
 String s2 = ccSupp.getText();
@@ -6234,16 +6361,7 @@ JOptionPane.showMessageDialog(null,"Sent to Archives");
 //End of Data Archive Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Setting Text Box Editable------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void ccEditable(){
-ccBran.setEditable(true);
-ccSupp.setEditable(true);
-ccUN.setEditable(true);
-ccPW.setEditable(true);
-ccNum.setEditable(true);
-ccRem.setEditable(true);
-ccUpdate.setVisible(true);
-ccEdit.setVisible(false);
-}
+
 public void prEditable(){
 prBran.setEditable(true);
 prManu.setEditable(true);
@@ -6252,17 +6370,6 @@ prDept.setEditable(true);
 prRem.setEditable(true);
 prUpdate.setVisible(true);
 prEdit.setVisible(false);
-}
-public void pcHisEditable(){
-pcHisBran.setEditable(true);
-pcHisName.setEditable(true);
-pcHisAct.setEditable(true);
-pcHisSDate.setEnabled(true);
-pcHisEDate.setEnabled(true);
-pcHisSTime.setEditable(true);
-pcHisETime.setEditable(true);
-pcHisPric.setEditable(true);
-pcHisRem.setEditable(true); 
 }
 public void ccHisEditable(){
 ccHisBran.setEditable(true);
@@ -6289,16 +6396,7 @@ prHisRem.setEditable(true);
 //End of Text Box Editable Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Setting Text Box Non-Editable------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void ccNonEditable(){
-ccBran.setEditable(false);
-ccSupp.setEditable(false);
-ccUN.setEditable(false);
-ccPW.setEditable(false);
-ccNum.setEditable(false);
-ccRem.setEditable(false); 
-ccUpdate.setVisible(false);
-ccEdit.setVisible(true);
-}
+
 public void prNonEditable(){
 prBran.setEditable(false);
 prManu.setEditable(false);
@@ -6308,17 +6406,7 @@ prRem.setEditable(false);
 prEdit.setVisible(true);
 prUpdate.setVisible(false);
 }
-public void pcHisNonEditable(){
-pcHisBran.setEditable(false);
-pcHisName.setEditable(false);
-pcHisAct.setEditable(false);
-pcHisSDate.setEnabled(false);
-pcHisEDate.setEnabled(false);
-pcHisSTime.setEditable(false);
-pcHisETime.setEditable(false);
-pcHisPric.setEditable(false);
-pcHisRem.setEditable(false); 
-}
+
 public void ccHisNonEditable(){
 ccHisBran.setEditable(false);
 ccHisName.setEditable(false);
@@ -6350,19 +6438,13 @@ prNonEditable();
 
 
 //Table component count------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void CCcount(){
-int rowCount = ccTbl.getRowCount();
-countCC.setText(String.valueOf(rowCount));
-}
+
 public void PRcount(){
 int rowCount = prTbl.getRowCount();
 countPR.setText(String.valueOf(rowCount));
 }
 
-public void CChiscount(){
-int rowCount = hisTbl2.getRowCount();
-countHis3.setText(String.valueOf(rowCount));
-}
+
 public void PRhiscount(){
 int rowCount = hisTbl3.getRowCount();
 countHis2.setText(String.valueOf(rowCount));
