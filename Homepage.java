@@ -37,6 +37,8 @@ public Connection con;
 public PreparedStatement st, st1, st2,sta;
 public ResultSet rs, rs1, rs2; 
 public static String z;
+public String tr;
+public String pu;
 
     public Homepage() {
         initComponents();
@@ -56,12 +58,15 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
     public void initialize() {
     //initialize
     initEdit(); 
+    initBranch();
+    setIcon();
     groupButton();
     showDate();
     showTime(); 
     Done.setVisible(false);
     branchcard.setVisible(false);
     deptcard.setVisible(false);
+    showRep();
     }
 
     private void groupButton( ) {
@@ -196,7 +201,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel30 = new javax.swing.JLabel();
         compMboard = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
-        compMou1 = new javax.swing.JTextField();
+        compMoni = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         pcSearchtxt = new javax.swing.JTextField();
         pcSort = new javax.swing.JComboBox();
@@ -214,6 +219,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         pcEdit = new javax.swing.JButton();
         pcUpdate = new javax.swing.JButton();
         pcTransfer = new javax.swing.JButton();
+        pcPurchase = new javax.swing.JButton();
+        pcRepair = new javax.swing.JButton();
         CCcard = new javax.swing.JPanel();
         jScrollPane17 = new javax.swing.JScrollPane();
         ccTbl = new javax.swing.JTable();
@@ -246,12 +253,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         ccTransfer = new javax.swing.JButton();
         ccEdit = new javax.swing.JButton();
         ccUpdate = new javax.swing.JButton();
+        ccRepair = new javax.swing.JButton();
+        ccPurchase = new javax.swing.JButton();
         PRcard = new javax.swing.JPanel();
         jLabel86 = new javax.swing.JLabel();
         prSearchtxt = new javax.swing.JTextField();
         prSort = new javax.swing.JComboBox();
-        PRadd = new javax.swing.JButton();
-        PRdel = new javax.swing.JButton();
+        prPurchase = new javax.swing.JButton();
+        prDispose = new javax.swing.JButton();
         jLabel88 = new javax.swing.JLabel();
         PRinfo = new javax.swing.JPanel();
         jLabel75 = new javax.swing.JLabel();
@@ -268,7 +277,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel89 = new javax.swing.JLabel();
         countPR = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        ccTransfer1 = new javax.swing.JButton();
+        prTransfer = new javax.swing.JButton();
         prUpdate = new javax.swing.JButton();
         prEdit = new javax.swing.JButton();
         jScrollPane15 = new javax.swing.JScrollPane();
@@ -277,13 +286,19 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         prTbl = new javax.swing.JTable();
         jLabel48 = new javax.swing.JLabel();
         countHis2 = new javax.swing.JLabel();
+        prRepair = new javax.swing.JButton();
         OTcard = new javax.swing.JPanel();
-        PCtable1 = new javax.swing.JScrollPane();
+        otherTbl = new javax.swing.JScrollPane();
         compTbl1 = new javax.swing.JTable();
-        pcSort1 = new javax.swing.JComboBox();
-        pcSearchtxt1 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
+        otherSort = new javax.swing.JComboBox();
+        otherSearchtxt = new javax.swing.JTextField();
+        otherRefresh = new javax.swing.JButton();
         jLabel93 = new javax.swing.JLabel();
+        jScrollPane33 = new javax.swing.JScrollPane();
+        hisTbl4 = new javax.swing.JTable();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        countHis4 = new javax.swing.JLabel();
         PR1 = new javax.swing.JButton();
         Adding = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -361,9 +376,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HISmaincard = new javax.swing.JPanel();
         jScrollPane20 = new javax.swing.JScrollPane();
         allHisTbl = new javax.swing.JTable();
-        HISrepair = new javax.swing.JButton();
-        HISreplace = new javax.swing.JButton();
-        HISdispose = new javax.swing.JButton();
         HISsearchf = new javax.swing.JTextField();
         HISfilter = new javax.swing.JButton();
         HISdetails = new javax.swing.JPanel();
@@ -536,9 +548,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel49 = new javax.swing.JLabel();
         countHis5 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
+        HisAdd = new javax.swing.JButton();
         AddHistory = new javax.swing.JPanel();
         Add = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
         PCinfo4 = new javax.swing.JPanel();
         hisAddCan = new javax.swing.JButton();
         hisSave = new javax.swing.JButton();
@@ -651,6 +663,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         branchDeletebtn = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
         Transfer = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -661,6 +675,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jComboBox6 = new javax.swing.JComboBox<>();
         jTextField4 = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         UnitCard = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
@@ -799,6 +814,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         shipAdd.setBackground(new java.awt.Color(255, 255, 255));
         shipAdd.setText("Ship");
+        shipAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shipAddActionPerformed(evt);
+            }
+        });
 
         reqDone.setBackground(new java.awt.Color(255, 255, 255));
         reqDone.setText("Received");
@@ -828,6 +848,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Repaired");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Dispose");
@@ -842,6 +867,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setText("Replace w/ Reserve");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DoneLayout = new javax.swing.GroupLayout(Done);
         Done.setLayout(DoneLayout);
@@ -910,7 +940,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
                         .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(553, Short.MAX_VALUE))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1088,9 +1118,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel56.setForeground(new java.awt.Color(51, 51, 51));
         jLabel56.setText("Monitor:");
 
-        compMou1.setEditable(false);
-        compMou1.setForeground(new java.awt.Color(102, 102, 102));
-        compMou1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        compMoni.setEditable(false);
+        compMoni.setForeground(new java.awt.Color(102, 102, 102));
+        compMoni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout PCinfoLayout = new javax.swing.GroupLayout(PCinfo);
         PCinfo.setLayout(PCinfoLayout);
@@ -1133,7 +1163,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(compMou1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(compMoni, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(3, 3, 3))
                     .addGroup(PCinfoLayout.createSequentialGroup()
                         .addGroup(PCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1193,7 +1223,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(compUps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel56)
-                        .addComponent(compMou1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(compMoni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compKeyb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1208,15 +1238,20 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         );
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel28.setForeground(new java.awt.Color(13, 13, 129));
         jLabel28.setText("Computer Information");
 
         pcSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
 
         pcSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
+        pcSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcSortActionPerformed(evt);
+            }
+        });
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel42.setForeground(new java.awt.Color(13, 13, 129));
         jLabel42.setText("Computer History");
 
         jLabel47.setText("Computer/s Found:");
@@ -1301,14 +1336,29 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         pcDel.setBackground(new java.awt.Color(255, 255, 255));
         pcDel.setForeground(new java.awt.Color(0, 0, 103));
         pcDel.setText("Dispose");
+        pcDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcDelActionPerformed(evt);
+            }
+        });
 
         pcEdit.setBackground(new java.awt.Color(255, 255, 255));
         pcEdit.setForeground(new java.awt.Color(0, 0, 102));
         pcEdit.setText("Edit");
+        pcEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcEditActionPerformed(evt);
+            }
+        });
 
         pcUpdate.setBackground(new java.awt.Color(255, 255, 255));
         pcUpdate.setForeground(new java.awt.Color(0, 0, 102));
         pcUpdate.setText("Update");
+        pcUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcUpdateActionPerformed(evt);
+            }
+        });
 
         pcTransfer.setBackground(new java.awt.Color(255, 255, 255));
         pcTransfer.setForeground(new java.awt.Color(0, 0, 102));
@@ -1316,6 +1366,24 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         pcTransfer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pcTransferActionPerformed(evt);
+            }
+        });
+
+        pcPurchase.setBackground(new java.awt.Color(255, 255, 255));
+        pcPurchase.setForeground(new java.awt.Color(0, 0, 102));
+        pcPurchase.setText("Purchase");
+        pcPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcPurchaseActionPerformed(evt);
+            }
+        });
+
+        pcRepair.setBackground(new java.awt.Color(255, 255, 255));
+        pcRepair.setForeground(new java.awt.Color(0, 0, 102));
+        pcRepair.setText("For Repair");
+        pcRepair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcRepairActionPerformed(evt);
             }
         });
 
@@ -1330,25 +1398,25 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel28)
                             .addComponent(PCinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pcDel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pcTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcRepair, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcDel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PCcardLayout.createSequentialGroup()
                                 .addComponent(pcUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pcEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PCcardLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
                                 .addComponent(jLabel42)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel46)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(countHis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PCcardLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(PCcardLayout.createSequentialGroup()
                             .addComponent(pcSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1361,7 +1429,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(countPC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(PCtable, javax.swing.GroupLayout.PREFERRED_SIZE, 1607, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PCcardLayout.setVerticalGroup(
             PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1379,13 +1447,17 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(PCinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(PCcardLayout.createSequentialGroup()
-                        .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pcEdit)
-                            .addComponent(pcUpdate))
-                        .addGap(18, 18, 18)
+                        .addComponent(pcRepair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pcTransfer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pcDel)))
+                        .addComponent(pcPurchase)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pcDel)
+                        .addGap(11, 11, 11)
+                        .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pcEdit)
+                            .addComponent(pcUpdate))))
                 .addGap(27, 27, 27)
                 .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1426,12 +1498,17 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jScrollPane17.setViewportView(ccTbl);
 
         jLabel68.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel68.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel68.setForeground(new java.awt.Color(13, 13, 129));
         jLabel68.setText("CCTV Information");
 
         ccSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
 
         ccSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
+        ccSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccSortActionPerformed(evt);
+            }
+        });
 
         hisTbl2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1448,7 +1525,13 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jScrollPane18.setViewportView(hisTbl2);
 
         ccDel.setBackground(new java.awt.Color(255, 255, 255));
+        ccDel.setForeground(new java.awt.Color(0, 0, 102));
         ccDel.setText("Dispose");
+        ccDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccDelActionPerformed(evt);
+            }
+        });
 
         CCinfo.setBackground(new java.awt.Color(204, 204, 204));
         CCinfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -1576,11 +1659,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel70.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel70.setForeground(new java.awt.Color(13, 13, 129));
         jLabel70.setText("CCTV History");
 
         countHis3.setBackground(new java.awt.Color(255, 255, 255));
@@ -1613,10 +1696,33 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         ccEdit.setBackground(new java.awt.Color(255, 255, 255));
         ccEdit.setForeground(new java.awt.Color(0, 0, 102));
         ccEdit.setText("Edit");
+        ccEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccEditActionPerformed(evt);
+            }
+        });
 
         ccUpdate.setBackground(new java.awt.Color(255, 255, 255));
         ccUpdate.setForeground(new java.awt.Color(0, 0, 102));
         ccUpdate.setText("Update");
+
+        ccRepair.setBackground(new java.awt.Color(255, 255, 255));
+        ccRepair.setForeground(new java.awt.Color(0, 0, 102));
+        ccRepair.setText("For Repair");
+        ccRepair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccRepairActionPerformed(evt);
+            }
+        });
+
+        ccPurchase.setBackground(new java.awt.Color(255, 255, 255));
+        ccPurchase.setForeground(new java.awt.Color(0, 0, 102));
+        ccPurchase.setText("Purchase");
+        ccPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccPurchaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CCcardLayout = new javax.swing.GroupLayout(CCcard);
         CCcard.setLayout(CCcardLayout);
@@ -1637,32 +1743,29 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(CCinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(ccDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ccTransfer, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                                    .addComponent(ccTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ccDel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ccRepair, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ccPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(CCcardLayout.createSequentialGroup()
                                         .addComponent(ccUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ccEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(28, 28, 28)
+                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(CCcardLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(CCcardLayout.createSequentialGroup()
-                                        .addComponent(jLabel70)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel76)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(countHis3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6))
-                                    .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 939, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CCcardLayout.createSequentialGroup()
+                                .addComponent(jLabel70)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel76)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(countHis3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 935, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(CCcardLayout.createSequentialGroup()
                                 .addComponent(jLabel77)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(countCC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel68)
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 1608, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 1606, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         CCcardLayout.setVerticalGroup(
@@ -1671,32 +1774,41 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(15, 15, 15)
                 .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(CCcardLayout.createSequentialGroup()
-                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ccEdit)
-                            .addComponent(ccUpdate))
+                        .addComponent(ccRepair)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ccTransfer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ccDel))
+                        .addComponent(ccPurchase)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ccDel)
+                        .addGap(13, 13, 13)
+                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ccEdit)
+                            .addComponent(ccUpdate)))
                     .addGroup(CCcardLayout.createSequentialGroup()
                         .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel76, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(countHis3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel68)
-                                .addComponent(jLabel70)))
+                                .addComponent(jLabel70))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(countHis3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel76, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(7, 7, 7)
                         .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(CCinfo, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))))
-                .addGap(27, 27, 27)
-                .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ccSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ccSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton7)
-                    .addComponent(jLabel77)
-                    .addComponent(countCC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ccSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ccSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton7))
+                    .addGroup(CCcardLayout.createSequentialGroup()
+                        .addGroup(CCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel77)
+                            .addComponent(countCC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1710,7 +1822,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         PRcard.setPreferredSize(new java.awt.Dimension(1700, 933));
 
         jLabel86.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel86.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel86.setForeground(new java.awt.Color(13, 13, 129));
         jLabel86.setText("Printer Information");
 
         prSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
@@ -1721,21 +1833,36 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         });
 
         prSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL" }));
+        prSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prSortActionPerformed(evt);
+            }
+        });
 
-        PRadd.setBackground(new java.awt.Color(255, 255, 255));
-        PRadd.setForeground(new java.awt.Color(0, 0, 102));
-        PRadd.setText("Add");
-        PRadd.setMaximumSize(new java.awt.Dimension(103, 26));
-        PRadd.setMinimumSize(new java.awt.Dimension(103, 26));
+        prPurchase.setBackground(new java.awt.Color(255, 255, 255));
+        prPurchase.setForeground(new java.awt.Color(0, 0, 102));
+        prPurchase.setText("Purchase");
+        prPurchase.setMaximumSize(new java.awt.Dimension(103, 26));
+        prPurchase.setMinimumSize(new java.awt.Dimension(103, 26));
+        prPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prPurchaseActionPerformed(evt);
+            }
+        });
 
-        PRdel.setBackground(new java.awt.Color(255, 255, 255));
-        PRdel.setForeground(new java.awt.Color(0, 0, 102));
-        PRdel.setText("Delete");
-        PRdel.setMaximumSize(new java.awt.Dimension(103, 26));
-        PRdel.setMinimumSize(new java.awt.Dimension(103, 26));
+        prDispose.setBackground(new java.awt.Color(255, 255, 255));
+        prDispose.setForeground(new java.awt.Color(0, 0, 102));
+        prDispose.setText("Dispose");
+        prDispose.setMaximumSize(new java.awt.Dimension(103, 26));
+        prDispose.setMinimumSize(new java.awt.Dimension(103, 26));
+        prDispose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prDisposeActionPerformed(evt);
+            }
+        });
 
         jLabel88.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel88.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel88.setForeground(new java.awt.Color(13, 13, 129));
         jLabel88.setText("Printer History");
 
         PRinfo.setBackground(new java.awt.Color(204, 204, 204));
@@ -1855,14 +1982,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             }
         });
 
-        ccTransfer1.setBackground(new java.awt.Color(255, 255, 255));
-        ccTransfer1.setForeground(new java.awt.Color(0, 0, 102));
-        ccTransfer1.setText("Transfer");
-        ccTransfer1.setMaximumSize(new java.awt.Dimension(103, 26));
-        ccTransfer1.setMinimumSize(new java.awt.Dimension(103, 26));
-        ccTransfer1.addActionListener(new java.awt.event.ActionListener() {
+        prTransfer.setBackground(new java.awt.Color(255, 255, 255));
+        prTransfer.setForeground(new java.awt.Color(0, 0, 102));
+        prTransfer.setText("Transfer");
+        prTransfer.setMaximumSize(new java.awt.Dimension(103, 26));
+        prTransfer.setMinimumSize(new java.awt.Dimension(103, 26));
+        prTransfer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ccTransfer1ActionPerformed(evt);
+                prTransferActionPerformed(evt);
             }
         });
 
@@ -1878,6 +2005,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         prEdit.setText("Edit");
         prEdit.setMaximumSize(new java.awt.Dimension(103, 26));
         prEdit.setMinimumSize(new java.awt.Dimension(103, 26));
+        prEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prEditActionPerformed(evt);
+            }
+        });
 
         hisTbl3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1917,53 +2049,60 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         countHis2.setBackground(new java.awt.Color(255, 255, 255));
         countHis2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        prRepair.setBackground(new java.awt.Color(255, 255, 255));
+        prRepair.setForeground(new java.awt.Color(0, 0, 102));
+        prRepair.setText("For Repair");
+        prRepair.setMaximumSize(new java.awt.Dimension(103, 26));
+        prRepair.setMinimumSize(new java.awt.Dimension(103, 26));
+        prRepair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prRepairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PRcardLayout = new javax.swing.GroupLayout(PRcard);
         PRcard.setLayout(PRcardLayout);
         PRcardLayout.setHorizontalGroup(
             PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PRcardLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PRcardLayout.createSequentialGroup()
+                .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PRcardLayout.createSequentialGroup()
+                        .addComponent(prSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(prSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel89)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(countPR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PRcardLayout.createSequentialGroup()
                         .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PRcardLayout.createSequentialGroup()
                                 .addComponent(PRinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(PRdel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ccTransfer1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(prUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(PRadd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(prEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PRcardLayout.createSequentialGroup()
-                                        .addGap(97, 97, 97)
-                                        .addComponent(jLabel48)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(countHis2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(prDispose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prTransfer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prRepair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(PRcardLayout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(prUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(prEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel86))
+                        .addGap(18, 18, 18)
+                        .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PRcardLayout.createSequentialGroup()
-                                .addComponent(prSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PRcardLayout.createSequentialGroup()
-                        .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PRcardLayout.createSequentialGroup()
-                                .addComponent(jLabel89)
+                                .addComponent(jLabel88)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel48)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(countPR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 1607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(PRcardLayout.createSequentialGroup()
-                                    .addComponent(jLabel86)
-                                    .addGap(455, 455, 455)
-                                    .addComponent(jLabel88))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(countHis2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane15))))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         PRcardLayout.setVerticalGroup(
             PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1982,15 +2121,17 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(PRcardLayout.createSequentialGroup()
-                        .addComponent(prUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(prEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prRepair, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ccTransfer1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PRdel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PRadd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(prDispose, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(PRcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(PRinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
@@ -2005,7 +2146,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(jLabel89)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         INVcard.add(PRcard, "card2");
@@ -2057,23 +2198,46 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 compTbl1KeyTyped(evt);
             }
         });
-        PCtable1.setViewportView(compTbl1);
+        otherTbl.setViewportView(compTbl1);
 
-        pcSort1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "Processor", "Motherboard", "RAM", "Harddisk", "Monitor", "UPS", "Keyboard-Mouse" }));
+        otherSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "Processor", "Motherboard", "RAM", "Harddisk", "Monitor", "UPS", "Keyboard-Mouse" }));
 
-        pcSearchtxt1.setForeground(new java.awt.Color(51, 51, 51));
+        otherSearchtxt.setForeground(new java.awt.Color(51, 51, 51));
 
-        jButton9.setBorderPainted(false);
-        jButton9.setContentAreaFilled(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        otherRefresh.setBorderPainted(false);
+        otherRefresh.setContentAreaFilled(false);
+        otherRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                otherRefreshActionPerformed(evt);
             }
         });
 
         jLabel93.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
-        jLabel93.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel93.setText("Other Devices");
+        jLabel93.setForeground(new java.awt.Color(13, 13, 129));
+        jLabel93.setText("IT Reserve");
+
+        hisTbl4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        hisTbl4.setSelectionBackground(new java.awt.Color(0, 0, 102));
+        jScrollPane33.setViewportView(hisTbl4);
+
+        jLabel99.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
+        jLabel99.setForeground(new java.awt.Color(13, 13, 129));
+        jLabel99.setText("Reserve History");
+
+        jLabel100.setText("History Found:");
+
+        countHis4.setBackground(new java.awt.Color(255, 255, 255));
+        countHis4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout OTcardLayout = new javax.swing.GroupLayout(OTcard);
         OTcard.setLayout(OTcardLayout);
@@ -2084,14 +2248,21 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel93)
                     .addGroup(OTcardLayout.createSequentialGroup()
-                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(OTcardLayout.createSequentialGroup()
-                                .addComponent(pcSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane33, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OTcardLayout.createSequentialGroup()
+                                .addComponent(otherSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pcSearchtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(PCtable1, javax.swing.GroupLayout.PREFERRED_SIZE, 1607, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(otherSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(otherTbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1607, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, OTcardLayout.createSequentialGroup()
+                                .addComponent(jLabel99)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel100)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(otherRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OTcardLayout.setVerticalGroup(
@@ -2102,15 +2273,23 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(OTcardLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(otherRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(OTcardLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pcSort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pcSearchtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(otherSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(otherSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PCtable1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(399, Short.MAX_VALUE))
+                        .addComponent(otherTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel99)
+                        .addComponent(jLabel100))
+                    .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane33, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         INVcard.add(OTcard, "card5");
@@ -2184,13 +2363,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addContainerGap())
         );
 
-        reqBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1a.setText("Branch:");
 
         jLabel8a.setText("Department:");
-
-        unitDept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jPanel20.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -2611,7 +2786,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel18a)
                 .addGap(61, 61, 61)
                 .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(654, Short.MAX_VALUE))
+                .addContainerGap(661, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
         );
@@ -2675,6 +2850,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         reqCheckout.setText("Check-out");
 
         reqCancel.setText("Cancel");
+        reqCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqCancelActionPerformed(evt);
+            }
+        });
 
         unitKey2.setForeground(new java.awt.Color(102, 102, 102));
         unitKey2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -2789,7 +2969,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         AddingLayout.setHorizontalGroup(
             AddingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddingLayout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
         );
@@ -2825,18 +3005,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             }
         });
         jScrollPane20.setViewportView(allHisTbl);
-
-        HISrepair.setBackground(new java.awt.Color(255, 255, 255));
-        HISrepair.setForeground(new java.awt.Color(0, 0, 102));
-        HISrepair.setText("Schedule Repair");
-
-        HISreplace.setBackground(new java.awt.Color(255, 255, 255));
-        HISreplace.setForeground(new java.awt.Color(0, 0, 102));
-        HISreplace.setText("Request Replacement");
-
-        HISdispose.setBackground(new java.awt.Color(255, 255, 255));
-        HISdispose.setForeground(new java.awt.Color(0, 0, 102));
-        HISdispose.setText("Dispose");
 
         HISsearchf.setForeground(new java.awt.Color(0, 0, 102));
         HISsearchf.setText("Search");
@@ -2913,57 +3081,50 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HISpcLayout.setHorizontalGroup(
             HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HISpcLayout.createSequentialGroup()
-                .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISpcLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pcHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HISpcLayout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(17, 17, 17))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(497, Short.MAX_VALUE))
             .addGroup(HISpcLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HISpcLayout.createSequentialGroup()
-                        .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel113)
-                            .addComponent(jLabel116))
-                        .addGap(43, 43, 43)
-                        .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(HISpcLayout.createSequentialGroup()
-                                .addComponent(pcHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel122)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pcHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pcHisName)))
                     .addGroup(HISpcLayout.createSequentialGroup()
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel115)
                             .addComponent(jLabel118))
+                        .addGap(34, 34, 34)
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HISpcLayout.createSequentialGroup()
+                                .addComponent(pcHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pcHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel117))
                             .addGroup(HISpcLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(pcHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HISpcLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel119))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISpcLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel117)))
+                                .addComponent(pcHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel119)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pcHisETime, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                             .addComponent(pcHisSDate)))
                     .addGroup(HISpcLayout.createSequentialGroup()
-                        .addComponent(jLabel121)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pcHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 60, Short.MAX_VALUE)
+                        .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HISpcLayout.createSequentialGroup()
+                                .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel113)
+                                    .addComponent(jLabel116))
+                                .addGap(43, 43, 43)
+                                .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(HISpcLayout.createSequentialGroup()
+                                        .addComponent(pcHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel122)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pcHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pcHisName)))
+                            .addGroup(HISpcLayout.createSequentialGroup()
+                                .addComponent(jLabel121)
+                                .addGap(18, 18, 18)
+                                .addComponent(pcHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 58, Short.MAX_VALUE)
                 .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISpcLayout.createSequentialGroup()
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2973,9 +3134,13 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(pcHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel120))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(HISpcLayout.createSequentialGroup()
-                        .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISpcLayout.createSequentialGroup()
+                        .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(HISpcLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(pcHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                        .addGap(30, 30, 30))))
         );
         HISpcLayout.setVerticalGroup(
             HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2999,9 +3164,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGap(18, 18, 18)
                         .addComponent(jLabel120)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pcHisUpdate))
+                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HISpcLayout.createSequentialGroup()
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel116)
@@ -3022,11 +3185,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel117)
                                 .addComponent(pcHisSDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pcHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel119)
-                            .addComponent(jLabel118)
-                            .addComponent(pcHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pcHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel118))))
+                .addGap(18, 18, 18)
+                .addComponent(pcHisUpdate)
                 .addGap(18, 18, 18))
         );
 
@@ -3093,33 +3259,21 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HISccLayout.setHorizontalGroup(
             HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HISccLayout.createSequentialGroup()
-                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISccLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ccHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HISccLayout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(17, 17, 17))
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(497, Short.MAX_VALUE))
             .addGroup(HISccLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISccLayout.createSequentialGroup()
-                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel143)
-                            .addComponent(jLabel146))
-                        .addGap(52, 52, 52)
-                        .addComponent(ccHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel147)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ccHisETime))
+                        .addComponent(jLabel143)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(HISccLayout.createSequentialGroup()
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel114)
                             .addComponent(jLabel144)
-                            .addComponent(jLabel149))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel149)
+                            .addComponent(jLabel146))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(HISccLayout.createSequentialGroup()
@@ -3130,13 +3284,21 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(ccHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(ccHisName, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ccHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(HISccLayout.createSequentialGroup()
-                                .addComponent(ccHisSDate)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HISccLayout.createSequentialGroup()
+                                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ccHisSDate, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                    .addComponent(ccHisSTime))
                                 .addGap(27, 27, 27)
-                                .addComponent(jLabel145)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ccHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(65, 65, 65)
+                                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(HISccLayout.createSequentialGroup()
+                                        .addComponent(jLabel145)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ccHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(HISccLayout.createSequentialGroup()
+                                        .addComponent(jLabel147)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ccHisETime)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISccLayout.createSequentialGroup()
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3146,41 +3308,34 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(ccHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel148))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(HISccLayout.createSequentialGroup()
-                        .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISccLayout.createSequentialGroup()
+                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(HISccLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(ccHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                        .addGap(30, 30, 30))))
         );
         HISccLayout.setVerticalGroup(
             HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HISccLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ccHisName)
+                    .addComponent(ccHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel151))
+                .addGap(16, 16, 16)
+                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel144)
+                    .addComponent(ccHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel150)
+                    .addComponent(ccHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel148))
                 .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISccLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ccHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel151)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISccLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ccHisName))
-                        .addGap(16, 16, 16)))
-                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HISccLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel148)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ccHisUpdate))
-                    .addGroup(HISccLayout.createSequentialGroup()
-                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel144)
-                            .addComponent(ccHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel150)
-                            .addComponent(ccHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel149)
@@ -3193,13 +3348,19 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel145)
                                 .addComponent(ccHisSDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ccHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ccHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel147)
-                            .addComponent(jLabel146)
-                            .addComponent(ccHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18))
+                                .addComponent(ccHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(HISccLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel147)
+                    .addComponent(ccHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ccHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel146))
+                .addGap(14, 14, 14)
+                .addComponent(ccHisUpdate)
+                .addContainerGap())
         );
 
         HISdetails.add(HIScc, "card1");
@@ -3265,40 +3426,39 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HISprLayout.setHorizontalGroup(
             HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HISprLayout.createSequentialGroup()
-                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(prHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HISprLayout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(17, 17, 17))
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(500, Short.MAX_VALUE))
             .addGroup(HISprLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISprLayout.createSequentialGroup()
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(HISprLayout.createSequentialGroup()
+                                    .addComponent(jLabel154)
+                                    .addGap(63, 63, 63))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
+                                    .addComponent(jLabel152)
+                                    .addGap(18, 18, 18)))
                             .addGroup(HISprLayout.createSequentialGroup()
-                                .addComponent(jLabel154)
-                                .addGap(63, 63, 63))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
-                                .addComponent(jLabel152)
-                                .addGap(18, 18, 18)))
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(HISprLayout.createSequentialGroup()
+                                .addComponent(jLabel159)
+                                .addGap(21, 21, 21)))
+                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HISprLayout.createSequentialGroup()
                                 .addComponent(prHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel160)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(prHisPric, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                            .addComponent(prHisPerf)
                             .addComponent(prHisName)))
                     .addGroup(HISprLayout.createSequentialGroup()
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel153)
                             .addComponent(jLabel156))
-                        .addGap(34, 34, 34)
+                        .addGap(37, 37, 37)
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(prHisSDate, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(prHisSDate, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(prHisSTime))
                         .addGap(18, 18, 18)
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3307,12 +3467,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(prHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(HISprLayout.createSequentialGroup()
-                        .addComponent(jLabel159)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(prHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 58, Short.MAX_VALUE)
+                            .addComponent(prHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(50, 50, 50)
                 .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISprLayout.createSequentialGroup()
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3321,30 +3477,26 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(prHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel158))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(HISprLayout.createSequentialGroup()
-                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                        .addGap(260, 260, 260))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
+                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(HISprLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(prHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane26))
+                        .addGap(30, 30, 30))))
         );
         HISprLayout.setVerticalGroup(
             HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HISprLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISprLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(prHisBran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel161)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prHisName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
-                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HISprLayout.createSequentialGroup()
+                            .addComponent(jLabel161))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel158)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3352,32 +3504,39 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGap(18, 18, 18)
                         .addComponent(prHisUpdate))
                     .addGroup(HISprLayout.createSequentialGroup()
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(prHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel160)
-                            .addComponent(prHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel159)
-                            .addComponent(prHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prHisName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HISprLayout.createSequentialGroup()
-                                .addComponent(jLabel153)
-                                .addGap(2, 2, 2))
-                            .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel155)
-                                .addComponent(prHisSDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(prHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(prHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel157)
-                            .addComponent(jLabel156)
-                            .addComponent(prHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(HISprLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel154)))
-                .addGap(18, 18, 18))
+                                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(prHisAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel160)
+                                    .addComponent(prHisPric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 17, 17)
+                                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel159)
+                                    .addComponent(prHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(HISprLayout.createSequentialGroup()
+                                        .addComponent(jLabel153)
+                                        .addGap(2, 2, 2))
+                                    .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel155)
+                                        .addComponent(prHisSDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(prHisEDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(23, 23, 23)
+                                .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(prHisETime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel157)
+                                    .addComponent(prHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel156)))
+                            .addGroup(HISprLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel154)))))
+                .addGap(35, 35, 35))
         );
 
         HISdetails.add(HISpr, "card1");
@@ -3506,7 +3665,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(jLabel129))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(HISpc1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                        .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
         );
         HISpc1Layout.setVerticalGroup(
@@ -3672,7 +3831,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(ccHisSDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(ccHisPerf1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 66, Short.MAX_VALUE)
+                .addGap(0, 77, Short.MAX_VALUE)
                 .addGroup(HIScc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HIScc1Layout.createSequentialGroup()
                         .addGroup(HIScc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3683,7 +3842,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(jLabel168))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(HIScc1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane28, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                        .addComponent(jScrollPane28, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
         );
         HIScc1Layout.setVerticalGroup(
@@ -3852,7 +4011,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(jLabel179)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(prHisPerf1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 59, Short.MAX_VALUE)
+                .addGap(0, 71, Short.MAX_VALUE)
                 .addGroup(HISpr1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISpr1Layout.createSequentialGroup()
                         .addGroup(HISpr1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3863,7 +4022,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(jLabel178))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(HISpr1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                        .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
         );
         HISpr1Layout.setVerticalGroup(
@@ -4029,6 +4188,15 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             }
         });
 
+        HisAdd.setBackground(new java.awt.Color(255, 255, 255));
+        HisAdd.setForeground(new java.awt.Color(0, 0, 102));
+        HisAdd.setText("Add History");
+        HisAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HisAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HISmaincardLayout = new javax.swing.GroupLayout(HISmaincard);
         HISmaincard.setLayout(HISmaincardLayout);
         HISmaincardLayout.setHorizontalGroup(
@@ -4040,25 +4208,20 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(HISdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(HISmaincardLayout.createSequentialGroup()
-                            .addComponent(jLabel49)
+                            .addComponent(HISsearchf, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(2, 2, 2)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(countHis5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(HISmaincardLayout.createSequentialGroup()
-                                .addComponent(HISsearchf, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(HISfilter, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 1570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(HISmaincardLayout.createSequentialGroup()
-                                .addComponent(HISrepair, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(HISreplace)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(HISdispose)))))
+                            .addComponent(HISfilter, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 1570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HISmaincardLayout.createSequentialGroup()
+                        .addComponent(jLabel49)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(countHis5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(HisAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(68, 68, 68))
         );
         HISmaincardLayout.setVerticalGroup(
@@ -4071,27 +4234,20 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISmaincardLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0)
                 .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(HISfilter)
                         .addComponent(HISsearchf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HISmaincardLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(HISrepair)
-                            .addComponent(HISreplace)
-                            .addComponent(HISdispose)))
-                    .addGroup(HISmaincardLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(countHis5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel49))))
-                .addGap(86, 86, 86))
+                    .addComponent(HisAdd, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISmaincardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(countHis5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel49)))
+                .addGap(51, 51, 51))
         );
 
         Maincard.add(HISmaincard, "card3");
@@ -4144,40 +4300,40 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(hisSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hisAddCan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(PCinfo4Layout.createSequentialGroup()
-                            .addGap(372, 372, 372)
-                            .addComponent(hisEDateAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PCinfo4Layout.createSequentialGroup()
-                            .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel137)
-                                .addComponent(jLabel139))
-                            .addGap(39, 39, 39)
-                            .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(hisSTimeAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(hisSDateAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(PCinfo4Layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(jLabel140))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfo4Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel138)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(hisETimeAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel142)
-                        .addGroup(PCinfo4Layout.createSequentialGroup()
-                            .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel134)
-                                .addComponent(jLabel135)
-                                .addComponent(jLabel136))
-                            .addGap(18, 18, 18)
-                            .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(hisPerfAdd, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(hisPricAdd)
-                                .addComponent(hisActAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PCinfo4Layout.createSequentialGroup()
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel137)
+                                    .addComponent(jLabel139))
+                                .addGap(39, 39, 39)
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hisSTimeAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hisSDateAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PCinfo4Layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jLabel140))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PCinfo4Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel138)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hisEDateAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(hisETimeAdd)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PCinfo4Layout.createSequentialGroup()
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel134)
+                                    .addComponent(jLabel135)
+                                    .addComponent(jLabel136))
+                                .addGap(18, 18, 18)
+                                .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(hisPerfAdd, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hisPricAdd)
+                                    .addComponent(hisActAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         PCinfo4Layout.setVerticalGroup(
             PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4214,7 +4370,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel142)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hisAddCan)
                     .addComponent(hisSave))
@@ -4253,10 +4409,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(AddLayout.createSequentialGroup()
                 .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PCinfo4, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE))
+                    .addComponent(PCinfo4, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         AddLayout.setVerticalGroup(
             AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4265,8 +4419,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(PCinfo4, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
-            .addGroup(AddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AddHistoryLayout = new javax.swing.GroupLayout(AddHistory);
@@ -4274,16 +4426,16 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         AddHistoryLayout.setHorizontalGroup(
             AddHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddHistoryLayout.createSequentialGroup()
-                .addContainerGap(456, Short.MAX_VALUE)
+                .addContainerGap(505, Short.MAX_VALUE)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(413, 413, 413))
+                .addGap(487, 487, 487))
         );
         AddHistoryLayout.setVerticalGroup(
             AddHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddHistoryLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
+                .addGap(154, 154, 154)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         Maincard.add(AddHistory, "card4");
@@ -4317,12 +4469,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         ));
         jScrollPane5.setViewportView(userlogTbl);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(13, 13, 129));
         jLabel22.setText("Activity Log");
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(13, 13, 129));
         jLabel23.setText("User Log");
 
         ActLogSearch.setText("Search");
@@ -4533,14 +4685,23 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(62, 62, 62)
                 .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogLayout.createSequentialGroup()
-                        .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LogLayout.createSequentialGroup()
+                        .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1389, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, LogLayout.createSequentialGroup()
+                            .addGroup(LogLayout.createSequentialGroup()
                                 .addComponent(jLabel22)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane5)
+                                .addGroup(LogLayout.createSequentialGroup()
+                                    .addComponent(jLabel23)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(LogLayout.createSequentialGroup()
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1264, 1264, 1264)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4557,60 +4718,50 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(alogrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                         .addGap(36, 36, 36))
                     .addGroup(LogLayout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(LogLayout.createSequentialGroup()
-                        .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LogLayout.createSequentialGroup()
-                                .addComponent(jLabel44)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(LogLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(actLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         LogLayout.setVerticalGroup(
             LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogLayout.createSequentialGroup()
-                .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(40, 40, 40)
+                .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(LogLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LogLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
                         .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ActLogSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(alogrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(actLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel23)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(LogLayout.createSequentialGroup()
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(UserLogSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ulogrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(19, 19, 19)
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel44)
-                    .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(216, 216, 216))
+                    .addGroup(LogLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(actLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel44))
+                        .addGap(0, 55, Short.MAX_VALUE))))
         );
 
         Maincard.add(Log, "card6");
@@ -4629,6 +4780,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.setMaximumSize(new java.awt.Dimension(1013, 431));
+        jTable2.setMinimumSize(new java.awt.Dimension(1013, 431));
         jScrollPane3.setViewportView(jTable2);
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
@@ -4642,6 +4795,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable6.setMaximumSize(new java.awt.Dimension(530, 431));
+        jTable6.setMinimumSize(new java.awt.Dimension(530, 431));
         jScrollPane32.setViewportView(jTable6);
 
         branchAddbtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -4759,7 +4914,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel)
                     .addComponent(branchSave))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel25.setBackground(new java.awt.Color(0, 0, 102));
@@ -4800,7 +4955,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addBranchLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(PCinfo2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -4894,7 +5049,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel1)
                     .addComponent(branchSave1))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 102));
@@ -4935,7 +5090,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             editBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editBranchLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(PCinfo3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -5052,7 +5207,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         addDept.setLayout(addDeptLayout);
         addDeptLayout.setHorizontalGroup(
             addDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PCinfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(PCinfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
             .addGroup(addDeptLayout.createSequentialGroup()
                 .addComponent(adddd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -5061,9 +5216,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             addDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addDeptLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(adddd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adddd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PCinfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                .addComponent(PCinfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
         );
 
         deptcard.add(addDept, "card2");
@@ -5175,7 +5330,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         editDept.setLayout(editDeptLayout);
         editDeptLayout.setHorizontalGroup(
             editDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PCinfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(PCinfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
             .addGroup(editDeptLayout.createSequentialGroup()
                 .addComponent(adddd1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -5184,9 +5339,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             editDeptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editDeptLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(adddd1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adddd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PCinfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                .addComponent(PCinfo5, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
         );
 
         deptcard.add(editDept, "card2");
@@ -5207,41 +5362,57 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(13, 13, 129));
+        jLabel13.setText("Branches");
+
+        jLabel98.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel98.setForeground(new java.awt.Color(13, 13, 129));
+        jLabel98.setText("Departments");
+
         javax.swing.GroupLayout SysLayout = new javax.swing.GroupLayout(Sys);
         Sys.setLayout(SysLayout);
         SysLayout.setHorizontalGroup(
             SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SysLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SysLayout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(branchAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(branchEditbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(branchDeletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(branchcard, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane32)
-                    .addGroup(SysLayout.createSequentialGroup()
-                        .addComponent(jTextField2)
-                        .addGap(18, 18, 18)
-                        .addComponent(deptAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deptEditbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deptDeletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(deptcard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SysLayout.createSequentialGroup()
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(branchAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(branchEditbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(branchDeletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(branchcard, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(SysLayout.createSequentialGroup()
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deptAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(deptEditbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(deptDeletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane32)
+                        .addComponent(deptcard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel98))
                 .addGap(39, 39, 39))
         );
         SysLayout.setVerticalGroup(
             SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SysLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(30, 30, 30)
+                .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel98))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchAddbtn)
                     .addComponent(deptAddbtn)
@@ -5289,9 +5460,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel83.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel83.setText("To:");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton14.setText("Transfer");
+
+        jButton15.setText("Cancel");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -5308,7 +5484,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane30))
                 .addGap(18, 18, 18)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -5316,7 +5494,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton14)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton14)
+                        .addComponent(jButton15))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -5514,8 +5694,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setText("From:");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout UnitCardLayout = new javax.swing.GroupLayout(UnitCard);
         UnitCard.setLayout(UnitCardLayout);
@@ -5734,7 +5912,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransferLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1628, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -5890,6 +6068,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
        AddHistory.setVisible(false);
        Transfer.setVisible(false);
        Sys.setVisible(false);
+     //Functions
+     showActLog();
+     showUserLog();
+     ALogcount();
+     ULogcount();
     }//GEN-LAST:event_LOGActionPerformed
 
     private void HISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HISActionPerformed
@@ -5902,6 +6085,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
        AddHistory.setVisible(false);
        Transfer.setVisible(false);
        Sys.setVisible(false);
+     //Functions
+     showHis();
+     hisSet();
+     Hiscount();
     }//GEN-LAST:event_HISActionPerformed
 
     private void INVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INVActionPerformed
@@ -5916,6 +6103,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      PCcard.setVisible(true);
      CCcard.setVisible(false);
      PRcard.setVisible(false);
+     //Functions
+     showPC();
+     pcSet();
+     PCcount();
     }//GEN-LAST:event_INVActionPerformed
 
     private void CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCActionPerformed
@@ -5923,6 +6114,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      CCcard.setVisible(true);
      PRcard.setVisible(false);
      OTcard.setVisible(false);
+     //Functions
+     showCC();
+     ccSet();
+     CCcount();
     }//GEN-LAST:event_CCActionPerformed
 
     private void PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRActionPerformed
@@ -5930,6 +6125,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      CCcard.setVisible(false);
      PRcard.setVisible(true);
      OTcard.setVisible(false);
+     //Functions
+     showPR();
+     prSet();
+     PRcount();
     }//GEN-LAST:event_PRActionPerformed
 
     private void HISfilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HISfilterActionPerformed
@@ -5941,6 +6140,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      CCcard.setVisible(false);
      PRcard.setVisible(false);
      OTcard.setVisible(false);
+     //Functions
+     showPC();
+     pcSet();
+     PCcount();
     }//GEN-LAST:event_PCActionPerformed
 
     private void hisHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hisHideActionPerformed
@@ -6029,7 +6232,6 @@ hisSet();        // TODO add your handling code here:
 
     private void ActLogSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ActLogSearchKeyReleased
     ALogcount();
-    searchALog();
     }//GEN-LAST:event_ActLogSearchKeyReleased
 
     private void ActLogSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActLogSearchMouseClicked
@@ -6038,7 +6240,6 @@ hisSet();        // TODO add your handling code here:
 
     private void UserLogSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserLogSearchKeyReleased
     ULogcount();
-    searchULog();
     }//GEN-LAST:event_UserLogSearchKeyReleased
 
     private void UserLogSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserLogSearchMouseClicked
@@ -6099,10 +6300,10 @@ hisSet();        // TODO add your handling code here:
      Log.setVisible(false);
      Adding.setVisible(false);
      AddHistory.setVisible(false);
-      Done.setVisible(false);
-      Transfer.setVisible(false);
-      Sys.setVisible(false);
-      
+     Done.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     showRep();
     }//GEN-LAST:event_HOMActionPerformed
 
     private void repAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repAddActionPerformed
@@ -6128,21 +6329,28 @@ hisSet();        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_compTbl1KeyTyped
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void otherRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherRefreshActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_otherRefreshActionPerformed
 
     private void repSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_repSearchActionPerformed
 
     private void reqAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqAddActionPerformed
+     pu = "Req";     
      INVmaincard.setVisible(false);
      Home.setVisible(false);
      HISmaincard.setVisible(false);
      Log.setVisible(false);
      Adding.setVisible(true);
      AddHistory.setVisible(false);
+     Sys.setVisible(false);
+     Transfer.setVisible(false);
+     jRadioButton1.setEnabled(true);
+     jRadioButton2.setEnabled(true);
+     jRadioButton3.setEnabled(true);
+     jRadioButton1.setSelected(true);
     }//GEN-LAST:event_reqAddActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -6190,7 +6398,8 @@ hisSet();        // TODO add your handling code here:
     }//GEN-LAST:event_unitSelectActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-       INVmaincard.setVisible(false);
+     pu = "Req";  
+     INVmaincard.setVisible(false);
      Home.setVisible(false);
      HISmaincard.setVisible(false);
      Log.setVisible(false);
@@ -6254,10 +6463,16 @@ hisSet();        // TODO add your handling code here:
      jPanel24.setVisible(false);
     CcCard.setVisible(false);
     PrCard.setVisible(false);
+    jRadioButton4.setSelected(true);
+    jRadioButton4.setEnabled(true);
+    jRadioButton5.setEnabled(false);
+    jRadioButton6.setEnabled(false);
+    tr = "PCtransfer";
     }//GEN-LAST:event_pcTransferActionPerformed
 
     private void ccTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccTransferActionPerformed
-       INVmaincard.setVisible(false);
+     tr = "CCtransfer";
+     INVmaincard.setVisible(false);
      Home.setVisible(false);
      HISmaincard.setVisible(false);
      Log.setVisible(false);
@@ -6271,24 +6486,32 @@ hisSet();        // TODO add your handling code here:
      AddHistory.setVisible(false);
      jRadioButton5.setSelected(true);
      Transfer.setVisible(true);
+    jRadioButton4.setEnabled(false);
+    jRadioButton5.setEnabled(true);
+    jRadioButton6.setEnabled(false);
     }//GEN-LAST:event_ccTransferActionPerformed
 
-    private void ccTransfer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccTransfer1ActionPerformed
+    private void prTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prTransferActionPerformed
+     tr = "PRtransfer";
      INVmaincard.setVisible(false);
      Home.setVisible(false);
      HISmaincard.setVisible(false);
      Log.setVisible(false);
      Adding.setVisible(false);
      AddHistory.setVisible(false);
-      Transfer.setVisible(false);
-      Sys.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
      UnitCard.setVisible(false);
      transferSelect.setSelectedIndex(0);
-    CcCard.setVisible(false);
-    PrCard.setVisible(true);
+     CcCard.setVisible(false);
+     PrCard.setVisible(true);
      jRadioButton6.setSelected(true);
      Transfer.setVisible(true);
-    }//GEN-LAST:event_ccTransfer1ActionPerformed
+     jRadioButton6.setSelected(true);
+    jRadioButton4.setEnabled(false);
+    jRadioButton5.setEnabled(false);
+    jRadioButton6.setEnabled(true);
+    }//GEN-LAST:event_prTransferActionPerformed
 
     private void SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SystemActionPerformed
        INVmaincard.setVisible(false);
@@ -6375,6 +6598,259 @@ hisSet();        // TODO add your handling code here:
        editDept.setVisible(true);
     }//GEN-LAST:event_deptEditbtnActionPerformed
 
+    private void shipAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shipAddActionPerformed
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     jRadioButton4.setSelected(true);
+     Transfer.setVisible(true);
+     UnitCard.setVisible(true);
+     transferSelect.setSelectedIndex(0);
+     jPanel22.setVisible(true);
+     jPanel24.setVisible(false);
+     CcCard.setVisible(false);
+     PrCard.setVisible(false);
+     tr = "Ship";
+    }//GEN-LAST:event_shipAddActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    if(tr.equals("Ship")){
+     INVmaincard.setVisible(false);
+     Home.setVisible(true);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Done.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+    }
+    else if (tr.equals("PCtransfer")){
+      INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     PCcard.setVisible(true);
+     CCcard.setVisible(false);
+     PRcard.setVisible(false);
+     OTcard.setVisible(false);
+    }
+     else if (tr.equals("CCtransfer")){
+      INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     PCcard.setVisible(false);
+     CCcard.setVisible(true);
+     PRcard.setVisible(false);
+     OTcard.setVisible(false);
+    }
+     else if (tr.equals("PRtransfer")){
+      INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     PCcard.setVisible(false);
+     CCcard.setVisible(false);
+     PRcard.setVisible(true);
+     OTcard.setVisible(false);
+    }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void pcPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcPurchaseActionPerformed
+     pu = "pcPurchase";
+     jRadioButton1.setSelected(true);
+     jRadioButton1.setEnabled(true);
+     jRadioButton2.setEnabled(false);
+     jRadioButton3.setEnabled(false);
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(true);
+     AddHistory.setVisible(false);
+     Sys.setVisible(false);
+     Transfer.setVisible(false);
+    }//GEN-LAST:event_pcPurchaseActionPerformed
+
+    private void pcRepairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcRepairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pcRepairActionPerformed
+
+    private void ccRepairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccRepairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ccRepairActionPerformed
+
+    private void ccPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccPurchaseActionPerformed
+     pu = "ccPurchase";
+     jRadioButton2.setSelected(true);
+     jRadioButton2.setEnabled(true);
+     jRadioButton1.setEnabled(false);
+     jRadioButton3.setEnabled(false);
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(true);
+     AddHistory.setVisible(false);
+     Sys.setVisible(false);
+     Transfer.setVisible(false);
+    }//GEN-LAST:event_ccPurchaseActionPerformed
+
+    private void prRepairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prRepairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prRepairActionPerformed
+
+    private void prPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prPurchaseActionPerformed
+     pu = "prPurchase";
+     jRadioButton3.setSelected(true);
+     jRadioButton3.setEnabled(true);
+     jRadioButton1.setEnabled(false);
+     jRadioButton2.setEnabled(false);
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(true);
+     AddHistory.setVisible(false);
+     Sys.setVisible(false);
+     Transfer.setVisible(false);
+    }//GEN-LAST:event_prPurchaseActionPerformed
+
+    private void reqCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqCancelActionPerformed
+     if(pu.equals("pcPurchase")){
+     INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+      Sys.setVisible(false);
+     PCcard.setVisible(true);
+     CCcard.setVisible(false);
+     PRcard.setVisible(false);
+     }
+     else if(pu.equals("ccPurchase")){
+     INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     PCcard.setVisible(false);
+     CCcard.setVisible(true);
+     PRcard.setVisible(false);
+     }
+     else if(pu.equals("prPurchase")){
+     INVmaincard.setVisible(true);
+     Home.setVisible(false);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     PCcard.setVisible(false);
+     CCcard.setVisible(false);
+     PRcard.setVisible(true);
+     }
+     else if(pu.equals("Req")){
+     INVmaincard.setVisible(false);
+     Home.setVisible(true);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Done.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     }
+     
+     
+    }//GEN-LAST:event_reqCancelActionPerformed
+
+    private void HisAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HisAddActionPerformed
+       Filter.setVisible(false);
+       INVmaincard.setVisible(false);
+       Home.setVisible(false);
+       Log.setVisible(false);
+       HISmaincard.setVisible(false);
+       Adding.setVisible(false);
+       AddHistory.setVisible(true);
+       Transfer.setVisible(false);
+       Sys.setVisible(false);
+    }//GEN-LAST:event_HisAddActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        AddRepair AR = new AddRepair();
+        AR.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void pcSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcSortActionPerformed
+pcSort();       
+    }//GEN-LAST:event_pcSortActionPerformed
+
+    private void ccSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccSortActionPerformed
+ccSort();      
+    }//GEN-LAST:event_ccSortActionPerformed
+
+    private void prSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prSortActionPerformed
+prSort();  
+    }//GEN-LAST:event_prSortActionPerformed
+
+    private void pcEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcEditActionPerformed
+pcEditable();        // TODO add your handling code here:
+    }//GEN-LAST:event_pcEditActionPerformed
+
+    private void ccEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccEditActionPerformed
+ccEditable();        // TODO add your handling code here:
+    }//GEN-LAST:event_ccEditActionPerformed
+
+    private void prEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prEditActionPerformed
+prEditable();// TODO add your handling code here:
+    }//GEN-LAST:event_prEditActionPerformed
+
+    private void pcDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcDelActionPerformed
+pcDel();        // TODO add your handling code here:
+    }//GEN-LAST:event_pcDelActionPerformed
+
+    private void ccDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccDelActionPerformed
+ccDel();        // TODO add your handling code here:
+    }//GEN-LAST:event_ccDelActionPerformed
+
+    private void prDisposeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prDisposeActionPerformed
+prDel();
+// TODO add your handling code here:
+    }//GEN-LAST:event_prDisposeActionPerformed
+
+    private void pcUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcUpdateActionPerformed
+pcUpdate();
+    }//GEN-LAST:event_pcUpdateActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+repRepaired();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6431,17 +6907,15 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JPanel HIScc;
     private javax.swing.JPanel HIScc1;
     private javax.swing.JPanel HISdetails;
-    private javax.swing.JButton HISdispose;
     private javax.swing.JButton HISfilter;
     private javax.swing.JPanel HISmaincard;
     private javax.swing.JPanel HISpc;
     private javax.swing.JPanel HISpc1;
     private javax.swing.JPanel HISpr;
     private javax.swing.JPanel HISpr1;
-    private javax.swing.JButton HISrepair;
-    private javax.swing.JButton HISreplace;
     private javax.swing.JTextField HISsearchf;
     private javax.swing.JButton HOM;
+    private javax.swing.JButton HisAdd;
     private javax.swing.JPanel Home;
     private javax.swing.JButton INV;
     private javax.swing.JPanel INVcard;
@@ -6461,12 +6935,9 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JPanel PCinfo4;
     private javax.swing.JPanel PCinfo5;
     private javax.swing.JScrollPane PCtable;
-    private javax.swing.JScrollPane PCtable1;
     private javax.swing.JButton PR;
     private javax.swing.JButton PR1;
-    private javax.swing.JButton PRadd;
     private javax.swing.JPanel PRcard;
-    private javax.swing.JButton PRdel;
     private javax.swing.JPanel PRinfo;
     private javax.swing.JPanel PrCard;
     private javax.swing.JPanel Printer;
@@ -6528,13 +6999,14 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JButton ccHisUpdate1;
     private javax.swing.JTextField ccNum;
     private javax.swing.JTextField ccPW;
+    public static javax.swing.JButton ccPurchase;
     private javax.swing.JTextArea ccRem;
+    public static javax.swing.JButton ccRepair;
     private javax.swing.JTextField ccSearchtxt;
     public static javax.swing.JComboBox ccSort;
     private javax.swing.JTextField ccSupp;
     private javax.swing.JTable ccTbl;
     public static javax.swing.JButton ccTransfer;
-    public static javax.swing.JButton ccTransfer1;
     private javax.swing.JTextField ccUN;
     public static javax.swing.JButton ccUpdate;
     private javax.swing.JButton cctvAdd;
@@ -6547,8 +7019,8 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JTextField compHdd;
     private javax.swing.JTextField compKeyb;
     private javax.swing.JTextField compMboard;
+    private javax.swing.JTextField compMoni;
     private javax.swing.JTextField compMou;
-    private javax.swing.JTextField compMou1;
     private javax.swing.JTextField compName;
     private javax.swing.JTextField compProc;
     private javax.swing.JTextField compRam;
@@ -6560,6 +7032,7 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JLabel countHis;
     private javax.swing.JLabel countHis2;
     private javax.swing.JLabel countHis3;
+    private javax.swing.JLabel countHis4;
     private javax.swing.JLabel countHis5;
     private javax.swing.JLabel countPC;
     private javax.swing.JLabel countPR;
@@ -6596,12 +7069,14 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JTable hisTbl;
     private javax.swing.JTable hisTbl2;
     private javax.swing.JTable hisTbl3;
+    private javax.swing.JTable hisTbl4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -6609,7 +7084,6 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
@@ -6620,6 +7094,7 @@ hisSet();        // TODO add your handling code here:
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
@@ -6799,6 +7274,8 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -6856,6 +7333,7 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane30;
     private javax.swing.JScrollPane jScrollPane31;
     private javax.swing.JScrollPane jScrollPane32;
+    private javax.swing.JScrollPane jScrollPane33;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -6874,6 +7352,10 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton otherRefresh;
+    private javax.swing.JTextField otherSearchtxt;
+    public static javax.swing.JComboBox otherSort;
+    private javax.swing.JScrollPane otherTbl;
     private javax.swing.JButton othersAdd;
     private javax.swing.JTextField othersField;
     private javax.swing.JSpinner othersQty;
@@ -6905,14 +7387,15 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JTextField pcHisSTime1;
     private javax.swing.JButton pcHisUpdate;
     private javax.swing.JButton pcHisUpdate1;
+    public static javax.swing.JButton pcPurchase;
+    public static javax.swing.JButton pcRepair;
     private javax.swing.JTextField pcSearchtxt;
-    private javax.swing.JTextField pcSearchtxt1;
     public static javax.swing.JComboBox pcSort;
-    public static javax.swing.JComboBox pcSort1;
     public static javax.swing.JButton pcTransfer;
     public static javax.swing.JButton pcUpdate;
     private javax.swing.JTextField prBran;
     private javax.swing.JTextField prDept;
+    private javax.swing.JButton prDispose;
     public static javax.swing.JButton prEdit;
     private javax.swing.JTextField prHisAct;
     private javax.swing.JTextField prHisAct1;
@@ -6940,10 +7423,13 @@ hisSet();        // TODO add your handling code here:
     private javax.swing.JButton prHisUpdate1;
     private javax.swing.JTextField prManu;
     private javax.swing.JTextField prName;
+    private javax.swing.JButton prPurchase;
     private javax.swing.JTextArea prRem;
+    public static javax.swing.JButton prRepair;
     private javax.swing.JTextField prSearchtxt;
     public static javax.swing.JComboBox prSort;
     private javax.swing.JTable prTbl;
+    public static javax.swing.JButton prTransfer;
     public static javax.swing.JButton prUpdate;
     private javax.swing.JButton printerAdd;
     private javax.swing.JTextField printerField;
@@ -7000,13 +7486,348 @@ hisSet();        // TODO add your handling code here:
     public String sql,sql1; 
     public String utype;
 //FUNCTIONS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void addArchives(String Categ,String ID){
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="INSERT INTO dbo.Archives VALUES ('"+Categ+"','"+ID+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+st.execute(sql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+//refreshPC();
+}
+public void FilterPC( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
-//Output Table Contents------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 pcSet();
+                 PCcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 pcSet();
+                 PCcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 pcSet();
+                 PCcount();
+                 setJTableColumnsWidth(jTable, 480, 1, 1, 1, 80, 80, 1, 1,1);
+                 Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
+}
+public void FilterCC( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 ccSet();
+                 CCcount();
+                 setJTableColumnsWidth(ccTbl, 480, 6, 42, 6, 20, 20, 6);
+                 Homepage.setCellsAlignment(ccTbl, SwingConstants.CENTER);
+}
+public void FilterPR( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+                 setJTableColumnsWidth(prTbl, 480, 10, 20, 25, 40, 5);
+                 Homepage.setCellsAlignment(prTbl, SwingConstants.CENTER);
+}
+public void FilterHIS( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 hisSet();
+                 Hiscount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 hisSet();
+                 Hiscount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 hisSet();
+                 Hiscount();
+                 setJTableColumnsWidth(allHisTbl, 480, 10, 20, 25, 40, 5);
+                 Homepage.setCellsAlignment(allHisTbl, SwingConstants.CENTER);
+}
+public void FilterAL( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ALogcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ALogcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 ALogcount();
+                 setJTableColumnsWidth(actlogTbl, 480, 10, 20, 25, 40, 5);
+                 Homepage.setCellsAlignment(actlogTbl, SwingConstants.CENTER);
+}
+public void FilterUL( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ULogcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 ULogcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 ULogcount();
+                 setJTableColumnsWidth(userlogTbl, 480, 10, 20, 25, 40, 5);
+                 Homepage.setCellsAlignment(userlogTbl, SwingConstants.CENTER);
+}
+public void FilterHP( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+}
+
+
+//FOR PC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showPC(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor, MBOARD as Motherboard, RAM as Memory,HARDDISK as HardDisk, ID FROM dbo.invPC ORDER by BRANCH";         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 compTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -7016,15 +7837,300 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-/*compTbl.setRowSelectionInterval(0,0);
- setJTableColumnsWidth(compTbl, 480, 2, 10, 15, 40, 40, 2, 2,1);
- Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);*/
+ //compTbl.setRowSelectionInterval(0,0);
+ //setJTableColumnsWidth(compTbl, 480, 1, 1, 1, 80, 80, 1, 1,1);
+// Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
+ 
+ FilterPC(compTbl,pcSearchtxt);
+}    
+public void pcSet(){
+        int selectedRowIndex = compTbl.getSelectedRow();
+        compBran.setText(compTbl.getValueAt(selectedRowIndex,0).toString());
+        compDept.setText(compTbl.getValueAt(selectedRowIndex,1).toString());
+        compName.setText(compTbl.getValueAt(selectedRowIndex,2).toString());
+        compProc.setText(compTbl.getValueAt(selectedRowIndex,3).toString());
+        compMboard.setText(compTbl.getValueAt(selectedRowIndex,4).toString());
+        compRam.setText(compTbl.getValueAt(selectedRowIndex,5).toString());
+        compHdd.setText(compTbl.getValueAt(selectedRowIndex,6).toString());
+        showHisPC();
+        PChiscount();
+        setPCRem();
+}  
+public void setPCRem(){
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT UPS, Rem, KeyB, Mouse,Moni FROM dbo.invPC WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String UPS = rs.getString("UPS");
+String Rem = rs.getString("Rem");
+String Keyb = rs.getString("KeyB");
+String MOUSE = rs.getString("Mouse");
+String Monitor = rs.getString("Moni");
+
+compUps.setText(UPS);
+compRem.setText(Rem);
+compKeyb.setText(Keyb);
+compMou.setText(MOUSE);
+compMoni.setText(Monitor);
+      }
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
 }
+public void PCcount(){
+int rowCount = compTbl.getRowCount();
+countPC.setText(String.valueOf(rowCount));
+}
+public void pcSort(){
+String Branch = pcSort.getSelectedItem().toString();    
+if(Branch.equals("ALL")){
+showPC();
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor,MBoard as Motherboard, Ram as Memory,HDD as HardDisk, ID  FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
+rs=st.executeQuery(sql); 
+compTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPC(compTbl,pcSearchtxt);
+}
+//compTbl.setRowSelectionInterval(0,0);
+}    
+public void showHisPC(){;
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+        //format([SalesDate], 'yyyy-MM-dd')
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'PC' AND ITEM_ID = '"+ID+"'";         
+rs=st.executeQuery(sql); 
+hisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+   }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void PChiscount(){
+int rowCount = hisTbl.getRowCount();
+countHis.setText(String.valueOf(rowCount));
+}
+public void pcUpdate(){ 
+int selectedRowIndex = compTbl.getSelectedRow();
+String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+String s1 = compBran.getText();
+String s2 = compDept.getText();
+String s3 = compName.getText();
+String s4 = compProc.getText();
+String s5 = compRam.getText();
+String s6 = compHdd.getText();
+String s7 = compUps.getText();
+String s8 = compKeyb.getText();
+String s9 = compMou.getText();
+String s10 = compRem.getText();
+String s11 = compMboard.getText();
+String s12 = compMoni.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.invPC SET Branch = '"+s1+"',Dept = '"+s2+"',Owner = '"+s3+"',Proce = '"+s4+"',MBoard = '"+s11+"', Ram = '"+s5+"',HDD = '"+s6+"',UPS = '"+s7+"',KeyB = '"+s8+"',Mouse = '"+s9+"',Moni = '"+s12+"' ,Rem = '"+s10+"' WHERE ID = '"+ID+"'";         
+st.executeUpdate(sql);
+
+String sql1 ="UPDATE dbo.Inv SET Branch = '"+s1+"',Dept = '"+s2+"',Owner = '"+s3+"' WHERE ID = '"+ID+"'";         
+st.executeUpdate(sql1);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'PC','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+//refreshPC();
+}
+public void pcEditable(){
+compBran.setEditable(true);
+compMboard.setEditable(true);
+compDept.setEditable(true);
+compName.setEditable(true);
+compProc.setEditable(true);
+compRam.setEditable(true);
+compHdd.setEditable(true);
+compRem.setEditable(true);
+compUps.setEditable(true);
+compKeyb.setEditable(true);
+compMou.setEditable(true);  
+pcUpdate.setVisible(true);
+pcEdit.setVisible(false);
+}
+public void pcNonEditable(){
+compBran.setEditable(false);
+compMboard.setEditable(false);
+compDept.setEditable(false);
+compName.setEditable(false);
+compProc.setEditable(false);
+compRam.setEditable(false);
+compHdd.setEditable(false);
+compRem.setEditable(false);
+compUps.setEditable(false); 
+compKeyb.setEditable(false);
+compMou.setEditable(false);  
+pcUpdate.setVisible(false);
+pcEdit.setVisible(true);
+}
+public void pcDel(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+String s1 = compBran.getText();
+String s2 = compDept.getText();
+String s3 = compName.getText();
+String s4 = compProc.getText();
+String s5 = compRam.getText();
+String s6 = compHdd.getText();
+String s7 = compUps.getText();
+String s8 = compKeyb.getText();
+String s9 = compMou.getText();
+String s10 = compRem.getText();
+String s11 = compMboard.getText();
+String s12 = compMoni.getText();
+        int selectedRowIndex = compTbl.getSelectedRow();
+        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+        Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ 
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invPC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql1);
+
+Statement sta = con.createStatement();
+            String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+s1+"','Disposed', 'PC','"+s2+"-"+s3+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','N/A','N/A')";
+            sta.execute(newsql1);
+
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', 'PC','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Device Disposed!"); 
+addArchives("PC",ID);
+}
+    if(n == JOptionPane.NO_OPTION){ 
+/*
+jDateChooser1.setCalendar(null);
+jTextField13.setText("");
+*/
+    }
+    if(n == JOptionPane.CLOSED_OPTION){
+/*
+jDateChooser1.setCalendar(null);
+jTextField3.setText("");
+*/
+    }
+}
+public void pcTransfer(String sb){  
+                int selectedRowIndex = compTbl.getSelectedRow();
+                String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
+                String s2 = compDept.getText();
+                String s3 = compName.getText();
+                String s4 = compProc.getText();
+                String s5 = compRam.getText();
+                String s6 = compHdd.getText();
+                String s7 = compUps.getText();
+                String s8 = compRem.getText();
+                try{
+                    Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
+                    DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = new Date();
+                    DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+                    Date time = new Date();
+                    Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                    String sql ="UPDATE dbo.invPC SET BRANCH = '"+sb+"' WHERE ID = '"+ID+"'";
+                    st.executeUpdate(sql);
+                    
+                    Statement sta = con.createStatement();
+                    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transfered', 'Computer','"+sb+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')"; 
+                    sta.execute(newsql);
+                    JOptionPane.showMessageDialog(null,"Device transfered!");
+                }
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
+                }              
+                //refreshPC();
+                //showPC();
+
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//PC HISTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void pcHisEditable(){
+pcHisBran.setEditable(true);
+pcHisName.setEditable(true);
+pcHisAct.setEditable(true);
+pcHisSDate.setEnabled(true);
+pcHisEDate.setEnabled(true);
+pcHisSTime.setEditable(true);
+pcHisETime.setEditable(true);
+pcHisPric.setEditable(true);
+pcHisRem.setEditable(true); 
+}
+public void pcHisNonEditable(){
+pcHisBran.setEditable(false);
+pcHisName.setEditable(false);
+pcHisAct.setEditable(false);
+pcHisSDate.setEnabled(false);
+pcHisEDate.setEnabled(false);
+pcHisSTime.setEditable(false);
+pcHisETime.setEditable(false);
+pcHisPric.setEditable(false);
+pcHisRem.setEditable(false); 
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//END OF ALL PC------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//FOR CC------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showCC(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID FROM dbo.invCC ORDER by Branch";         
+sql = "SELECT Branch, SP as ServiceProvider,CNum as Quantity,uN as Username,pW as Password, ID FROM dbo.invCC WHERE Stat = 'WORKING' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -7034,15 +8140,228 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-/*ccTbl.setRowSelectionInterval(0,0);
-    setJTableColumnsWidth(ccTbl, 480, 6, 42, 6, 20, 20, 6);
-    Homepage.setCellsAlignment1(ccTbl, SwingConstants.CENTER);*/
+ FilterCC(ccTbl,ccSearchtxt);
 }
+public void ccSet(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        ccBran.setText(ccTbl.getValueAt(selectedRowIndex,0).toString());
+        ccSupp.setText(ccTbl.getValueAt(selectedRowIndex,1).toString());
+        ccNum.setText(ccTbl.getValueAt(selectedRowIndex,2).toString());
+        ccUN.setText(ccTbl.getValueAt(selectedRowIndex,3).toString());
+        ccPW.setText(ccTbl.getValueAt(selectedRowIndex,4).toString());
+        showHisCC();
+        CChiscount();
+        setCCRem();
+}
+public void setCCRem(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT REM FROM dbo.invCC WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String Rem = rs.getString("REM");
+ccRem.setText(Rem);
+      }
+   }
+      
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void CCcount(){
+int rowCount = ccTbl.getRowCount();
+countCC.setText(String.valueOf(rowCount));
+}
+public void ccSort(){
+String Branch1 = ccSort.getSelectedItem().toString();    
+if(Branch1.equals("ALL")){
+showCC();
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password,ID  FROM dbo.invCC WHERE Branch = '"+Branch1+"' AND Stat = 'WORKING'";   
+ResultSet rs=st.executeQuery(sql); 
+TableColumnModel columnModel = ccTbl.getColumnModel();
+ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+FilterCC(ccTbl,ccSearchtxt);
+}
+public void showHisCC(){
+        int selectedRowIndex = ccTbl.getSelectedRow();
+        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'CC' AND ITEM_ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql);
+hisTbl2.setModel(DbUtils.resultSetToTableModel(rs));
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void CChiscount(){
+int rowCount = hisTbl2.getRowCount();
+countHis3.setText(String.valueOf(rowCount));
+}
+public void ccUpdate(){
+int selectedRowIndex = ccTbl.getSelectedRow();
+String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+String s1 = ccBran.getText();
+String s2 = ccSupp.getText();
+String s3 = ccUN.getText();
+String s4 = ccPW.getText();
+String s5 = ccNum.getText();
+String s6 = ccRem.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"',REM = '"+s6+"' WHERE ID = '"+ID+"'";         
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Branch = '"+s1+"',Owner = '"+s2+"',Dept = 'N/A' WHERE ID = '"+ID+"'";         
+st.execute(sql1);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'CC','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+
+//refreshCC();    
+}
+public void ccEditable(){
+ccBran.setEditable(true);
+ccSupp.setEditable(true);
+ccUN.setEditable(true);
+ccPW.setEditable(true);
+ccNum.setEditable(true);
+ccRem.setEditable(true);
+ccUpdate.setVisible(true);
+ccEdit.setVisible(false);
+}
+public void ccNonEditable(){
+ccBran.setEditable(false);
+ccSupp.setEditable(false);
+ccUN.setEditable(false);
+ccPW.setEditable(false);
+ccNum.setEditable(false);
+ccRem.setEditable(false); 
+ccUpdate.setVisible(false);
+ccEdit.setVisible(true);
+}
+public void ccDel(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+String s1 = ccBran.getText();
+String s2 = ccSupp.getText();
+String s3 = ccUN.getText();
+String s4 = ccPW.getText();
+String s5 = ccNum.getText();
+String s6 = ccRem.getText();
+       int selectedRowIndex = ccTbl.getSelectedRow();
+       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ 
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invCC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql1);
+
+
+Statement sta = con.createStatement();
+            String newsql1 ="INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+s1+"','Disposed', 'CC','"+s2+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','N/A','N/A')";
+            sta.execute(newsql1);
+            
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', 'CC','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Device Disposed!"); 
+addArchives("CC",ID);
+}
+    if(n == JOptionPane.NO_OPTION){ 
+/*
+jDateChooser1.setCalendar(null);
+jTextField13.setText("");
+*/
+    }
+    if(n == JOptionPane.CLOSED_OPTION){
+/*
+jDateChooser1.setCalendar(null);
+jTextField3.setText("");
+*/
+    }
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//CC HISTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void ccHisEditable(){
+ccHisBran.setEditable(true);
+ccHisName.setEditable(true);
+ccHisAct.setEditable(true);
+ccHisSDate.setEnabled(true);
+ccHisEDate.setEnabled(true);
+ccHisSTime.setEditable(true);
+ccHisETime.setEditable(true);
+ccHisPric.setEditable(true);
+ccHisRem.setEditable(true); 
+}
+public void ccHisNonEditable(){
+ccHisBran.setEditable(false);
+ccHisName.setEditable(false);
+ccHisAct.setEditable(false);
+ccHisSDate.setEnabled(false);
+ccHisEDate.setEnabled(false);
+ccHisSTime.setEditable(false);
+ccHisETime.setEditable(false);
+ccHisPric.setEditable(false);
+ccHisRem.setEditable(false); 
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//FOR PR------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showPR(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Department, Manufacturer, Printername as Name, ID FROM dbo.invPR ORDER by Branch";         
+sql = "SELECT Branch, Dept AS Department, Manu AS Manufacturer, Owner as Name, ID FROM dbo.invPR WHERE Stat = 'WORKING' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 prTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -7052,10 +8371,213 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-/*prTbl.setRowSelectionInterval(0,0);
-   setJTableColumnsWidth(prTbl, 480, 10, 20, 25, 40, 5);
-   Homepage.setCellsAlignment1(prTbl, SwingConstants.CENTER);*/
+FilterPR(prTbl,prSearchtxt);
 }
+public void prSet(){
+        int selectedRowIndex = prTbl.getSelectedRow();
+        prBran.setText(prTbl.getValueAt(selectedRowIndex,0).toString());
+        prDept.setText(prTbl.getValueAt(selectedRowIndex,1).toString());
+        prManu.setText(prTbl.getValueAt(selectedRowIndex,2).toString());
+        prName.setText(prTbl.getValueAt(selectedRowIndex,3).toString());
+        showHisPR();
+        setPRRem();
+}
+public void setPRRem(){
+        int selectedRowIndex = prTbl.getSelectedRow();
+        String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Rem FROM dbo.invPR WHERE ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+String Rem = rs.getString("Rem");
+prRem.setText(Rem);
+      }
+   }
+      
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void PRcount(){
+int rowCount = prTbl.getRowCount();
+countPR.setText(String.valueOf(rowCount));
+}
+public void prSort(){
+String Branch2 = prSort.getSelectedItem().toString();    
+if(Branch2.equals("ALL")){
+showPR(); 
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID FROM dbo.invPR  WHERE Branch = '"+Branch2+"' AND Stat = 'WORKING'";  
+ResultSet rs=st.executeQuery(sql); 
+prTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }  
+}
+FilterPR(prTbl,prSearchtxt);
+}
+public void showHisPR(){
+        int selectedRowIndex = prTbl.getSelectedRow();
+        String ID = prTbl.getValueAt(selectedRowIndex,5).toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'PR' AND ITEM_ID = '"+ID+"'";         
+ResultSet rs=st.executeQuery(sql);
+hisTbl3.setModel(DbUtils.resultSetToTableModel(rs));
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void PRhiscount(){
+int rowCount = hisTbl3.getRowCount();
+countHis2.setText(String.valueOf(rowCount));
+}
+public void prUpdate(){
+int selectedRowIndex = prTbl.getSelectedRow();
+String ID = prTbl.getValueAt(selectedRowIndex,4).toString();   
+String s1 = prBran.getText();
+String s2 = prManu.getText();
+String s3 = prName.getText();
+String s4 = prDept.getText();
+String s5 = prRem.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invPR Branch = '"+s1+"',Manu = '"+s2+"',Owner = '"+s3+"' ,Dept = '"+s4+"',Rem = '"+s5+"' WHERE ID = '"+ID+"'";         
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv Branch = '"+s1+"',Owner = '"+s3+"' ,Dept = '"+s4+"' WHERE ID = '"+ID+"'";         
+st.execute(sql1);
+
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'PR','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+//refreshPR();    
+}
+public void prEditable(){
+prBran.setEditable(true);
+prManu.setEditable(true);
+prName.setEditable(true);
+prDept.setEditable(true);
+prRem.setEditable(true);
+prUpdate.setVisible(true);
+prEdit.setVisible(false);
+}
+public void prNonEditable(){
+prBran.setEditable(false);
+prManu.setEditable(false);
+prName.setEditable(false);
+prDept.setEditable(false);
+prRem.setEditable(false);
+prEdit.setVisible(true);
+prUpdate.setVisible(false);
+}
+public void prDel(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+String s1 = prBran.getText();
+String s2 = prManu.getText();
+String s3 = prName.getText();
+String s4 = prDept.getText();
+String s5 = prRem.getText();
+       int selectedRowIndex = prTbl.getSelectedRow();
+       String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
+
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ 
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invPR SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql);
+ String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
+st.execute(sql1);
+
+Statement sta = con.createStatement();
+            String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+s1+"','Disposed', 'PR','"+s3+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','N/A','N/A')";
+            sta.execute(newsql1);
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Dispose', 'PR','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Device Deleted!"); 
+addArchives("PR",ID);
+}
+    if(n == JOptionPane.NO_OPTION){ 
+/*
+jDateChooser1.setCalendar(null);
+jTextField13.setText("");
+*/
+    }
+    if(n == JOptionPane.CLOSED_OPTION){
+/*
+jDateChooser1.setCalendar(null);
+jTextField3.setText("");
+*/
+    }
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//PR HISTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void prHisEditable(){
+prHisBran.setEditable(true);
+prHisName.setEditable(true);
+prHisAct.setEditable(true);
+prHisSDate.setEnabled(true);
+prHisEDate.setEnabled(true);
+prHisSTime.setEditable(true);
+prHisETime.setEditable(true);
+prHisPric.setEditable(true);
+prHisRem.setEditable(true); 
+}
+public void prHisNonEditable(){
+prHisBran.setEditable(false);
+prHisName.setEditable(false);
+prHisAct.setEditable(false);
+prHisSDate.setEnabled(false);
+prHisEDate.setEnabled(false);
+prHisSTime.setEditable(false);
+prHisETime.setEditable(false);
+prHisPric.setEditable(false);
+prHisRem.setEditable(false); 
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//FOR HISTORY------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showHis(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
@@ -7070,55 +8592,140 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
- //allHisTbl.setRowSelectionInterval(0,0);
+ FilterHIS(allHisTbl,HISsearchf);
 }
-public void showHisPC(){;
-        int selectedRowIndex = compTbl.getSelectedRow();
-        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-        //format([SalesDate], 'yyyy-MM-dd')
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'Computer' AND ITEM_ID = '"+ID+"'";         
-rs=st.executeQuery(sql); 
-hisTbl.setModel(DbUtils.resultSetToTableModel(rs));
-   }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+public void hisSet(){
+        int selectedRowIndex = allHisTbl.getSelectedRow();
+        String categ = allHisTbl.getValueAt(selectedRowIndex,2).toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if(categ.equals("PC")){
+        HISdetails.setVisible(true);
+        HISpc.setVisible(true);
+        HIScc.setVisible(false);
+        HISpr.setVisible(false);
+        pcHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        pcHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        pcHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        pcHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        pcHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        pcHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        pcHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        pcHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        pcHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        pcHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
+   
+        }
+        else if(categ.equals("CC")){
+        HISdetails.setVisible(true);
+        HISpc.setVisible(false);
+        HIScc.setVisible(true);
+        HISpr.setVisible(false);
+        ccHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        ccHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        ccHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        ccHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        ccHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        ccHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        ccHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        ccHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        ccHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        ccHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
+        }
+        else if(categ.equals("PR")){
+        HISdetails.setVisible(true);
+        HISpc.setVisible(false);
+        HIScc.setVisible(false);
+        HISpr.setVisible(true);
+        prHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
+        prHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
+        prHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        prHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
+        prHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
+        prHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
+        prHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
+        prHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
+        prHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
+        prHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
+        }
+        
+}
+public void Hiscount(){
+int rowCount = allHisTbl.getRowCount();
+countHis5.setText(String.valueOf(rowCount));
+}
+public void hisFilter(){
+String Branch2 = hisSortCateg.getSelectedItem().toString();
+
+        if (hisSortSDate.getDate() == null && hisSortEDate.getDate() == null)
+        {  
+            if(hisSortCateg.getSelectedItem()=="ALL"){
+            showHis(); 
+            }
+            else
+            {
+            try {
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+            Statement st=con.createStatement();         
+            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE Categ = '"+Branch2+"'";  
+            ResultSet rs=st.executeQuery(sql); 
+            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+            st.close();
+                }
+            catch (SQLException ex) {    
+            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+            
  }
-}
-public void showHisCC(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'CCTV' AND ITEM_ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql);
-hisTbl2.setModel(DbUtils.resultSetToTableModel(rs));
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+             FilterHIS(allHisTbl,HISsearchf);
+}       
+        }
+        
+        
+        else {
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+String startD = sdf.format(hisSortSDate.getDate());
+String endD = sdf.format(hisSortEDate.getDate());           
+           if(hisSortCateg.getSelectedItem()=="ALL"){
+        try {
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+            Statement st=con.createStatement();         
+            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE CONVERT(VARCHAR(50),SDAte, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY HIS_ID";  
+            ResultSet rs=st.executeQuery(sql); 
+            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+            st.close();
+                }
+            catch (SQLException ex) {    
+            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+            FilterHIS(allHisTbl,HISsearchf);
+        }
+            else
+            {
+            try {
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+            Statement st=con.createStatement();         
+            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE CONVERT(VARCHAR(50),SDAte, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' AND Categ = '"+Branch2+"' ORDER BY HIS_ID";  
+            ResultSet rs=st.executeQuery(sql); 
+            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+            st.close();
+                }
+            catch (SQLException ex) {    
+            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }  
 }
-public void showHisPR(){
-        int selectedRowIndex = prTbl.getSelectedRow();
-        String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,SDate as StartDate,EDate as EndDate,Price,HIS_ID as HistoryID, ITEM_ID as ID FROM dbo.History WHERE Categ = 'Printer' AND ITEM_ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
-TableColumnModel columnModel = hisTbl3.getColumnModel();
-hisTbl3.setModel(DbUtils.resultSetToTableModel(rs));
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
+            FilterHIS(allHisTbl,HISsearchf);
+        }
+
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//FOR ACTIVITY LOG------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showActLog(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
@@ -7133,8 +8740,37 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-//actlogTbl.setRowSelectionInterval(0,0);
+FilterAL(actlogTbl,ActLogSearch);
 }
+public void ALogcount(){
+int rowCount = actlogTbl.getRowCount();
+actLogCnt.setText(
+        String.valueOf(rowCount));
+}
+public void alogSort(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String startD = sdf.format(jDateChooser2.getDate());
+        String endD = sdf.format(jDateChooser1.getDate());
+
+        try {
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
+            ResultSet rs;
+            Statement st=con.createStatement();
+            String sql = "SELECT Action, Categ as Category, Item, Date, Time FROM dbo.Logs WHERE CONVERT(VARCHAR(50),Date, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY Log_ID";
+            rs=st.executeQuery(sql);
+            ///SELECT SalesDate AS Date , SalesLipa AS Lipa , SalesBats AS Batangas  FROM dbo.tbl_chart ORDER BY SalesDate DESC
+            actlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
+        }
+        FilterAL(actlogTbl,ActLogSearch);
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//FOR USER LOG------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void showUserLog(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
@@ -7149,9 +8785,33 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-//userlogTbl.setRowSelectionInterval(0,0);
+FilterUL(userlogTbl,UserLogSearch);
 }
-//End of Table Output------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void ulogSort(){ 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String startD = sdf.format(jDateChooser3.getDate());
+        String endD = sdf.format(jDateChooser4.getDate());
+        try {
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
+            ResultSet rs;
+            Statement st=con.createStatement();
+            String sql = "SELECT Laction as Action, Ldate as Date, Ltime as Time FROM dbo.userLogs WHERE CONVERT(VARCHAR(50),Ldate, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY LOG_ID";
+            rs=st.executeQuery(sql);
+            userlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
+        }
+        FilterUL(userlogTbl,UserLogSearch);
+}
+public void ULogcount(){
+int rowCount = userlogTbl.getRowCount();
+uLogCnt.setText(String.valueOf(rowCount));
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 //Initializing Content------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void initBranch(){
@@ -7176,94 +8836,24 @@ JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState());
  }
 }
 private void setIcon() {
-setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/NEMAR LOGO 2.png")));
+setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/NEMAR LOGO 2.png")));
     }
+public void initEdit(){
+pcNonEditable();
+ccNonEditable();
+prNonEditable();
+}
 //End of Initialization------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Search Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void searchPC(){
-String ID = pcSearchtxt.getText();
-String Branch = pcSort.getSelectedItem().toString(); 
-if((Branch == "ALL")||(ID == "")){
-try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor, MBOARD as Motherboard, RAM as Memory,HARDDISK as HardDisk, ID  FROM dbo.invPC WHERE BRANCH LIKE '"+ID+"%' OR DEPARTMENT LIKE '"+ID+"%' OR OWNER LIKE '%"+ID+"%' OR PROCESSOR LIKE '%"+ID+"%' OR MBOARD LIKE '%"+ID+"%' OR RAM LIKE '"+ID+"%' OR HARDDISK LIKE '"+ID+"%';";         
-ResultSet rs=st.executeQuery(sql); 
-compTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-else{
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor, MBOARD as Motherboard, RAM as Memory,HARDDISK as HardDisk, ID   FROM dbo.invPC WHERE BRANCH = '"+Branch+"' AND DEPARTMENT LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND OWNER LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND PROCESSOR LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND MBOARD LIKE '%"+ID+"%' OR BRANCH = '"+Branch+"' AND RAM LIKE '"+ID+"%' OR BRANCH = '"+Branch+"' AND HARDDISK LIKE '"+ID+"%';";         
-ResultSet rs=st.executeQuery(sql); 
-compTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }    
-}
-//compTbl.setRowSelectionInterval(0,0);
-//pcSet();
-}
-public void searchCC(){
-String ID = ccSearchtxt.getText();  
-String Branch = ccSort.getSelectedItem().toString();
-if((Branch == "ALL")||(ID == "")){
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID FROM dbo.invCC WHERE Branch LIKE '"+Branch+"%' OR SP LIKE  '%"+ID+"%' OR CAM LIKE '%"+ID+"%' OR uN = '"+ID+"' OR Pw = '"+ID+"' ";         
-ResultSet rs=st.executeQuery(sql); 
-ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-else{
-try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password, ID   FROM dbo.invCC WHERE Branch = '"+Branch+"' AND SP LIKE  '%"+ID+"%' OR Branch = '"+Branch+"' AND CAM LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND uN = '"+ID+"' OR Branch = '"+Branch+"' AND Pw = '"+ID+"' ";         
-ResultSet rs=st.executeQuery(sql); 
-ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
 
-//ccTbl.setRowSelectionInterval(0,0);
-//ccSet();
-}
-}
-public void searchPR(){
-String ID = prSearchtxt.getText();
-String Branch = prSort.getSelectedItem().toString();
-if((Branch == "ALL")||(ID == "")){
+//HOMEPAGE---------------------------------------
+public void showRep(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID  FROM dbo.invPR WHERE Branch LIKE '"+ID+"%' OR Manufacturer LIKE '%"+ID+"%' OR Printername LIKE '%"+ID+"%' OR Department LIKE '"+ID+"%'";         
+sql = "SELECT Categ as DeviceCode, Branch, Dept as Department, Owner, Dev_ID as ID FROM dbo.Inv WHERE Status = 'FOR REPAIR';";         
 ResultSet rs=st.executeQuery(sql); 
-prTbl.setModel(DbUtils.resultSetToTableModel(rs));
+repTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
 st.close();
       }
@@ -7271,14 +8861,107 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+ FilterHP(repTbl,repSearch);
 }
-else{
-try {
+public void repRepaired() {
+int selectedRowIndex = repTbl.getSelectedRow();
+String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
+String Dev = repTbl.getValueAt(selectedRowIndex,4).toString();
+String Bra = repTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = repTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = repTbl.getValueAt(selectedRowIndex,3).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+String sql ="UPDATE dbo.invPC SET Stat = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("CC")){        
+String sql ="UPDATE dbo.invCC SET Stat = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("PR")){        
+String sql ="UPDATE dbo.invPR SET Stat = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+
+String sql1 ="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
+st.executeUpdate(sql1);
+JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+Homepage hp = new Homepage();
+//showRep()
+
+Statement sta = con.createStatement();
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Repaired', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
+String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Repaired', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
+sta.execute(newsql1);
+}
+
+
+
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void repDispose() {
+int selectedRowIndex = repTbl.getSelectedRow();
+String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
+String Dev = repTbl.getValueAt(selectedRowIndex,4).toString();
+String Bra = repTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = repTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = repTbl.getValueAt(selectedRowIndex,3).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+String sql ="UPDATE dbo.invPC SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("CC")){        
+String sql ="UPDATE dbo.invCC SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("PR")){        
+String sql ="UPDATE dbo.invPR SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+
+String sql1 ="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
+st.executeUpdate(sql1);
+JOptionPane.showMessageDialog(null,"Device Disposed!");
+Homepage hp = new Homepage();
+//showRep()
+
+Statement sta = con.createStatement();
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
+}
+
+
+
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void showShip(){
+   try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID  FROM dbo.invPR WHERE Branch = '"+Branch+"' AND Manufacturer LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Printername LIKE '%"+ID+"%' OR Branch = '"+Branch+"' AND Department LIKE '"+ID+"%'";         
+sql = "SELECT Categ as DeviceCode, Branch, Dept as Department, Owner, Dev_ID as ID FROM dbo.Inv WHERE Status = 'FOR SHIPPING';";         
 ResultSet rs=st.executeQuery(sql); 
-prTbl.setModel(DbUtils.resultSetToTableModel(rs));
+shipTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
 st.close();
       }
@@ -7286,41 +8969,8 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
+ FilterHP(shipTbl,shipSearch);
 }
-//prTbl.setRowSelectionInterval(0,0);
-//prSet();
-}
-public void searchALog(){
-String ID = ActLogSearch.getText();
-try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Action, Categ as Category, Item, Date, Time FROM dbo.Logs WHERE Action LIKE '%"+ID+"%' OR Categ LIKE '%"+ID+"%' OR Item LIKE '%"+ID+"%' OR Date LIKE '"+ID+"%' OR Time LIKE '%"+ID+"%'";         
-ResultSet rs=st.executeQuery(sql); 
-actlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }}
-public void searchULog(){
-String ID = UserLogSearch.getText();
-try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT uType as UserType, Laction as Action, Ldate as Date, Ltime as Time FROM dbo.userLogs WHERE uType LIKE '%"+ID+"%' OR Laction LIKE '%"+ID+"%' OR Ldate LIKE '%"+ID+"%' OR Ltime LIKE '"+ID+"%'";         
-ResultSet rs=st.executeQuery(sql); 
-userlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }}
-//End of Search Function ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Refreshing Screen Content------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void refreshPC(){
@@ -7367,7 +9017,7 @@ public void LoginOpen(){
         dispose();   
 }
 public void AddRepOpen(){
-        Upload l = new Upload();
+        AddRepair l = new AddRepair();
         l.setVisible(true);  
 }
 //Opening of Window Opening------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7375,7 +9025,7 @@ public void AddRepOpen(){
 //Logs----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void logoutLog(){
     Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Logout",
 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 null, options, options[0]);
  
@@ -7408,142 +9058,7 @@ jTextField3.setText("");
 }
 //End Of Logs---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Basic Add Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//End of Add Functions-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Basic Editing Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcUpdate(){ 
-int selectedRowIndex = compTbl.getSelectedRow();
-String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-String s1 = compBran.getText();
-String s2 = compDept.getText();
-String s3 = compName.getText();
-String s4 = compProc.getText();
-String s5 = compRam.getText();
-String s6 = compHdd.getText();
-String s7 = compUps.getText();
-String s8 = compKeyb.getText();
-String s9 = compMou.getText();
-String s10 = compRem.getText();
-String s11 = compMboard.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
-String sql ="UPDATE dbo.invPC SET BRANCH = '"+s1+"',DEPARTMENT = '"+s2+"',OWNER = '"+s3+"',PROCESSOR = '"+s4+"',MBOARD = '"+s11+"', RAM = '"+s5+"',HARDDISK = '"+s6+"',UPS = '"+s7+"',KEYB = '"+s8+"',MOUSE = '"+s9+"',REM = '"+s10+"' WHERE ID = '"+ID+"'";         
-st.executeUpdate(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Edit', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Item Updated!"); 
-//refreshPC();
-}
-public void ccUpdate(){
-int selectedRowIndex = ccTbl.getSelectedRow();
-String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-String s1 = ccBran.getText();
-String s2 = ccSupp.getText();
-String s3 = ccUN.getText();
-String s4 = ccPW.getText();
-String s5 = ccNum.getText();
-String s6 = ccRem.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="UPDATE dbo.invCC SET Branch = '"+s1+"',SP = '"+s2+"',CAM = '"+s3+"',uN = '"+s4+"',pW ='"+s5+"',REM = '"+s6+"' WHERE ID = '"+ID+"'";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Item Added!"); 
-//refreshCC();    
-}
-public void prUpdate(){
-int selectedRowIndex = prTbl.getSelectedRow();
-String ID = prTbl.getValueAt(selectedRowIndex,4).toString();   
-String s1 = prBran.getText();
-String s2 = prManu.getText();
-String s3 = prName.getText();
-String s4 = prDept.getText();
-String s5 = prRem.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="UPDATE dbo.invPR Branch = '"+s1+"',Manufacturer = '"+s2+"',Printername = '"+s3+"' ,Department = '"+s4+"',REM = '"+s5+"' WHERE ID = '"+ID+"'";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Item Updated!"); 
-//refreshPR();    
-}
-//End of Editing Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//TRANFER CODE
-public void pcTransfer(String sb){  
-                int selectedRowIndex = compTbl.getSelectedRow();
-                String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-                String s2 = compDept.getText();
-                String s3 = compName.getText();
-                String s4 = compProc.getText();
-                String s5 = compRam.getText();
-                String s6 = compHdd.getText();
-                String s7 = compUps.getText();
-                String s8 = compRem.getText();
-                try{
-                    Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
-                    DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-                    Date date = new Date();
-                    DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-                    Date time = new Date();
-                    Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                    String sql ="UPDATE dbo.invPC SET BRANCH = '"+sb+"' WHERE ID = '"+ID+"'";
-                    st.executeUpdate(sql);
-                    
-                    Statement sta = con.createStatement();
-                    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transfered', 'Computer','"+sb+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')"; 
-                    sta.execute(newsql);
-                    JOptionPane.showMessageDialog(null,"Device transfered!");
-                }
-                catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
-                    JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
-                }              
-                //refreshPC();
-                //showPC();
-
-
-}
+//TRANFER CODe
 public void ccTransfer(String sb){
 
             int selectedRowIndex = ccTbl.getSelectedRow();
@@ -7602,768 +9117,10 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
                 refreshPR();
        
 }
-
-//Basic Deleting Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcDel(){
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-String s1 = compBran.getText();
-String s2 = compDept.getText();
-String s3 = compName.getText();
-String s4 = compProc.getText();
-String s5 = compRam.getText();
-String s6 = compHdd.getText();
-String s7 = compUps.getText();
-String s8 = compRem.getText();
-        int selectedRowIndex = compTbl.getSelectedRow();
-        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-        Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
-JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-null, options, options[0]);
- 
-    if(n == JOptionPane.OK_OPTION){ 
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invPC WHERE ID = '"+ID+"'";
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-PCaddArchives();
-}
-    if(n == JOptionPane.NO_OPTION){ 
-/*
-jDateChooser1.setCalendar(null);
-jTextField13.setText("");
-*/
-    }
-    if(n == JOptionPane.CLOSED_OPTION){
-/*
-jDateChooser1.setCalendar(null);
-jTextField3.setText("");
-*/
-    }
-}
-public void ccDel(){
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-String s1 = ccBran.getText();
-String s2 = ccSupp.getText();
-String s3 = ccUN.getText();
-String s4 = ccPW.getText();
-String s5 = ccNum.getText();
-String s6 = ccRem.getText();
-       int selectedRowIndex = ccTbl.getSelectedRow();
-       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-
-Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
-JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-null, options, options[0]);
- 
-    if(n == JOptionPane.OK_OPTION){ 
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invCC WHERE ID = '"+ID+"'";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-CCaddArchives();
-}
-    if(n == JOptionPane.NO_OPTION){ 
-/*
-jDateChooser1.setCalendar(null);
-jTextField13.setText("");
-*/
-    }
-    if(n == JOptionPane.CLOSED_OPTION){
-/*
-jDateChooser1.setCalendar(null);
-jTextField3.setText("");
-*/
-    }
-}
-public void prDel(){
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-String s1 = prBran.getText();
-String s2 = prManu.getText();
-String s3 = prName.getText();
-String s4 = prDept.getText();
-String s5 = prRem.getText();
-       int selectedRowIndex = prTbl.getSelectedRow();
-       String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
-
-Object[] options = { "OK", "CANCEL" };
-int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
-JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-null, options, options[0]);
- 
-    if(n == JOptionPane.OK_OPTION){ 
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="DELETE FROM dbo.invPR WHERE ID = '"+ID+"'";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Delete', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-PRaddArchives();
-}
-    if(n == JOptionPane.NO_OPTION){ 
-/*
-jDateChooser1.setCalendar(null);
-jTextField13.setText("");
-*/
-    }
-    if(n == JOptionPane.CLOSED_OPTION){
-/*
-jDateChooser1.setCalendar(null);
-jTextField3.setText("");
-*/
-    }
-}
-//End of Basic Deleting Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Click Set Contents Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcSet(){
-        int selectedRowIndex = compTbl.getSelectedRow();
-        compBran.setText(compTbl.getValueAt(selectedRowIndex,0).toString());
-        compDept.setText(compTbl.getValueAt(selectedRowIndex,1).toString());
-        compName.setText(compTbl.getValueAt(selectedRowIndex,2).toString());
-        compProc.setText(compTbl.getValueAt(selectedRowIndex,3).toString());
-        compMboard.setText(compTbl.getValueAt(selectedRowIndex,4).toString());
-        compRam.setText(compTbl.getValueAt(selectedRowIndex,5).toString());
-        compHdd.setText(compTbl.getValueAt(selectedRowIndex,6).toString());
-        //showHisPC();
-        //setPCRem();
-}
-public void ccSet(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        ccBran.setText(ccTbl.getValueAt(selectedRowIndex,0).toString());
-        ccSupp.setText(ccTbl.getValueAt(selectedRowIndex,1).toString());
-        ccNum.setText(ccTbl.getValueAt(selectedRowIndex,2).toString());
-        ccUN.setText(ccTbl.getValueAt(selectedRowIndex,3).toString());
-        ccPW.setText(ccTbl.getValueAt(selectedRowIndex,4).toString());
-        //showHisCC();
-        //setCCRem();
-}
-public void prSet(){
-        int selectedRowIndex = prTbl.getSelectedRow();
-        prBran.setText(prTbl.getValueAt(selectedRowIndex,0).toString());
-        prDept.setText(prTbl.getValueAt(selectedRowIndex,1).toString());
-        prManu.setText(prTbl.getValueAt(selectedRowIndex,2).toString());
-        prName.setText(prTbl.getValueAt(selectedRowIndex,3).toString());
-        //showHisPR();
-        //setPRRem();
-}
-public void hisSet(){
-        int selectedRowIndex = allHisTbl.getSelectedRow();
-        String categ = allHisTbl.getValueAt(selectedRowIndex,2).toString();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
-        if(categ.equals("Computer")){
-        HISdetails.setVisible(true);
-        HISpc.setVisible(true);
-        HIScc.setVisible(false);
-        HISpr.setVisible(false);
-        pcHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        pcHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        pcHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
-        pcHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
-        pcHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
-        pcHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
-        pcHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
-        pcHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
-        pcHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
-        pcHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
-   
-        }
-        else if(categ.equals("CCTV")){
-        HISdetails.setVisible(true);
-        HISpc.setVisible(false);
-        HIScc.setVisible(true);
-        HISpr.setVisible(false);
-        ccHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        ccHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        ccHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
-        ccHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
-        ccHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
-        ccHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
-        ccHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
-        ccHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
-        ccHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
-        ccHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
-        }
-        else if(categ.equals("Printer")){
-        HISdetails.setVisible(true);
-        HISpc.setVisible(false);
-        HIScc.setVisible(false);
-        HISpr.setVisible(true);
-        prHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        prHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        prHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
-        prHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
-        prHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
-        prHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
-        prHisSTime.setText(allHisTbl.getValueAt(selectedRowIndex,7).toString());
-        prHisETime.setText(allHisTbl.getValueAt(selectedRowIndex,8).toString());
-        prHisPric.setText(allHisTbl.getValueAt(selectedRowIndex,9).toString());
-        prHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
-        }
-        
-}
-public void setPCRem(){
-        int selectedRowIndex = compTbl.getSelectedRow();
-        String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT UPS, REM, KEYB, MOUSE FROM dbo.invPC WHERE ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
-if(rs.next()){
-String UPS = rs.getString("UPS");
-String Rem = rs.getString("REM");
-String Keyb = rs.getString("KEYB");
-String MOUSE = rs.getString("MOUSE");
-
-compUps.setText(UPS);
-compRem.setText(Rem);
-compKeyb.setText(Keyb);
-compMou.setText(MOUSE);
-      }
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-public void setCCRem(){
-        int selectedRowIndex = ccTbl.getSelectedRow();
-        String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-    try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT REM FROM dbo.invCC WHERE ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
-if(rs.next()){
-String Rem = rs.getString("REM");
-ccRem.setText(Rem);
-      }
-   }
-      
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-public void setPRRem(){
-        int selectedRowIndex = prTbl.getSelectedRow();
-        String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
-    try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT REM FROM dbo.invPR WHERE ID = '"+ID+"'";         
-ResultSet rs=st.executeQuery(sql); 
-if(rs.next()){
-String Rem = rs.getString("REM");
-prRem.setText(Rem);
-      }
-   }
-      
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-
-//End of Contents Setting Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Choose Sort Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcSort(){
-String Branch = pcSort.getSelectedItem().toString();    
-if(Branch.equals("ALL")){
-showPC();
-}
-else
-{
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT BRANCH as Branch, DEPARTMENT as Department,OWNER as CurrentUser,PROCESSOR as Processor,MBOARD as Motherboard, RAM as Memory,HARDDISK as HardDisk, ID  FROM dbo.invPC WHERE BRANCH = '"+Branch+"' ORDER BY BRANCH ";         
-rs=st.executeQuery(sql); 
-compTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-//compTbl.setRowSelectionInterval(0,0);
-}
-public void ccSort(){
-String Branch1 = ccSort.getSelectedItem().toString();    
-if(Branch1.equals("ALL")){
-showCC();
-}
-else
-{
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, SP as ServiceProvider,CAM as Quantity,uN as Username,Pw as Password,ID  FROM dbo.invCC WHERE Branch = '"+Branch1+"'";   
-ResultSet rs=st.executeQuery(sql); 
-TableColumnModel columnModel = ccTbl.getColumnModel();
-ccTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-}
-//ccTbl.setRowSelectionInterval(0,0);
-}
-public void prSort(){
-String Branch2 = prSort.getSelectedItem().toString();    
-if(Branch2.equals("ALL")){
-showPR(); 
-}
-else
-{
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Manufacturer,Printername as Name,Department, ID FROM dbo.invPR  WHERE Branch = '"+Branch2+"'";  
-ResultSet rs=st.executeQuery(sql); 
-TableColumnModel columnModel = prTbl.getColumnModel();
-prTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }  
-}
-//prTbl.setRowSelectionInterval(0,0);
-}
-public void alogSort(){
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM/dd/yy");
-        String startD = sdf.format(jDateChooser2.getDate());
-        String endD = sdf.format(jDateChooser1.getDate());
-
-        try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
-            ResultSet rs;
-            Statement st=con.createStatement();
-            String sql = "SELECT Action, Categ as Category, Item, Date, Time FROM dbo.Logs WHERE CONVERT(VARCHAR(50),Date, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY Log_ID";
-            rs=st.executeQuery(sql);
-            ///SELECT SalesDate AS Date , SalesLipa AS Lipa , SalesBats AS Batangas  FROM dbo.tbl_chart ORDER BY SalesDate DESC
-            actlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
-        }
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
-            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
-        }}
-public void ulogSort(){ 
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM/dd/yy");
-        String startD = sdf.format(jDateChooser3.getDate());
-        String endD = sdf.format(jDateChooser4.getDate());
-
-        try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");; 
-            ResultSet rs;
-            Statement st=con.createStatement();
-            String sql = "SELECT uType as UserType, Laction as Action, Ldate as Date, Ltime as Time FROM dbo.userLogs WHERE CONVERT(VARCHAR(50),Ldate, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY LOG_ID";
-            rs=st.executeQuery(sql);
-            userlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
-        }
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
-            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
-        }}
-public void hisFilter(){
-String Branch2 = hisSortCateg.getSelectedItem().toString();
-
-        if (hisSortSDate.getDate() == null && hisSortEDate.getDate() == null)
-        {  
-            if(hisSortCateg.getSelectedItem()=="ALL"){
-            showHis(); 
-            }
-            else
-            {
-            try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-            Statement st=con.createStatement();         
-            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE Categ = '"+Branch2+"'";  
-            ResultSet rs=st.executeQuery(sql); 
-            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-            st.close();
-                }
-            catch (SQLException ex) {    
-            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }  
-}       
-        }
-        
-        
-        else {
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-String startD = sdf.format(hisSortSDate.getDate());
-String endD = sdf.format(hisSortEDate.getDate());      
-           if(hisSortCateg.getSelectedItem()=="ALL"){
-        try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-            Statement st=con.createStatement();         
-            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE CONVERT(VARCHAR(50),SDAte, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' ORDER BY HIS_ID";  
-            ResultSet rs=st.executeQuery(sql); 
-            TableColumnModel columnModel = allHisTbl.getColumnModel();
-            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-            st.close();
-                }
-            catch (SQLException ex) {    
-            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }  
-        }
-            else
-            {
-            try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-            Statement st=con.createStatement();         
-            sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History  WHERE CONVERT(VARCHAR(50),SDAte, 126) BETWEEN '"+startD+"%' AND '"+endD+"%' AND Categ = '"+Branch2+"' ORDER BY HIS_ID";  
-            ResultSet rs=st.executeQuery(sql); 
-            TableColumnModel columnModel = allHisTbl.getColumnModel();
-            allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-            st.close();
-                }
-            catch (SQLException ex) {    
-            JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-            JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }  
-}}
-        allHisTbl.setRowSelectionInterval(0,0);
-        hisSet();
-}
-
-//End of Sort Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Data Archives Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void PCaddArchives(){
-String s1 = compBran.getText();
-String s2 = compDept.getText();
-String s3 = compName.getText();
-String s4 = compProc.getText();
-String s5 = compRam.getText();
-String s6 = compHdd.getText();
-String s7 = compUps.getText();
-String s8 = compRem.getText();
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.pcArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Computer','"+s1+"-"+s2+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-//refreshPC();
-}
-public void CCaddArchives(){
-String s1 = ccBran.getText();
-String s2 = ccSupp.getText();
-String s3 = ccUN.getText();
-String s4 = ccPW.getText();
-String s5 = ccNum.getText();
-/*
-String s6 = ccRem.getText();
-*/
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.ccArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'CCTV','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-//refreshCC();    
-}
-public void PRaddArchives(){
-String s1 = prBran.getText();
-String s2 = prManu.getText();
-String s3 = prName.getText();
-String s4 = prDept.getText();
-/*
-String s5 = prRem.getText();
-*/
-try{
-Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-        DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-        Date date = new Date();
-        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.prArchives VALUES ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
-st.execute(sql);
-
-Statement sta = con.createStatement();
-            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('AddArchives', 'Printer','"+s1+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-            sta.execute(newsql);
-}
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-JOptionPane.showMessageDialog(null,"Sent to Archives"); 
-//refreshPR();    
-}
-//End of Data Archive Functions------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Setting Text Box Editable------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcEditable(){
-compBran.setEditable(true);
-compMboard.setEditable(true);
-compDept.setEditable(true);
-compName.setEditable(true);
-compProc.setEditable(true);
-compRam.setEditable(true);
-compHdd.setEditable(true);
-compRem.setEditable(true);
-compUps.setEditable(true);
-compKeyb.setEditable(true);
-compMou.setEditable(true);  
-pcUpdate.setVisible(true);
-pcEdit.setVisible(false);
-}
-public void ccEditable(){
-ccBran.setEditable(true);
-ccSupp.setEditable(true);
-ccUN.setEditable(true);
-ccPW.setEditable(true);
-ccNum.setEditable(true);
-ccRem.setEditable(true);
-ccUpdate.setVisible(true);
-ccEdit.setVisible(false);
-}
-public void prEditable(){
-prBran.setEditable(true);
-prManu.setEditable(true);
-prName.setEditable(true);
-prDept.setEditable(true);
-prRem.setEditable(true);
-prUpdate.setVisible(true);
-prEdit.setVisible(false);
-}
-public void pcHisEditable(){
-pcHisBran.setEditable(true);
-pcHisName.setEditable(true);
-pcHisAct.setEditable(true);
-pcHisSDate.setEnabled(true);
-pcHisEDate.setEnabled(true);
-pcHisSTime.setEditable(true);
-pcHisETime.setEditable(true);
-pcHisPric.setEditable(true);
-pcHisRem.setEditable(true); 
-}
-public void ccHisEditable(){
-ccHisBran.setEditable(true);
-ccHisName.setEditable(true);
-ccHisAct.setEditable(true);
-ccHisSDate.setEnabled(true);
-ccHisEDate.setEnabled(true);
-ccHisSTime.setEditable(true);
-ccHisETime.setEditable(true);
-ccHisPric.setEditable(true);
-ccHisRem.setEditable(true); 
-}
-public void prHisEditable(){
-prHisBran.setEditable(true);
-prHisName.setEditable(true);
-prHisAct.setEditable(true);
-prHisSDate.setEnabled(true);
-prHisEDate.setEnabled(true);
-prHisSTime.setEditable(true);
-prHisETime.setEditable(true);
-prHisPric.setEditable(true);
-prHisRem.setEditable(true); 
-}
-//End of Text Box Editable Function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Setting Text Box Non-Editable------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void pcNonEditable(){
-compBran.setEditable(false);
-compMboard.setEditable(false);
-compDept.setEditable(false);
-compName.setEditable(false);
-compProc.setEditable(false);
-compRam.setEditable(false);
-compHdd.setEditable(false);
-compRem.setEditable(false);
-compUps.setEditable(false); 
-compKeyb.setEditable(false);
-compMou.setEditable(false);  
-pcUpdate.setVisible(false);
-pcEdit.setVisible(true);
-}
-public void ccNonEditable(){
-ccBran.setEditable(false);
-ccSupp.setEditable(false);
-ccUN.setEditable(false);
-ccPW.setEditable(false);
-ccNum.setEditable(false);
-ccRem.setEditable(false); 
-ccUpdate.setVisible(false);
-ccEdit.setVisible(true);
-}
-public void prNonEditable(){
-prBran.setEditable(false);
-prManu.setEditable(false);
-prName.setEditable(false);
-prDept.setEditable(false);
-prRem.setEditable(false);
-prEdit.setVisible(true);
-prUpdate.setVisible(false);
-}
-public void pcHisNonEditable(){
-pcHisBran.setEditable(false);
-pcHisName.setEditable(false);
-pcHisAct.setEditable(false);
-pcHisSDate.setEnabled(false);
-pcHisEDate.setEnabled(false);
-pcHisSTime.setEditable(false);
-pcHisETime.setEditable(false);
-pcHisPric.setEditable(false);
-pcHisRem.setEditable(false); 
-}
-public void ccHisNonEditable(){
-ccHisBran.setEditable(false);
-ccHisName.setEditable(false);
-ccHisAct.setEditable(false);
-ccHisSDate.setEnabled(false);
-ccHisEDate.setEnabled(false);
-ccHisSTime.setEditable(false);
-ccHisETime.setEditable(false);
-ccHisPric.setEditable(false);
-ccHisRem.setEditable(false); 
-}
-public void prHisNonEditable(){
-prHisBran.setEditable(false);
-prHisName.setEditable(false);
-prHisAct.setEditable(false);
-prHisSDate.setEnabled(false);
-prHisEDate.setEnabled(false);
-prHisSTime.setEditable(false);
-prHisETime.setEditable(false);
-prHisPric.setEditable(false);
-prHisRem.setEditable(false); 
-}
-public void initEdit(){
-pcNonEditable();
-ccNonEditable();
-prNonEditable();
-}
-//End of Text Box non-Editable function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//Table component count------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void PCcount(){
-int rowCount = compTbl.getRowCount();
-countPC.setText(String.valueOf(rowCount));
-}
-public void CCcount(){
-int rowCount = ccTbl.getRowCount();
-countCC.setText(String.valueOf(rowCount));
-}
-public void PRcount(){
-int rowCount = prTbl.getRowCount();
-countPR.setText(String.valueOf(rowCount));
-}
-public void PChiscount(){
-int rowCount = hisTbl.getRowCount();
-countHis.setText(String.valueOf(rowCount));
-}
-public void CChiscount(){
-int rowCount = hisTbl2.getRowCount();
-countHis3.setText(String.valueOf(rowCount));
-}
-public void PRhiscount(){
-int rowCount = hisTbl3.getRowCount();
-countHis2.setText(String.valueOf(rowCount));
-}
-public void Hiscount(){
-int rowCount = allHisTbl.getRowCount();
-countHis5.setText(String.valueOf(rowCount));
-}
-public void ALogcount(){
-int rowCount = actlogTbl.getRowCount();
-actLogCnt.setText(
-        String.valueOf(rowCount));
-}
-public void ULogcount(){
-int rowCount = userlogTbl.getRowCount();
-uLogCnt.setText(String.valueOf(rowCount));
-}
-//End of Text Box non-Editable function------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
         double... percentages) {
@@ -8415,60 +9172,9 @@ public static void setCellsAlignment1(JTable table1, int alignment)
     }
 
 //THIS IS FOR TABLE FILTER AND SEARCHING----------------------------------------------------------------------------------------------------------------------------------------------------
-    public void FilterJtable(final JTable jTable, final JTextField jtfFilter) {
-    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
-    jTable.setRowSorter(rowSorter);
-    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
-
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            String text = jtfFilter.getText();
-
-            if (text.trim().length() == 0) {
-                rowSorter.setRowFilter(null);
-                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
-            } else {
-                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-
-            }
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            String text = jtfFilter.getText();
-
-            if (text.trim().length() == 0) {
-                rowSorter.setRowFilter(null);
-            } else {
-                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-            }
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-    });
-}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//END-OF-FUNCTIONS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 }
 

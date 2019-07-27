@@ -1,3 +1,27 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import net.proteanit.sql.DbUtils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +33,16 @@
  * @author ACER-PC
  */
 public class AddRepair extends javax.swing.JFrame {
-
+    public Connection con;
     /**
      * Creates new form AddRepair1
      */
     public AddRepair() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        repSort();
+        initBranch();
+        select.setVisible(false);
     }
 
     /**
@@ -29,14 +57,17 @@ public class AddRepair extends javax.swing.JFrame {
         AddPC = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        rep = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         repDevtype = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        repTbl = new javax.swing.JTable();
         repSearch = new javax.swing.JTextField();
         repBranch = new javax.swing.JComboBox<>();
         repSelect = new javax.swing.JButton();
+        select = new javax.swing.JPanel();
+        repSel = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,15 +99,21 @@ public class AddRepair extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rep.setBackground(new java.awt.Color(204, 204, 204));
+        rep.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Device Type:");
 
-        repDevtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computer", "CCTV", "Printer", "Others" }));
+        repDevtype.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        repDevtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Computer", "CCTV", "Printer" }));
+        repDevtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repDevtypeActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        repTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -87,53 +124,93 @@ public class AddRepair extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(repTbl);
 
-        repSearch.setText("Search");
-
-        repBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        repBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All" }));
+        repBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repBranchActionPerformed(evt);
+            }
+        });
 
         repSelect.setText("Select");
+        repSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repSelectActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(repDevtype, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(repSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        select.setBackground(new java.awt.Color(204, 204, 204));
+
+        repSel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        repSel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unit", "Processor", "Motherboard", "Harddrive", "Monitor", "RAM", "UPS", "Keyboard", "Mouse" }));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Select:");
+
+        javax.swing.GroupLayout selectLayout = new javax.swing.GroupLayout(select);
+        select.setLayout(selectLayout);
+        selectLayout.setHorizontalGroup(
+            selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(repSel, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        selectLayout.setVerticalGroup(
+            selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(repSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout repLayout = new javax.swing.GroupLayout(rep);
+        rep.setLayout(repLayout);
+        repLayout.setHorizontalGroup(
+            repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(repLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, repLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(repDevtype, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(repLayout.createSequentialGroup()
+                                .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(repLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(repSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        repLayout.setVerticalGroup(
+            repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(repLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(repDevtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
+                .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(repSelect)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AddPCLayout = new javax.swing.GroupLayout(AddPC);
@@ -143,7 +220,7 @@ public class AddRepair extends javax.swing.JFrame {
             .addGroup(AddPCLayout.createSequentialGroup()
                 .addGroup(AddPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         AddPCLayout.setVerticalGroup(
@@ -151,8 +228,9 @@ public class AddRepair extends javax.swing.JFrame {
             .addGroup(AddPCLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,48 +239,37 @@ public class AddRepair extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(AddPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AddPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(AddPC, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void repSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repSelectActionPerformed
+       repUpdate();
+    }//GEN-LAST:event_repSelectActionPerformed
+
+    private void repDevtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repDevtypeActionPerformed
+        repSort();        // TODO add your handling code here:
+    }//GEN-LAST:event_repDevtypeActionPerformed
+
+    private void repBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repBranchActionPerformed
+        repSort();
+    }//GEN-LAST:event_repBranchActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddRepair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddRepair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddRepair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddRepair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddRepair().setVisible(true);
+               AddRepair AR = new AddRepair();
+                AR.setVisible(true);
+                
             }
         });
     }
@@ -211,13 +278,259 @@ public class AddRepair extends javax.swing.JFrame {
     private javax.swing.JPanel AddPC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel rep;
     private javax.swing.JComboBox<String> repBranch;
     private javax.swing.JComboBox<String> repDevtype;
     private javax.swing.JTextField repSearch;
+    private javax.swing.JComboBox<String> repSel;
     private javax.swing.JButton repSelect;
+    private javax.swing.JTable repTbl;
+    private javax.swing.JPanel select;
     // End of variables declaration//GEN-END:variables
+
+
+//FOR REPAIR
+public void FilterREP( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                AddRepair.setCellsAlignment(repTbl, SwingConstants.CENTER);
+}
+public void showInv(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID FROM dbo.Inv";         
+ResultSet rs=st.executeQuery(sql); 
+repTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterREP(repTbl,repSearch);
+}
+public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
+        double... percentages) {
+    double total = 0;
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        total += percentages[i];
+    }
+ 
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        TableColumn column = table.getColumnModel().getColumn(i);
+        column.setPreferredWidth((int)
+                (tablePreferredWidth * (percentages[i] / total)));
+    }
+}
+
+public void repSort(){
+String Type = repDevtype.getSelectedItem().toString();    
+String Branch = repBranch.getSelectedItem().toString();
+if(Type.equals("All")&&Branch.equals("All")){
+showInv();
+}
+else
+{
+if (Type.equals("All")){
+try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();  
+select.setVisible(false);
+String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID  FROM dbo.Inv WHERE Status = 'WORKING' AND Branch='"+Branch+"' ";         
+ResultSet rs=st.executeQuery(sql); 
+repTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+}   
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterREP(repTbl,repSearch);
+}    
+    
+if(Type.equals("Computer")){
+Dev(Branch, "PC");
+FilterREP(repTbl,repSearch);
+select.setVisible(true);
+} 
+else if(Type.equals("CCTV")){
+Dev(Branch, "CC");
+FilterREP(repTbl,repSearch);
+select.setVisible(false);
+}
+else if(Type.equals("Printer")){
+Dev(Branch, "PR");
+FilterREP(repTbl,repSearch);
+select.setVisible(false);
+}
+}} 
+public void Dev(String Branch, String Categ){
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();  
+if(Branch.equals("All")){
+String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID  FROM dbo.Inv WHERE Status = 'WORKING' AND Categ='"+Categ+"' ";         
+ResultSet rs=st.executeQuery(sql); 
+repTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+}
+else{
+String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID FROM dbo.Inv WHERE Branch = '"+Branch+"' AND Status = 'WORKING' AND Categ='"+Categ+"' ";         
+ResultSet rs=st.executeQuery(sql); 
+repTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+}   
+    
+    }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+
+}
+
+
+
+public void repUpdate() {
+int selectedRowIndex = repTbl.getSelectedRow();
+String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
+String Dev = repTbl.getValueAt(selectedRowIndex,4).toString();
+String Bra = repTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = repTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = repTbl.getValueAt(selectedRowIndex,3).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+String sql ="UPDATE dbo.invPC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("CC")){        
+String sql ="UPDATE dbo.invCC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+else if (Categ.equals("PR")){        
+String sql ="UPDATE dbo.invPR SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+st.executeUpdate(sql);
+}
+
+String sql1 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+st.executeUpdate(sql1);
+JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+Homepage hp = new Homepage();
+//showRep()
+
+Statement sta = con.createStatement();
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
+String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
+sta.execute(newsql1);
+}
+
+
+
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void initBranch(){
+try { 
+Connection con1 = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+Statement st1=con1.createStatement();         
+String sql1 = "SELECT BRANCH FROM dbo.Branch";         
+ResultSet rs1=st1.executeQuery(sql1);
+while(rs1.next()){
+String Branch = rs1.getString("BRANCH");
+repBranch.addItem(Branch);
+
+
+
+
+      }
+     }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState()); 
+ }
+}
+public static void setCellsAlignment(JTable table, int alignment)
+    {
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(alignment);
+
+        TableModel tableModel = table.getModel();
+
+        for (int columnIndex = 0; columnIndex < tableModel.getColumnCount(); columnIndex++)
+        {
+            table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+        }
+        
+        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+    }
+public static void setCellsAlignment1(JTable table1, int alignment)
+    {
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(alignment);
+
+        TableModel tableModel1 = table1.getModel();
+
+        for (int columnIndex = 0; columnIndex < tableModel1.getColumnCount(); columnIndex++)
+        {
+            table1.getColumnModel().getColumn(columnIndex).setCellRenderer(rightRenderer);
+    
+       
+        }
+        
+        ((DefaultTableCellRenderer)table1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+    }
+
 }
