@@ -8946,6 +8946,8 @@ Homepage hp = new Homepage();
 Statement sta = con.createStatement();
 String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Disposed', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
 sta.execute(newsql);
+String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Disposed', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
+sta.execute(newsql1);
 }
 
 

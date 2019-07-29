@@ -34,6 +34,9 @@ import net.proteanit.sql.DbUtils;
  */
 public class AddRepair extends javax.swing.JFrame {
     public Connection con;
+    public String it = null;
+    public int cam =0;
+    private Statement st1;
     /**
      * Creates new form AddRepair1
      */
@@ -43,6 +46,9 @@ public class AddRepair extends javax.swing.JFrame {
         repSort();
         initBranch();
         select.setVisible(false);
+        sss1.setVisible(false);
+        ca.setVisible(false);
+
     }
 
     /**
@@ -66,8 +72,14 @@ public class AddRepair extends javax.swing.JFrame {
         repBranch = new javax.swing.JComboBox<>();
         repSelect = new javax.swing.JButton();
         select = new javax.swing.JPanel();
-        repSel = new javax.swing.JComboBox<>();
+        pccard = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        pccombo = new javax.swing.JComboBox<>();
+        cccard = new javax.swing.JPanel();
+        cccombo = new javax.swing.JComboBox<>();
+        sss = new javax.swing.JLabel();
+        sss1 = new javax.swing.JLabel();
+        ca = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +136,11 @@ public class AddRepair extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        repTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                repTblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(repTbl);
 
         repBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All" }));
@@ -141,33 +158,83 @@ public class AddRepair extends javax.swing.JFrame {
         });
 
         select.setBackground(new java.awt.Color(204, 204, 204));
-
-        repSel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        repSel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unit", "Processor", "Motherboard", "Harddrive", "Monitor", "RAM", "UPS", "Keyboard", "Mouse" }));
+        select.setLayout(new java.awt.CardLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Select:");
 
-        javax.swing.GroupLayout selectLayout = new javax.swing.GroupLayout(select);
-        select.setLayout(selectLayout);
-        selectLayout.setHorizontalGroup(
-            selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(selectLayout.createSequentialGroup()
-                .addContainerGap()
+        pccombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pccombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unit", "Processor", "Motherboard", "Harddrive", "Monitor", "RAM", "UPS", "Keyboard", "Mouse" }));
+
+        javax.swing.GroupLayout pccardLayout = new javax.swing.GroupLayout(pccard);
+        pccard.setLayout(pccardLayout);
+        pccardLayout.setHorizontalGroup(
+            pccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pccardLayout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(repSel, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pccombo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 412, Short.MAX_VALUE))
         );
-        selectLayout.setVerticalGroup(
-            selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(selectLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(selectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pccardLayout.setVerticalGroup(
+            pccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pccardLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(repSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pccombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        select.add(pccard, "card2");
+
+        cccard.setBackground(new java.awt.Color(204, 204, 204));
+
+        cccombo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cccombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CCTV", "Camera", "DVR", "HDD" }));
+        cccombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cccomboActionPerformed(evt);
+            }
+        });
+
+        sss.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sss.setText("Select:");
+
+        sss1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sss1.setText("Number of Cameras:");
+
+        javax.swing.GroupLayout cccardLayout = new javax.swing.GroupLayout(cccard);
+        cccard.setLayout(cccardLayout);
+        cccardLayout.setHorizontalGroup(
+            cccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cccardLayout.createSequentialGroup()
+                .addComponent(sss)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cccombo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(sss1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ca, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 164, Short.MAX_VALUE))
+        );
+        cccardLayout.setVerticalGroup(
+            cccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cccardLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(cccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(cccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sss1)
+                        .addComponent(ca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cccardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(cccardLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(cccombo))
+                        .addComponent(sss, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addContainerGap())
+        );
+
+        select.add(cccard, "card3");
 
         javax.swing.GroupLayout repLayout = new javax.swing.GroupLayout(rep);
         rep.setLayout(repLayout);
@@ -176,21 +243,21 @@ public class AddRepair extends javax.swing.JFrame {
             .addGroup(repLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, repLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(repDevtype, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(repLayout.createSequentialGroup()
-                                .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, repLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(repDevtype, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(repLayout.createSequentialGroup()
+                            .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(repSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, repLayout.createSequentialGroup()
+                            .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(repSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(repSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         repLayout.setVerticalGroup(
@@ -206,11 +273,14 @@ public class AddRepair extends javax.swing.JFrame {
                     .addComponent(repBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(repSelect)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(repLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(repLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(repSelect))
+                    .addGroup(repLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(select, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout AddPCLayout = new javax.swing.GroupLayout(AddPC);
@@ -261,6 +331,28 @@ public class AddRepair extends javax.swing.JFrame {
         repSort();
     }//GEN-LAST:event_repBranchActionPerformed
 
+    private void repTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repTblMouseClicked
+        int selectedRowIndex = repTbl.getSelectedRow();
+        String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
+        if (Categ.equals("PC")){
+            select.setVisible(true);
+            pccard.setVisible(true);
+            cccard.setVisible(false);
+        }
+        else if (Categ.equals("CC")){
+            select.setVisible(true);
+            pccard.setVisible(false);
+            cccard.setVisible(true);
+        }
+        else {select.setVisible(false);}
+    }//GEN-LAST:event_repTblMouseClicked
+
+    private void cccomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cccomboActionPerformed
+        if (cccombo.getSelectedItem().equals("Camera")){
+        sss1.setVisible(true);
+        ca.setVisible(true);}
+    }//GEN-LAST:event_cccomboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,19 +368,25 @@ public class AddRepair extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddPC;
+    private javax.swing.JSpinner ca;
+    private javax.swing.JPanel cccard;
+    private javax.swing.JComboBox<String> cccombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pccard;
+    private javax.swing.JComboBox<String> pccombo;
     private javax.swing.JPanel rep;
     private javax.swing.JComboBox<String> repBranch;
     private javax.swing.JComboBox<String> repDevtype;
     private javax.swing.JTextField repSearch;
-    private javax.swing.JComboBox<String> repSel;
     private javax.swing.JButton repSelect;
     private javax.swing.JTable repTbl;
     private javax.swing.JPanel select;
+    private javax.swing.JLabel sss;
+    private javax.swing.JLabel sss1;
     // End of variables declaration//GEN-END:variables
 
 
@@ -347,30 +445,18 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 FilterREP(repTbl,repSearch);
 }
-public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
-        double... percentages) {
-    double total = 0;
-    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
-        total += percentages[i];
-    }
- 
-    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
-        TableColumn column = table.getColumnModel().getColumn(i);
-        column.setPreferredWidth((int)
-                (tablePreferredWidth * (percentages[i] / total)));
-    }
-}
-
 public void repSort(){
 String Type = repDevtype.getSelectedItem().toString();    
 String Branch = repBranch.getSelectedItem().toString();
 if(Type.equals("All")&&Branch.equals("All")){
 showInv();
+select.setVisible(false);
 }
 else
 {
 if (Type.equals("All")){
 try {
+ select.setVisible(false);
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();  
 select.setVisible(false);
@@ -389,18 +475,27 @@ FilterREP(repTbl,repSearch);
     
 if(Type.equals("Computer")){
 Dev(Branch, "PC");
+sss1.setVisible(false);
+ca.setVisible(false);
 FilterREP(repTbl,repSearch);
 select.setVisible(true);
+pccard.setVisible(true);
+cccard.setVisible(false);
 } 
 else if(Type.equals("CCTV")){
+ sss1.setVisible(false);
+ ca.setVisible(false);
 Dev(Branch, "CC");
 FilterREP(repTbl,repSearch);
-select.setVisible(false);
+select.setVisible(true);
+pccard.setVisible(false);
+cccard.setVisible(true);
 }
 else if(Type.equals("Printer")){
 Dev(Branch, "PR");
 FilterREP(repTbl,repSearch);
 select.setVisible(false);
+
 }
 }} 
 public void Dev(String Branch, String Categ){
@@ -443,36 +538,164 @@ DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
 Date time = new Date();
+ String sel, item = null;
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
-if (Categ.equals("PC")){        
-String sql ="UPDATE dbo.invPC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
-st.executeUpdate(sql);
-}
-else if (Categ.equals("CC")){        
-String sql ="UPDATE dbo.invCC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
-st.executeUpdate(sql);
-}
-else if (Categ.equals("PR")){        
-String sql ="UPDATE dbo.invPR SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
-st.executeUpdate(sql);
+if (Categ.equals("PC")){  
+    if(pccombo.getSelectedItem().toString().equals("Unit")){
+    String sql ="UPDATE dbo.invPC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+        String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','Unit Malfunctioned')";
+    sta.execute(newsql1);
+     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();}
+    else {
+    sel = pccombo.getSelectedItem().toString();
+    if (sel.equals("Processor")){
+        item = "Proce";
+    }
+     else if (sel.equals("Motherboard")){
+        item = "MBoard";
+    }
+     else if (sel.equals("RAM")){
+        item = "Ram";
+    }
+     else if (sel.equals("Harddrive")){
+        item = "HDD";
+    }
+     else if (sel.equals("UPS")){
+        item = "UPS";
+    }
+     else if (sel.equals("Keyboard")){
+        item = "KeyB";
+    }
+     else if (sel.equals("Mouse")){
+        item = "Mouse";
+    }
+     else if (sel.equals("Monitor")){
+        item = "Moni";
+    }
+     st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                    
+    String sql2 = "SELECT "+item+" FROM dbo.invPC WHERE ID = '"+Dev+"'";         
+    ResultSet rs=st1.executeQuery(sql2); 
+    rs = st1.executeQuery(sql2);             
+            if (rs.next()) { 
+             it = rs.getString(item);   
+            }
+     if(it.equals("IN REPAIR")){
+         JOptionPane.showMessageDialog(null,"Item already in repair!");
+     }
+     else{
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
+     st.executeUpdate(sql1);
+     String sql ="UPDATE dbo.invPC SET "+item+" = 'IN REPAIR' WHERE ID = '"+Dev+"'";         
+     st.executeUpdate(sql);
+     Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
+   sta.execute(newsql1);
+    JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();
+    }}
 }
 
-String sql1 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
-st.executeUpdate(sql1);
-JOptionPane.showMessageDialog(null,"Device sent to Repair!");
-Homepage hp = new Homepage();
-//showRep()
-
-Statement sta = con.createStatement();
-String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-sta.execute(newsql);
-String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
-sta.execute(newsql1);
+else if (Categ.equals("CC")){  
+    if(cccombo.getSelectedItem().toString().equals("CCTV")){
+    String sql ="UPDATE dbo.invCC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','CCTV Malfunctioned')";
+    sta.execute(newsql1);
+     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();}
+    else {
+    sel = cccombo.getSelectedItem().toString();
+    if (sel.equals("Camera")){
+        item = "Cnum";
+        cam =(int) ca.getValue();
+    }
+     else if (sel.equals("DVR")){
+        item = "DVR";
+    }
+     else if (sel.equals("HDD")){
+        item = "HDD";
+    }
+    if (sel.equals("Camera")){
+     st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                    
+    String sql2 = "SELECT "+item+" FROM dbo.invCC WHERE ID = '"+Dev+"'";         
+    ResultSet rs=st1.executeQuery(sql2); 
+    rs = st1.executeQuery(sql2);             
+            if (rs.next()) { 
+             it = rs.getString(item);   
+            }
+     if(it.equals("IN REPAIR")){
+         JOptionPane.showMessageDialog(null,"Item already in repair!");
+     }
+     else{
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
+     st.executeUpdate(sql1);
+     String sql ="UPDATE dbo.invCC SET "+item+" = '"+cam+" CAMERAS IN REPAIR' WHERE ID = '"+Dev+"'";         
+     st.executeUpdate(sql);
+     Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
+   sta.execute(newsql1);
+    JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();
+    }   
+    }
+    else{
+     st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                    
+    String sql2 = "SELECT "+item+" FROM dbo.invCC WHERE ID = '"+Dev+"'";         
+    ResultSet rs=st1.executeQuery(sql2); 
+    rs = st1.executeQuery(sql2);             
+            if (rs.next()) { 
+             it = rs.getString(item);   
+            }
+     if(it.equals("IN REPAIR")){
+         JOptionPane.showMessageDialog(null,"Item already in repair!");
+     }
+     else{
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
+     st.executeUpdate(sql1);
+     String sql ="UPDATE dbo.invCC SET "+item+" = 'IN REPAIR' WHERE ID = '"+Dev+"'";         
+     st.executeUpdate(sql);
+     Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
+   sta.execute(newsql1);
+    JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();
+    }}}
 }
 
-
+else if (Categ.equals("PR")){  
+    String sql ="UPDATE dbo.invPR SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
+    sta.execute(newsql1);
+    JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    this.dispose();
+}
+}
 
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -532,5 +755,17 @@ public static void setCellsAlignment1(JTable table1, int alignment)
         
         ((DefaultTableCellRenderer)table1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
-
+public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
+        double... percentages) {
+    double total = 0;
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        total += percentages[i];
+    }
+ 
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        TableColumn column = table.getColumnModel().getColumn(i);
+        column.setPreferredWidth((int)
+                (tablePreferredWidth * (percentages[i] / total)));
+    }
+}
 }
