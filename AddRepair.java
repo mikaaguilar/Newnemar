@@ -37,6 +37,9 @@ public class AddRepair extends javax.swing.JFrame {
     public String it = null;
     public int cam =0;
     private Statement st1;
+    public int id = 0;
+    public int id1 = 0;
+     public String stcam;
     /**
      * Creates new form AddRepair1
      */
@@ -539,22 +542,35 @@ Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
 Date time = new Date();
  String sel, item = null;
+
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 if (Categ.equals("PC")){  
-    if(pccombo.getSelectedItem().toString().equals("Unit")){
+    String Try = pccombo.getSelectedItem().toString();
+    if(Try.equals("Unit")){
+    // Statement sta = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0','Unit Malfunctioned')";
+    st.execute(newsql1);
+     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2;
+    rs2 = st.executeQuery(sql4);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat, Rep_ID) Values ('"+Dev+"', 'Unit', 'N/A', 'For Repair', '"+id+"' )";         
+     st.executeUpdate(sql1);
     String sql ="UPDATE dbo.invPC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
     st.executeUpdate(sql);
-        String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+    String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    Statement sta = con.createStatement();
-    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-    sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','Unit Malfunctioned')";
-    sta.execute(newsql1);
+   
      JOptionPane.showMessageDialog(null,"Device sent to Repair!");
-    this.dispose();}
+    new Homepage().showRep();
+    this.dispose();
+    }
     else {
     sel = pccombo.getSelectedItem().toString();
     if (sel.equals("Processor")){
@@ -592,38 +608,57 @@ if (Categ.equals("PC")){
          JOptionPane.showMessageDialog(null,"Item already in repair!");
      }
      else{
-     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
+      Statement sta = con.createStatement();
+     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+     sta.execute(newsql);
+     String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
+     sta.execute(newsql1);
+     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2=st1.executeQuery(sql4); 
+    rs2 = st1.executeQuery(sql4);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat, Rep_ID) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair', '"+id+"' )";         
      st.executeUpdate(sql1);
      String sql ="UPDATE dbo.invPC SET "+item+" = 'IN REPAIR' WHERE ID = '"+Dev+"'";         
      st.executeUpdate(sql);
-     Statement sta = con.createStatement();
-    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-    sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
-   sta.execute(newsql1);
     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+     new Homepage().showRep();
     this.dispose();
     }}
 }
 
 else if (Categ.equals("CC")){  
     if(cccombo.getSelectedItem().toString().equals("CCTV")){
+      Statement sta = con.createStatement();
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    sta.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0.00','CCTV Malfunctioned')";
+    sta.execute(newsql1);
+      String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2=st1.executeQuery(sql4); 
+    rs2 = st1.executeQuery(sql4);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat, Rep_ID) Values ('"+Dev+"', 'Unit', 'N/A', 'For Repair', '"+id+"' )";         
+     st.executeUpdate(sql1);
     String sql ="UPDATE dbo.invCC SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
     st.executeUpdate(sql);
     String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    Statement sta = con.createStatement();
-    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-    sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','CCTV Malfunctioned')";
-    sta.execute(newsql1);
      JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    new Homepage().showRep();
     this.dispose();}
     else {
     sel = cccombo.getSelectedItem().toString();
     if (sel.equals("Camera")){
-        item = "Cnum";
+        item = "Camera";
         cam =(int) ca.getValue();
+        if (cam >1){ stcam="CAMERAS";}
+        else {stcam="CAMERA";}
+            
     }
      else if (sel.equals("DVR")){
         item = "DVR";
@@ -632,6 +667,13 @@ else if (Categ.equals("CC")){
         item = "HDD";
     }
     if (sel.equals("Camera")){
+         st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);  
+        String sql5 = "SELECT Cnum FROM dbo.invCC WHERE ID= "+Dev+" ";         
+        ResultSet rs3=st1.executeQuery(sql5); 
+        rs3 = st1.executeQuery(sql5);             
+            if (rs3.next()) { 
+             id1 = rs3.getInt("Cnum");   
+            }
      st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                    
     String sql2 = "SELECT "+item+" FROM dbo.invCC WHERE ID = '"+Dev+"'";         
     ResultSet rs=st1.executeQuery(sql2); 
@@ -639,22 +681,33 @@ else if (Categ.equals("CC")){
             if (rs.next()) { 
              it = rs.getString(item);   
             }
-     if(it.equals("IN REPAIR")){
-         JOptionPane.showMessageDialog(null,"Item already in repair!");
+     if(it.equals("WORKING")){
+      if (cam > id1 ) {
+          JOptionPane.showMessageDialog(null,"Invalid number!");
      }
      else{
-     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
-     st.executeUpdate(sql1);
-     String sql ="UPDATE dbo.invCC SET "+item+" = '"+cam+" CAMERAS IN REPAIR' WHERE ID = '"+Dev+"'";         
-     st.executeUpdate(sql);
-     Statement sta = con.createStatement();
+      Statement sta = con.createStatement();
     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+cam+" "+stcam+" Malfunctioned' )";
    sta.execute(newsql1);
+   String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2=st1.executeQuery(sql4); 
+    rs2 = st1.executeQuery(sql4);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat,Rep_ID) Values ('"+Dev+"', '"+sel+"', '"+cam+"', 'For Repair', '"+id+"' )";         
+     st.executeUpdate(sql1);
+     String sql ="UPDATE dbo.invCC SET "+item+" = '"+cam+" "+stcam+" IN REPAIR' WHERE ID = '"+Dev+"'";         
+     st.executeUpdate(sql);
     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    new Homepage().showRep();
     this.dispose();
-    }   
+    }   }
+     else{
+              JOptionPane.showMessageDialog(null,"Item already in repair!");
+     }
     }
     else{
      st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);                    
@@ -668,31 +721,48 @@ else if (Categ.equals("CC")){
          JOptionPane.showMessageDialog(null,"Item already in repair!");
      }
      else{
-     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair')";         
-     st.executeUpdate(sql1);
-     String sql ="UPDATE dbo.invCC SET "+item+" = 'IN REPAIR' WHERE ID = '"+Dev+"'";         
-     st.executeUpdate(sql);
      Statement sta = con.createStatement();
     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     sta.execute(newsql);
     String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', '0.00', '"+sel+" Malfunctioned' )";
    sta.execute(newsql1);
+    String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2=st1.executeQuery(sql4); 
+    rs2 = st1.executeQuery(sql4);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql1 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat, Rep_ID) Values ('"+Dev+"', '"+sel+"', '"+it+"', 'For Repair', '"+id+"' )";        
+     st.executeUpdate(sql1);
+     String sql ="UPDATE dbo.invCC SET "+item+" = 'IN REPAIR' WHERE ID = '"+Dev+"'";         
+     st.executeUpdate(sql);
     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    new Homepage().showRep();
     this.dispose();
     }}}
 }
 
 else if (Categ.equals("PR")){  
-    String sql ="UPDATE dbo.invPR SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
-    st.executeUpdate(sql);
-    String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
-    st.executeUpdate(sql3);
     Statement sta = con.createStatement();
     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','N/A','"+tm.format(time)+"','N/A','N/A','N/A')";
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'N/A')";
     sta.execute(newsql1);
+    String sql6 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2; 
+    rs2 = st1.executeQuery(sql6);             
+            if (rs2.next()) { 
+             id = rs2.getInt("HIS_ID");   
+            }
+     String sql5 ="INSERT INTO dbo.Rep (Dev_ID, Rep_Item, Rep_Name, Rep_Stat, Rep_ID) Values ('"+Dev+"', 'Printer', 'N/A', 'For Repair', "+id+" )";        
+     st.executeUpdate(sql5);
+     String sql ="UPDATE dbo.invPR SET Stat = 'FOR REPAIR' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql3 ="UPDATE dbo.Inv SET Status = 'FOR REPAIR' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    
     JOptionPane.showMessageDialog(null,"Device sent to Repair!");
+    new Homepage().showRep();
     this.dispose();
 }
 }
