@@ -279,6 +279,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Delivered"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shipDoneActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="shipAdd">
                   <Properties>
@@ -405,6 +408,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Dispose"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton12">
                       <Properties>
@@ -653,12 +659,12 @@
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="countPC" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="pcSort" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="pcSearchtxt" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jButton6" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
@@ -1777,13 +1783,8 @@
                                                           <Component id="ccPW" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel65" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel74" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jLabel65" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel74" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
