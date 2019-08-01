@@ -1,5 +1,26 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,6 +33,9 @@ import javax.swing.JFrame;
  * @author ACER-PC
  */
 public class Replace extends javax.swing.JFrame {
+     public Connection con;
+     public String type, item, devname, PrevOwner, PrevBranch, PrevDept;
+     public int DevID, HisID, InvID, NewID;
 
     /**
      * Creates new form Replace
@@ -35,7 +59,7 @@ public class Replace extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        reserveTbl = new javax.swing.JTable();
+        otTbl = new javax.swing.JTable();
         reserveSearch = new javax.swing.JTextField();
         reserveSelect = new javax.swing.JButton();
 
@@ -72,7 +96,7 @@ public class Replace extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        reserveTbl.setModel(new javax.swing.table.DefaultTableModel(
+        otTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -83,11 +107,14 @@ public class Replace extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(reserveTbl);
-
-        reserveSearch.setText("Search");
+        jScrollPane1.setViewportView(otTbl);
 
         reserveSelect.setText("Select");
+        reserveSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserveSelectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,6 +175,12 @@ public class Replace extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void reserveSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSelectActionPerformed
+       if(type.equals("OT")){UpdateOT();}
+       else if(type.equals("Unit")){UpdateUnit();}
+       else if(type.equals("Printer")){UpdatePrinter();}
+    }//GEN-LAST:event_reserveSelectActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -189,8 +222,254 @@ public class Replace extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable otTbl;
     private javax.swing.JTextField reserveSearch;
     private javax.swing.JButton reserveSelect;
-    private javax.swing.JTable reserveTbl;
     // End of variables declaration//GEN-END:variables
+
+    public static void setCellsAlignment1(JTable table, int alignment)
+    {
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(alignment);
+
+        TableModel tableModel = table.getModel();
+
+        for (int columnIndex = 0; columnIndex < tableModel.getColumnCount(); columnIndex++)
+        {
+            table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
+            table.getColumnModel().getColumn(7).setCellRenderer(rightRenderer);
+        }
+        
+        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+    }
+    public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
+        double... percentages) {
+    double total = 0;
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        total += percentages[i];
+    }
+ 
+    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+        TableColumn column = table.getColumnModel().getColumn(i);
+        column.setPreferredWidth((int)
+                (tablePreferredWidth * (percentages[i] / total)));
+    }
+}
+    public void FilterOT( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+           
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+
+                 setJTableColumnsWidth(otTbl, 480,20, 55,10,10, 5);
+                 Homepage.setCellsAlignment1(otTbl, SwingConstants.CENTER);
+}
+public void showOT(String Dev, int ID, int HIS){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = '"+Dev+"'ORDER by ID";         
+ResultSet rs=st.executeQuery(sql); 
+otTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterOT(otTbl,reserveSearch);
+type = "OT";
+DevID = ID;
+HisID = HIS;
+}
+
+public void showUnit(int ID, int HIS){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+String sql = "SELECT Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk, UPS, KeyB as Keyboard, Mouse, Moni as Monitor, ID FROM dbo.invPC WHERE Stat = 'WORKING' AND Branch = 'ADMIN' AND Dept = 'IT' AND Owner = 'IT RESERVE' ORDER by Branch";                 
+ResultSet rs=st.executeQuery(sql); 
+otTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterOT(otTbl,reserveSearch);
+type = "Unit";
+DevID = ID;
+HisID = HIS;
+}
+
+public void showPR(int ID, int HIS){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();        
+
+String sql = "SELECT Branch, Dept AS Department, Owner as Name,  Manu AS Manufacturer, ID FROM dbo.invPR WHERE Stat = 'WORKING' AND Branch = 'ADMIN' AND Dept = 'IT' AND Owner = 'IT RESERVE' ORDER by Branch";                 
+ResultSet rs=st.executeQuery(sql); 
+otTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterOT(otTbl,reserveSearch);
+type = "Printer";
+DevID = ID;
+HisID = HIS;
+}
+
+public void UpdateOT(){
+int selectedRowIndex = otTbl.getSelectedRow();
+String Dev = otTbl.getValueAt(selectedRowIndex,0).toString();
+String Nam = otTbl.getValueAt(selectedRowIndex,1).toString();
+String Qty = otTbl.getValueAt(selectedRowIndex,2).toString();
+String Qlt = otTbl.getValueAt(selectedRowIndex,3).toString();
+String ID = otTbl.getValueAt(selectedRowIndex,4).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+ String sel = Dev; 
+    if (sel.equals("Processor")){
+        item = "Proce";
+    }
+     else if (sel.equals("Motherboard")){
+        item = "MBoard";
+    }
+     else if (sel.equals("RAM")){
+        item = "Ram";
+    }
+     else if (sel.equals("Harddrive")){
+        item = "HDD";
+    }
+     else if (sel.equals("UPS")){
+        item = "UPS";
+    }
+     else if (sel.equals("Keyboard")){
+        item = "KeyB";
+    }
+     else if (sel.equals("Mouse")){
+        item = "Mouse";
+    }
+     else if (sel.equals("Monitor")){
+        item = "Moni";
+    }
+if(Dev.equals("Processor")||Dev.equals("Motherboard")||Dev.equals("RAM")||Dev.equals("Monitor")||Dev.equals("Harddrive")||Dev.equals("UPS")||Dev.equals("Keyboard")||Dev.equals("Mouse")){
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+
+    String sql ="UPDATE dbo.invPC SET "+item+" = '"+Nam+"' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
+    st.executeUpdate(sql4);
+    String sql7 = "SELECT  Rep_Name FROM dbo.Rep WHERE Rep_ID = '"+HisID+"'";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql7);             
+            if (rs3.next()) { 
+             devname = rs3.getString("Rep_Name");   
+            }
+      String sql8 = "SELECT  Branch, Dept, Owner FROM dbo.invPC WHERE ID = '"+DevID+"'";         
+    ResultSet rs4; 
+    rs4 = st.executeQuery(sql8);             
+            if (rs4.next()) { 
+             PrevOwner = rs3.getString("Owner");  
+             PrevBranch = rs3.getString("Branch");  
+             PrevDept = rs3.getString("Dept");  
+            }
+    String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+"' WHERE ID = '"+ID+"'";         
+    st.executeUpdate(sql3);
+    String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE ID = '"+ID+"'";         
+    st.executeUpdate(sql5);
+    JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
+     this.dispose();}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }}}
+
+
+
+public void UpdateUnit(){
+int selectedRowIndex = otTbl.getSelectedRow();
+String Pro = otTbl.getValueAt(selectedRowIndex,0).toString();
+String Mot = otTbl.getValueAt(selectedRowIndex,1).toString();
+String Ram = otTbl.getValueAt(selectedRowIndex,2).toString();
+String HDD = otTbl.getValueAt(selectedRowIndex,3).toString();
+String UPS = otTbl.getValueAt(selectedRowIndex,4).toString();
+String Key = otTbl.getValueAt(selectedRowIndex,5).toString();
+String Mou = otTbl.getValueAt(selectedRowIndex,6).toString();
+String Mon = otTbl.getValueAt(selectedRowIndex,7).toString();
+String Dev = otTbl.getValueAt(selectedRowIndex,8).toString();
+
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+    try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+
+    String sql ="UPDATE dbo.invPC SET Proce = '"+Pro+"', MBoard = '"+Mot+"', Ram = '"+Ram+"', HDD = '"+HDD+"', UPS = '"+UPS+"', KeyB = '"+Key+"', Mouse = '"+Mou+"', Moni = '"+Mon+"' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
+    st.executeUpdate(sql4);
+    String sql3 ="UPDATE dbo.invPC SET Stat = 'TRANSFERED', Rem = 'To ' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    this.dispose();}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void UpdatePrinter(){}
 }

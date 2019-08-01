@@ -45,7 +45,7 @@ public ResultSet rs, rs1, rs2;
 public static String z;
 public String tr;
 public String pu;
-public String item, name = null;
+public String item, name, devname = null;
 public boolean g = false;
 public int id;
 
@@ -303,7 +303,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         prRepair = new javax.swing.JButton();
         OTcard = new javax.swing.JPanel();
         otherTbl = new javax.swing.JScrollPane();
-        compTbl1 = new javax.swing.JTable();
+        otTbl = new javax.swing.JTable();
         otherSort = new javax.swing.JComboBox();
         otherSearchtxt = new javax.swing.JTextField();
         otherRefresh = new javax.swing.JButton();
@@ -1669,7 +1669,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(ccPW)))
                             .addComponent(jLabel65)
                             .addComponent(jLabel74))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CCinfoLayout.setVerticalGroup(
@@ -1703,7 +1703,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
@@ -2194,7 +2194,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         OTcard.setBackground(new java.awt.Color(255, 255, 255));
 
-        compTbl1.setModel(new javax.swing.table.DefaultTableModel(
+        otTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -2225,21 +2225,21 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 return canEdit [columnIndex];
             }
         });
-        compTbl1.setSelectionBackground(new java.awt.Color(0, 0, 102));
-        compTbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+        otTbl.setSelectionBackground(new java.awt.Color(0, 0, 102));
+        otTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                compTbl1MouseClicked(evt);
+                otTblMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                compTbl1MousePressed(evt);
+                otTblMousePressed(evt);
             }
         });
-        compTbl1.addKeyListener(new java.awt.event.KeyAdapter() {
+        otTbl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                compTbl1KeyTyped(evt);
+                otTblKeyTyped(evt);
             }
         });
-        otherTbl.setViewportView(compTbl1);
+        otherTbl.setViewportView(otTbl);
 
         otherSort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "Processor", "Motherboard", "RAM", "Harddisk", "Monitor", "UPS", "Keyboard-Mouse" }));
 
@@ -4437,7 +4437,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel142)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hisAddCan)
                     .addComponent(hisSave))
@@ -4979,7 +4979,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel)
                     .addComponent(branchSave))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel25.setBackground(new java.awt.Color(0, 0, 102));
@@ -5114,7 +5114,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel1)
                     .addComponent(branchSave1))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 102));
@@ -6197,6 +6197,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
     private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
    logoutLog();
    LoginOpen();
+   
     }//GEN-LAST:event_LOGOUTActionPerformed
 
     private void LOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGActionPerformed
@@ -6477,7 +6478,8 @@ hisSet();        // TODO add your handling code here:
     }//GEN-LAST:event_HOMActionPerformed
 
     private void repAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repAddActionPerformed
-     new AddRepair().setVisible(true);
+     AddRepair AR = new AddRepair();
+     AR.setVisible(true);
     }//GEN-LAST:event_repAddActionPerformed
 
     private void PR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PR1ActionPerformed
@@ -6485,19 +6487,20 @@ hisSet();        // TODO add your handling code here:
      CCcard.setVisible(false);
      PRcard.setVisible(false);
      OTcard.setVisible(true);
+     showOT();
     }//GEN-LAST:event_PR1ActionPerformed
 
-    private void compTbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compTbl1MouseClicked
+    private void otTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_otTblMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_compTbl1MouseClicked
+    }//GEN-LAST:event_otTblMouseClicked
 
-    private void compTbl1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compTbl1MousePressed
+    private void otTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_otTblMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_compTbl1MousePressed
+    }//GEN-LAST:event_otTblMousePressed
 
-    private void compTbl1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_compTbl1KeyTyped
+    private void otTblKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_otTblKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_compTbl1KeyTyped
+    }//GEN-LAST:event_otTblKeyTyped
 
     private void otherRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherRefreshActionPerformed
         // TODO add your handling code here:
@@ -6995,8 +6998,17 @@ hisSet();        // TODO add your handling code here:
     }//GEN-LAST:event_HisAddActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        AddRepair AR = new AddRepair();
+        Replace AR = new Replace();
         AR.setVisible(true);
+        int selectedRowIndex = repTbl.getSelectedRow();
+        String Dev = repTbl.getValueAt(selectedRowIndex,4).toString();
+        int id = (int) repTbl.getValueAt(selectedRowIndex,5);
+        int hisid = (int) repTbl.getValueAt(selectedRowIndex,6);
+        if(Dev.equals("Unit")){AR.showUnit(id,hisid);}
+        else if(Dev.equals("CCTV")){JOptionPane.showMessageDialog(null,"Not available!");}
+        else if(Dev.equals("Printer")){AR.showPR(id,hisid);}
+        else{
+        AR.showOT(Dev, id,hisid);}
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void pcSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcSortActionPerformed
@@ -7286,7 +7298,6 @@ showDepPur();
     private javax.swing.JTextField compRam;
     private javax.swing.JTextArea compRem;
     private javax.swing.JTable compTbl;
-    private javax.swing.JTable compTbl1;
     private javax.swing.JTextField compUps;
     private javax.swing.JLabel countCC;
     private javax.swing.JLabel countHis;
@@ -7601,6 +7612,7 @@ showDepPur();
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable otTbl;
     private javax.swing.JButton otherRefresh;
     private javax.swing.JTextField otherSearchtxt;
     public static javax.swing.JComboBox otherSort;
@@ -7905,6 +7917,53 @@ public void FilterPR( final JTable jTable,  final JTextField jtfFilter) {
                  setJTableColumnsWidth(prTbl, 480, 10, 20, 25, 40, 5);
                  Homepage.setCellsAlignment1(prTbl, SwingConstants.CENTER);
 }
+public void FilterOT( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+                 jTable.setRowSelectionInterval(0,0);
+                 prSet();
+                 PRcount();
+                 setJTableColumnsWidth(otTbl, 480, 5, 10, 15, 10, 50,5,10, 5);
+                 Homepage.setCellsAlignment1(otTbl, SwingConstants.CENTER);
+}
 public void FilterHIS( final JTable jTable,  final JTextField jtfFilter) {
     final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
     jTable.setRowSorter(rowSorter);
@@ -7950,7 +8009,7 @@ public void FilterHIS( final JTable jTable,  final JTextField jtfFilter) {
                  hisSet();
                  Hiscount();
                  setJTableColumnsWidth(allHisTbl, 480, 10, 20, 25, 40, 5);
-                 Homepage.setCellsAlignment1(allHisTbl, SwingConstants.CENTER);
+                 Homepage.setCellsAlignment(allHisTbl, SwingConstants.CENTER);
 }
 public void FilterAL( final JTable jTable,  final JTextField jtfFilter) {
     final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
@@ -8888,6 +8947,26 @@ prHisRem.setEditable(false);
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//FOR PR------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void showOT(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept AS Department, Owner as Name,Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+otTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterOT(otTbl,otherSearchtxt);
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 //FOR HISTORY------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //INVENTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8968,10 +9047,8 @@ countHis5.setText(String.valueOf(rowCount));
 }
 public void hisFilter(){
 String Branch2 = hisSortCateg.getSelectedItem().toString();
-
-        if (hisSortSDate.getDate() == null && hisSortEDate.getDate() == null)
-        {  
-            if(hisSortCateg.getSelectedItem()=="ALL"){
+        if (hisSortSDate.getDate() == null && hisSortEDate.getDate() == null){ 
+           if(hisSortCateg.getSelectedItem()=="ALL"){
             showHis(); 
             }
             else
@@ -9248,7 +9325,7 @@ if (Categ.equals("PC")){
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
 
     
@@ -9283,7 +9360,7 @@ if (Categ.equals("PC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"' AND Rep_ID = '"+His+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
    
@@ -9299,7 +9376,7 @@ else if (Categ.equals("CC")){
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     }
     else {
@@ -9318,7 +9395,7 @@ else if (Categ.equals("CC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
     }
@@ -9331,7 +9408,7 @@ else if (Categ.equals("PR")){
     st.executeUpdate(sql2);
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
 }
@@ -9378,6 +9455,7 @@ DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
 Date time = new Date();
+
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
@@ -9390,7 +9468,7 @@ if (Categ.equals("PC")){
     String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
 
     
@@ -9425,19 +9503,25 @@ if (Categ.equals("PC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DISPOSED' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"' AND Rep_ID = '"+His+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
+     String newsql1 = "INSERT INTO dbo.Inv (Categ, Branch, Owner, Dept, Status) VALUES ('OT', 'ADMIN', 'IT RESERVE','IT','DISPOSED')";
+     st.execute(newsql1);
+    String sql5 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
+    ResultSet rs2;
+    rs2 = st.executeQuery(sql5);             
+            if (rs2.next()) { 
+             id = rs2.getInt("Dev_ID");   
+            }
+    String sql7 = "SELECT  Rep_Name FROM dbo.Rep WHERE Rep_ID = '"+His+"'";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql7);             
+            if (rs3.next()) { 
+             devname = rs3.getString("Rep_Name");   
+            }
+     String newsql = "INSERT INTO dbo.invOT (Branch, Dept, Owner,Categ, Device, Name, Qty, Rem, ID, Qlt, Stat) VALUES ('ADMIN', 'IT', 'IT RESERVE','OT','"+sel+"', '"+devname+"', 1, 'Transfered "+dt.format(date)+"', "+id+", 'USED', 'DISPOSED' )";
+     st.execute(newsql);
     showRep();
-    for(int i = 0; i<repTbl.getRowCount();i++){
-    if (Dev.equals(repTbl.getValueAt(i, 5))){
-        g = true;
-    }
-    }
-    if(g =! true){
-     String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
-    st.executeUpdate(sql3);
-    showRep();
-    }
     }
  }
 
@@ -9450,7 +9534,7 @@ else if (Categ.equals("CC")){
     String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     }
     else {
@@ -9469,19 +9553,25 @@ else if (Categ.equals("CC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DISPOSED' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
-     st.executeUpdate(sql4);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+    st.executeUpdate(sql4);
+    String newsql1 = "INSERT INTO dbo.Inv (Categ, Branch, Owner, Dept, Status) VALUES ('OT', 'ADMIN', 'IT RESERVE','IT','DISPOSED')";
+     st.execute(newsql1);
+    String sql5 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
+    ResultSet rs2;
+    rs2 = st.executeQuery(sql5);             
+            if (rs2.next()) { 
+             id = rs2.getInt("Dev_ID");   
+            }
+    String sql7 = "SELECT  Rep_Name FROM dbo.Rep WHERE Rep_ID = '"+His+"'";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql7);             
+            if (rs3.next()) { 
+             devname = rs3.getString("Rep_Name");   
+            }
+     String newsql = "INSERT INTO dbo.invOT (Branch, Dept, Owner,Categ, Device, Name, Qty, Rem, ID, Qlt, Stat) VALUES ('ADMIN', 'IT', 'IT RESERVE','OT','"+sel+"', '"+devname+"', 1, 'Transfered "+dt.format(date)+"', "+id+", 'USED', 'DISPOSED' )";
+     st.execute(newsql);
     showRep();
-    for(int i = 0; i<repTbl.getRowCount();i++){
-    if (Dev.equals(repTbl.getValueAt(i, 5))){
-        g = true;
-    }
-    }
-    if(g =! true){
-     String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
-    st.executeUpdate(sql3);
-    showRep();
-    }
     }
  }
 
@@ -9492,7 +9582,7 @@ else if (Categ.equals("PR")){
     st.executeUpdate(sql2);
     String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
 }
@@ -9503,7 +9593,7 @@ sta.execute(newsql);
 String newsql4 = "INSERT INTO dbo.Archives (Categ,Dev_ID,Dev_Name,Date,Time) VALUES ('"+Categ+"','"+Dev+"','"+Ite+" - "+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
  st.execute(newsql4);
 
-JOptionPane.showMessageDialog(null,"Device for Shipping!");
+JOptionPane.showMessageDialog(null,"Device successfully disposed!");
 Homepage hp = new Homepage();
 hp.showRep();
 }
@@ -9533,6 +9623,8 @@ public void showHP(){
 showRep();
 //SHIPPED
 showShip();
+//PURCHASE
+
 }
 public void shipDeliv() {
 int selectedRowIndex = shipTbl.getSelectedRow();
@@ -9560,7 +9652,7 @@ if (Categ.equals("PC")){
     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
 
     
@@ -9595,7 +9687,7 @@ if (Categ.equals("PC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'SHIPPED' WHERE Ship_ID = '"+His+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
     }
@@ -9610,7 +9702,7 @@ else if (Categ.equals("CC")){
     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     }
     else {
@@ -9629,7 +9721,7 @@ else if (Categ.equals("CC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'SHIPPED' WHERE Dev_ID = '"+Dev+"' AND Ship_Item = '"+Ite+"' AND Ship_ID = '"+His+"'";      
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
     }
@@ -9642,7 +9734,7 @@ else if (Categ.equals("PR")){
     st.executeUpdate(sql2);
     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
 }
@@ -9685,7 +9777,7 @@ if (Categ.equals("PC")){
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
 
     
@@ -9720,7 +9812,7 @@ if (Categ.equals("PC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"' AND Rep_ID = '"+His+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
    
@@ -9736,7 +9828,7 @@ else if (Categ.equals("CC")){
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     }
     else {
@@ -9755,7 +9847,7 @@ else if (Categ.equals("CC")){
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"'";         
     st.executeUpdate(sql2);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
     }
@@ -9768,7 +9860,7 @@ else if (Categ.equals("PR")){
     st.executeUpdate(sql2);
     String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
 }
@@ -9847,7 +9939,7 @@ jDateChooser4.setCalendar(null);
 public void LoginOpen(){
         Login l = new Login();
         l.setVisible(true);
-        dispose();   
+        this.dispose();   
 }
 public void AddRepOpen(){
         AddRepair l = new AddRepair();
@@ -9870,7 +9962,7 @@ null, options, options[0]);
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
         Statement sta = con.createStatement();
-        String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('" + utype+"','Logout','"+dt.format(date)+"','"+tm.format(time)+"')";					
+        String newsql = "INSERT INTO dbo.userLogs(Laction,Ldate,Ltime) VALUES ('Logout','"+dt.format(date)+"','"+tm.format(time)+"')";					
         sta.execute(newsql);        // TODO add your handling code here:
     } catch (SQLException ex) {
         Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);

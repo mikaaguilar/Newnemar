@@ -152,19 +152,19 @@ String pword = password.getText();
                                     String sql ="SELECT * FROM dbo.Account WHERE Uname = '"+uname+"' AND Pw = '"+pword+"'";
 					rs = st1.executeQuery(sql);
 					if (rs.next()) {
-                                        String ans = rs.getString("Utype");
+                                        String ans = rs.getString("Pw");
                                          con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
         DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
         Statement sta = con.createStatement();
-        String newsql = "INSERT INTO dbo.userLogs(uType,Laction,Ldate,Ltime) VALUES ('"+ans+"','Login','"+dt.format(date)+"','"+tm.format(time)+"')";					
+        String newsql = "INSERT INTO dbo.userLogs(Laction,Ldate,Ltime) VALUES ('Login','"+dt.format(date)+"','"+tm.format(time)+"')";					
         sta.execute(newsql);
                                                 if(ans.equals("admin")){
 						Homepage o = new Homepage();
                                                 o.setVisible(true);
-						dispose();
+						this.dispose();
                                                 }
                                               /*  else if(ans.equals("admin")){
                                                  admin a = new admin();
@@ -262,6 +262,6 @@ String pword = password.getText();
 		 }
    } 
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/NEMAR LOGO 2.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/NEMAR LOGO 2.png")));
     }
 }

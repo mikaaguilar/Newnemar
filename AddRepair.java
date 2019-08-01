@@ -325,7 +325,9 @@ public class AddRepair extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void repSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repSelectActionPerformed
-       repUpdate();
+        repUpdate();
+        Homepage o = new Homepage();
+        o.showHP();
     }//GEN-LAST:event_repSelectActionPerformed
 
     private void repDevtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repDevtypeActionPerformed
@@ -438,7 +440,7 @@ public void showInv(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID FROM dbo.Inv";         
+String sql = "SELECT Categ AS Category, Branch, Dept as Department, Owner as Name,Dev_ID as ID FROM dbo.Inv WHERE Status = 'WORKING' ";         
 ResultSet rs=st.executeQuery(sql); 
 repTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -572,7 +574,6 @@ if (Categ.equals("PC")){
     st.executeUpdate(sql3);
    
      JOptionPane.showMessageDialog(null,"Device sent to Repair!");
-    new Homepage().showRep();
     this.dispose();
     }
     else {
@@ -745,8 +746,8 @@ else if (Categ.equals("CC")){
       String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Waiting for Action', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0.00', '"+sel+" Malfunctioned' )";
      st.execute(newsql4);
     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
-    ResultSet rs2=st1.executeQuery(sql4); 
-    rs2 = st1.executeQuery(sql4);             
+    ResultSet rs2=st.executeQuery(sql4); 
+    rs2 = st.executeQuery(sql4);             
             if (rs2.next()) { 
              id = rs2.getInt("HIS_ID");   
             }
@@ -764,9 +765,9 @@ else if (Categ.equals("PR")){
     Statement sta = con.createStatement();
     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Sent to Repair', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     sta.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'N/A')";
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Malfunctioned', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"',0.00 ,'N/A')";
     sta.execute(newsql1);
-       String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Waiting for Action', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"',', 0.00 ,'N/A')";
+       String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Waiting for Action', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"',0.00,'N/A')";
        st.execute(newsql4);
     String sql6 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
     ResultSet rs2; 
