@@ -7089,7 +7089,7 @@ otSetpr();
     }//GEN-LAST:event_othersTblMouseClicked
 
     private void reqBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqBranchActionPerformed
-pcSortpr();      
+      
     }//GEN-LAST:event_reqBranchActionPerformed
 
     /**
