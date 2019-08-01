@@ -2491,6 +2491,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel31.setText("Quantity:");
 
         unitQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        unitQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         unitAdd.setBackground(new java.awt.Color(255, 255, 255));
         unitAdd.setText("Add to Cart");
@@ -2600,8 +2601,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         Others.setBackground(new java.awt.Color(204, 204, 204));
 
-        othersSearch.setText("Search");
-
         othersTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -2628,6 +2627,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         othersField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         othersQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        othersQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel51.setText("Quantity:");
@@ -2652,7 +2652,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jLabel41)
                                 .addGap(24, 24, 24)
                                 .addComponent(othersField, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                                 .addComponent(jLabel51)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(othersQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2681,8 +2681,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         CCTV.setBackground(new java.awt.Color(204, 204, 204));
 
-        cctvSearch.setText("Search");
-
         cctvTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -2694,6 +2692,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        cctvTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cctvTblMouseClicked(evt);
+            }
+        });
         jScrollPane12.setViewportView(cctvTbl);
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2707,6 +2710,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel53.setText("Quantity:");
 
         cctvQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cctvQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         cctvAdd.setBackground(new java.awt.Color(255, 255, 255));
         cctvAdd.setText("Add to Cart");
@@ -2728,7 +2732,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jLabel52)
                                 .addGap(24, 24, 24)
                                 .addComponent(cctvField, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                                 .addComponent(jLabel53)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cctvQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2757,8 +2761,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         Printer.setBackground(new java.awt.Color(204, 204, 204));
 
-        printerSearch.setText("Search");
-
         printerTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -2770,6 +2772,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        printerTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                printerTblMouseClicked(evt);
+            }
+        });
         jScrollPane19.setViewportView(printerTbl);
 
         jLabel54a.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2783,6 +2790,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel55a.setText("Quantity:");
 
         printerQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        printerQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         printerAdd.setBackground(new java.awt.Color(255, 255, 255));
         printerAdd.setText("Add to Request");
@@ -2804,7 +2812,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jLabel54a)
                                 .addGap(24, 24, 24)
                                 .addComponent(printerField, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                                 .addComponent(jLabel55a)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(printerQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6513,8 +6521,7 @@ hisSet();        // TODO add your handling code here:
      jRadioButton2.setEnabled(true);
      jRadioButton3.setEnabled(true);
      jRadioButton1.setSelected(true);
-     showPCpr();
-     pcSetpr();
+      showPurUnit();
     }//GEN-LAST:event_reqAddActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -6525,6 +6532,7 @@ hisSet();        // TODO add your handling code here:
     Others.setVisible(false);
     CCTV.setVisible(false);
     Printer.setVisible(false);
+    showPurUnit();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -6535,6 +6543,7 @@ hisSet();        // TODO add your handling code here:
     Others.setVisible(false);
     CCTV.setVisible(true);
     Printer.setVisible(false);
+    showPurCC();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
@@ -6545,22 +6554,24 @@ hisSet();        // TODO add your handling code here:
     Others.setVisible(false);
     CCTV.setVisible(false);
     Printer.setVisible(true);
+    showPurPR();
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void unitSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitSelectActionPerformed
     String se = unitSelect.getSelectedItem().toString();
+    pcSortpr();
     if(se.equals("Unit")){
     Unit.setVisible(true);
     Others.setVisible(false);
     CCTV.setVisible(false);
     Printer.setVisible(false);
-    showPCpr();
+  
     }
     else {Unit.setVisible(false);
     Others.setVisible(true);
     CCTV.setVisible(false);
      Printer.setVisible(false);
-    showOTpr();}
+   }
     }//GEN-LAST:event_unitSelectActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -7084,8 +7095,16 @@ pcSetpr();
     }//GEN-LAST:event_othersTblMouseClicked
 
     private void reqBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqBranchActionPerformed
-pcSortpr(); 
+showDepPur();   
     }//GEN-LAST:event_reqBranchActionPerformed
+
+    private void cctvTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cctvTblMouseClicked
+  ccSetpr(); 
+    }//GEN-LAST:event_cctvTblMouseClicked
+
+    private void printerTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printerTblMouseClicked
+  prSetpr(); 
+    }//GEN-LAST:event_printerTblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -9515,7 +9534,6 @@ showRep();
 //SHIPPED
 showShip();
 }
-
 public void shipDeliv() {
 int selectedRowIndex = shipTbl.getSelectedRow();
 String Categ = shipTbl.getValueAt(selectedRowIndex,0).toString();
@@ -10553,18 +10571,18 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 }
 
 
-public void showPur(){
-String Branch = reqBranch.getSelectedItem().toString();   
-String Parts = unitDept.getSelectedItem().toString();   
+public void showDepPur(){
+unitDept.removeAllItems();
+String Branch = reqBranch.getSelectedItem().toString();
 try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+sql = "SELECT Dept FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 while(rs.next()){
-
+String Dept = rs.getString("Dept");
+unitDept.addItem(Dept);
 }
-unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
 st.close();
       }
@@ -10572,13 +10590,13 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-
 }
-public void showPCpr(){
-   try {
+public void showPurUnit(){   
+{
+try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC ORDER by ID DESC";         
 ResultSet rs=st.executeQuery(sql); 
 unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -10588,11 +10606,12 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
- FilterPCtr(unitTbl,unitSearch);
-}  
-public void showOTpr(){
+FilterPCtr(unitTbl,unitSearch);
+}
+}
+public void showPurOT(){
     String Parts = unitSelect.getSelectedItem().toString();
-        if(Parts.equals("Processor")){
+    if(Parts.equals("Processor")){
     Parts1 = "Proce AS Processor";
     }
     if(Parts.equals("Motherboard")){
@@ -10619,7 +10638,7 @@ public void showOTpr(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+", ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+", ID FROM dbo.invPC WHERE "+Parts1+" != 'FOR SHIPPING' OR "+Parts1+" != 'FOR REPAIR' ORDER by ID DESC";         
 ResultSet rs=st.executeQuery(sql); 
 othersTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -10631,6 +10650,40 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
  FilterPCtr(othersTbl,othersSearch);
 }  
+public void showPurCC(){   
+{
+try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, SP as ServiceProvider,CNum as Quantity, Camera, DVR, HDD, uN as Username,pW as Password, ID FROM dbo.invCC WHERE Stat = 'WORKING' ORDER by ID DESC";         
+ResultSet rs=st.executeQuery(sql); 
+cctvTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(cctvTbl,cctvSearch);
+}
+}
+public void showPurPR(){   
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept AS Department, Manu AS Manufacturer, Owner as Name, ID FROM dbo.invPR WHERE Stat = 'WORKING' ORDER by ID DESC";         
+ResultSet rs=st.executeQuery(sql); 
+printerTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(printerTbl,printerSearch);
+}
 public void pcSetpr(){
         int selectedRowIndex = unitTbl.getSelectedRow();
         //compBran.setText(transTbl.getValueAt(selectedRowIndex,0).toString());
@@ -10650,28 +10703,14 @@ public void otSetpr(){
         int selectedRowIndex = othersTbl.getSelectedRow();
         othersField.setText(othersTbl.getValueAt(selectedRowIndex,3).toString());
 }
-public void pcSortpr(){
-String Branch = reqBranch.getSelectedItem().toString();   
-String Parts = unitDept.getSelectedItem().toString();   
-if(Branch.equals("ADMIN")){
-       try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Dept FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
-ResultSet rs=st.executeQuery(sql); 
-while(rs.next()){
-String Dept = rs.getString("Dept");
-unitDept.addItem(Dept);
+public void ccSetpr(){
+        int selectedRowIndex = cctvTbl.getSelectedRow();
+        cctvField.setText(cctvTbl.getValueAt(selectedRowIndex,1).toString());
 }
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
+public void pcSortpr(){   
+String Parts = unitSelect.getSelectedItem().toString();   
     if(Parts.equals("Unit")){
-    showPCpr();
+    showPurUnit();
     }
     else
     {
@@ -10712,91 +10751,14 @@ st.close();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
- FilterPCtr(othersTbl,othersSearch);
-    
+ FilterPCtr(othersTbl,othersSearch);   
 }  
 }
-else
-{
-try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Dept FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
-ResultSet rs=st.executeQuery(sql); 
-while(rs.next()){
-String Dept = rs.getString("Dept");
-unitDept.addItem(Dept);
+public void prSetpr(){
+        int selectedRowIndex = printerTbl.getSelectedRow();
+        printerField.setText(printerTbl.getValueAt(selectedRowIndex,2).toString());
 }
-rs.close();
-st.close();
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-if(Parts.equals("Unit")){
-   try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
-rs=st.executeQuery(sql); 
-unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
 
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-FilterPCtr(unitTbl,unitSearch);
-}
-else
-    {
-    if(Parts.equals("Processor")){
-    Parts1 = "Proce AS Processor";
-    }
-    if(Parts.equals("Motherboard")){
-    Parts1 = "MBoard AS Motherboard";
-    }
-    if(Parts.equals("Harddrive")){
-    Parts1 = "HDD AS Harddrive";
-    }
-    if(Parts.equals("RAM")){
-    Parts1 = "Ram ";
-    }
-    if(Parts.equals("Monitor")){
-    Parts1 = "Moni AS Monitor";
-    }
-    if(Parts.equals("UPS")){
-    Parts1 = "UPS";
-    }
-    if(Parts.equals("Mouse")){
-    Parts1 = "Mouse";
-    }
-    if(Parts.equals("Keyboard")){
-    Parts1 = "KeyB AS Keyboard";
-    }
-    
-        try {
-con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
-Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+",ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
-rs=st.executeQuery(sql); 
-transTbl.setModel(DbUtils.resultSetToTableModel(rs));
-rs.close();
-st.close();
-
-      }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }
-FilterPCtr(transTbl,transSearchtxt);   
-    }
-//compTbl.setRowSelectionInterval(0,0);
-}
-}
 
 
 //OLD REVISED
@@ -10826,5 +10788,4 @@ JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState());
  }
 }
 }
-
 
