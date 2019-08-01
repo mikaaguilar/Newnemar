@@ -74,7 +74,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
     Done.setVisible(false);
     branchcard.setVisible(false);
     deptcard.setVisible(false);
-    showRep();
+    showHP();
     }
 
     private void groupButton( ) {
@@ -344,6 +344,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel31 = new javax.swing.JLabel();
         unitQty = new javax.swing.JSpinner();
         unitAdd = new javax.swing.JButton();
+        jLabel107 = new javax.swing.JLabel();
+        unitMou = new javax.swing.JTextField();
         Others = new javax.swing.JPanel();
         othersSearch = new javax.swing.JTextField();
         jScrollPane11 = new javax.swing.JScrollPane();
@@ -618,9 +620,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel44 = new javax.swing.JLabel();
         Sys = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        brTbl = new javax.swing.JTable();
         jScrollPane32 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        dpTbl = new javax.swing.JTable();
         branchAddbtn = new javax.swing.JButton();
         deptAddbtn = new javax.swing.JButton();
         branchEditbtn = new javax.swing.JButton();
@@ -673,8 +675,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel97 = new javax.swing.JLabel();
         deptEditbtn = new javax.swing.JButton();
         branchDeletebtn = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        dpSearchtxt = new javax.swing.JTextField();
+        brSearchtxt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel98 = new javax.swing.JLabel();
         Transfer = new javax.swing.JPanel();
@@ -682,10 +684,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane30 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        toTbl = new javax.swing.JTable();
         jLabel83 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
+        transBR = new javax.swing.JComboBox<>();
+        toSearchtxt = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -712,28 +714,28 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel64 = new javax.swing.JLabel();
         unitPro2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        transTbl = new javax.swing.JTable();
         transferSelect = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        transSearchtxt = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        pcBR = new javax.swing.JComboBox<>();
         PrCard = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         unitPro4 = new javax.swing.JTextField();
         jScrollPane23 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        transTbl1 = new javax.swing.JTable();
         jLabel80 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
+        prBR = new javax.swing.JComboBox<>();
+        trSearchtxt1 = new javax.swing.JTextField();
         CcCard = new javax.swing.JPanel();
         jLabel84 = new javax.swing.JLabel();
         unitPro5 = new javax.swing.JTextField();
         jScrollPane31 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        transTbl2 = new javax.swing.JTable();
         jLabel85 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jTextField5 = new javax.swing.JTextField();
+        ccBR = new javax.swing.JComboBox<>();
+        trSearchtxt2 = new javax.swing.JTextField();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
@@ -823,6 +825,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         shipDone.setBackground(new java.awt.Color(255, 255, 255));
         shipDone.setText("Delivered");
+        shipDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shipDoneActionPerformed(evt);
+            }
+        });
 
         shipAdd.setBackground(new java.awt.Color(255, 255, 255));
         shipAdd.setText("Ship");
@@ -952,7 +959,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
                         .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(596, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1473,11 +1480,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(26, 26, 26)
                 .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(countPC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel47)
+                    .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(PCcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pcSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pcSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pcSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel47))
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(PCtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1653,12 +1660,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                         .addComponent(ccDVR))
                                     .addComponent(ccUN)
                                     .addComponent(ccPW)))
-                            .addGroup(CCinfoLayout.createSequentialGroup()
-                                .addGroup(CCinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel65)
-                                    .addComponent(jLabel74))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel65)
+                            .addComponent(jLabel74))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CCinfoLayout.setVerticalGroup(
@@ -1692,7 +1696,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
@@ -2393,6 +2397,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addContainerGap())
         );
 
+        reqBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqBranchActionPerformed(evt);
+            }
+        });
+
         jLabel1a.setText("Branch:");
 
         jLabel8a.setText("Department:");
@@ -2414,6 +2424,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        unitTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unitTblMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(unitTbl);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2458,11 +2473,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         unitMon.setForeground(new java.awt.Color(102, 102, 102));
         unitMon.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        unitSearch.setText("Search");
-
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel45.setText("Keyboard-Mouse:");
+        jLabel45.setText("Keyboard:");
 
         unitKey.setForeground(new java.awt.Color(102, 102, 102));
         unitKey.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -2471,9 +2484,17 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel31.setText("Quantity:");
 
         unitQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        unitQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         unitAdd.setBackground(new java.awt.Color(255, 255, 255));
         unitAdd.setText("Add to Cart");
+
+        jLabel107.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel107.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel107.setText("Mouse:");
+
+        unitMou.setForeground(new java.awt.Color(102, 102, 102));
+        unitMou.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout UnitLayout = new javax.swing.GroupLayout(Unit);
         Unit.setLayout(UnitLayout);
@@ -2506,22 +2527,25 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGap(38, 38, 38)
                         .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(UnitLayout.createSequentialGroup()
-                                .addComponent(jLabel35)
-                                .addGap(18, 18, 18)
-                                .addComponent(unitRam))
+                                .addComponent(jLabel107)
+                                .addGap(28, 28, 28)
+                                .addComponent(unitMou))
+                            .addGroup(UnitLayout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(unitQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(133, 133, 133)
+                                .addComponent(unitAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(UnitLayout.createSequentialGroup()
                                 .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel45)
-                                    .addGroup(UnitLayout.createSequentialGroup()
-                                        .addComponent(jLabel31)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(unitQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(unitKey, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(unitAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                                    .addComponent(jLabel35))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(unitRam)
+                                    .addComponent(unitKey))))))
+                .addGap(39, 39, 39))
         );
         UnitLayout.setVerticalGroup(
             UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2529,7 +2553,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(5, 5, 5)
                 .addComponent(unitSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(UnitLayout.createSequentialGroup()
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2544,16 +2568,20 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addGap(4, 4, 4)
                                 .addComponent(jLabel36))
                             .addComponent(unitMot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UnitLayout.createSequentialGroup()
-                        .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(unitKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel45))
-                        .addGap(18, 18, 18)))
-                .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(unitHar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                        .addGap(16, 16, 16)
+                        .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(unitHar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(UnitLayout.createSequentialGroup()
+                        .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel45)
+                            .addComponent(unitKey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel107)
+                            .addComponent(unitMou, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)))
                 .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel50)
                     .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2565,14 +2593,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(UnitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel39)
                     .addComponent(unitUPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jPanel19.add(Unit, "card2");
 
         Others.setBackground(new java.awt.Color(204, 204, 204));
-
-        othersSearch.setText("Search");
 
         othersTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2585,6 +2611,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        othersTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                othersTblMouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(othersTbl);
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2818,7 +2849,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(661, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2827,7 +2858,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18a))
-                .addContainerGap(506, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                     .addGap(0, 58, Short.MAX_VALUE)
@@ -2999,7 +3030,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         AddingLayout.setHorizontalGroup(
             AddingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddingLayout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
         );
@@ -4396,7 +4427,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel142)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hisAddCan)
                     .addComponent(hisSave))
@@ -4452,7 +4483,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         AddHistoryLayout.setHorizontalGroup(
             AddHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddHistoryLayout.createSequentialGroup()
-                .addContainerGap(505, Short.MAX_VALUE)
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(487, 487, 487))
         );
@@ -4785,7 +4816,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel44))
-                        .addGap(0, 55, Short.MAX_VALUE))))
+                        .addGap(0, 38, Short.MAX_VALUE))))
         );
 
         Maincard.add(Log, "card6");
@@ -4793,7 +4824,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         Sys.setBackground(new java.awt.Color(255, 255, 255));
         Sys.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        brTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -4804,11 +4835,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setMaximumSize(new java.awt.Dimension(1013, 431));
-        jTable2.setMinimumSize(new java.awt.Dimension(1013, 431));
-        jScrollPane3.setViewportView(jTable2);
+        brTbl.setMaximumSize(new java.awt.Dimension(1013, 431));
+        brTbl.setMinimumSize(new java.awt.Dimension(1013, 431));
+        jScrollPane3.setViewportView(brTbl);
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        dpTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -4819,9 +4850,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable6.setMaximumSize(new java.awt.Dimension(530, 431));
-        jTable6.setMinimumSize(new java.awt.Dimension(530, 431));
-        jScrollPane32.setViewportView(jTable6);
+        dpTbl.setMaximumSize(new java.awt.Dimension(530, 431));
+        dpTbl.setMinimumSize(new java.awt.Dimension(530, 431));
+        jScrollPane32.setViewportView(dpTbl);
 
         branchAddbtn.setBackground(new java.awt.Color(255, 255, 255));
         branchAddbtn.setText("Add");
@@ -4938,7 +4969,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel)
                     .addComponent(branchSave))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel25.setBackground(new java.awt.Color(0, 0, 102));
@@ -5073,7 +5104,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel1)
                     .addComponent(branchSave1))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 102));
@@ -5157,8 +5188,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel66a.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel66a.setForeground(new java.awt.Color(51, 51, 51));
         jLabel66a.setText("Branch:");
-
-        deptBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout PCinfo1Layout = new javax.swing.GroupLayout(PCinfo1);
         PCinfo1.setLayout(PCinfo1Layout);
@@ -5281,8 +5310,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel66a1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel66a1.setText("Branch:");
 
-        deptBranchedit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout PCinfo5Layout = new javax.swing.GroupLayout(PCinfo5);
         PCinfo5.setLayout(PCinfo5Layout);
         PCinfo5Layout.setHorizontalGroup(
@@ -5403,7 +5430,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SysLayout.createSequentialGroup()
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(brSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(branchAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5417,7 +5444,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(SysLayout.createSequentialGroup()
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(deptAddbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5444,8 +5471,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addComponent(deptDeletebtn)
                     .addComponent(deptEditbtn)
                     .addComponent(branchDeletebtn)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
@@ -5468,7 +5495,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jLabel1.setText("Device Type:");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        toTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -5479,10 +5506,16 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane30.setViewportView(jTable4);
+        jScrollPane30.setViewportView(toTbl);
 
         jLabel83.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel83.setText("To:");
+
+        transBR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transBRActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Transfer");
 
@@ -5503,9 +5536,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel83)
                         .addGap(688, 688, 688)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(transBR, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(toSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane30))
                 .addGap(18, 18, 18)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5524,8 +5557,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(toSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(transBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel83, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane30, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -5545,6 +5578,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         unitPro1.setForeground(new java.awt.Color(102, 102, 102));
         unitPro1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        unitPro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unitPro1ActionPerformed(evt);
+            }
+        });
 
         jLabel55.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(51, 51, 51));
@@ -5699,7 +5737,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jPanel23.add(jPanel24, "card3");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        transTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -5710,14 +5748,31 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        transTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transTblMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(transTbl);
 
         transferSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unit", "Processor", "Motherboard", "Harddrive", "Monitor", "UPS", "RAM", "Keyboard", "Mouse" }));
+        transferSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferSelectActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Select:");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setText("From:");
+
+        pcBR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL" }));
+        pcBR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcBRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout UnitCardLayout = new javax.swing.GroupLayout(UnitCard);
         UnitCard.setLayout(UnitCardLayout);
@@ -5733,9 +5788,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(UnitCardLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pcBR, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(transSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5753,8 +5808,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(UnitCardLayout.createSequentialGroup()
                         .addGroup(UnitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(transSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -5770,7 +5825,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         unitPro4.setForeground(new java.awt.Color(102, 102, 102));
         unitPro4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        transTbl1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -5781,12 +5836,22 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane23.setViewportView(jTable3);
+        transTbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transTbl1MouseClicked(evt);
+            }
+        });
+        jScrollPane23.setViewportView(transTbl1);
 
         jLabel80.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel80.setText("From:");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        prBR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL" }));
+        prBR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prBRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PrCardLayout = new javax.swing.GroupLayout(PrCard);
         PrCard.setLayout(PrCardLayout);
@@ -5798,9 +5863,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(PrCardLayout.createSequentialGroup()
                         .addComponent(jLabel80)
                         .addGap(690, 690, 690)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prBR, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trSearchtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5814,8 +5879,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(PrCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PrCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trSearchtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel80, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PrCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5835,7 +5900,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         unitPro5.setForeground(new java.awt.Color(102, 102, 102));
         unitPro5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        transTbl2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -5846,12 +5911,22 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane31.setViewportView(jTable5);
+        transTbl2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transTbl2MouseClicked(evt);
+            }
+        });
+        jScrollPane31.setViewportView(transTbl2);
 
         jLabel85.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel85.setText("From:");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ccBR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL" }));
+        ccBR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ccBRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CcCardLayout = new javax.swing.GroupLayout(CcCard);
         CcCard.setLayout(CcCardLayout);
@@ -5863,9 +5938,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addGroup(CcCardLayout.createSequentialGroup()
                         .addComponent(jLabel85)
                         .addGap(690, 690, 690)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ccBR, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trSearchtxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane31, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5879,8 +5954,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(CcCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CcCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(trSearchtxt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ccBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CcCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5936,7 +6011,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransferLayout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1628, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -6443,6 +6518,8 @@ hisSet();        // TODO add your handling code here:
      jRadioButton2.setEnabled(true);
      jRadioButton3.setEnabled(true);
      jRadioButton1.setSelected(true);
+     showPCpr();
+     pcSetpr();
     }//GEN-LAST:event_reqAddActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -6482,11 +6559,13 @@ hisSet();        // TODO add your handling code here:
     Others.setVisible(false);
     CCTV.setVisible(false);
     Printer.setVisible(false);
+    showPCpr();
     }
     else {Unit.setVisible(false);
     Others.setVisible(true);
     CCTV.setVisible(false);
-    Printer.setVisible(false);}
+    Printer.setVisible(false);
+    showOTpr();}
     }//GEN-LAST:event_unitSelectActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -6501,7 +6580,6 @@ hisSet();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-
     String se = transferSelect.getSelectedItem().toString();
     if("Unit".equals(se)){
     UnitCard.setVisible(true);
@@ -6525,6 +6603,8 @@ hisSet();        // TODO add your handling code here:
     transferSelect.setSelectedIndex(0);
     CcCard.setVisible(true);
     PrCard.setVisible(false);
+    showCCtr();
+    ccSettr();
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
@@ -6532,6 +6612,8 @@ hisSet();        // TODO add your handling code here:
     transferSelect.setSelectedIndex(0);
     CcCard.setVisible(false);
     PrCard.setVisible(true);
+    showPRtr();
+    prSettr();
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void repDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repDoneActionPerformed
@@ -6622,11 +6704,14 @@ hisSet();        // TODO add your handling code here:
      LOG.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
+     showBra();
+     showDep();
     }//GEN-LAST:event_SystemActionPerformed
 
     private void deptSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptSaveActionPerformed
        branchcard.setVisible(false);
        deptcard.setVisible(false);
+       dpAdd();
     }//GEN-LAST:event_deptSaveActionPerformed
 
     private void branchCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchCancelActionPerformed
@@ -6637,6 +6722,7 @@ hisSet();        // TODO add your handling code here:
     private void branchSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchSaveActionPerformed
     branchcard.setVisible(false);
     deptcard.setVisible(false);
+    brAdd();
     }//GEN-LAST:event_branchSaveActionPerformed
 
     private void branchCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchCancel1ActionPerformed
@@ -6714,6 +6800,8 @@ hisSet();        // TODO add your handling code here:
      CcCard.setVisible(false);
      PrCard.setVisible(false);
      tr = "Ship";
+     showPCtr();
+     showdp();
     }//GEN-LAST:event_shipAddActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -6949,6 +7037,61 @@ pcUpdate();
 repRepaired();
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void shipDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shipDoneActionPerformed
+devShipped();        // TODO add your handling code here:
+    }//GEN-LAST:event_shipDoneActionPerformed
+
+    private void unitPro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitPro1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unitPro1ActionPerformed
+
+    private void transTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTblMouseClicked
+pcSettr(); 
+    }//GEN-LAST:event_transTblMouseClicked
+
+    private void transferSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferSelectActionPerformed
+
+pcSorttr();  
+refreshPCtr();
+    }//GEN-LAST:event_transferSelectActionPerformed
+
+    private void pcBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcBRActionPerformed
+pcSorttr();  
+refreshPCtr();
+    }//GEN-LAST:event_pcBRActionPerformed
+
+    private void transBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transBRActionPerformed
+showdp();
+    }//GEN-LAST:event_transBRActionPerformed
+
+    private void transTbl2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTbl2MouseClicked
+ccSettr(); 
+    }//GEN-LAST:event_transTbl2MouseClicked
+
+    private void transTbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTbl1MouseClicked
+prSettr();      
+    }//GEN-LAST:event_transTbl1MouseClicked
+
+    private void ccBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccBRActionPerformed
+ccSorttr();       
+    }//GEN-LAST:event_ccBRActionPerformed
+
+    private void prBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prBRActionPerformed
+prSorttr();      
+    }//GEN-LAST:event_prBRActionPerformed
+
+    private void unitTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unitTblMouseClicked
+pcSetpr();      
+    }//GEN-LAST:event_unitTblMouseClicked
+
+    private void othersTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_othersTblMouseClicked
+otSetpr();
+    }//GEN-LAST:event_othersTblMouseClicked
+
+    private void reqBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqBranchActionPerformed
+pcSortpr();      
+    }//GEN-LAST:event_reqBranchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -7054,6 +7197,8 @@ repRepaired();
     private javax.swing.JPanel adddd1;
     private javax.swing.JTable allHisTbl;
     private javax.swing.JButton alogrefresh;
+    private javax.swing.JTextField brSearchtxt;
+    private javax.swing.JTable brTbl;
     private javax.swing.JTextField branchAdd;
     private javax.swing.JButton branchAddbtn;
     private javax.swing.JTextField branchAddedit;
@@ -7068,6 +7213,7 @@ repRepaired();
     public static javax.swing.JButton branchSave;
     public static javax.swing.JButton branchSave1;
     private javax.swing.JPanel branchcard;
+    private javax.swing.JComboBox<String> ccBR;
     private javax.swing.JTextField ccBran;
     private javax.swing.JTextField ccDVR;
     private javax.swing.JButton ccDel;
@@ -7149,6 +7295,8 @@ repRepaired();
     public static javax.swing.JButton deptSave;
     public static javax.swing.JButton deptSave1;
     private javax.swing.JPanel deptcard;
+    private javax.swing.JTextField dpSearchtxt;
+    private javax.swing.JTable dpTbl;
     private javax.swing.JPanel editBranch;
     private javax.swing.JPanel editDept;
     private javax.swing.JTextField hisActAdd;
@@ -7184,10 +7332,6 @@ repRepaired();
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
@@ -7201,6 +7345,7 @@ repRepaired();
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
@@ -7442,18 +7587,6 @@ repRepaired();
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JButton otherRefresh;
     private javax.swing.JTextField otherSearchtxt;
     public static javax.swing.JComboBox otherSort;
@@ -7463,6 +7596,7 @@ repRepaired();
     private javax.swing.JSpinner othersQty;
     private javax.swing.JTextField othersSearch;
     private javax.swing.JTable othersTbl;
+    private javax.swing.JComboBox<String> pcBR;
     private javax.swing.JButton pcDel;
     public static javax.swing.JButton pcEdit;
     private javax.swing.JTextField pcHisAct;
@@ -7495,6 +7629,7 @@ repRepaired();
     public static javax.swing.JComboBox pcSort;
     public static javax.swing.JButton pcTransfer;
     public static javax.swing.JButton pcUpdate;
+    private javax.swing.JComboBox<String> prBR;
     private javax.swing.JTextField prBran;
     private javax.swing.JTextField prDept;
     private javax.swing.JButton prDispose;
@@ -7555,6 +7690,15 @@ repRepaired();
     private javax.swing.JTextField shipSearch;
     private javax.swing.JTable shipTbl;
     private javax.swing.JLabel timefield;
+    private javax.swing.JTextField toSearchtxt;
+    private javax.swing.JTable toTbl;
+    private javax.swing.JTextField trSearchtxt1;
+    private javax.swing.JTextField trSearchtxt2;
+    private javax.swing.JComboBox<String> transBR;
+    private javax.swing.JTextField transSearchtxt;
+    private javax.swing.JTable transTbl;
+    private javax.swing.JTable transTbl1;
+    private javax.swing.JTable transTbl2;
     private javax.swing.JComboBox<String> transferSelect;
     private javax.swing.JLabel uLogCnt;
     private javax.swing.JButton ulogrefresh;
@@ -7569,6 +7713,7 @@ repRepaired();
     private javax.swing.JTextField unitMon1;
     private javax.swing.JTextField unitMot;
     private javax.swing.JTextField unitMot1;
+    private javax.swing.JTextField unitMou;
     private javax.swing.JTextField unitMou1;
     private javax.swing.JTextField unitPro;
     private javax.swing.JTextField unitPro1;
@@ -7586,7 +7731,7 @@ repRepaired();
     private javax.swing.JTable userlogTbl;
     // End of variables declaration//GEN-END:variables
     public String sql,sql1; 
-    public String utype;
+    public String utype,Parts1;
 //FUNCTIONS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void addArchives(String Categ,String ID){
 try{
@@ -7881,46 +8026,6 @@ public void FilterUL( final JTable jTable,  final JTextField jtfFilter) {
                  setJTableColumnsWidth(userlogTbl, 480, 10, 20, 25, 40, 5);
                  Homepage.setCellsAlignment1(userlogTbl, SwingConstants.CENTER);
 }
-public void FilterHP( final JTable jTable,  final JTextField jtfFilter) {
-    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
-    jTable.setRowSorter(rowSorter);
-    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
-
-
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            String text = jtfFilter.getText();
-
-            if (text.trim().length() == 0) {
-                rowSorter.setRowFilter(null);
-                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
-            } else {
-                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-            }
-                 jTable.setRowSelectionInterval(0,0);
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            String text = jtfFilter.getText();
-
-            if (text.trim().length() == 0) {
-                rowSorter.setRowFilter(null);
-            } else {
-                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-            }
-                 jTable.setRowSelectionInterval(0,0);
-
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-    });
-                 jTable.setRowSelectionInterval(0,0);
-}
 
 
 //FOR PC-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7944,7 +8049,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 // Homepage.setCellsAlignment(compTbl, SwingConstants.CENTER);
  
  FilterPC(compTbl,pcSearchtxt);
-}    
+}  
 public void pcSet(){
         int selectedRowIndex = compTbl.getSelectedRow();
         compBran.setText(compTbl.getValueAt(selectedRowIndex,0).toString());
@@ -8013,7 +8118,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 FilterPC(compTbl,pcSearchtxt);
 }
 //compTbl.setRowSelectionInterval(0,0);
-}    
+}  
 public void showHisPC(){;
         int selectedRowIndex = compTbl.getSelectedRow();
         String ID = compTbl.getValueAt(selectedRowIndex,7).toString();
@@ -8197,6 +8302,7 @@ public void pcTransfer(String sb){
 
 
 }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //PC HISTORY---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void pcHisEditable(){
@@ -8949,7 +9055,7 @@ public void showUserLog(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT uType as UserType, Laction as Action, Ldate as Date, Ltime as Time FROM dbo.userLogs ORDER by LOG_ID";         
+sql = "SELECT Laction as Action, Ldate as Date, Ltime as Time FROM dbo.userLogs ORDER by LOG_ID";         
 ResultSet rs=st.executeQuery(sql); 
 userlogTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -8988,27 +9094,7 @@ uLogCnt.setText(String.valueOf(rowCount));
 
 
 //Initializing Content------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void initBranch(){
-try { 
-Connection con1 = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
-Statement st1=con1.createStatement();         
-String sql1 = "SELECT BRANCH FROM dbo.Branch";         
-rs1=st1.executeQuery(sql1);
-while(rs1.next()){
-String Branch = rs1.getString("BRANCH");
-pcSort.addItem(Branch);
-ccSort.addItem(Branch);
-prSort.addItem(Branch);
 
-
-
-      }
-     }
- catch (SQLException ex) {    
-JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState()); 
- }
-}
 private void setIcon() {
 setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/NEMAR LOGO 2.png")));
     }
@@ -9226,7 +9312,7 @@ public void showShip(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Categ as DeviceCode, Branch, Dept as Department, Owner, Dev_ID as ID FROM dbo.Inv WHERE Status = 'FOR SHIPPING';";         
+sql =  "SELECT Categ as DeviceCode, Branch, Dept as Department, Owner, Rep_Item as Device, Rep.Dev_ID as DevID, Rep_ID as ID FROM dbo.Inv, dbo.Rep WHERE Inv.Dev_ID = Rep.Dev_ID AND Rep_Stat = 'FOR SHIPPING';";      
 ResultSet rs=st.executeQuery(sql); 
 shipTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -9238,8 +9324,152 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
  FilterHP(shipTbl,shipSearch);
 }
+public void showHP(){
+//REPAIR
+showRep();
+//SHIPPED
+showShip();
+}
+//SHIPPED
+public void devShipped() {
+int selectedRowIndex = shipTbl.getSelectedRow();
+String Categ = shipTbl.getValueAt(selectedRowIndex,0).toString();
+String Bra = shipTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = shipTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = shipTbl.getValueAt(selectedRowIndex,3).toString();
+String Ite = shipTbl.getValueAt(selectedRowIndex,4).toString();
+String Dev = shipTbl.getValueAt(selectedRowIndex,5).toString();
+String His= shipTbl.getValueAt(selectedRowIndex,6).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+    if(Ite.equals("Unit")){
+    String sql ="UPDATE dbo.invPC SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= CONVERT(time,'"+tm.format(time)+"',126),  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    }
+    else {
+    String sel = Ite; 
+    if (sel.equals("Processor")){
+        item = "Proce";
+    }
+     else if (sel.equals("Motherboard")){
+        item = "MBoard";
+    }
+     else if (sel.equals("RAM")){
+        item = "Ram";
+    }
+     else if (sel.equals("Harddrive")){
+        item = "HDD";
+    }
+     else if (sel.equals("UPS")){
+        item = "UPS";
+    }
+     else if (sel.equals("Keyboard")){
+        item = "KeyB";
+    }
+     else if (sel.equals("Mouse")){
+        item = "Mouse";
+    }
+     else if (sel.equals("Monitor")){
+        item = "Moni";
+    }
+    String sql ="UPDATE dbo.invPC SET "+item+" = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"'";         
+    st.executeUpdate(sql2);
+    showRep();
+    for(int i = 0; i<repTbl.getRowCount();i++){
+    if (Dev.equals(repTbl.getValueAt(i, 5))){
+        g = true;
+    }
+    }
+    if(g =! true){
+     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    }
+    }
+ }
 
-//Refreshing Screen Content------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+else if (Categ.equals("CC")){        
+    if(Ite.equals("CCTV")){
+    String sql ="UPDATE dbo.invCC SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    }
+    else {
+    String sel = Ite; 
+    if (sel.equals("Camera")){
+        item = "Cnum";
+    }
+     else if (sel.equals("HDD")){
+        item = "HDD";
+    }
+     else if (sel.equals("DVR")){
+        item = "DVR";
+    }
+    
+    String sql ="UPDATE dbo.invCC SET "+item+" = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'WORKING' WHERE Dev_ID = '"+Dev+"' AND Rep_Item = '"+Ite+"'";         
+    st.executeUpdate(sql2);
+    showRep();
+    for(int i = 0; i<repTbl.getRowCount();i++){
+    if (Dev.equals(repTbl.getValueAt(i, 5))){
+        g = true;
+    }
+    }
+    if(g =! true){
+     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    }
+    }
+ }
+
+
+
+else if (Categ.equals("PR")){        
+    String sql ="UPDATE dbo.invPR SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+}
+
+Statement sta = con.createStatement();
+String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Shipped', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
+JOptionPane.showMessageDialog(null,"Device sent!");
+Homepage hp = new Homepage();
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+//Refreshing Screen Content-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public void refreshPC(){
 pcSearchtxt.setText("");
 pcSort.setSelectedItem("ALL");
@@ -9323,72 +9553,8 @@ jTextField3.setText("");
 */
     }
 }
-//End Of Logs---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//TRANFER CODe
-public void ccTransfer(String sb){
-
-            int selectedRowIndex = ccTbl.getSelectedRow();
-            String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
-            String s2 = ccSupp.getText();
-            String s3 = ccUN.getText();
-            String s4 = ccPW.getText();
-            String s5 = ccNum.getText();
-            String s6 = ccRem.getText();
-            try{
-                Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
-                DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-                Date date = new Date();
-                DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-                Date time = new Date();
-                Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                String sql ="UPDATE dbo.invCC SET Branch = '"+sb+"' WHERE ID = '"+ID+"'";
-                st.execute(sql);
-                
-                Statement sta = con.createStatement();
-                String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'CCTV','"+sb+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-                sta.execute(newsql);
-}
- catch (SQLException ex) {    
-     JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-     JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }              JOptionPane.showMessageDialog(null,"Device Transfered!");
- //refreshCC();  
- //showCC();
-}
-public void prTransfer(String sb){
-            int selectedRowIndex = prTbl.getSelectedRow();
-            String ID = prTbl.getValueAt(selectedRowIndex,4).toString();
-            String s2 = prManu.getText();
-            String s3 = prName.getText();
-            String s4 = prDept.getText();
-            String s5 = prRem.getText();
-            try{
-                Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");
-                DateFormat dt = new SimpleDateFormat("MMM/dd/yy");
-                Date date = new Date();
-                DateFormat tm = new SimpleDateFormat("HH:mm:ss");
-                Date time = new Date();
-                Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                String sql ="UPDATE dbo.invPR Branch = '"+sb+"' WHERE ID = '"+ID+"'";
-                st.execute(sql);
-                
-                Statement sta = con.createStatement();
-                String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Update', 'Printer','"+sb+"-"+s4+"-"+s3+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-                sta.execute(newsql);
-            }
-            catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
-JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }              JOptionPane.showMessageDialog(null,"Item Updated!");
-                refreshPR();
-       
-}
+//End Of Logs----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
 public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
         double... percentages) {
     double total = 0;
@@ -9443,5 +9609,902 @@ public static void setCellsAlignment1(JTable table1, int alignment)
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     
+//MITS JUY 31------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public void FilterHP( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+public void FilterPCtr( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+public void FilterCCtr( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+public void FilterPRtr( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+public void FilterBR( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+public void FilterDP( final JTable jTable,  final JTextField jtfFilter) {
+    final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
+    jTable.setRowSorter(rowSorter);
+    jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                 jTable.convertRowIndexToModel(jTable.getSelectedRow());
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            String text = jtfFilter.getText();
+
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    });
+}
+
+public void showdp(){
+    String Branch = transBR.getSelectedItem().toString();
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,ID FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+toTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(toTbl,toSearchtxt);
+}  
+
+public void showPCtr(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+transTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(transTbl,transSearchtxt);
+}  
+public void pcSettr(){
+        String Parts = transferSelect.getSelectedItem().toString();   
+        int selectedRowIndex = transTbl.getSelectedRow();
+        if(Parts.equals("Unit")){
+        unitPro1.setText(transTbl.getValueAt(selectedRowIndex,3).toString());
+        unitMot1.setText(transTbl.getValueAt(selectedRowIndex,4).toString());
+        unitRam1.setText(transTbl.getValueAt(selectedRowIndex,5).toString());
+        unitHar1.setText(transTbl.getValueAt(selectedRowIndex,6).toString());
+        unitMon1.setText(transTbl.getValueAt(selectedRowIndex,7).toString());
+        unitKey1.setText(transTbl.getValueAt(selectedRowIndex,8).toString());
+        unitMou1.setText(transTbl.getValueAt(selectedRowIndex,9).toString());
+        unitUPS1.setText(transTbl.getValueAt(selectedRowIndex,10).toString());
+        }
+        else
+        unitPro2.setText(transTbl.getValueAt(selectedRowIndex,3).toString());
+}
+public void pcSorttr(){
+String Branch = pcBR.getSelectedItem().toString();   
+String Parts = transferSelect.getSelectedItem().toString();   
+if(Branch.equals("ALL")){
+    if(Parts.equals("Unit")){
+    showPCtr(); 
+    jPanel22.setVisible(true);
+    jPanel24.setVisible(false);
+    }
+    else
+    {jPanel22.setVisible(false);
+    jPanel24.setVisible(true);
+    if(Parts.equals("Processor")){
+    Parts1 = "Proce AS Processor";
+    }
+    if(Parts.equals("Motherboard")){
+    Parts1 = "MBoard AS Motherboard";
+    }
+    if(Parts.equals("Harddrive")){
+    Parts1 = "HDD AS Harddrive";
+    }
+    if(Parts.equals("RAM")){
+    Parts1 = "Ram ";
+    }
+    if(Parts.equals("Monitor")){
+    Parts1 = "Moni AS Monitor";
+    }
+    if(Parts.equals("UPS")){
+    Parts1 = "UPS";
+    }
+    if(Parts.equals("Mouse")){
+    Parts1 = "Mouse";
+    }
+    if(Parts.equals("Keyboard")){
+    Parts1 = "KeyB AS Keyboard";
+    }
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+", ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+transTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(transTbl,transSearchtxt);
+    
+}  
+}
+else
+{
+if(Parts.equals("Unit")){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
+rs=st.executeQuery(sql); 
+transTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(transTbl,transSearchtxt);
+}
+else
+    {
+    if(Parts.equals("Processor")){
+    Parts1 = "Proce AS Processor";
+    }
+    if(Parts.equals("Motherboard")){
+    Parts1 = "MBoard AS Motherboard";
+    }
+    if(Parts.equals("Harddrive")){
+    Parts1 = "HDD AS Harddrive";
+    }
+    if(Parts.equals("RAM")){
+    Parts1 = "Ram ";
+    }
+    if(Parts.equals("Monitor")){
+    Parts1 = "Moni AS Monitor";
+    }
+    if(Parts.equals("UPS")){
+    Parts1 = "UPS";
+    }
+    if(Parts.equals("Mouse")){
+    Parts1 = "Mouse";
+    }
+    if(Parts.equals("Keyboard")){
+    Parts1 = "KeyB AS Keyboard";
+    }
+    
+        try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+",ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
+rs=st.executeQuery(sql); 
+transTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(transTbl,transSearchtxt);   
+    }
+//compTbl.setRowSelectionInterval(0,0);
+}
+}
+public void refreshPCtr(){
+        unitPro1.setText("");
+        unitMot1.setText("");
+        unitRam1.setText("");
+        unitHar1.setText("");
+        unitMon1.setText("");
+        unitKey1.setText("");
+        unitMou1.setText("");
+        unitUPS1.setText("");
+}
+
+public void showCCtr(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, SP as ServiceProvider,CNum as Quantity, Camera, DVR, HDD, uN as Username,pW as Password, ID FROM dbo.invCC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+transTbl2.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterCCtr(transTbl2,trSearchtxt2);
+}
+public void ccSettr(){
+        int selectedRowIndex = transTbl2.getSelectedRow();
+        unitPro5.setText(transTbl2.getValueAt(selectedRowIndex,1).toString());
+}
+public void ccSorttr(){
+String Branch1 = ccBR.getSelectedItem().toString();    
+if(Branch1.equals("ALL")){
+showCCtr();
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, SP as ServiceProvider,CNum as Quantity, Camera, DVR, HDD, uN as Username,pW as Password, ID FROM dbo.invCC WHERE Branch = '"+Branch1+"' AND Stat = 'WORKING'";   
+ResultSet rs=st.executeQuery(sql); 
+transTbl2.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+FilterCCtr(transTbl2,trSearchtxt2);
+}
+
+public void showPRtr(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept AS Department, Manu AS Manufacturer, Owner as Name, ID FROM dbo.invPR WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+transTbl1.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPRtr(transTbl1,trSearchtxt1);
+}
+public void prSettr(){
+        int selectedRowIndex = transTbl1.getSelectedRow();
+        unitPro4.setText(transTbl1.getValueAt(selectedRowIndex,2).toString());
+}
+public void prSorttr(){
+String Branch2 = prBR.getSelectedItem().toString();    
+if(Branch2.equals("ALL")){
+showPRtr(); 
+}
+else
+{
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Manu AS Manufacturer,Owner as Name,Dept AS Department, ID FROM dbo.invPR  WHERE Branch = '"+Branch2+"' AND Stat = 'WORKING'";  
+ResultSet rs=st.executeQuery(sql); 
+transTbl1.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }  
+}
+FilterPRtr(transTbl1,trSearchtxt1);
+}
+
+public void showBra(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT BRANCH as Branch, ADDRESS as Address,LOCATION as Location FROM dbo.Branch WHERE STAT = 'RUNNING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+brTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterBR(brTbl,brSearchtxt);
+} 
+public void brAdd(){
+String s1 = branchName.getText();
+String s2 = branchAdd.getText();
+String s3 = branchLoc.getText();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);   
+String sql1 ="INSERT INTO dbo.Branch VALUES ('"+s1+"','"+s2+"','"+s3+"','RUNNING')";         
+st.execute(sql1);
+ String sql ="INSERT INTO dbo.Logs VALUES ('Branch','"+s1+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+st.execute(sql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void brSet(){
+        int selectedRowIndex = brTbl.getSelectedRow();
+        branchNameedit.setText(brTbl.getValueAt(selectedRowIndex,0).toString());
+        branchAddedit.setText(brTbl.getValueAt(selectedRowIndex,1).toString());
+        branchLocedit.setText(brTbl.getValueAt(selectedRowIndex,2).toString());
+}
+public void brEdit(){
+       String s1 =  branchNameedit.getText();
+       String s2 = branchAddedit.getText();
+       String s3 = branchLocedit.getText();   
+       try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.Branch SET BRANCH = '"+s1+"',ADDRESS = '"+s2+"',LOCATION = '"+s3+"' WHERE BRANCH = '"+s1+"'";         
+st.executeUpdate(sql);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'Branch','"+s1+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+       
+}
+
+public void showDep(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,ID FROM dbo.Departments ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+dpTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterDP(dpTbl,dpSearchtxt);
+} 
+public void dpAdd(){
+String s1 = deptBranch.getSelectedItem().toString();
+String s2 = deptName.getText();
+
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);   
+String sql1 ="INSERT INTO dbo.Departments VALUES ('"+s1+"','"+s2+"')";         
+st.execute(sql1);
+ String sql ="INSERT INTO dbo.Logs VALUES ('Department','"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+st.execute(sql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void dpSet(){
+        int selectedRowIndex = dpTbl.getSelectedRow();
+        deptNameedit.setText(brTbl.getValueAt(selectedRowIndex,1).toString());
+        deptBranchedit.setSelectedItem(brTbl.getValueAt(selectedRowIndex,0).toString());
+}
+public void dpEdit(){
+       int selectedRowIndex = dpTbl.getSelectedRow();
+       String s1 =  deptNameedit.getText();
+       String s2 = deptBranchedit.getSelectedItem().toString();   
+       String ID = brTbl.getValueAt(selectedRowIndex,2).toString();
+       try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.Departments SET Branch = '"+s2+"',Dept = '"+s1+"' WHERE BRANCH = '"+ID+"'";         
+st.executeUpdate(sql);
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'Branch','"+s1+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+       
+}
+
+
+public void showPur(){
+String Branch = reqBranch.getSelectedItem().toString();   
+String Parts = unitDept.getSelectedItem().toString();   
+try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+while(rs.next()){
+
+}
+unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+
+}
+public void showPCpr(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(unitTbl,unitSearch);
+}  
+public void showOTpr(){
+    String Parts = unitSelect.getSelectedItem().toString();
+        if(Parts.equals("Processor")){
+    Parts1 = "Proce AS Processor";
+    }
+    if(Parts.equals("Motherboard")){
+    Parts1 = "MBoard AS Motherboard";
+    }
+    if(Parts.equals("Harddrive")){
+    Parts1 = "HDD AS Harddrive";
+    }
+    if(Parts.equals("RAM")){
+    Parts1 = "Ram ";
+    }
+    if(Parts.equals("Monitor")){
+    Parts1 = "Moni AS Monitor";
+    }
+    if(Parts.equals("UPS")){
+    Parts1 = "UPS";
+    }
+    if(Parts.equals("Mouse")){
+    Parts1 = "Mouse";
+    }
+    if(Parts.equals("Keyboard")){
+    Parts1 = "KeyB AS Keyboard";
+    }
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+", ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+othersTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(othersTbl,othersSearch);
+}  
+public void pcSetpr(){
+        int selectedRowIndex = unitTbl.getSelectedRow();
+        //compBran.setText(transTbl.getValueAt(selectedRowIndex,0).toString());
+        //compDept.setText(transTbl.getValueAt(selectedRowIndex,1).toString());
+        //compName.setText(transTbl.getValueAt(selectedRowIndex,2).toString());
+        unitPro.setText(unitTbl.getValueAt(selectedRowIndex,3).toString());
+        unitMot.setText(unitTbl.getValueAt(selectedRowIndex,4).toString());
+        unitRam.setText(unitTbl.getValueAt(selectedRowIndex,5).toString());
+        unitHar.setText(unitTbl.getValueAt(selectedRowIndex,6).toString());
+        unitMon.setText(unitTbl.getValueAt(selectedRowIndex,7).toString());
+        unitKey.setText(unitTbl.getValueAt(selectedRowIndex,8).toString());
+        unitMou.setText(unitTbl.getValueAt(selectedRowIndex,9).toString());
+        unitUPS.setText(unitTbl.getValueAt(selectedRowIndex,10).toString());
+
+}
+public void otSetpr(){
+        int selectedRowIndex = othersTbl.getSelectedRow();
+        othersField.setText(othersTbl.getValueAt(selectedRowIndex,3).toString());
+}
+public void pcSortpr(){
+String Branch = reqBranch.getSelectedItem().toString();   
+String Parts = unitDept.getSelectedItem().toString();   
+if(Branch.equals("ADMIN")){
+       try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Dept FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+while(rs.next()){
+String Dept = rs.getString("Dept");
+unitDept.addItem(Dept);
+}
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+    if(Parts.equals("Unit")){
+    showPCpr();
+    }
+    else
+    {
+    if(Parts.equals("Processor")){
+    Parts1 = "Proce AS Processor";
+    }
+    if(Parts.equals("Motherboard")){
+    Parts1 = "MBoard AS Motherboard";
+    }
+    if(Parts.equals("Harddrive")){
+    Parts1 = "HDD AS Harddrive";
+    }
+    if(Parts.equals("RAM")){
+    Parts1 = "Ram ";
+    }
+    if(Parts.equals("Monitor")){
+    Parts1 = "Moni AS Monitor";
+    }
+    if(Parts.equals("UPS")){
+    Parts1 = "UPS";
+    }
+    if(Parts.equals("Mouse")){
+    Parts1 = "Mouse";
+    }
+    if(Parts.equals("Keyboard")){
+    Parts1 = "KeyB AS Keyboard";
+    }
+    try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+", ID FROM dbo.invPC WHERE Stat = 'WORKING' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+othersTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterPCtr(othersTbl,othersSearch);
+    
+}  
+}
+else
+{
+try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Dept FROM dbo.Departments WHERE Branch = '"+Branch+"' ORDER by Branch";         
+ResultSet rs=st.executeQuery(sql); 
+while(rs.next()){
+String Dept = rs.getString("Dept");
+unitDept.addItem(Dept);
+}
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+if(Parts.equals("Unit")){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Moni as Monitor,KeyB as Keyboard, Mouse,UPS, ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
+rs=st.executeQuery(sql); 
+unitTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(unitTbl,unitSearch);
+}
+else
+    {
+    if(Parts.equals("Processor")){
+    Parts1 = "Proce AS Processor";
+    }
+    if(Parts.equals("Motherboard")){
+    Parts1 = "MBoard AS Motherboard";
+    }
+    if(Parts.equals("Harddrive")){
+    Parts1 = "HDD AS Harddrive";
+    }
+    if(Parts.equals("RAM")){
+    Parts1 = "Ram ";
+    }
+    if(Parts.equals("Monitor")){
+    Parts1 = "Moni AS Monitor";
+    }
+    if(Parts.equals("UPS")){
+    Parts1 = "UPS";
+    }
+    if(Parts.equals("Mouse")){
+    Parts1 = "Mouse";
+    }
+    if(Parts.equals("Keyboard")){
+    Parts1 = "KeyB AS Keyboard";
+    }
+    
+        try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Dept as Department,Owner as CurrentUser,"+Parts1+",ID FROM dbo.invPC WHERE Branch = '"+Branch+"' AND Stat = 'WORKING' ORDER BY Branch ";         
+rs=st.executeQuery(sql); 
+transTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterPCtr(transTbl,transSearchtxt);   
+    }
+//compTbl.setRowSelectionInterval(0,0);
+}
+}
+
+
+//OLD REVISED
+public void initBranch(){
+try { 
+Connection con1 = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+Statement st1=con1.createStatement();         
+String sql1 = "SELECT BRANCH FROM dbo.Branch WHERE STAT = 'RUNNING' ";         
+rs1=st1.executeQuery(sql1);
+while(rs1.next()){
+String Branch = rs1.getString("BRANCH");
+pcSort.addItem(Branch);
+ccSort.addItem(Branch);
+prSort.addItem(Branch);
+pcBR.addItem(Branch);
+ccBR.addItem(Branch);
+prBR.addItem(Branch);
+transBR.addItem(Branch);
+deptBranch.addItem(Branch);
+reqBranch.addItem(Branch);
+
+      }
+     }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState()); 
+ }
+}
 }
 
