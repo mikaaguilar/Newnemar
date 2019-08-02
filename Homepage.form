@@ -3190,6 +3190,8 @@
                                                           <Component id="jLabel8a1" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="reqOwn" min="-2" pref="232" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
                                                           <Component id="jLabel1a" min="-2" max="-2" attributes="0"/>
@@ -3221,10 +3223,11 @@
                                       <Component id="jLabel8a" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="unitDept" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="reqOwn" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel8a1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -3352,7 +3355,7 @@
                                           <Component id="unitSelect" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel18a" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="532" max="32767" attributes="0"/>
+                                      <EmptySpace pref="530" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -4219,7 +4222,7 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                                      <EmptySpace pref="119" max="32767" attributes="0"/>
                                       <Component id="jLabel16a" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jScrollPane10" min="-2" pref="262" max="-2" attributes="0"/>
@@ -4315,6 +4318,14 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="reqOwn">
+                        </Component>
+                        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="FOR IT RESERVE"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -8962,6 +8973,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitPro1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -8981,6 +8993,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitMot1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9000,6 +9013,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitHar1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9019,6 +9033,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitMon1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9027,6 +9042,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitUPS1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9057,6 +9073,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitRam1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9076,6 +9093,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitKey1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
@@ -9095,6 +9113,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="unitMou1">
                                   <Properties>
+                                    <Property name="editable" type="boolean" value="false"/>
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="66" red="66" type="rgb"/>
                                     </Property>
