@@ -3186,19 +3186,26 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel8a" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel1a" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="unitDept" min="-2" pref="267" max="-2" attributes="0"/>
-                                                      <Component id="reqBranch" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabel8a1" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="reqOwn" min="-2" pref="232" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabel1a" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="reqBranch" min="-2" pref="106" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                                          <Component id="jLabel8a" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                          <Component id="unitDept" min="-2" pref="267" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                                  <EmptySpace pref="35" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3211,19 +3218,21 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel1a" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="reqBranch" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel8a" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="unitDept" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="reqOwn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel8a1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jPanel21" max="32767" attributes="0"/>
                                       <Component id="jPanel20" max="32767" attributes="0"/>
@@ -3343,7 +3352,7 @@
                                           <Component id="unitSelect" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel18a" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="506" max="32767" attributes="0"/>
+                                      <EmptySpace pref="532" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -4210,7 +4219,7 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="87" max="32767" attributes="0"/>
+                                      <EmptySpace pref="121" max="32767" attributes="0"/>
                                       <Component id="jLabel16a" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jScrollPane10" min="-2" pref="262" max="-2" attributes="0"/>
@@ -4300,6 +4309,13 @@
                             </Component>
                           </SubComponents>
                         </Container>
+                        <Component class="javax.swing.JLabel" name="jLabel8a1">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Owner:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="reqOwn">
+                        </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>

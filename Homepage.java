@@ -389,6 +389,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         reqCancel = new javax.swing.JButton();
         unitKey2 = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
+        jLabel8a1 = new javax.swing.JLabel();
+        reqOwn = new javax.swing.JTextField();
         HISmaincard = new javax.swing.JPanel();
         jScrollPane20 = new javax.swing.JScrollPane();
         allHisTbl = new javax.swing.JTable();
@@ -2859,7 +2861,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(661, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 1076, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2868,7 +2870,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18a))
-                .addContainerGap(506, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                     .addGap(0, 58, Short.MAX_VALUE)
@@ -2961,7 +2963,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(jLabel16a)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2977,6 +2979,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(reqCancel)
                 .addGap(31, 31, 31))
         );
+
+        jLabel8a1.setText("Owner:");
 
         javax.swing.GroupLayout RequestLayout = new javax.swing.GroupLayout(Request);
         Request.setLayout(RequestLayout);
@@ -3001,13 +3005,19 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addGroup(RequestLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8a)
-                                    .addComponent(jLabel1a))
-                                .addGap(18, 18, 18)
-                                .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(unitDept, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(reqBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                                    .addGroup(RequestLayout.createSequentialGroup()
+                                        .addComponent(jLabel8a1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(reqOwn, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RequestLayout.createSequentialGroup()
+                                        .addComponent(jLabel1a)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(reqBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel8a)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(unitDept, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         RequestLayout.setVerticalGroup(
             RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3017,17 +3027,19 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1a)
-                    .addComponent(reqBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reqBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8a)
                     .addComponent(unitDept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
+                .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reqOwn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8a1))
+                .addGap(18, 18, 18)
                 .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3))
-                .addGap(26, 26, 26)
+                .addGap(11, 11, 11)
                 .addGroup(RequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -6536,6 +6548,10 @@ hisSet();        // TODO add your handling code here:
     CCTV.setVisible(false);
     Printer.setVisible(false);
     showPurUnit();
+    unitDept.setVisible(true);
+    jLabel8a.setVisible(true);
+    jLabel8a1.setVisible(true);
+    reqOwn.setVisible(true);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -6547,10 +6563,13 @@ hisSet();        // TODO add your handling code here:
     CCTV.setVisible(true);
     Printer.setVisible(false);
     showPurCC();
+    unitDept.setVisible(false);
+    jLabel8a.setVisible(false);
+    jLabel8a1.setVisible(false);
+    reqOwn.setVisible(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
- 
     unitSelect.setVisible(false);
     jLabel18a.setVisible(false);
     Unit.setVisible(false);
@@ -6558,6 +6577,10 @@ hisSet();        // TODO add your handling code here:
     CCTV.setVisible(false);
     Printer.setVisible(true);
     showPurPR();
+    unitDept.setVisible(true);
+    jLabel8a.setVisible(true);
+    jLabel8a1.setVisible(true);
+    reqOwn.setVisible(true);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void unitSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitSelectActionPerformed
@@ -7002,13 +7025,14 @@ hisSet();        // TODO add your handling code here:
         AR.setVisible(true);
         int selectedRowIndex = repTbl.getSelectedRow();
         String Dev = repTbl.getValueAt(selectedRowIndex,4).toString();
+        String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
         int id = (int) repTbl.getValueAt(selectedRowIndex,5);
         int hisid = (int) repTbl.getValueAt(selectedRowIndex,6);
         if(Dev.equals("Unit")){AR.showUnit(id,hisid);}
         else if(Dev.equals("CCTV")){JOptionPane.showMessageDialog(null,"Not available!");}
         else if(Dev.equals("Printer")){AR.showPR(id,hisid);}
         else{
-        AR.showOT(Dev, id,hisid);}
+        AR.showOT(Dev, id,hisid, Categ);}
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void pcSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcSortActionPerformed
@@ -7537,6 +7561,7 @@ showDepPur();
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel8a;
+    private javax.swing.JLabel jLabel8a1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
@@ -7708,6 +7733,7 @@ showDepPur();
     private javax.swing.JButton reqCancel;
     private javax.swing.JButton reqCheckout;
     private javax.swing.JButton reqDone;
+    private javax.swing.JTextField reqOwn;
     private javax.swing.JButton reqRemove;
     private javax.swing.JTextField reqSearch;
     private javax.swing.JTable reqTbl;

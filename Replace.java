@@ -34,7 +34,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class Replace extends javax.swing.JFrame {
      public Connection con;
-     public String type, item, devname, PrevOwner, PrevBranch, PrevDept;
+     public String type, item, devname, PrevOwner, PrevBranch, PrevDept, Categ1;
      public int DevID, HisID, InvID, NewID;
 
     /**
@@ -302,7 +302,7 @@ public class Replace extends javax.swing.JFrame {
                  setJTableColumnsWidth(otTbl, 480,20, 55,10,10, 5);
                  Homepage.setCellsAlignment1(otTbl, SwingConstants.CENTER);
 }
-public void showOT(String Dev, int ID, int HIS){
+public void showOT(String Dev, int ID, int HIS, String Categ){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
@@ -320,6 +320,7 @@ FilterOT(otTbl,reserveSearch);
 type = "OT";
 DevID = ID;
 HisID = HIS;
+Categ1 = Categ;
 }
 
 public void showUnit(int ID, int HIS){
@@ -375,6 +376,7 @@ Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
 Date time = new Date();
  String sel = Dev; 
+ if(Categ1.equals("PC")){
     if (sel.equals("Processor")){
         item = "Proce";
     }
@@ -398,8 +400,10 @@ Date time = new Date();
     }
      else if (sel.equals("Monitor")){
         item = "Moni";
-    }
-if(Dev.equals("Processor")||Dev.equals("Motherboard")||Dev.equals("RAM")||Dev.equals("Monitor")||Dev.equals("Harddrive")||Dev.equals("UPS")||Dev.equals("Keyboard")||Dev.equals("Mouse")){
+    }}
+ else {
+    item = Dev;}
+if(Categ1.equals("PC")){
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
@@ -420,34 +424,67 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     ResultSet rs4; 
     rs4 = st.executeQuery(sql8);             
             if (rs4.next()) { 
-             PrevOwner = rs3.getString("Owner");  
-             PrevBranch = rs3.getString("Branch");  
-             PrevDept = rs3.getString("Dept");  
+             PrevOwner = rs4.getString("Owner");  
+             PrevBranch = rs4.getString("Branch");  
+             PrevDept = rs4.getString("Dept");  
             }
-    String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+"' WHERE ID = '"+ID+"'";         
+    String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Qlt = 'USED', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+"' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
-    String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE ID = '"+ID+"'";         
+    String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql5);
+     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-"+item+"-"+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql8);
     JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
      this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
- }}}
+ }}
+
+
+else{
+    try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+
+    String sql ="UPDATE dbo.invCC SET "+item+" = '"+Nam+"' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
+    st.executeUpdate(sql4);
+    String sql7 = "SELECT  Rep_Name FROM dbo.Rep WHERE Rep_ID = '"+HisID+"'";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql7);             
+            if (rs3.next()) { 
+             devname = rs3.getString("Rep_Name");   
+            }
+      String sql8 = "SELECT  Branch FROM dbo.invCC WHERE ID = '"+DevID+"'";         
+    ResultSet rs4; 
+    rs4 = st.executeQuery(sql8);             
+            if (rs4.next()) {  
+             PrevBranch = rs4.getString("Branch");   
+            }
+    String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Qlt = 'USED', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"' WHERE ID = '"+ID+"'";         
+    st.executeUpdate(sql3);
+    String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE Dev_ID = '"+ID+"'";         
+    st.executeUpdate(sql5);
+     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-"+item+"-"+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql8);
+    JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
+     this.dispose();}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}}
 
 
 
 public void UpdateUnit(){
 int selectedRowIndex = otTbl.getSelectedRow();
-String Pro = otTbl.getValueAt(selectedRowIndex,0).toString();
-String Mot = otTbl.getValueAt(selectedRowIndex,1).toString();
-String Ram = otTbl.getValueAt(selectedRowIndex,2).toString();
-String HDD = otTbl.getValueAt(selectedRowIndex,3).toString();
-String UPS = otTbl.getValueAt(selectedRowIndex,4).toString();
-String Key = otTbl.getValueAt(selectedRowIndex,5).toString();
-String Mou = otTbl.getValueAt(selectedRowIndex,6).toString();
-String Mon = otTbl.getValueAt(selectedRowIndex,7).toString();
-String Dev = otTbl.getValueAt(selectedRowIndex,8).toString();
+
+String ID = otTbl.getValueAt(selectedRowIndex,8).toString();
 
 DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 Date date = new Date();
@@ -456,20 +493,74 @@ Date time = new Date();
     try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
-
-    String sql ="UPDATE dbo.invPC SET Proce = '"+Pro+"', MBoard = '"+Mot+"', Ram = '"+Ram+"', HDD = '"+HDD+"', UPS = '"+UPS+"', KeyB = '"+Key+"', Mouse = '"+Mou+"', Moni = '"+Mon+"' WHERE ID = '"+DevID+"'";         
+     String sql8 = "SELECT  Branch, Dept, Owner FROM dbo.invPC WHERE ID = '"+DevID+"'";         
+    ResultSet rs4; 
+    rs4 = st.executeQuery(sql8);             
+            if (rs4.next()) { 
+             PrevOwner = rs4.getString("Owner");  
+             PrevBranch = rs4.getString("Branch");  
+             PrevDept = rs4.getString("Dept");  
+            }
+    String sql ="UPDATE dbo.invPC SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
+    String sql10 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE Dev_ID = '"+DevID+"'";            
+    st.executeUpdate(sql10);
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
     st.executeUpdate(sql2);
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
     st.executeUpdate(sql4);
-    String sql3 ="UPDATE dbo.invPC SET Stat = 'TRANSFERED', Rem = 'To ' WHERE Dev_ID = '"+Dev+"'";         
+   
+    String sql3 ="UPDATE dbo.invPC SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
+    String sql9 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
+    st.executeUpdate(sql9);
+    String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-PC Unit-DevID:"+DevID+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql8);
     this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-public void UpdatePrinter(){}
+public void UpdatePrinter(){
+int selectedRowIndex = otTbl.getSelectedRow();
+
+String ID = otTbl.getValueAt(selectedRowIndex,4).toString();
+
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+    try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+     String sql8 = "SELECT  Branch, Dept, Owner, Manu FROM dbo.invPR WHERE ID = '"+DevID+"'";         
+    ResultSet rs4; 
+    rs4 = st.executeQuery(sql8);             
+            if (rs4.next()) { 
+             PrevOwner = rs4.getString("Owner");  
+             PrevBranch = rs4.getString("Branch");  
+             PrevDept = rs4.getString("Dept");  
+             devname=rs4.getString("Manu");
+            }
+    String sql ="UPDATE dbo.invPR SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sql);
+    String sq5 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sq5);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
+    st.executeUpdate(sql4);
+   
+    String sql3 ="UPDATE dbo.invPR SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING', Rem = 'To ' WHERE ID = '"+ID+"'";         
+    st.executeUpdate(sql3);
+    String sql5 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING', Rem = 'To ' WHERE Dev_ID = '"+ID+"'";         
+    st.executeUpdate(sql5);
+    String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PR', '"+PrevBranch+" - "+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql8);
+    this.dispose();}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }}
 }
