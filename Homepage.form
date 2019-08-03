@@ -303,6 +303,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Received"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reqDoneActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="reqAdd">
                   <Properties>
@@ -3496,7 +3499,7 @@
                                                       <Component id="unitAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace pref="36" max="32767" attributes="0"/>
+                                              <EmptySpace pref="54" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -3686,6 +3689,9 @@
                                         </Property>
                                         <Property name="text" type="java.lang.String" value="Add to Cart"/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unitAddActionPerformed"/>
+                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel107">
                                       <Properties>
@@ -3737,7 +3743,7 @@
                                                               <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                                               <Component id="othersField" min="-2" pref="362" max="-2" attributes="0"/>
-                                                              <EmptySpace pref="203" max="32767" attributes="0"/>
+                                                              <EmptySpace pref="199" max="32767" attributes="0"/>
                                                               <Component id="jLabel51" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                               <Component id="othersQty" min="-2" max="-2" attributes="0"/>
@@ -3758,7 +3764,7 @@
                                               <Component id="othersSearch" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jScrollPane11" min="-2" pref="265" max="-2" attributes="0"/>
-                                              <EmptySpace pref="86" max="32767" attributes="0"/>
+                                              <EmptySpace pref="93" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="othersField" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -3842,6 +3848,9 @@
                                         </Property>
                                         <Property name="text" type="java.lang.String" value="Add to Cart"/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="othersAddActionPerformed"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -3865,16 +3874,13 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <Component id="cctvSearch" min="-2" pref="251" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="779" max="-2" attributes="0"/>
+                                                      <EmptySpace min="779" pref="782" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
                                                           <Component id="jScrollPane12" max="32767" attributes="0"/>
                                                           <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                              <Component id="cctvField" min="-2" pref="362" max="-2" attributes="0"/>
-                                                              <EmptySpace pref="210" max="32767" attributes="0"/>
+                                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                               <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                               <Component id="cctvQty" min="-2" max="-2" attributes="0"/>
@@ -3883,6 +3889,27 @@
                                                           </Group>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="cctvField" min="-2" pref="362" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="jLabel110" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="una" min="-2" pref="362" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="jLabel108" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="pass" min="-2" pref="362" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -3895,15 +3922,25 @@
                                               <Component id="cctvSearch" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jScrollPane12" min="-2" pref="265" max="-2" attributes="0"/>
-                                              <EmptySpace pref="86" max="32767" attributes="0"/>
+                                              <EmptySpace pref="56" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="cctvField" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="cctvQty" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="cctvAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="una" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel110" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="pass" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel108" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -3959,7 +3996,7 @@
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                           <Font name="Tahoma" size="18" style="0"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="Quantity:"/>
+                                        <Property name="text" type="java.lang.String" value="Camera Quantity:"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JSpinner" name="cctvQty">
@@ -3978,6 +4015,47 @@
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
                                         <Property name="text" type="java.lang.String" value="Add to Cart"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cctvAddActionPerformed"/>
+                                      </Events>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel108">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Tahoma" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="33" green="33" red="33" type="rgb"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Password:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="pass">
+                                      <Properties>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="66" green="66" red="66" type="rgb"/>
+                                        </Property>
+                                        <Property name="horizontalAlignment" type="int" value="0"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel110">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Tahoma" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="33" green="33" red="33" type="rgb"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Username:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="una">
+                                      <Properties>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="66" green="66" red="66" type="rgb"/>
+                                        </Property>
+                                        <Property name="horizontalAlignment" type="int" value="0"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
@@ -4011,7 +4089,7 @@
                                                               <Component id="jLabel54a" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                                               <Component id="printerField" min="-2" pref="362" max="-2" attributes="0"/>
-                                                              <EmptySpace pref="196" max="32767" attributes="0"/>
+                                                              <EmptySpace pref="199" max="32767" attributes="0"/>
                                                               <Component id="jLabel55a" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                               <Component id="printerQty" min="-2" max="-2" attributes="0"/>
@@ -4116,6 +4194,9 @@
                                         </Property>
                                         <Property name="text" type="java.lang.String" value="Add to Request"/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printerAddActionPerformed"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -4270,6 +4351,9 @@
                                       </Table>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CartMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -4277,11 +4361,17 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Remove"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reqRemoveActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="reqCheckout">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Check-out"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reqCheckoutActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="reqCancel">
                               <Properties>
