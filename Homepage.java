@@ -47,7 +47,7 @@ public String tr;
 public boolean g = false;
 public int hisid;
 public String pu,Categ,cItem, it, hm;
-public String br,dp,ow,pr,mb,rm,hd,up,kb,ms,re,mn,ty,na,un,pw,cn;
+public String br,dp,ow,pr,mb,rm,hd,up,kb,ms,re,mn,ty,na,un,pw,cn,qt;
 public String purName,item,cName,word, name, devname = null;
 public int id,tempid,cnt,dID;
 
@@ -12564,11 +12564,6 @@ public void cartAdd(){
          {purName = reqOwn.getText();
         }
         String s8 = "N/A";
-         if(purName.equals("")){
-        JOptionPane.showMessageDialog(null,"Owner Field cannot be empty!");
-    }
-         else if(othersField.getText().equals("N/A")){JOptionPane.showMessageDialog(null,"Please select a device!");}
-         else{
 if(jRadioButton1.isSelected()){
 if(dType.equals("Unit")){
         String s1 = unitPro.getText();
@@ -12580,6 +12575,9 @@ if(dType.equals("Unit")){
         String s7 = unitMou.getText();
         String s9 = unitUPS.getText();
         String qty = unitQty.getValue().toString();
+    if(purName.equals("")){
+        JOptionPane.showMessageDialog(null,"Owner Field cannot be empty!");
+    }
  try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement(); 
@@ -12628,6 +12626,7 @@ else
 {
 String qty = othersQty.getValue().toString();
 String item = othersField.getText();
+if(othersField.getText().equals("N/A")){JOptionPane.showMessageDialog(null,"Please select a device!");}
  try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement(); 
@@ -12704,7 +12703,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 }
 showCart();
 }
-         }
+     
 }
 public void showCart(){
 try {
@@ -12820,10 +12819,6 @@ public void itemPurchase(){
         else
         {purName = reqOwn.getText();}
         String s8 = "N/A";
-         if(purName.equals("")){
-        JOptionPane.showMessageDialog(null,"Owner Field cannot be empty!");
-    }
-         else{
 if(unitKey2.equals("")){
         JOptionPane.showMessageDialog(null,"Price Field cannot be empty!");
     }
@@ -12845,6 +12840,7 @@ Categ = rs.getString("Categ");
 }
 
 if(Categ.equals("PC")){
+    if(othersField.getText().equals("N/A")){JOptionPane.showMessageDialog(null,"Please select a device!");}
     String sql14 ="SELECT * FROM dbo.invTEMP,dbo.Cart WHERE ID = '"+x+"' AND Cart_ID = '"+x+"'"; 
     rs=st12.executeQuery(sql14); 
     if(rs.next()){
@@ -12914,6 +12910,8 @@ else
     mn = rs.getString("Ninth");
     ty = rs.getString("Cart_Item");
     na = rs.getString("Cart_Name");
+    qt = rs.getString("Cart_Qty");
+    cn = rs.getString("Cart_Qty");
     }
     String sql43 ="INSERT INTO dbo.Inv(Categ,Branch,Owner,Dept,Status) VALUES ('"+Categ+"','"+br+"','"+ow+"','"+dp+"','PENDING')";        
     st12.executeUpdate(sql43);
@@ -12926,21 +12924,21 @@ else
     }
     
     if(Categ.equals("OT")){
-    word = "INSERT INTO dbo.invOT(Branch,Dept,Owner,Categ,Device,Name,Qty,Rem,ID,Qlt,Stat) VALUES ('"+br+"','"+dp+"','"+ow+"','"+Categ+"','"+ty+"','"+na+"','N/A','"+dID+"','NEW','PENDING')";
+    word = "INSERT INTO dbo.invOT(Branch,Dept,Owner,Categ,Device,Name,Qty,Rem,ID,Qlt,Stat) VALUES ('"+br+"','"+dp+"','"+ow+"','"+Categ+"','"+ty+"','"+na+"','"+qt+"','N/A','"+dID+"','NEW','PENDING')";
     }
     if(Categ.equals("PR")){
-    word = "INSERT INTO dbo.invPR(Branch,ManuOwner,Dept,Rem,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+dp+"','"+ow+"','N/A','"+dID+"','PENDING','"+Categ+"')";
+    word = "INSERT INTO dbo.invPR(Branch,Manu,Owner,Dept,Rem,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+ow+"','"+dp+"','N/A','"+dID+"','PENDING','"+Categ+"')";
     }    
     if(Categ.equals("CC")){
-    word = "INSERT INTO dbo.invCC(Branch,SP,Cnum,Camera,DVR,HDD,uN,pW,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+cn+"','WORKING','N/A','N/A','"+una+"','"+pass+"','N/A','"+dID+"','PENDING','"+Categ+"')";
+    word = "INSERT INTO dbo.invCC(Branch,SP,Cnum,Camera,DVR,HDD,uN,pW,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+cn+"','WORKING','N/A','N/A','"+una+"','"+pass+"','"+dID+"','PENDING','"+Categ+"')";
     }
     st12.executeUpdate(word);
    
-     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', 'PC', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', '"+Categ+"', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st12.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
     st12.execute(newsql1);
-     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item','"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
     st12.execute(newsql4);
     
     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
@@ -12949,7 +12947,7 @@ else
     if (rs2.next()) { 
     tempid = rs2.getInt("HIS_ID");   
     }
-    String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', '"+ty+"', 'N/A', 'PENDING', '"+tempid+"' )";         
+    String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', '"+ty+"', '"+na+"', 'PENDING', '"+tempid+"' )";         
      st12.executeUpdate(sql44);
 
      JOptionPane.showMessageDialog(null,"Item Requested!");
@@ -12980,7 +12978,6 @@ st.execute(sql1);
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-}
 }
 }
 
