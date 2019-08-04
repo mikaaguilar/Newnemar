@@ -6735,6 +6735,8 @@ hisSet();        // TODO add your handling code here:
      tr = "Ship";
      showPCtr();
      showdp();
+     toOwner.setVisible(true);
+     toDept.setVisible(true);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
@@ -6745,6 +6747,9 @@ hisSet();        // TODO add your handling code here:
      PrCard.setVisible(false);
      tr = "Ship";
      showCCtr();
+     toOwner.setVisible(false);
+     toDept.setVisible(false);
+
    
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
@@ -6757,6 +6762,9 @@ hisSet();        // TODO add your handling code here:
      tr = "Ship";
      showPRtr();
      showdp();
+     toOwner.setVisible(true);
+     toDept.setVisible(true);
+     toOwner.setEditable(true);
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void repDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repDoneActionPerformed
@@ -7195,7 +7203,7 @@ repRepaired();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void shipDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shipDoneActionPerformed
-    shipDeliv();
+    shipDel();
     }//GEN-LAST:event_shipDoneActionPerformed
 
     private void transTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTblMouseClicked
@@ -7305,6 +7313,24 @@ showDepPur();
      if(transferSelect.getSelectedItem().toString().equals("Unit")){transferPC();}
      else {transferPCUnit();}}
      else if(jRadioButton6.isSelected()){transferPR();}
+     else if (jRadioButton5.isSelected()){transferCCUnit();}
+     INVmaincard.setVisible(false);
+     Home.setVisible(true);
+     HISmaincard.setVisible(false);
+     Log.setVisible(false);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Done.setVisible(false);
+     Transfer.setVisible(false);
+     Sys.setVisible(false);
+     showRep();
+     showShip();
+     HOM.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HIS.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     System.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
@@ -8207,7 +8233,6 @@ public void FilterHIS( final JTable jTable,  final JTextField jtfFilter) {
                  jTable.setRowSelectionInterval(0,0);
                  hisSet();
                  Hiscount();
-                 setJTableColumnsWidth(allHisTbl, 480, 10, 20, 25, 40, 5);
                  Homepage.setCellsAlignment(allHisTbl, SwingConstants.CENTER);
 }
 public void FilterAL( final JTable jTable,  final JTextField jtfFilter) {
@@ -9516,7 +9541,7 @@ try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 if (Categ.equals("PC")){        
-    if(Ite.equals("Unit")){
+    if(Ite.equals("PC Unit")){
     String sql ="UPDATE dbo.invPC SET Stat = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"'";         
@@ -9611,6 +9636,17 @@ else if (Categ.equals("PR")){
      st.executeUpdate(sql4);
     showRep();
 }
+else if (Categ.equals("OT")){        
+    String sql ="UPDATE dbo.invOT SET Stat = 'FOR SHIPPING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'FOR SHIPPING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Repaired' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+}
 
 Statement sta = con.createStatement();
 String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Repaired', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"-"+Ite+"','"+dt.format(date)+"','"+tm.format(time)+"')";
@@ -9664,7 +9700,7 @@ try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 if (Categ.equals("PC")){        
-    if(Ite.equals("Unit")){
+    if(Ite.equals("PC Unit")){
     String sql ="UPDATE dbo.invPC SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
@@ -9785,6 +9821,18 @@ else if (Categ.equals("CC")){
 
 else if (Categ.equals("PR")){        
     String sql ="UPDATE dbo.invPR SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+}
+
+else if (Categ.equals("OT")){        
+    String sql ="UPDATE dbo.invOT SET Stat = 'DISPOSED' WHERE ID = '"+Dev+"'";         
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DISPOSED' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql2);
@@ -9958,6 +10006,17 @@ else if (Categ.equals("PR")){
      st.executeUpdate(sql4);
     showRep();
 }
+else if (Categ.equals("OT")){        
+    String sql ="UPDATE dbo.invOT SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Ship_Stat = 'SHIPPED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Shipped' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+}
 
 Statement sta = con.createStatement();
 String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Shipped', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"-"+Ite+"','"+dt.format(date)+"','"+tm.format(time)+"')";
@@ -10105,9 +10164,126 @@ sta.execute(newsql);
             }
      String sql5 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+Dev+"', '"+Ite+"', '"+name+"', 'FOR SHIPPING', "+id+" )";        
      st.executeUpdate(sql5);
-JOptionPane.showMessageDialog(null,"Device for Shipping!");
+JOptionPane.showMessageDialog(null,"Device for Transmittal!");
 Homepage hp = new Homepage();
 hp.showRep();
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void shipDel() {
+int selectedRowIndex = shipTbl.getSelectedRow();
+String Categ = shipTbl.getValueAt(selectedRowIndex,0).toString();
+String Bra = shipTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = shipTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = shipTbl.getValueAt(selectedRowIndex,3).toString();
+String Ite = shipTbl.getValueAt(selectedRowIndex,4).toString();
+String Nam = shipTbl.getValueAt(selectedRowIndex,5).toString();
+String Dev = shipTbl.getValueAt(selectedRowIndex,6).toString();
+String His= shipTbl.getValueAt(selectedRowIndex,7).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+    if(Ite.equals("PC Unit")){
+    String sql ="UPDATE dbo.invPC SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Transmitted' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+     JOptionPane.showMessageDialog(null,"PC Unit Transmitted!");
+    showShip();
+    }
+    else {
+    String sel = Ite; 
+    if (sel.equals("Processor")){
+        item = "Proce";
+    }
+     else if (sel.equals("Motherboard")){
+        item = "MBoard";
+    }
+     else if (sel.equals("RAM")){
+        item = "Ram";
+    }
+     else if (sel.equals("Harddrive")){
+        item = "HDD";
+    }
+     else if (sel.equals("UPS")){
+        item = "UPS";
+    }
+     else if (sel.equals("Keyboard")){
+        item = "KeyB";
+    }
+     else if (sel.equals("Mouse")){
+        item = "Mouse";
+    }
+     else if (sel.equals("Monitor")){
+        item = "Moni";
+    }
+    String sql ="UPDATE dbo.invPC SET "+item+" = '"+Nam+"' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Ship_Item = '"+Ite+"' AND Ship_ID = '"+His+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Transmitted' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+      JOptionPane.showMessageDialog(null,""+sel+" Transmitted!");
+    showShip();
+   
+    }
+ }
+
+else if (Categ.equals("CC")){        
+    
+    String sql ="UPDATE dbo.invCC SET HDD = '"+Nam+"', Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"' AND Ship_Item = '"+Ite+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Transmitted' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showShip();
+     JOptionPane.showMessageDialog(null,"CCTV HDD Transmitted!");
+    }
+ 
+
+else if (Categ.equals("PR")){        
+    String sql ="UPDATE dbo.invPR SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Transmitted' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showShip();
+         JOptionPane.showMessageDialog(null,"Printer Transmitted!");
+}
+
+else if (Categ.equals("OT")){        
+    String sql ="UPDATE dbo.invOT SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Ship_Stat = 'DONE' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Transmitted' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showShip();
+         JOptionPane.showMessageDialog(null,""+Ite+" Transmitted!");
+}
+
+Statement sta = con.createStatement();
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transmitted', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"-"+Ite+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
 }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -10318,11 +10494,13 @@ if(Branch.equals("ALL")){
     showPCtr(); 
     jPanel22.setVisible(true);
     jPanel24.setVisible(false);
+     toOwner.setEditable(true);
     showdp();
     }
     else
     {jPanel22.setVisible(false);
     jPanel24.setVisible(true);
+    toOwner.setEditable(false);
     if(Parts.equals("Processor")){
     Parts1 = "Proce";
     }
@@ -10718,7 +10896,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     if(Parts.equals("Keyboard")){
     Parts1 = "KeyB";
     }
-    String newsql1 = "INSERT INTO dbo.Inv (Categ, Branch, Owner, Dept, Status) VALUES ('OT', 'ADMIN', 'IT RESERVE','IT','DISPOSED')";
+    String newsql1 = "INSERT INTO dbo.Inv (Categ, Branch, Owner, Dept, Status) VALUES ('OT', 'ADMIN', 'IT RESERVE','IT','FOR SHIPPING')";
      st.execute(newsql1);
     String sql5 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
     ResultSet rs2;
@@ -10727,7 +10905,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
              id = rs2.getInt("Dev_ID");   
             }
             
-     String newsql = "INSERT INTO dbo.invOT (Branch, Dept, Owner,Categ, Device, Name, Qty, Rem, ID, Qlt, Stat) VALUES ('ADMIN', 'IT', 'IT RESERVE','OT','"+Parts+"', '"+toNam+"', 1, 'Transfered "+dt.format(date)+"', "+id+", 'USED', 'WORKING' )";
+     String newsql = "INSERT INTO dbo.invOT (Branch, Dept, Owner,Categ, Device, Name, Qty, Rem, ID, Qlt, Stat) VALUES ('ADMIN', 'IT', 'IT RESERVE','OT','"+Parts+"', '"+toNam+"', 1, 'Transfered "+dt.format(date)+"', "+id+", 'USED', 'FOR SHIPPING' )";
      st.execute(newsql);
     String sql ="UPDATE dbo.invPC SET "+Parts1+" = 'FOR SHIPPING' WHERE ID = '"+toID+"'";         
     st.executeUpdate(sql);
@@ -10741,7 +10919,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     st.execute(newsql13);
     String newsql14 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+toBra+"','Transferred  "+Parts+" to Reserve', 'PC','"+toNam+"','IT DEPARTMENT','"+toID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'To ADMIN- IT- IT RESERVE')";
     st.execute(newsql14);
-     String newsql41 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('ADMIN','Waiting for Action, 'PC','"+Parts+" "+toNam+"','IT DEPARTMENT','"+id+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'From "+toBra+"-"+toDep+"-"+toOwn+"')";
+     String newsql41 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('ADMIN','Waiting for Action', 'PC','"+Parts+" "+toNam+"','IT DEPARTMENT','"+id+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'From "+toBra+"-"+toDep+"-"+toOwn+"')";
     st.execute(newsql41);
      String sql61 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
     ResultSet rs3; 
@@ -10763,9 +10941,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     String sql8 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+toID+"', '"+Parts+"', '"+Nam+"', 'FOR SHIPPING', "+hisid+" )";        
      st.executeUpdate(sql8);
     showRep();
-JOptionPane.showMessageDialog(null,"Device for Transmittal!");
-Homepage hp = new Homepage();
-hp.showRep();
+JOptionPane.showMessageDialog(null,""+Parts+" for Transmittal!");
     }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -10824,9 +11000,125 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     String sql5 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+toID+"', '"+Parts+"', '"+Nam+"', 'FOR SHIPPING', "+id+" )";        
      st.executeUpdate(sql5);
     showRep();
-JOptionPane.showMessageDialog(null,"Device for Transmittal!");
+JOptionPane.showMessageDialog(null,""+Parts+" for Transmittal!");
 Homepage hp = new Homepage();
 hp.showRep();
+    }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }}}}
+public void transferCCUnit() {
+int selectedRowIndex = transTbl2.getSelectedRow();
+String Nam = unitPro5.getText();
+String Parts = "HDD";
+String frID = transTbl2.getValueAt(selectedRowIndex, 3).toString();
+String toBra = toBranch.getText();
+String frBra = transTbl2.getValueAt(selectedRowIndex, 0).toString();
+String toID = toTbl.getValueAt(toTbl.getSelectedRow(), 3).toString();
+String toNam=toTbl.getValueAt(toTbl.getSelectedRow(), 2).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+if(toBranch.getText().equals("")||toBranch.getText().equals("")){
+        JOptionPane.showMessageDialog(null,"Select where to send to!");
+    }
+else{
+if(!toNam.equals("N/A")){
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "The selected receiver already has "+Parts+". Continue and send it to reserve?", "Conflict",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+ 
+    if(n == JOptionPane.OK_OPTION){ try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+    
+    Parts1 = "HDD";
+    String newsql1 = "INSERT INTO dbo.Inv (Categ, Branch, Owner, Dept, Status) VALUES ('OT', 'ADMIN', 'IT RESERVE','IT','FOR SHIPPING')";
+     st.execute(newsql1);
+    String sql5 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
+    ResultSet rs2;
+    rs2 = st.executeQuery(sql5);             
+            if (rs2.next()) { 
+             id = rs2.getInt("Dev_ID");   
+            }
+            
+     String newsql = "INSERT INTO dbo.invOT (Branch, Dept, Owner,Categ, Device, Name, Qty, Rem, ID, Qlt, Stat) VALUES ('ADMIN', 'IT', 'IT RESERVE','OT','"+Parts+"', '"+toNam+"', 1, 'Transfered "+dt.format(date)+"', "+id+", 'USED', 'FOR SHIPPING' )";
+     st.execute(newsql);
+    String sql ="UPDATE dbo.invCC SET "+Parts1+" = 'FOR SHIPPING' WHERE ID = '"+toID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.invCC SET "+Parts1+" = 'N/A' WHERE ID = '"+frID+"'";              
+    st.executeUpdate(sql2);
+   String newsql3 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'CC', '"+frBra+"-"+Parts+" TO "+toBra+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql3);
+     String newsql35 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Add to Reserve', 'CC', '"+Parts+" - "+toNam+" From "+toBra+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql35);
+    String newsql13 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+frBra+"','Transferred "+Parts+"', 'CC','"+Nam+"','IT DEPARTMENT','"+frID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'To "+toBra+"')";
+    st.execute(newsql13);
+    String newsql14 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+toBra+"','Transferred  "+Parts+" to Reserve', 'CC','"+toNam+"','IT DEPARTMENT','"+toID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'To ADMIN- IT- IT RESERVE')";
+    st.execute(newsql14);
+     String newsql41 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('ADMIN','Waiting for Action', 'CC','"+Parts+" "+toNam+"','IT DEPARTMENT','"+id+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'From "+toBra+"')";
+    st.execute(newsql41);
+     String sql61 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql61);             
+            if (rs3.next()) { 
+             hisid = rs3.getInt("HIS_ID");   
+            }
+    String sql81 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+id+"', '"+Parts+"', '"+toNam+"', 'FOR SHIPPING', "+hisid+" )";        
+     st.executeUpdate(sql81);
+    
+      String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+toBra+"','Waiting for Action', 'CC','"+Parts+"','IT DEPARTMENT','"+toID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'From "+frBra+"')";
+    st.execute(newsql4);
+    String sql6 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs31; 
+    rs31 = st.executeQuery(sql6);             
+            if (rs31.next()) { 
+             hisid = rs31.getInt("HIS_ID");   
+            }
+    String sql8 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+toID+"', '"+Parts+"', '"+Nam+"', 'FOR SHIPPING', "+hisid+" )";        
+     st.executeUpdate(sql8);
+    showRep();
+JOptionPane.showMessageDialog(null,"CCTV HDD for Transmittal!");
+
+    }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }}
+    if(n == JOptionPane.NO_OPTION){ }
+    if(n == JOptionPane.CLOSED_OPTION){ }
+}
+else {
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+    
+    Parts1 = "HDD";
+    
+    String sql ="UPDATE dbo.invCC SET "+Parts1+" = 'FOR SHIPPING' WHERE ID = '"+toID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.invCC SET "+Parts1+" = 'N/A' WHERE ID = '"+frID+"'";              
+    st.executeUpdate(sql2);
+   String newsql3 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'CC', '"+frBra+"-"+Parts+" TO "+toBra+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql3);
+    String newsql13 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+frBra+"','Transferred "+Parts+"', 'CC','"+Nam+"','IT DEPARTMENT','"+frID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'To "+toBra+"')";
+    st.execute(newsql13);
+      String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+toBra+"','Waiting for Action', 'CC','"+Parts+"','IT DEPARTMENT','"+toID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'From "+frBra+"')";
+    st.execute(newsql4);
+    String sql6 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs31; 
+    rs31 = st.executeQuery(sql6);             
+            if (rs31.next()) { 
+             hisid = rs31.getInt("HIS_ID");   
+            }
+    String sql8 ="INSERT INTO dbo.Ship (Dev_ID, Ship_Item, Ship_Name, Ship_Stat, Ship_ID) Values ('"+toID+"', '"+Parts+"', '"+Nam+"', 'FOR SHIPPING', "+hisid+" )";        
+     st.executeUpdate(sql8);
+    showRep();
+JOptionPane.showMessageDialog(null,"CCTV HDD for Transmittal!");
+
     }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
