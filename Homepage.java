@@ -6421,8 +6421,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
     private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
    logoutLog();
-   LoginOpen();
-   
     }//GEN-LAST:event_LOGOUTActionPerformed
 
     private void LOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGActionPerformed
@@ -10819,6 +10817,7 @@ null, options, options[0]);
         Statement sta = con.createStatement();
         String newsql = "INSERT INTO dbo.userLogs(Laction,Ldate,Ltime) VALUES ('Logout','"+dt.format(date)+"','"+tm.format(time)+"')";					
         sta.execute(newsql);        // TODO add your handling code here:
+        LoginOpen();
     } catch (SQLException ex) {
         Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);
     }
