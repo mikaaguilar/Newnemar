@@ -4688,11 +4688,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jLabel24.setText("From:");
 
-        jDateChooser2.setDateFormatString("MMM/dd/yy");
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
 
         jLabel25.setText("To:");
 
-        jDateChooser1.setDateFormatString("MMM/dd/yy");
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sort");
@@ -4776,11 +4776,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jLabel27.setText("From:");
 
-        jDateChooser3.setDateFormatString("MMM/dd/yy");
+        jDateChooser3.setDateFormatString("yyyy-MM-dd");
 
         jLabel29.setText("To:");
 
-        jDateChooser4.setDateFormatString("MMM/dd/yy");
+        jDateChooser4.setDateFormatString("yyyy-MM-dd");
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sort");
@@ -4975,6 +4975,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         ));
         brTbl.setMaximumSize(new java.awt.Dimension(1013, 431));
         brTbl.setMinimumSize(new java.awt.Dimension(1013, 431));
+        brTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                brTblMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(brTbl);
 
         dpTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -4990,6 +4995,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         ));
         dpTbl.setMaximumSize(new java.awt.Dimension(530, 431));
         dpTbl.setMinimumSize(new java.awt.Dimension(530, 431));
+        dpTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dpTblMouseClicked(evt);
+            }
+        });
         jScrollPane32.setViewportView(dpTbl);
 
         branchAddbtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -6976,7 +6986,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private void branchSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchSaveActionPerformed
     branchcard.setVisible(false);
     deptcard.setVisible(false);
-     brAdd();
+    brAdd();
     }//GEN-LAST:event_branchSaveActionPerformed
 
     private void branchCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchCancel1ActionPerformed
@@ -6987,11 +6997,14 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private void branchSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchSave1ActionPerformed
        branchcard.setVisible(false);
        deptcard.setVisible(false);
+       brEdit();
+
     }//GEN-LAST:event_branchSave1ActionPerformed
 
     private void deptSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptSave1ActionPerformed
        branchcard.setVisible(false);
        deptcard.setVisible(false);
+       dpEdit();
     }//GEN-LAST:event_deptSave1ActionPerformed
 
     private void branchAddbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_branchAddbtnActionPerformed
@@ -7530,6 +7543,14 @@ hisEditable();        // TODO add your handling code here:
         hisUpdate();
         hisNonEditable();   
     }//GEN-LAST:event_pcHisUpdate2ActionPerformed
+
+    private void brTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_brTblMouseClicked
+brSet();       
+    }//GEN-LAST:event_brTblMouseClicked
+
+    private void dpTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dpTblMouseClicked
+dpSet();      
+    }//GEN-LAST:event_dpTblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -11850,7 +11871,7 @@ Statement sta = con.createStatement();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-       
+              showBra();
 }
 
 public void showDep(){
@@ -11919,7 +11940,7 @@ Statement sta = con.createStatement();
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
-       
+     showDep();
 }
 
 
@@ -12422,6 +12443,14 @@ if(Categ.equals("PC")){
     String sql46 ="INSERT INTO dbo.invPC(Branch,Dept,Owner,Proce,MBoard,Ram,HDD,UPS,KeyB,Mouse,Rem,Moni,ID,Categ,Stat) VALUES ('"+br+"','"+dp+"','"+ow+"','"+pr+"','"+mb+"','"+rm+"','"+hd+"','"+up+"','"+kb+"','"+ms+"','"+rm+"','"+mn+"','"+dID+"','PC','PENDING')";        
     st12.execute(sql46);
     
+    
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', '"+Categ+"', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st12.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
+    st12.execute(newsql1);
+     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
+    st12.execute(newsql4);
+    
     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
     ResultSet rs2;
     rs2 = st12.executeQuery(sql4);             
@@ -12431,12 +12460,6 @@ if(Categ.equals("PC")){
     String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', 'Unit', 'N/A', 'PENDING', '"+tempid+"' )";         
      st12.execute(sql44);
 
-    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', '"+Categ+"', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-    st12.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
-    st12.execute(newsql1);
-     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
-    st12.execute(newsql4);
      JOptionPane.showMessageDialog(null,"Item Requested!");
 }
 else
@@ -12480,6 +12503,12 @@ else
     }
     st12.executeUpdate(word);
    
+     String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', 'PC', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st12.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+    st12.execute(newsql1);
+     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+    st12.execute(newsql4);
     
     String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
     ResultSet rs2;
@@ -12490,12 +12519,6 @@ else
     String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', '"+ty+"', 'N/A', 'PENDING', '"+tempid+"' )";         
      st12.executeUpdate(sql44);
 
-    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', 'PC', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
-    st12.execute(newsql);
-    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
-    st12.execute(newsql1);
-     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
-    st12.execute(newsql4);
      JOptionPane.showMessageDialog(null,"Item Requested!");
 }
 try{
@@ -12512,6 +12535,18 @@ catch (SQLException ex) {
 JOptionPane.showMessageDialog(null,"SQLExceptionSelect: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  } 
+  try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "TRUNCATE TABLE dbo.Cart";         
+st.execute(sql);
+sql1 = "TRUNCATE TABLE dbo.invTEMP";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
 }
 public void purReceiv() {
 int selectedRowIndex = reqTbl.getSelectedRow();
@@ -12539,7 +12574,7 @@ if (Categ.equals("PC")){
     String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
     st.executeUpdate(sql3);
     showRep();
-    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',Action = 'Received',Remarks = 'Device Received' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     
     }

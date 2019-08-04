@@ -7249,7 +7249,7 @@
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
                       <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="MMM/dd/yy"/>
+                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
@@ -7259,7 +7259,7 @@
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
                       <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="MMM/dd/yy"/>
+                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton2">
@@ -7382,7 +7382,7 @@
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser3">
                       <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="MMM/dd/yy"/>
+                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel29">
@@ -7392,7 +7392,7 @@
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser4">
                       <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="MMM/dd/yy"/>
+                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton3">
@@ -7614,6 +7614,9 @@
                           <Dimension value="[1013, 431]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="brTblMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -7641,6 +7644,9 @@
                           <Dimension value="[530, 431]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dpTblMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
