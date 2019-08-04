@@ -6689,6 +6689,9 @@ hisSet();        // TODO add your handling code here:
      Done.setVisible(false);
      Transfer.setVisible(false);
      Sys.setVisible(false);
+     jRadioButton4.setEnabled(true);
+     jRadioButton5.setEnabled(true);
+     jRadioButton6.setEnabled(true);
      showHP();
      HOM.setBackground(Color.ORANGE);
      INV.setBackground(new Color(0,0,51, 61));
@@ -12142,8 +12145,13 @@ public void cartAdd(){
     if(jCheckBox1.isSelected())
         {purName = "IT RESERVE";}
         else
-        {purName = reqOwn.getText();}
+        {purName = reqOwn.getText();
+        }
         String s8 = "N/A";
+         if(purName.equals("")){
+        JOptionPane.showMessageDialog(null,"Owner Field cannot be empty!");
+    }
+         else{
 if(jRadioButton1.isSelected()){
 if(dType.equals("Unit")){
         String s1 = unitPro.getText();
@@ -12279,6 +12287,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 }
 showCart();
 }
+         }
 }
 public void showCart(){
 try {
@@ -12394,6 +12403,14 @@ public void itemPurchase(){
         else
         {purName = reqOwn.getText();}
         String s8 = "N/A";
+         if(purName.equals("")){
+        JOptionPane.showMessageDialog(null,"Owner Field cannot be empty!");
+    }
+         else{
+if(unitKey2.equals("")){
+        JOptionPane.showMessageDialog(null,"Price Field cannot be empty!");
+    }
+else{
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
 Statement st12=con.createStatement();        
@@ -12547,6 +12564,9 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
+}
+}
+
 public void purReceiv() {
 int selectedRowIndex = reqTbl.getSelectedRow();
 String Categ = reqTbl.getValueAt(selectedRowIndex,0).toString();
