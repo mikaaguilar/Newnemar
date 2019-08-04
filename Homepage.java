@@ -7504,8 +7504,8 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
         String Categ = repTbl.getValueAt(selectedRowIndex,0).toString();
         int id = (int) repTbl.getValueAt(selectedRowIndex,5);
         int hisid = (int) repTbl.getValueAt(selectedRowIndex,6);
-        if(Dev.equals("Unit")){AR.showUnit(id,hisid);}
-        else if(Dev.equals("CCTV")){JOptionPane.showMessageDialog(null,"Not available!");}
+        if(Dev.equals("PC Unit")){AR.showUnit(id,hisid);}
+        else if(Dev.equals("HDD")&&Categ.equals("CC")){AR.showCC(id,hisid);}
         else if(Dev.equals("Printer")){AR.showPR(id,hisid);}
         else{
         AR.showOT(Dev, id,hisid, Categ);}
@@ -8555,7 +8555,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     public String sql,sql1; 
     public String utype,Parts1;
 //FUNCTIONS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public void addArchives(String Categ,String ID){
+public void addArchives(String Categ,String ID, String Nam){
 try{
 Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
         DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
@@ -8563,7 +8563,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
         DateFormat tm = new SimpleDateFormat("HH:mm:ss");
         Date time = new Date();
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
- String sql ="INSERT INTO dbo.Archives VALUES ('"+Categ+"','"+ID+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+ String sql ="INSERT INTO dbo.Archives (Categ, Dev_ID,Dev_Name, Date, Time) VALUES ('"+Categ+"','"+ID+"', '"+Nam+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 }
  catch (SQLException ex) {    
@@ -8916,6 +8916,8 @@ String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Dis
 sta.execute(newsql);
 String newsql4 = "INSERT INTO dbo.Archives (Categ,Dev_ID,Dev_Name,Date,Time) VALUES ('"+Categ+"','"+ID+"','PC Unit - "+Bra+"-"+Dep+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
  st.execute(newsql4);
+  String newsql12 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Disposed', 'PC','PC Unit from "+Dep+" - "+Own+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0','N/A')";
+            sta.execute(newsql12);
 JOptionPane.showMessageDialog(null,"Computer Successfully Disposed!");
 Homepage hp = new Homepage();
 hp.showRep();
@@ -8944,6 +8946,8 @@ String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Dis
 sta.execute(newsql);
 String newsql4 = "INSERT INTO dbo.Archives (Categ,Dev_ID,Dev_Name,Date,Time) VALUES ('"+Categ+"','"+ID+"','CCTV Unit - "+Bra+"-"+SP+"','"+dt.format(date)+"','"+tm.format(time)+"')";
  st.execute(newsql4);
+ String newsql12 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Disposed', 'CC','CCTV Unit','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0','N/A')";
+            sta.execute(newsql12);
 JOptionPane.showMessageDialog(null,"CCTV Successfully Disposed!");
 Homepage hp = new Homepage();
 hp.showRep();
@@ -8974,6 +8978,8 @@ String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Dis
 sta.execute(newsql);
 String newsql4 = "INSERT INTO dbo.Archives (Categ,Dev_ID,Dev_Name,Date,Time) VALUES ('"+Categ+"','"+ID+"','Printer Unit - "+Bra+"-"+Dep+"-"+SP+"-"+Own+"','"+dt.format(date)+"','"+tm.format(time)+"')";
  st.execute(newsql4);
+  String newsql12 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Disposed', 'PR','Printer "+Dep+" - "+Own+"','IT DEPARTMENT','"+ID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0','N/A')";
+ sta.execute(newsql12);
 JOptionPane.showMessageDialog(null,"Printer Successfully Disposed!");
 Homepage hp = new Homepage();
 hp.showRep();
@@ -9193,7 +9199,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
  String sql ="UPDATE dbo.invPC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
 st.execute(sql);
- String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
+ String sql1 ="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
 st.execute(sql1);
 
 Statement sta = con.createStatement();
@@ -9208,7 +9214,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Device Disposed!"); 
-addArchives("PC",ID);
+addArchives("PC",ID, s1+"-"+s2+"-"+s3);
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9450,7 +9456,7 @@ String s4 = ccPW.getText();
 String s5 = ccNum.getText();
 String s6 = ccRem.getText();
        int selectedRowIndex = ccTbl.getSelectedRow();
-       String ID = ccTbl.getValueAt(selectedRowIndex,5).toString();
+       String ID = ccTbl.getValueAt(selectedRowIndex,8).toString();
 
 Object[] options = { "OK", "CANCEL" };
 int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
@@ -9463,7 +9469,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
  String sql ="UPDATE dbo.invCC SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
 st.execute(sql);
- String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
+ String sql1 ="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
 st.execute(sql1);
 
 
@@ -9479,7 +9485,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Device Disposed!"); 
-addArchives("CC",ID);
+addArchives("CC",ID, s1+"-"+s2);
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9685,7 +9691,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
  String sql ="UPDATE dbo.invPR SET Stat = 'DISPOSED' WHERE ID = '"+ID+"'"; 
 st.execute(sql);
- String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
+ String sql1 ="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+ID+"'"; 
 st.execute(sql1);
 
 Statement sta = con.createStatement();
@@ -9699,7 +9705,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"Device Deleted!"); 
-addArchives("PR",ID);
+addArchives("PR",ID, s1+"-"+s4+"-"+s3+"-"+s2);
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9746,7 +9752,7 @@ public void showOT(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Dept AS Department, Owner as Name,Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' ORDER by Branch";         
+sql = "SELECT Branch, Dept AS Department, Owner as Name,Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat != 'DISPOSED' ORDER by Branch";         
 ResultSet rs=st.executeQuery(sql); 
 otTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -9783,7 +9789,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
  String sql ="UPDATE dbo.invOT SET Stat = 'DISPOSED' WHERE ID = '"+DevID+"'"; 
 st.execute(sql);
- String sql1 ="UPDATE dbo.Inv SET Stat = 'DISPOSED' WHERE Dev_ID = '"+DevID+"'"; 
+ String sql1 ="UPDATE dbo.Inv SET Status = 'DISPOSED' WHERE Dev_ID = '"+DevID+"'"; 
 st.execute(sql1);
 
 Statement sta = con.createStatement();
@@ -9797,7 +9803,7 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 JOptionPane.showMessageDialog(null,"OT "+Dev+" Deleted!"); 
-addArchives("OT",DevID);
+addArchives("OT",DevID, Dev+"-"+Nam);
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -10570,7 +10576,7 @@ if (Categ.equals("PC")){
     showRep();
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
-    addArchives("PC",Dev);
+    addArchives("PC",Dev,Bra+Dep+Own);
     
     }
     else {
@@ -10624,7 +10630,7 @@ if (Categ.equals("PC")){
      String newsql9 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('ADMIN','Add to Reserve', '"+Categ+"','"+sel+" - "+devname+" from "+Bra+"-"+Dep+"-"+Own+"','IT DEPARTMENT','"+hm+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0.00', '"+sel+" Malfunctioned' )";
      st.execute(newsql9);
     showRep();
-    addArchives("OT",hm);
+    addArchives("OT",hm,sel+devname);
     }
  }
 
@@ -10639,6 +10645,7 @@ else if (Categ.equals("CC")){
     showRep();
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
+      addArchives("CC",Dev,Bra);
     }
     else {
     String sel = Ite; 
@@ -10677,7 +10684,7 @@ else if (Categ.equals("CC")){
       String newsql9 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('ADMIN','Add to Reserve', '"+Categ+"','"+sel+" - "+devname+" from "+Bra+"-"+Dep+"-"+Own+"','IT DEPARTMENT','"+hm+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','0.00', '"+sel+" Malfunctioned' )";
      st.execute(newsql9);
     showRep();
-    addArchives("OT",hm);
+    addArchives("OT",hm,sel+devname);
     }
  }
 
@@ -10691,7 +10698,7 @@ else if (Categ.equals("PR")){
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
-    addArchives("PR",Dev);
+    addArchives("PR",Dev, Bra+Dep+Own);
 }
 
 else if (Categ.equals("OT")){        
@@ -10704,7 +10711,7 @@ else if (Categ.equals("OT")){
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Disposed' WHERE HIS_ID  = '"+His+"'";         
      st.executeUpdate(sql4);
     showRep();
-    addArchives("OT",Dev);
+    addArchives("OT",Dev,"");
 }
 
 Statement sta = con.createStatement();
@@ -12253,7 +12260,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);   
 String sql1 ="INSERT INTO dbo.Branch VALUES ('"+s1+"','"+s2+"','"+s3+"','RUNNING')";         
 st.execute(sql1);
- String sql ="INSERT INTO dbo.Logs VALUES ('Branch','"+s1+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+ String sql ="INSERT INTO dbo.Logs VALUES ('Add Branch',' 'BR', "+s1+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 }
  catch (SQLException ex) {    
@@ -12322,7 +12329,7 @@ Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;da
 Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);   
 String sql1 ="INSERT INTO dbo.Departments VALUES ('"+s1+"','"+s2+"')";         
 st.execute(sql1);
- String sql ="INSERT INTO dbo.Logs VALUES ('Department','"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
+ String sql ="INSERT INTO dbo.Logs VALUES ('Add Department','DP','Branch "+s1+" - "+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";         
 st.execute(sql);
 }
  catch (SQLException ex) {    

@@ -179,6 +179,7 @@ public class Replace extends javax.swing.JFrame {
        if(type.equals("OT")){UpdateOT();}
        else if(type.equals("Unit")){UpdateUnit();}
        else if(type.equals("Printer")){UpdatePrinter();}
+       else if(type.equals("CCTV")){UpdateCC();}
     }//GEN-LAST:event_reserveSelectActionPerformed
 
     /**
@@ -299,7 +300,6 @@ public class Replace extends javax.swing.JFrame {
 
     });
 
-                 setJTableColumnsWidth(otTbl, 480,20, 55,10,10, 5);
                  Homepage.setCellsAlignment1(otTbl, SwingConstants.CENTER);
 }
 public void showOT(String Dev, int ID, int HIS, String Categ){
@@ -360,6 +360,27 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 FilterOT(otTbl,reserveSearch);
 type = "Printer";
+DevID = ID;
+HisID = HIS;
+}
+
+public void showCC(int ID, int HIS){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();        
+
+String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = 'HDD' ORDER by ID";         
+ResultSet rs=st.executeQuery(sql); 
+otTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+FilterOT(otTbl,reserveSearch);
+type = "CCTV";
 DevID = ID;
 HisID = HIS;
 }
@@ -478,6 +499,56 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }}
+public void UpdateCC(){
+int selectedRowIndex = otTbl.getSelectedRow();
+String Dev = otTbl.getValueAt(selectedRowIndex,0).toString();
+String Nam = otTbl.getValueAt(selectedRowIndex,1).toString();
+String Qty = otTbl.getValueAt(selectedRowIndex,2).toString();
+String Qlt = otTbl.getValueAt(selectedRowIndex,3).toString();
+String ID = otTbl.getValueAt(selectedRowIndex,4).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+ String sel = Dev; 
+
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+
+    String sql ="UPDATE dbo.invCC SET HDD = '"+Nam+"' WHERE ID = '"+DevID+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
+    st.executeUpdate(sql4);
+    String sql7 = "SELECT  Rep_Name FROM dbo.Rep WHERE Rep_ID = '"+HisID+"'";         
+    ResultSet rs3; 
+    rs3 = st.executeQuery(sql7);             
+            if (rs3.next()) { 
+             devname = rs3.getString("Rep_Name");   
+            }
+      String sql8 = "SELECT  Branch, Dept, Owner FROM dbo.invPC WHERE ID = '"+DevID+"'";         
+    ResultSet rs4; 
+    rs4 = st.executeQuery(sql8);             
+            if (rs4.next()) { 
+             PrevOwner = rs4.getString("Owner");  
+             PrevBranch = rs4.getString("Branch");  
+             PrevDept = rs4.getString("Dept");  
+            }
+    String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Qlt = 'USED', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+"' WHERE ID = '"+ID+"'";         
+    st.executeUpdate(sql3);
+    String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE Dev_ID = '"+ID+"'";         
+    st.executeUpdate(sql5);
+     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-"+item+"-"+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st.execute(newsql8);
+    JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
+     this.dispose();}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
 
 
 
@@ -502,7 +573,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
              PrevDept = rs4.getString("Dept");  
             }
     String sql ="UPDATE dbo.invPC SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
-    String sql10 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE Dev_ID = '"+DevID+"'";            
+    String sql10 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Status = 'DEFECTIVE' WHERE Dev_ID = '"+DevID+"'";            
     st.executeUpdate(sql10);
     st.executeUpdate(sql);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
@@ -554,7 +625,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
    
     String sql3 ="UPDATE dbo.invPR SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING', Rem = 'To ' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
-    String sql5 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING', Rem = 'To ' WHERE Dev_ID = '"+ID+"'";         
+    String sql5 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Status = 'WORKING', Rem = 'To ' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql5);
     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PR', '"+PrevBranch+" - "+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
