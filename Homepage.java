@@ -44,10 +44,12 @@ public PreparedStatement st, st1, st2,sta;
 public ResultSet rs, rs1, rs2; 
 public static String z;
 public String tr;
-public String pu;
-public String purName,item, name, devname = null;
 public boolean g = false;
-public int id, hisid;
+public int hisid;
+public String pu,Categ,cItem;
+public String br,dp,ow,pr,mb,rm,hd,up,kb,ms,re,mn,ty,na,un,pw,cn;
+public String purName,item,cName,word, name, devname = null;
+public int id,tempid,cnt,dID;
 
     public Homepage() {
         initComponents();
@@ -366,6 +368,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel53 = new javax.swing.JLabel();
         cctvQty = new javax.swing.JSpinner();
         cctvAdd = new javax.swing.JButton();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel182 = new javax.swing.JLabel();
+        una = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
         Printer = new javax.swing.JPanel();
         printerSearch = new javax.swing.JTextField();
         jScrollPane19 = new javax.swing.JScrollPane();
@@ -853,6 +859,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         reqDone.setBackground(new java.awt.Color(255, 255, 255));
         reqDone.setText("Received");
+        reqDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqDoneActionPerformed(evt);
+            }
+        });
 
         reqAdd.setBackground(new java.awt.Color(255, 255, 255));
         reqAdd.setText("Request");
@@ -2505,6 +2516,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         unitAdd.setBackground(new java.awt.Color(255, 255, 255));
         unitAdd.setText("Add to Cart");
+        unitAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unitAddActionPerformed(evt);
+            }
+        });
 
         jLabel107.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel107.setForeground(new java.awt.Color(51, 51, 51));
@@ -2644,6 +2660,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         othersAdd.setBackground(new java.awt.Color(255, 255, 255));
         othersAdd.setText("Add to Cart");
+        othersAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                othersAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout OthersLayout = new javax.swing.GroupLayout(Others);
         Others.setLayout(OthersLayout);
@@ -2717,13 +2738,24 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         cctvField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel53.setText("Quantity:");
+        jLabel53.setText("Camera Quantity:");
 
         cctvQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cctvQty.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         cctvAdd.setBackground(new java.awt.Color(255, 255, 255));
         cctvAdd.setText("Add to Cart");
+        cctvAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cctvAddActionPerformed(evt);
+            }
+        });
+
+        jLabel111.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel111.setText("Username:");
+
+        jLabel182.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel182.setText("Password:");
 
         javax.swing.GroupLayout CCTVLayout = new javax.swing.GroupLayout(CCTV);
         CCTV.setLayout(CCTVLayout);
@@ -2734,15 +2766,26 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CCTVLayout.createSequentialGroup()
                         .addComponent(cctvSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(779, 779, 779))
+                        .addGap(779, 789, Short.MAX_VALUE))
                     .addGroup(CCTVLayout.createSequentialGroup()
                         .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane12)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CCTVLayout.createSequentialGroup()
-                                .addComponent(jLabel52)
-                                .addGap(24, 24, 24)
-                                .addComponent(cctvField, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                                .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CCTVLayout.createSequentialGroup()
+                                        .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel111)
+                                            .addComponent(jLabel52))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(CCTVLayout.createSequentialGroup()
+                                        .addComponent(jLabel182)
+                                        .addGap(10, 10, 10)))
+                                .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                                    .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cctvField, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                                        .addComponent(una)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                                 .addComponent(jLabel53)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cctvQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2757,14 +2800,22 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(cctvSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cctvField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel52)
                     .addComponent(jLabel53)
                     .addComponent(cctvQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cctvAdd))
-                .addGap(69, 69, 69))
+                .addGap(18, 18, 18)
+                .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel111)
+                    .addComponent(una, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel182)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel19.add(CCTV, "card4");
@@ -2804,6 +2855,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         printerAdd.setBackground(new java.awt.Color(255, 255, 255));
         printerAdd.setText("Add to Request");
+        printerAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printerAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PrinterLayout = new javax.swing.GroupLayout(Printer);
         Printer.setLayout(PrinterLayout);
@@ -2878,7 +2934,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18a))
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(509, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                     .addGap(0, 58, Short.MAX_VALUE)
@@ -2927,8 +2983,18 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jScrollPane10.setViewportView(Cart);
 
         reqRemove.setText("Remove");
+        reqRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqRemoveActionPerformed(evt);
+            }
+        });
 
         reqCheckout.setText("Check-out");
+        reqCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reqCheckoutActionPerformed(evt);
+            }
+        });
 
         reqCancel.setText("Cancel");
         reqCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -5850,7 +5916,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(pcBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -6156,7 +6222,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(18, 18, 18)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 345, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -6172,7 +6238,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         INV.setForeground(new java.awt.Color(255, 255, 255));
         INV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/whiteinv.png"))); // NOI18N
         INV.setText("INVENTORY");
-        INV.setBorder(null);
         INV.setBorderPainted(false);
         INV.setOpaque(false);
         INV.addActionListener(new java.awt.event.ActionListener() {
@@ -6186,7 +6251,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HIS.setForeground(new java.awt.Color(255, 255, 255));
         HIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dbhis.png"))); // NOI18N
         HIS.setText("HISTORY");
-        HIS.setBorder(null);
         HIS.setBorderPainted(false);
         HIS.setOpaque(false);
         HIS.addActionListener(new java.awt.event.ActionListener() {
@@ -6200,7 +6264,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         LOG.setForeground(new java.awt.Color(255, 255, 255));
         LOG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/wlog.png"))); // NOI18N
         LOG.setText("LOGS");
-        LOG.setBorder(null);
         LOG.setBorderPainted(false);
         LOG.setOpaque(false);
         LOG.addActionListener(new java.awt.event.ActionListener() {
@@ -6214,7 +6277,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         LOGOUT.setForeground(new java.awt.Color(255, 255, 255));
         LOGOUT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/wsign.png"))); // NOI18N
         LOGOUT.setText("SIGNOUT");
-        LOGOUT.setBorder(null);
         LOGOUT.setBorderPainted(false);
         LOGOUT.setMaximumSize(new java.awt.Dimension(103, 61));
         LOGOUT.setMinimumSize(new java.awt.Dimension(103, 61));
@@ -6233,7 +6295,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         HOM.setForeground(new java.awt.Color(255, 255, 255));
         HOM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/whome.png"))); // NOI18N
         HOM.setText("HOMEPAGE");
-        HOM.setBorder(null);
         HOM.setBorderPainted(false);
         HOM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -6246,7 +6307,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         System.setForeground(new java.awt.Color(255, 255, 255));
         System.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sys.png"))); // NOI18N
         System.setText("SYSTEM");
-        System.setBorder(null);
         System.setBorderPainted(false);
         System.setOpaque(false);
         System.addActionListener(new java.awt.event.ActionListener() {
@@ -6365,7 +6425,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showHis();
-     hisSet();
      Hiscount();
     }//GEN-LAST:event_HISActionPerformed
 
@@ -6590,8 +6649,7 @@ hisSet();        // TODO add your handling code here:
      Done.setVisible(false);
      Transfer.setVisible(false);
      Sys.setVisible(false);
-     showRep();
-     showShip();
+     showHP();
      HOM.setBackground(Color.ORANGE);
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
@@ -6649,6 +6707,19 @@ hisSet();        // TODO add your handling code here:
      jRadioButton3.setEnabled(true);
      jRadioButton1.setSelected(true);
       showPurUnit();
+       try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "TRUNCATE TABLE dbo.Cart";         
+st.execute(sql);
+sql1 = "TRUNCATE TABLE dbo.invTEMP";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+       showCart();
     }//GEN-LAST:event_reqAddActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -7122,6 +7193,18 @@ hisSet();        // TODO add your handling code here:
      Transfer.setVisible(false);
      Sys.setVisible(false);
      }
+     try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "TRUNCATE TABLE dbo.invTEMP";         
+st.execute(sql);
+sql1 = "TRUNCATE TABLE dbo.Cart";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
      
      
     }//GEN-LAST:event_reqCancelActionPerformed
@@ -7332,6 +7415,34 @@ showDepPur();
      System.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void reqDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqDoneActionPerformed
+     purReceiv(); 
+    }//GEN-LAST:event_reqDoneActionPerformed
+
+    private void reqCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqCheckoutActionPerformed
+        itemPurchase(); 
+    }//GEN-LAST:event_reqCheckoutActionPerformed
+
+    private void unitAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitAddActionPerformed
+        cartAdd();  
+    }//GEN-LAST:event_unitAddActionPerformed
+
+    private void othersAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_othersAddActionPerformed
+       cartAdd();   
+    }//GEN-LAST:event_othersAddActionPerformed
+
+    private void reqRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqRemoveActionPerformed
+      cartDel();
+    }//GEN-LAST:event_reqRemoveActionPerformed
+
+    private void cctvAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cctvAddActionPerformed
+       cartAdd(); 
+    }//GEN-LAST:event_cctvAddActionPerformed
+
+    private void printerAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printerAddActionPerformed
+        cartAdd(); 
+    }//GEN-LAST:event_printerAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -7591,6 +7702,7 @@ showDepPur();
     private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
@@ -7669,6 +7781,7 @@ showDepPur();
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel180;
     private javax.swing.JLabel jLabel181;
+    private javax.swing.JLabel jLabel182;
     private javax.swing.JLabel jLabel18a;
     private javax.swing.JLabel jLabel18b;
     private javax.swing.JLabel jLabel18b1;
@@ -7843,6 +7956,7 @@ showDepPur();
     private javax.swing.JSpinner othersQty;
     private javax.swing.JTextField othersSearch;
     private javax.swing.JTable othersTbl;
+    private javax.swing.JTextField pass;
     private javax.swing.JComboBox<String> pcBR;
     private javax.swing.JButton pcDel;
     public static javax.swing.JButton pcEdit;
@@ -7953,6 +8067,7 @@ showDepPur();
     private javax.swing.JComboBox<String> transferSelect;
     private javax.swing.JLabel uLogCnt;
     private javax.swing.JButton ulogrefresh;
+    private javax.swing.JTextField una;
     private javax.swing.JButton unitAdd;
     private javax.swing.JComboBox<String> unitDept;
     private javax.swing.JTextField unitHar;
@@ -9654,9 +9769,8 @@ sta.execute(newsql);
   String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+Bra+"','Ready for Transmittal', '"+Categ+"','"+Dep+"-"+Own+"','IT DEPARTMENT','"+Dev+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"', 0.00 ,'"+Ite+" For shipping')";
     sta.execute(newsql1);
     String sql6 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
-    ResultSet rs2; 
-    rs2 = st.executeQuery(sql6);             
-            if (rs2.next()) { 
+    ResultSet rs2 = st.executeQuery(sql6);     
+      if (rs2.next()) { 
              id = rs2.getInt("HIS_ID");   
             }
             
@@ -9886,13 +10000,29 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
  FilterHP(shipTbl, shipSearch);
 }
+public void showPur(){
+   try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Categ as DeviceCode, Branch, Dept as Department, Owner, Pur_Item as Device, Pur_Name as Name, Pur.Dev_ID as DevID, Pur_ID as ID FROM dbo.Inv, dbo.Pur WHERE Inv.Dev_ID = Pur.Dev_ID AND Pur_Stat = 'PENDING';";         
+ResultSet rs=st.executeQuery(sql); 
+reqTbl.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterHP(reqTbl, reqSearch);
+}
 public void showHP(){
 //REPAIR
 showRep();
 //SHIPPED
 showShip();
 //PURCHASE
-
+showPur();
 }
 public void shipDeliv() {
 int selectedRowIndex = shipTbl.getSelectedRow();
@@ -11673,7 +11803,532 @@ public void prSetpr(){
         printerField.setText(printerTbl.getValueAt(selectedRowIndex,2).toString());
 }
 
+public void cartAdd(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+        String Branch = reqBranch.getSelectedItem().toString();
+        String Department = unitDept.getSelectedItem().toString();
+        String dType = unitSelect.getSelectedItem().toString();
+    if(jCheckBox1.isSelected())
+        {purName = "IT RESERVE";}
+        else
+        {purName = reqOwn.getText();}
+        String s8 = "N/A";
+if(jRadioButton1.isSelected()){
+if(dType.equals("Unit")){
+        String s1 = unitPro.getText();
+        String s2 = unitMot.getText();
+        String s3 = unitRam.getText();
+        String s4 = unitHar.getText();
+        String s5 = unitMon.getText();
+        String s6 = unitKey.getText();
+        String s7 = unitMou.getText();
+        String s9 = unitUPS.getText();
+        String qty = unitQty.getValue().toString();
+ try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement(); 
+String sql10 = "INSERT INTO dbo.invTEMP(Branch,Dept,Owner,First,Second,Third,Fourth,Fifth,Sixth,Seventh,Eight,Ninth,Categ,Stat) VALUES ('"+Branch+"','"+Department+"','"+purName+"','"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+s9+"','PC','PENDING')";         
+st.execute(sql10);
 
+String sq20 = "SELECT TOP 1 ID FROM dbo.invTEMP ORDER BY ID DESC";         
+ResultSet rs2;
+rs2 = st.executeQuery(sq20);             
+if (rs2.next()) { 
+id = rs2.getInt("ID");   
+}
+
+String sql1 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Processor', '"+s1+"', '"+qty+"', 'PENDING')";         
+st.execute(sql1);
+
+String sql2 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Motherboard', '"+s2+"', '"+qty+"', 'PENDING')";         
+st.execute(sql2);
+
+String sql3 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Ram', '"+s3+"', '"+qty+"', 'PENDING')";         
+st.execute(sql3);
+
+String sql4 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Harddrive', '"+s4+"', '"+qty+"', 'PENDING')";         
+st.execute(sql4);
+
+String sql5 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Monitor', '"+s5+"', '"+qty+"', 'PENDING')";         
+st.execute(sql5);
+
+String sql6 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Keyboard', '"+s6+"', '"+qty+"', 'PENDING')";         
+st.execute(sql6);
+
+String sql7 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','Mouse', '"+s7+"', '"+qty+"', 'PENDING')";
+st.execute(sql7);
+
+String sql9 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"','UPS', '"+s9+"', '"+qty+"', 'PENDING')";         
+st.execute(sql9);
+//TEMPORARY INVENTORY
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ showCart();
+}
+else
+{
+String qty = othersQty.getValue().toString();
+String item = othersField.getText();
+ try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement(); 
+String sql10 = "INSERT INTO dbo.invTEMP(Branch,Dept,Owner,First,Second,Third,Fourth,Fifth,Sixth,Seventh,Eight,Ninth,Categ,Stat) VALUES ('"+Branch+"','"+Department+"','"+purName+"','"+dType+"','"+item+"','"+qty+"','"+s8+"','NEW','"+s8+"','"+s8+"','"+s8+"','"+s8+"','OT','PENDING')";         
+st.execute(sql10);
+
+String sq20 = "SELECT TOP 1 ID FROM dbo.invTEMP ORDER BY ID DESC";         
+ResultSet rs2;
+rs2 = st.executeQuery(sq20);             
+if (rs2.next()) { 
+id = rs2.getInt("ID");   
+}
+
+String sql1 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"', '"+dType+"', '"+item+"', '"+qty+"', 'PENDING')";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+}
+showCart();
+}
+}
+if(jRadioButton2.isSelected()){
+String qty = cctvQty.getValue().toString();
+String item = cctvField.getText();
+un = una.getText();
+pw = pass.getText();
+cn = cctvQty.getValue().toString();
+ try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement(); 
+String sql10 = "INSERT INTO dbo.invTEMP(Branch,Dept,Owner,First,Second,Third,Fourth,Fifth,Sixth,Seventh,Eight,Ninth,Categ,Stat) VALUES ('"+Branch+"','"+Department+"','"+purName+"','"+dType+"','"+item+"','"+qty+"','"+s8+"','NEW','"+s8+"','"+s8+"','"+s8+"','"+s8+"','CC','PENDING')";         
+st.execute(sql10);
+
+String sq20 = "SELECT TOP 1 ID FROM dbo.invTEMP ORDER BY ID DESC";         
+ResultSet rs2;
+rs2 = st.executeQuery(sq20);             
+if (rs2.next()) { 
+id = rs2.getInt("ID");   
+}
+
+String sql1 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"', '"+dType+"', '"+item+"', '"+qty+"', 'PENDING')";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+}
+showCart();
+}
+if(jRadioButton3.isSelected()){
+String qty = printerQty.getValue().toString();
+String item = printerField.getText();
+ try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement(); 
+String sql10 = "INSERT INTO dbo.invTEMP(Branch,Dept,Owner,First,Second,Third,Fourth,Fifth,Sixth,Seventh,Eight,Ninth,Categ,Stat) VALUES ('"+Branch+"','"+Department+"','"+purName+"','"+dType+"','"+item+"','"+qty+"','"+s8+"','NEW','"+s8+"','"+s8+"','"+s8+"','"+s8+"','PR','PENDING')";         
+st.execute(sql10);
+
+String sq20 = "SELECT TOP 1 ID FROM dbo.invTEMP ORDER BY ID DESC";         
+ResultSet rs2;
+rs2 = st.executeQuery(sq20);             
+if (rs2.next()) { 
+id = rs2.getInt("ID");   
+}
+
+String sql1 ="INSERT INTO dbo.Cart (Cart_ID,Cart_Item, Cart_Name, Cart_Qty, Cart_Stat) Values ('"+id+"', '"+dType+"', '"+item+"', '"+qty+"', 'PENDING')";         
+st.execute(sql1);
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+}
+showCart();
+}
+}
+public void showCart(){
+try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Cart_ID,Cart_Item,Cart_Name,Cart_Qty FROM dbo.Cart";         
+ResultSet rs=st.executeQuery(sql); 
+Cart.setModel(DbUtils.resultSetToTableModel(rs));
+rs.close();
+st.close();
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
+public void cartDel(){
+        int selectedRowIndex = Cart.getSelectedRow();
+        String cartID = Cart.getValueAt(selectedRowIndex,0).toString();
+        String cType = Cart.getValueAt(selectedRowIndex,1).toString();
+        try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st12=con.createStatement();        
+String sql ="SELECT * FROM dbo.invTEMP WHERE ID = '"+cartID+"'"; 
+rs1=st12.executeQuery(sql); 
+if(rs1.next()){
+Categ = rs1.getString("Categ");
+}
+        }
+catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLExceptionSelect: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+if(Categ.equals("PC")){    
+    if(cType.equals("Processor")){
+    cName = "First";
+    }
+    if(cType.equals("Motherboard")){
+    cName = "Second";
+    }
+    if(cType.equals("Ram")){
+    cName = "Third";
+    }
+    if(cType.equals("Harddrive")){
+    cName = "Fourth";
+    }
+    if(cType.equals("Monitor")){
+    cName = "Fifth";
+    }
+    if(cType.equals("Keyboard")){
+    cName = "Sixth";
+    }
+    if(cType.equals("Mouse")){
+    cName = "Seventh";
+    }
+    if(cType.equals("UPS")){
+    cName = "Ninth";
+    }
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+if(n == JOptionPane.OK_OPTION){ 
+    try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="UPDATE dbo.invTEMP SET "+cName+" = 'N/A' WHERE ID = '"+cartID+"'"; 
+st1.execute(sql);
+ String sql1 ="DELETE FROM dbo.Cart WHERE Cart_Item= '"+cType+"' AND Cart_ID = '"+cartID+"'"; 
+st1.execute(sql1);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLExceptionUpDel: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Item Removed!"); 
+}
+}
+else{
+Object[] options = { "OK", "CANCEL" };
+int n = JOptionPane.showOptionDialog(null, "Are you sure you want to proceed?", "Delete",
+JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+null, options, options[0]);
+if(n == JOptionPane.OK_OPTION){ 
+    try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+ String sql ="DELETE FROM dbo.invTEMP WHERE ID = '"+cartID+"'"; 
+st1.execute(sql);
+ String sql1 ="DELETE FROM dbo.Cart WHERE Cart_Item= '"+cType+"' AND Cart_ID = '"+cartID+"'"; 
+st1.execute(sql1);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLExceptionUpDel: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+JOptionPane.showMessageDialog(null,"Item Removed!"); 
+}
+}
+showCart();
+}
+public void itemPurchase(){
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+        String Branch = reqBranch.getSelectedItem().toString();
+        String Department = unitDept.getSelectedItem().toString();
+        String dType = unitSelect.getSelectedItem().toString();
+        String Price = unitKey2.getText();
+        if(jCheckBox1.isSelected())
+        {purName = "IT RESERVE";}
+        else
+        {purName = reqOwn.getText();}
+        String s8 = "N/A";
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");              
+Statement st12=con.createStatement();        
+String sql ="SELECT TOP 1 ID FROM dbo.invTEMP ORDER BY ID DESC "; 
+rs1=st12.executeQuery(sql); 
+if(rs1.next()){
+cnt = rs1.getInt("ID");
+}
+
+for(int x = 1;x<=cnt;x++){
+String sql1 ="SELECT Categ FROM dbo.invTEMP WHERE ID = '"+x+"'"; 
+rs=st12.executeQuery(sql1); 
+if(rs.next()){
+Categ = rs.getString("Categ");
+}
+
+if(Categ.equals("PC")){
+    String sql14 ="SELECT * FROM dbo.invTEMP,dbo.Cart WHERE ID = '"+x+"' AND Cart_ID = '"+x+"'"; 
+    rs=st12.executeQuery(sql14); 
+    if(rs.next()){
+    br = rs.getString("Branch");
+    dp = rs.getString("Dept");
+    ow = rs.getString("Owner");
+    pr = rs.getString("First");
+    mb = rs.getString("Second");
+    rm = rs.getString("Third");
+    hd = rs.getString("Fourth");
+    up = rs.getString("Fifth");
+    kb = rs.getString("Sixth");
+    ms = rs.getString("Seventh");
+    re = rs.getString("Eight");
+    mn = rs.getString("Ninth");
+    ty = rs.getString("Cart_Item");
+    na = rs.getString("Cart_Name");
+    //JOptionPane.showMessageDialog(null,Categ+br+dp+ow+pr+mb+rm+hd+up+kb+ms+re+mn+ty+na); 
+    }
+    String sql43 ="INSERT INTO dbo.Inv(Categ,Branch,Owner,Dept,Status) VALUES ('"+Categ+"','"+br+"','"+ow+"','"+dp+"','PENDING')";        
+    st12.execute(sql43);
+    
+    String sql45 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
+    ResultSet rs3;
+    rs3 = st12.executeQuery(sql45);             
+    if (rs3.next()) { 
+    dID = rs3.getInt("Dev_ID");   
+    }
+    String sql46 ="INSERT INTO dbo.invPC(Branch,Dept,Owner,Proce,MBoard,Ram,HDD,UPS,KeyB,Mouse,Rem,Moni,ID,Categ,Stat) VALUES ('"+br+"','"+dp+"','"+ow+"','"+pr+"','"+mb+"','"+rm+"','"+hd+"','"+up+"','"+kb+"','"+ms+"','"+rm+"','"+mn+"','"+dID+"','PC','PENDING')";        
+    st12.execute(sql46);
+    
+    String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2;
+    rs2 = st12.executeQuery(sql4);             
+    if (rs2.next()) { 
+    tempid = rs2.getInt("HIS_ID");   
+    }
+    String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', 'Unit', 'N/A', 'PENDING', '"+tempid+"' )";         
+     st12.execute(sql44);
+
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', '"+Categ+"', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st12.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
+    st12.execute(newsql1);
+     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', '"+Categ+"','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Device Requested')";
+    st12.execute(newsql4);
+     JOptionPane.showMessageDialog(null,"Item Requested!");
+}
+else
+{
+ String sql14 ="SELECT * FROM dbo.invTEMP,dbo.Cart WHERE ID = '"+x+"' Cart_ID = '"+x+"'"; 
+    rs=st12.executeQuery(sql14); 
+    if(rs.next()){
+    br = rs.getString("Branch");
+    dp = rs.getString("Dept");
+    ow = rs.getString("Owner");
+    pr = rs.getString("First");
+    mb = rs.getString("Second");
+    rm = rs.getString("Third");
+    hd = rs.getString("Fourth");
+    up = rs.getString("Fifth");
+    kb = rs.getString("Sixth");
+    ms = rs.getString("Seventh");
+    re = rs.getString("Eight");
+    mn = rs.getString("Ninth");
+    ty = rs.getString("Cart_Item");
+    na = rs.getString("Cart_Name");
+    }
+    String sql43 ="INSERT INTO dbo.Inv(Categ,Branch,Owner,Dept,Status) VALUES ('"+Categ+"','"+br+"','"+ow+"','"+dp+"','PENDING')";        
+    st.executeUpdate(sql43);
+    
+    String sql45 = "SELECT TOP 1 Dev_ID FROM dbo.Inv ORDER BY Dev_ID DESC";         
+    ResultSet rs3;
+    rs3 = st12.executeQuery(sql45);             
+    if (rs3.next()) { 
+    dID = rs3.getInt("Dev_ID");   
+    }
+    
+    if(Categ.equals("OT")){
+    word = "INSERT INTO dbo.invOT(Branch,Dept,Owner,Categ,Device,Name,Qty,Rem,ID,Qlt,Stat) VALUES ('"+br+"','"+dp+"','"+ow+"','"+Categ+"','"+ty+"','"+na+"','N/A','"+dID+"','NEW','PENDING')";
+    }
+    if(Categ.equals("PR")){
+    word = "INSERT INTO dbo.invPR(Branch,ManuOwner,Dept,Rem,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+dp+"','"+ow+"','N/A','"+dID+"','PENDING','"+Categ+"')";
+    }    
+    if(Categ.equals("CC")){
+    word = "INSERT INTO dbo.invCC(Branch,SP,Cnum,Camera,DVR,HDD,uN,pW,ID,Stat,Categ) VALUES ('"+br+"','"+na+"','"+cn+"','WORKING','N/A','N/A','"+una+"','"+pass+"','N/A','"+dID+"','PENDING','"+Categ+"')";
+    }
+    st12.executeUpdate(word);
+   
+    
+    String sql4 = "SELECT TOP 1 HIS_ID FROM dbo.History ORDER BY HIS_ID DESC";         
+    ResultSet rs2;
+    rs2 = st12.executeQuery(sql4);             
+    if (rs2.next()) { 
+    tempid = rs2.getInt("HIS_ID");   
+    }
+    String sql44="INSERT INTO dbo.Pur(Dev_ID, Pur_Item, Pur_Name, Pur_Stat, Pur_ID) Values ('"+dID+"', '"+ty+"', 'N/A', 'PENDING', '"+tempid+"' )";         
+     st12.executeUpdate(sql44);
+
+    String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Item Requested', 'PC', '"+br+"-"+dp+"-"+ow+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+    st12.execute(newsql);
+    String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Requested', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+    st12.execute(newsql1);
+     String newsql4 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','Waiting for Item', 'PC','"+dp+"-"+ow+"','IT DEPARTMENT','"+dID+"','"+dt.format(date)+"','"+dt.format(date)+"','"+tm.format(time)+"','"+tm.format(time)+"','"+Price+"','Unit Requested')";
+    st12.execute(newsql4);
+     JOptionPane.showMessageDialog(null,"Item Requested!");
+}
+try{
+    String newsql = "DELETE FROM dbo.invTEMP WHERE ID = '"+x+"'";
+    st12.execute(newsql);
+}
+catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLExceptionSelect: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ } 
+}
+        }
+catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLExceptionSelect: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ } 
+}
+public void purReceiv() {
+int selectedRowIndex = reqTbl.getSelectedRow();
+String Categ = reqTbl.getValueAt(selectedRowIndex,0).toString();
+String Bra = reqTbl.getValueAt(selectedRowIndex,1).toString();
+String Dep = reqTbl.getValueAt(selectedRowIndex,2).toString();
+String Own = reqTbl.getValueAt(selectedRowIndex,3).toString();
+String Ite = reqTbl.getValueAt(selectedRowIndex,4).toString();
+String Nam = reqTbl.getValueAt(selectedRowIndex,5).toString();
+String Dev = reqTbl.getValueAt(selectedRowIndex,6).toString();
+String His= reqTbl.getValueAt(selectedRowIndex,7).toString();
+DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+Date date = new Date();
+DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+Date time = new Date();
+try{
+Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");  
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+if (Categ.equals("PC")){        
+    if(Ite.equals("Unit")){
+    String sql ="UPDATE dbo.invPC SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Pur SET Pur_Stat = 'RECEIVED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    
+    }
+    else {
+    String sel = Ite; 
+    if (sel.equals("Processor")){
+        item = "Proce";
+    }
+     else if (sel.equals("Motherboard")){
+        item = "MBoard";
+    }
+     else if (sel.equals("RAM")){
+        item = "Ram";
+    }
+     else if (sel.equals("Harddrive")){
+        item = "HDD";
+    }
+     else if (sel.equals("UPS")){
+        item = "UPS";
+    }
+     else if (sel.equals("Keyboard")){
+        item = "KeyB";
+    }
+     else if (sel.equals("Mouse")){
+        item = "Mouse";
+    }
+     else if (sel.equals("Monitor")){
+        item = "Moni";
+    }
+    String sql ="UPDATE dbo.invOT SET "+item+" = '"+Nam+"' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Pur SET Pur_Stat = 'RECEIVED' WHERE Ship_ID = '"+His+"'";         
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+    }
+ }
+
+else if (Categ.equals("CC")){        
+    if(Ite.equals("CCTV")){
+     String sql ="UPDATE dbo.invCC SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Pur SET Pur_Stat = 'RECEIVED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    showRep();
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    }
+    else {
+    String sel = Ite; 
+    if (sel.equals("Camera")){
+        item = "Cnum";
+    }
+     else if (sel.equals("HDD")){
+        item = "HDD";
+    }
+     else if (sel.equals("DVR")){
+        item = "DVR";
+    }
+    
+    String sql ="UPDATE dbo.invCC SET "+item+" = '"+Nam+"' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Ship SET Pur_Stat = 'RECEIVED' WHERE Dev_ID = '"+Dev+"' AND Ship_Item = '"+Ite+"' AND Ship_ID = '"+His+"'";      
+    st.executeUpdate(sql2);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+    }
+ }
+
+else if (Categ.equals("PR")){        
+    String sql ="UPDATE dbo.invPR SET Stat = 'WORKING' WHERE ID = '"+Dev+"'";         
+    st.executeUpdate(sql);
+    String sql2 ="UPDATE dbo.Rep SET Pur_Stat = 'RECEIVED' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql2);
+    String sql3="UPDATE dbo.Inv SET Status = 'WORKING' WHERE Dev_ID = '"+Dev+"'";         
+    st.executeUpdate(sql3);
+    String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Received' WHERE HIS_ID  = '"+His+"'";         
+     st.executeUpdate(sql4);
+    showRep();
+}
+
+Statement sta = con.createStatement();
+String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Received', '"+Categ+"', '"+Bra+"-"+Dep+"-"+Own+"-"+Ite+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+sta.execute(newsql);
+JOptionPane.showMessageDialog(null,"Device Received!");
+Homepage hp = new Homepage();
+hp.showRep();
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+}
 //OLD REVISED
 public void initBranch(){
 try { 
