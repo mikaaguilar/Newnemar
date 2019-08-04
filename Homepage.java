@@ -429,6 +429,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel141 = new javax.swing.JLabel();
         pcHisSDate = new javax.swing.JTextField();
         pcHisEDate = new javax.swing.JTextField();
+        pcHisUpdate2 = new javax.swing.JButton();
         HIScc = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
         jLabel143 = new javax.swing.JLabel();
@@ -1690,7 +1691,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(ccPW)))
                             .addComponent(jLabel65)
                             .addComponent(jLabel74))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CCinfoLayout.setVerticalGroup(
@@ -1724,7 +1725,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
@@ -2782,9 +2783,8 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                         .addGap(10, 10, 10)))
                                 .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                                    .addGroup(CCTVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cctvField, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                                        .addComponent(una)))
+                                    .addComponent(cctvField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                                    .addComponent(una, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                                 .addComponent(jLabel53)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -3216,6 +3216,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         pcHisUpdate.setBackground(new java.awt.Color(255, 255, 255));
         pcHisUpdate.setForeground(new java.awt.Color(0, 0, 102));
         pcHisUpdate.setText("Edit");
+        pcHisUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcHisUpdateActionPerformed(evt);
+            }
+        });
 
         jPanel8.setBackground(new java.awt.Color(0, 0, 103));
 
@@ -3241,6 +3246,15 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         );
 
         jLabel141.setText("Branch:");
+
+        pcHisUpdate2.setBackground(new java.awt.Color(255, 255, 255));
+        pcHisUpdate2.setForeground(new java.awt.Color(0, 0, 102));
+        pcHisUpdate2.setText("Update");
+        pcHisUpdate2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcHisUpdate2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout HISpcLayout = new javax.swing.GroupLayout(HISpc);
         HISpc.setLayout(HISpcLayout);
@@ -3304,7 +3318,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(HISpcLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(pcHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(pcHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pcHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
                         .addGap(30, 30, 30))))
         );
@@ -3358,7 +3374,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(pcHisSTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel118))))
                 .addGap(18, 18, 18)
-                .addComponent(pcHisUpdate)
+                .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pcHisUpdate)
+                    .addComponent(pcHisUpdate2))
                 .addGap(18, 18, 18))
         );
 
@@ -4427,20 +4445,34 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         hisAddCan.setBackground(new java.awt.Color(255, 255, 255));
         hisAddCan.setForeground(new java.awt.Color(0, 0, 102));
         hisAddCan.setText("Cancel");
+        hisAddCan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hisAddCanActionPerformed(evt);
+            }
+        });
 
         hisSave.setBackground(new java.awt.Color(255, 255, 255));
         hisSave.setForeground(new java.awt.Color(0, 0, 102));
         hisSave.setText("Save");
+        hisSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hisSaveActionPerformed(evt);
+            }
+        });
 
         jLabel142.setText("Remarks:");
 
         jLabel138.setText("End Date:");
+
+        hisSDateAdd.setDateFormatString("yyyy-MM-dd");
 
         jLabel136.setText("Price:");
 
         jLabel135.setText("Performed by:");
 
         jLabel139.setText("Start Time:");
+
+        hisEDateAdd.setDateFormatString("yyyy-MM-dd");
 
         jLabel137.setText("Start Date:");
 
@@ -4533,7 +4565,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel142)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hisAddCan)
                     .addComponent(hisSave))
@@ -5075,7 +5107,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel)
                     .addComponent(branchSave))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel25.setBackground(new java.awt.Color(0, 0, 102));
@@ -5210,7 +5242,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel1)
                     .addComponent(branchSave1))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 102));
@@ -5648,7 +5680,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(toSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6222,7 +6254,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(18, 18, 18)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -7444,6 +7476,61 @@ showDepPur();
         cartAdd(); 
     }//GEN-LAST:event_printerAddActionPerformed
 
+    private void hisSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hisSaveActionPerformed
+hisAdd();
+       Filter.setVisible(false);
+       INVmaincard.setVisible(false);
+       Home.setVisible(false);
+       Log.setVisible(false);
+       HISmaincard.setVisible(true);
+       Adding.setVisible(false);
+       AddHistory.setVisible(false);
+       Transfer.setVisible(false);
+       Sys.setVisible(false);
+       //Design
+     HIS.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HOM.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     System.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
+     //Functions
+     showHis();
+     Hiscount();
+
+    }//GEN-LAST:event_hisSaveActionPerformed
+
+    private void hisAddCanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hisAddCanActionPerformed
+       Filter.setVisible(false);
+       INVmaincard.setVisible(false);
+       Home.setVisible(false);
+       Log.setVisible(false);
+       HISmaincard.setVisible(true);
+       Adding.setVisible(false);
+       AddHistory.setVisible(false);
+       Transfer.setVisible(false);
+       Sys.setVisible(false);
+       //Design
+     HIS.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HOM.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     System.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
+     //Functions
+     showHis();
+     Hiscount();        // TODO add your handling code here:
+    }//GEN-LAST:event_hisAddCanActionPerformed
+
+    private void pcHisUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcHisUpdateActionPerformed
+hisEditable();        // TODO add your handling code here:
+    }//GEN-LAST:event_pcHisUpdateActionPerformed
+
+    private void pcHisUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcHisUpdate2ActionPerformed
+        hisUpdate();
+        hisNonEditable();   
+    }//GEN-LAST:event_pcHisUpdate2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -7984,6 +8071,7 @@ showDepPur();
     private javax.swing.JTextField pcHisSTime1;
     private javax.swing.JButton pcHisUpdate;
     private javax.swing.JButton pcHisUpdate1;
+    private javax.swing.JButton pcHisUpdate2;
     public static javax.swing.JButton pcPurchase;
     public static javax.swing.JButton pcRepair;
     private javax.swing.JTextField pcSearchtxt;
@@ -9313,7 +9401,7 @@ public void showHis(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History;";         
+sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID FROM dbo.History ORDER BY SDate DESC;";         
 ResultSet rs=st.executeQuery(sql); 
 allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -9335,8 +9423,8 @@ public void hisSet(){
         HIScc.setVisible(false);
         HISpr.setVisible(false);
         pcHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        pcHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        pcHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        pcHisName.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        pcHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
         pcHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
         pcHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
         pcHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
@@ -9352,8 +9440,8 @@ public void hisSet(){
         HIScc.setVisible(true);
         HISpr.setVisible(false);
         ccHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        ccHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        ccHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        ccHisName.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        ccHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
         ccHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
         ccHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
         ccHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
@@ -9368,8 +9456,8 @@ public void hisSet(){
         HIScc.setVisible(false);
         HISpr.setVisible(true);
         prHisBran.setText(allHisTbl.getValueAt(selectedRowIndex,0).toString());
-        prHisName.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
-        prHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        prHisName.setText(allHisTbl.getValueAt(selectedRowIndex,3).toString());
+        prHisAct.setText(allHisTbl.getValueAt(selectedRowIndex,1).toString());
         prHisPerf.setText(allHisTbl.getValueAt(selectedRowIndex,4).toString());
         prHisSDate.setText(allHisTbl.getValueAt(selectedRowIndex,5).toString());
         prHisEDate.setText(allHisTbl.getValueAt(selectedRowIndex,6).toString());
@@ -9379,6 +9467,225 @@ public void hisSet(){
         prHisRem.setText(allHisTbl.getValueAt(selectedRowIndex,10).toString());
         }
         
+}
+public void hisEditable(){
+
+        pcHisBran.setEditable(true);
+        pcHisName.setEditable(true);
+        pcHisAct.setEditable(true);
+        pcHisPerf.setEditable(true);
+        pcHisSDate.setEditable(true);
+        pcHisEDate.setEditable(true);
+        pcHisSTime.setEditable(true);
+        pcHisETime.setEditable(true);
+        pcHisPric.setEditable(true);
+        pcHisRem.setEditable(true);
+   
+
+        ccHisBran.setEditable(true);
+        ccHisName.setEditable(true);
+        ccHisAct.setEditable(true);
+        ccHisPerf.setEditable(true);
+        ccHisSDate.setEditable(true);
+        ccHisEDate.setEditable(true);
+        ccHisSTime.setEditable(true);
+        ccHisETime.setEditable(true);
+        ccHisPric.setEditable(true);
+        ccHisRem.setEditable(true);
+        
+        prHisBran.setEditable(true);
+        prHisName.setEditable(true);
+        prHisAct.setEditable(true);
+        prHisPerf.setEditable(true);
+        prHisSDate.setEditable(true);
+        prHisEDate.setEditable(true);
+        prHisSTime.setEditable(true);
+        prHisETime.setEditable(true);
+        prHisPric.setEditable(true);
+        prHisRem.setEditable(true);
+        
+        pcHisUpdate.setVisible(false);
+        pcHisUpdate2.setVisible(true);
+}
+public void hisNonEditable(){
+        pcHisBran.setEditable(false);
+        pcHisName.setEditable(false);
+        pcHisAct.setEditable(false);
+        pcHisPerf.setEditable(false);
+        pcHisSDate.setEditable(false);
+        pcHisEDate.setEditable(false);
+        pcHisSTime.setEditable(false);
+        pcHisETime.setEditable(false);
+        pcHisPric.setEditable(false);
+        pcHisRem.setEditable(false);
+        ccHisBran.setEditable(false);
+        ccHisName.setEditable(false);
+        ccHisAct.setEditable(false);
+        ccHisPerf.setEditable(false);
+        ccHisSDate.setEditable(false);
+        ccHisEDate.setEditable(false);
+        ccHisSTime.setEditable(false);
+        ccHisETime.setEditable(false);
+        ccHisPric.setEditable(false);
+        ccHisRem.setEditable(false);
+        prHisBran.setEditable(false);
+        prHisName.setEditable(false);
+        prHisAct.setEditable(false);
+        prHisPerf.setEditable(false);
+        prHisSDate.setEditable(false);
+        prHisEDate.setEditable(false);
+        prHisSTime.setEditable(false);
+        prHisETime.setEditable(false);
+        prHisPric.setEditable(false);
+        prHisRem.setEditable(false);
+        pcHisUpdate.setVisible(true);
+        pcHisUpdate2.setVisible(false);
+        
+}
+public void hisUpdate(){ 
+        int selectedRowIndex = allHisTbl.getSelectedRow();
+        String categ = allHisTbl.getValueAt(selectedRowIndex,2).toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if(categ.equals("PC")){
+        String s1 = pcHisBran.getText();
+        String s2 =pcHisName.getText();
+        String s3 =pcHisAct.getText();
+        String s4 =pcHisPerf.getText();
+        String s5 =pcHisSDate.getText();
+        String s6 =pcHisEDate.getText();
+        String s7 =pcHisSTime.getText();
+        String s8 =pcHisETime.getText();
+        String s9 =pcHisPric.getText();
+        String s10 =pcHisRem.getText();
+        String ID = (allHisTbl.getValueAt(selectedRowIndex,11).toString());
+        try{
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.History SET Branch = '"+s1+"',Name = '"+s2+"',Action = '"+s3+"',Perf = '"+s4+"',SDate = '"+s5+"',EDate = '"+s6+"',STime = '"+s7+"',ETime = '"+s8+"',Price = '"+s9+"',Remarks = '"+s10+"'  WHERE HIS_ID = '"+ID+"'";         
+st.executeUpdate(sql);
+
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'History','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+        
+        }
+        else if(categ.equals("CC")){
+        String s1 = ccHisBran.getText();
+        String s2 =ccHisName.getText();
+        String s3 =ccHisAct.getText();
+        String s4 =ccHisPerf.getText();
+        String s5 =ccHisSDate.getText();
+        String s6 =ccHisEDate.getText();
+        String s7 =ccHisSTime.getText();
+        String s8 =ccHisETime.getText();
+        String s9 =ccHisPric.getText();
+        String s10 =ccHisRem.getText();
+        String ID = (allHisTbl.getValueAt(selectedRowIndex,11).toString());
+               try{
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.History SET Branch = '"+s1+"',Name = '"+s2+"',Action = '"+s3+"',Perf = '"+s4+"',SDate = '"+s5+"',EDate = '"+s6+"',STime = '"+s7+"',ETime = '"+s8+"',Price = '"+s9+"',Remarks = '"+s10+"'  WHERE HIS_ID = '"+ID+"'";         
+st.executeUpdate(sql);
+
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'History','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+        }
+        else if(categ.equals("PR")){
+        String s1 = prHisBran.getText();
+        String s2 = prHisName.getText();
+        String s3 = prHisAct.getText();
+        String s4 = prHisPerf.getText();
+        String s5 = prHisSDate.getText();
+        String s6 = prHisEDate.getText();
+        String s7 = prHisSTime.getText();
+        String s8 = prHisETime.getText();
+        String s9 = prHisPric.getText();
+        String s10 = prHisRem.getText();
+         String ID = (allHisTbl.getValueAt(selectedRowIndex,11).toString());
+        try{
+        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");           
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);      
+String sql ="UPDATE dbo.History SET Branch = '"+s1+"',Name = '"+s2+"',Action = '"+s3+"',Perf = '"+s4+"',SDate = '"+s5+"',EDate = '"+s6+"',STime = '"+s7+"',ETime = '"+s8+"',Price = '"+s9+"',Remarks = '"+s10+"'  WHERE HIS_ID = '"+ID+"'";         
+st.executeUpdate(sql);
+
+JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+Statement sta = con.createStatement();
+            String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'History','"+s1+"-"+s2+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+            sta.execute(newsql);
+}
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+        }
+        
+showHis();
+Hiscount();
+//refreshPC();
+}
+public void hisAdd(){
+        int selectedRowIndex = allHisTbl.getSelectedRow();
+        String categ = allHisTbl.getValueAt(selectedRowIndex,2).toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        DateFormat tm = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+                String br = (allHisTbl.getValueAt(selectedRowIndex,0).toString());
+                String nm = (allHisTbl.getValueAt(selectedRowIndex,3).toString());
+                String devid = (allHisTbl.getValueAt(selectedRowIndex,11).toString());
+                String ac = hisActAdd.getText();
+                String pf = hisPerfAdd.getText();
+                String pr = hisPricAdd.getText();
+                Date sd = hisSDateAdd.getDate();
+                Date ed = hisEDateAdd.getDate();
+                String st = hisSTimeAdd.getText();
+                String et = hisETimeAdd.getText();
+                String rm = hisRemAdd.getText();
+            try {  
+                con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+                Statement st12=con.createStatement(); 
+                String newsql1 = "INSERT INTO dbo.History (Branch,Action,Categ,Name,Perf,ITEM_ID,SDate,EDate,STime,ETime,Price,Remarks) VALUES ('"+br+"','"+ac+"', '"+categ+"','"+nm+"','"+pf+"','"+devid+"','"+sdf.format(sd)+"','"+sdf.format(ed)+"','"+st+"','"+et+"','"+pr+"','"+rm+"')";
+                st12.execute(newsql1);
+                
+                JOptionPane.showMessageDialog(null,"Information Updated!"); 
+
+                Statement sta = con.createStatement();
+                String newsql = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Updated Info', 'History','"+br+"-"+nm+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+                sta.execute(newsql);
+            } 
+             catch (SQLException ex) {    
+                JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+                JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+                }
 }
 public void Hiscount(){
 int rowCount = allHisTbl.getRowCount();
@@ -9618,6 +9925,7 @@ public void initEdit(){
 pcNonEditable();
 ccNonEditable();
 prNonEditable();
+hisNonEditable();
 }
 //End of Initialization------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
