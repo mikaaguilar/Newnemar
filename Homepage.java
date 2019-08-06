@@ -1,10 +1,14 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,14 +16,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,12 +34,23 @@ import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.log4j.BasicConfigurator;
+import static org.jfree.layout.FormatLayout.C;
+import org.apache.log4j.PropertyConfigurator;
 
 
 public class Homepage extends javax.swing.JFrame {
@@ -182,6 +197,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         INVmaincard = new javax.swing.JPanel();
         PC = new javax.swing.JButton();
         CC = new javax.swing.JButton();
@@ -960,6 +976,13 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(29, 29, 29))
         );
 
+        jButton9.setText("Print PC Inventory");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
@@ -999,8 +1022,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
-                        .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(553, Short.MAX_VALUE))
+                        .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(jButton9)))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1016,10 +1041,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addContainerGap()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Done, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-                .addGap(18, 33, Short.MAX_VALUE)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                    .addComponent(jButton9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shipSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(shipDone)
@@ -1702,7 +1729,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(ccPW)))
                             .addComponent(jLabel65)
                             .addComponent(jLabel74))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         CCinfoLayout.setVerticalGroup(
@@ -1736,7 +1763,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel74)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel70.setFont(new java.awt.Font("Tahoma", 0, 26)); // NOI18N
@@ -3007,7 +3034,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(661, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 1076, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3576,7 +3603,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                         .addComponent(jLabel147)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ccHisETime)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISccLayout.createSequentialGroup()
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3593,7 +3620,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(ccHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ccHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                            .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
                         .addGap(30, 30, 30))))
         );
         HISccLayout.setVerticalGroup(
@@ -3983,8 +4010,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addGap(17, 17, 17))))
                     .addGroup(HISpc1Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel183)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel183)))
                 .addGroup(HISpc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISpc1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -4689,7 +4715,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(jLabel142)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(PCinfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hisAddCan)
                     .addComponent(hisSave))
@@ -5241,7 +5267,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel)
                     .addComponent(branchSave))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel25.setBackground(new java.awt.Color(0, 0, 102));
@@ -5376,7 +5402,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(PCinfo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(branchCancel1)
                     .addComponent(branchSave1))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(0, 0, 102));
@@ -5814,7 +5840,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(toSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6082,7 +6108,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                             .addComponent(pcBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -6388,7 +6414,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(18, 18, 18)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -7890,35 +7916,21 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
       hisNonEditable();
     }//GEN-LAST:event_prHisUpdate2ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    try {
+        printReport();
+    } catch (JRException ex) {
+        Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(Homepage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-          
-        /* Create and display the form */
+       BasicConfigurator.configure();;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Homepage().setVisible(true);
@@ -8130,6 +8142,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
@@ -9215,6 +9228,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 JOptionPane.showMessageDialog(null,"Device Disposed!"); 
 addArchives("PC",ID, s1+"-"+s2+"-"+s3);
+showPC();
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9486,6 +9500,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 JOptionPane.showMessageDialog(null,"Device Disposed!"); 
 addArchives("CC",ID, s1+"-"+s2);
+showCC();
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9706,6 +9721,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 JOptionPane.showMessageDialog(null,"Device Deleted!"); 
 addArchives("PR",ID, s1+"-"+s4+"-"+s3+"-"+s2);
+showPR();
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -9804,6 +9820,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
  }
 JOptionPane.showMessageDialog(null,"OT "+Dev+" Deleted!"); 
 addArchives("OT",DevID, Dev+"-"+Nam);
+showOT();
 }
     if(n == JOptionPane.NO_OPTION){ 
 /*
@@ -13141,6 +13158,32 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState()); 
  }
 }
+
+public void printReport() throws JRException, FileNotFoundException{
+//MessageFormat header = new MessageFormat("New Nemar Development Corporation");
+//MessageFormat footer = new MessageFormat("try lang");
+    try{
+//shipTbl.print(JTable.PrintMode.NORMAL,header,footer);
+
+    
+    
+    
+InputStream in = new FileInputStream(new File ("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\NewNemar\\src\\reports\\Inventory.jrxml"));
+JasperDesign jd=JRXmlLoader.load(in);
+String sql= "select * from invPC where Stat = 'WORKING'";
+JRDesignQuery newQuery = new JRDesignQuery();
+newQuery.setText(sql);
+jd.setQuery(newQuery);
+JasperReport jr = JasperCompileManager.compileReport(jd);
+HashMap para = new HashMap();
+JasperPrint j = JasperFillManager.fillReport(jr,para,con);
+JasperViewer.viewReport(j, false);
+OutputStream os = new FileOutputStream(new File("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\NewNemar\\src\\reports\\Inventory.jrxml"));
+JasperExportManager.exportReportToPdfStream(j,os);
+}
+catch(Exception e){
+JOptionPane.showMessageDialog(null, e);
 }
 
-
+}
+}

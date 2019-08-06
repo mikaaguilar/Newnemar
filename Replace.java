@@ -528,30 +528,25 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
             if (rs3.next()) { 
              devname = rs3.getString("Rep_Name");   
             }
-      String sql8 = "SELECT  Branch, Dept, Owner FROM dbo.invPC WHERE ID = '"+DevID+"'";         
+      String sql8 = "SELECT  Branch, Dept, Owner FROM dbo.invCC WHERE ID = '"+DevID+"'";         
     ResultSet rs4; 
     rs4 = st.executeQuery(sql8);             
             if (rs4.next()) { 
-             PrevOwner = rs4.getString("Owner");  
-             PrevBranch = rs4.getString("Branch");  
-             PrevDept = rs4.getString("Dept");  
+             PrevBranch = rs4.getString("Branch");   
             }
     String sql3 ="UPDATE dbo.invOT SET Name = '"+devname+"', Qlt = 'USED', Stat = 'DEFECTIVE', Rem = 'Transferred from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+"' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
     String sql5 ="UPDATE dbo.Inv SET Status = 'DEFECTIVE' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql5);
-     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-"+item+"-"+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
+     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'CC', '"+PrevBranch+"-HDD-"+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
-    JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
+    JOptionPane.showMessageDialog(null,"CCTV HDD successfully transferred from IT Reserve to "+PrevBranch+"!");
      this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-
-
-
 public void UpdateUnit(){
 int selectedRowIndex = otTbl.getSelectedRow();
 
@@ -583,10 +578,11 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
    
     String sql3 ="UPDATE dbo.invPC SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
-    String sql9 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
+    String sql9 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Status = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql9);
     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-PC Unit-DevID:"+DevID+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
+     JOptionPane.showMessageDialog(null,"PC Unit from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+" successfully replaced with reserve!");
     this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -616,7 +612,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
             }
     String sql ="UPDATE dbo.invPR SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
     st.executeUpdate(sql);
-    String sq5 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
+    String sq5 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Status = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
     st.executeUpdate(sq5);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
     st.executeUpdate(sql2);
@@ -629,6 +625,7 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
     st.executeUpdate(sql5);
     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PR', '"+PrevBranch+" - "+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
+      JOptionPane.showMessageDialog(null,"Printer from "+PrevBranch+"-"+PrevDept+"-"+PrevOwner+" successfully replaced with reserve!");
     this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 

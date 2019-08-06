@@ -656,7 +656,7 @@ Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
 Date time = new Date();
  String sel, item = null;
-if(name.getText().equals("N/A")){JOptionPane.showMessageDialog(null,"Device unavailable!");}
+if(name.getText().equals("N/A")||name.getText().equals("FOR SHIPPING")){JOptionPane.showMessageDialog(null,"Device unavailable!");}
 else{
 
 try{
