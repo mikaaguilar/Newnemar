@@ -9385,9 +9385,9 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void toTbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toTbl3MouseClicked
-       toBranch3.setText(toTbl3.getValueAt(toTbl3.getRowCount(), 0).toString());
-          toDept3.setText(toTbl3.getValueAt(toTbl3.getRowCount(), 1).toString());
-             toOwner2.setText(toTbl3.getValueAt(toTbl3.getRowCount(), 3).toString());
+       toBranch3.setText(toTbl3.getValueAt(toTbl3.getSelectedRow(), 0).toString());
+          toDept3.setText(toTbl3.getValueAt(toTbl3.getSelectedRow(), 1).toString());
+             toOwner2.setText(toTbl3.getValueAt(toTbl3.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_toTbl3MouseClicked
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -9400,7 +9400,7 @@ String toOwn = toOwner2.getText();
 String frBra =frBr;
 String frDep = frDp;
 String frOwn =frOw;
-String toID = toTbl3.getValueAt(toTbl3.getSelectedRow(), 2).toString();
+String toID = toTbl3.getValueAt(toTbl3.getSelectedRow(), 4).toString();
 DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 Date date = new Date();
 DateFormat tm = new SimpleDateFormat("HH:mm:ss");
