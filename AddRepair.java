@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -49,6 +51,8 @@ public class AddRepair extends javax.swing.JFrame {
         repSort();
         initBranch();
         select.setVisible(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSize().height/2);
 
     }
 
@@ -134,6 +138,7 @@ public class AddRepair extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        repTbl.setSelectionBackground(new java.awt.Color(255, 102, 0));
         repTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 repTblMouseClicked(evt);

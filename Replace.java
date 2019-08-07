@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -43,6 +45,8 @@ public class Replace extends javax.swing.JFrame {
     public Replace() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSize().height/2);
     }
 
     /**
@@ -107,6 +111,7 @@ public class Replace extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        otTbl.setSelectionBackground(new java.awt.Color(255, 102, 0));
         jScrollPane1.setViewportView(otTbl);
 
         reserveSelect.setText("Select");
@@ -306,7 +311,7 @@ public void showOT(String Dev, int ID, int HIS, String Categ){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = '"+Dev+"'ORDER by ID";         
+String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = '"+Dev+"' ORDER by ID";         
 ResultSet rs=st.executeQuery(sql); 
 otTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -369,7 +374,7 @@ public void showCC(int ID, int HIS){
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();        
 
-String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = 'HDD' ORDER by ID";         
+String sql = "SELECT Device, Name, Qty as Quantity, Qlt as Quality, ID FROM dbo.invOT WHERE Stat = 'WORKING' AND Device = 'Harddrive' ORDER by ID";         
 ResultSet rs=st.executeQuery(sql); 
 otTbl.setModel(DbUtils.resultSetToTableModel(rs));
 rs.close();
@@ -549,9 +554,6 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
  }
 }
-
-
-
 public void UpdateUnit(){
 int selectedRowIndex = otTbl.getSelectedRow();
 
@@ -583,10 +585,11 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
    
     String sql3 ="UPDATE dbo.invPC SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
-    String sql9 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
+    String sql9 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Status = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql9);
     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PC', '"+PrevBranch+"-PC Unit-DevID:"+DevID+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
+     JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
     this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -616,19 +619,20 @@ Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCU
             }
     String sql ="UPDATE dbo.invPR SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
     st.executeUpdate(sql);
-    String sq5 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Stat = 'DEFECTIVE' WHERE ID = '"+DevID+"'";         
+    String sq5 ="UPDATE dbo.Inv SET Branch= 'ADMIN', Dept = 'IT', Owner = 'IT RESERVE', Status = 'DEFECTIVE' WHERE Dev_ID = '"+DevID+"'";         
     st.executeUpdate(sq5);
     String sql2 ="UPDATE dbo.Rep SET Rep_Stat = 'DONE' WHERE Rep_ID = '"+HisID+"'";         
     st.executeUpdate(sql2);
     String sql4 ="UPDATE dbo.History SET EDate= CONVERT(date,'"+dt.format(date)+"',126), ETime= '"+tm.format(time)+"',  Action= 'Replaced from IT Reserve' WHERE HIS_ID  = '"+HisID+"'";         
     st.executeUpdate(sql4);
    
-    String sql3 ="UPDATE dbo.invPR SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING', Rem = 'To ' WHERE ID = '"+ID+"'";         
+    String sql3 ="UPDATE dbo.invPR SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Stat = 'WORKING' WHERE ID = '"+ID+"'";         
     st.executeUpdate(sql3);
-    String sql5 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Status = 'WORKING', Rem = 'To ' WHERE Dev_ID = '"+ID+"'";         
+    String sql5 ="UPDATE dbo.Inv SET Branch = '"+PrevBranch+"', Dept = '"+PrevDept+"', Owner = '"+PrevOwner+"', Status = 'WORKING' WHERE Dev_ID = '"+ID+"'";         
     st.executeUpdate(sql5);
     String newsql8 = "INSERT INTO dbo.Logs (Action,Categ,Item,Date,Time) VALUES ('Transferred', 'PR', '"+PrevBranch+" - "+devname+"','"+dt.format(date)+"','"+tm.format(time)+"')";
     st.execute(newsql8);
+     JOptionPane.showMessageDialog(null,"Device successfully transferred from IT Reserve to "+PrevBranch+"!");
     this.dispose();}
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
