@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.print.PrinterException;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +23,17 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.PropertyConfigurator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -32,7 +46,7 @@ import net.proteanit.sql.DbUtils;
  * @author CSC-MITS
  */
 public class Reports extends javax.swing.JFrame {
-public Connection con;
+public Connection con,conn;
 public PreparedStatement st;
 public ResultSet rs; 
 public String sql;
@@ -89,6 +103,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel10 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel103 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -361,6 +376,13 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addContainerGap())
         );
 
+        jButton3.setText("Try");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -375,7 +397,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(39, 39, 39)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(71, 71, 71))))
@@ -397,7 +422,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -476,34 +503,17 @@ System.err.format("Cannot print %s%n", e.getMessage());
 }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        pAll1("SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk FROM dbo.invPC WHERE Stat != 'DISPOSED' ORDER by Branch");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        BasicConfigurator.configure();
+//String log4jConfPath = System.getProperty("user.dir")+File.separator+"log4j.properties";
+    //PropertyConfigurator.configure(log4jConfPath);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Reports().setVisible(true);
@@ -516,6 +526,7 @@ System.err.format("Cannot print %s%n", e.getMessage());
     private javax.swing.JPanel inventory;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -593,7 +604,7 @@ if(cond.equals("All")) {
 showTbl("SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Stat as Status FROM dbo.invPC ORDER by Branch");
 }
  setJTableColumnsWidth(tbl, 480, 1, 1, 1, 80, 80, 1, 1,1);
- Homepage.setCellsAlignment(tbl, SwingConstants.CENTER);
+Reports.setCellsAlignment1(tbl, SwingConstants.CENTER);
    }
    if(jRadioButton2.isSelected()){
 if(cond.equals("Working")) { 
@@ -1151,4 +1162,45 @@ public static void setCellsAlignment1(JTable table1, int alignment)
 private void setIcon() {
 setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/NEMAR LOGO 2.png")));
     }
+public void pAll(String Query) throws SQLException{
+try
+            {
+               conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");     
+               JasperDesign jd=JRXmlLoader.load("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\Main\\src\\reports\\pcInvetory.jrxml");                          // Full address of you Report in between the “”
+               System.out.println(Query);
+               JRDesignQuery newQuery=new JRDesignQuery();
+               newQuery.setText(Query);
+               jd.setQuery(newQuery);
+               JasperReport jasperReport = JasperCompileManager.compileReport(jd);
+               JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null,conn);
+               JasperViewer.viewReport(jasperprint,false);
+                   }
+            catch(JRException ex)
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage(),"Messege",JOptionPane.PLAIN_MESSAGE);
+                System.out.println(ex);
+            }     
+}
+public void pAll1(String Query){
+ try
+            {
+               conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");     
+               JasperDesign jd=JRXmlLoader.load("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\Main\\src\\reports\\pcInvetory.jrxml");                          // Full address of you Report in between the “”
+             
+// sql is the query to get data from database   
+
+               System.out.println(Query);
+               JRDesignQuery newQuery=new JRDesignQuery();
+               newQuery.setText(Query);
+               jd.setQuery(newQuery);
+               JasperReport jasperReport = JasperCompileManager.compileReport(jd);
+               JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null,conn);
+               JasperViewer.viewReport(jasperprint,false);
+                   }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage(),"Messege",JOptionPane.PLAIN_MESSAGE);
+                System.out.println(ex);
+            }
+}
 }
