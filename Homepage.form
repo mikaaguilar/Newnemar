@@ -1832,7 +1832,7 @@
                                                   <Component id="jLabel65" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel74" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1875,7 +1875,7 @@
                                       <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2981,7 +2981,7 @@
                                               </Group>
                                               <Component id="jLabel187" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="106" max="32767" attributes="0"/>
+                                          <EmptySpace pref="144" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -5056,7 +5056,7 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5077,7 +5077,7 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="pcHisUpdate2" min="-2" pref="110" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jScrollPane21" pref="368" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane21" pref="355" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
@@ -5377,7 +5377,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                                  <EmptySpace pref="37" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5398,7 +5398,7 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="ccHisUpdate" min="-2" pref="110" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jScrollPane24" pref="366" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane24" pref="346" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
@@ -5642,16 +5642,23 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel154" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                                      <Component id="jLabel152" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jLabel152" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel159" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel153" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel159" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel156" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="prHisAct" min="-2" pref="200" max="-2" attributes="0"/>
@@ -5665,11 +5672,7 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel153" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel156" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="prHisSDate" pref="160" max="32767" attributes="0"/>
                                               <Component id="prHisSTime" max="32767" attributes="0"/>
@@ -5720,7 +5723,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                                  <EmptySpace pref="25" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -5743,42 +5746,30 @@
                                               <Component id="jLabel152" min="-2" pref="31" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="prHisAct" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel160" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="prHisPric" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="jLabel159" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="prHisPerf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="jLabel153" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                                          <Component id="jLabel155" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="prHisSDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="prHisEDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="prHisETime" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel157" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="prHisSTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel156" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                                  <Component id="jLabel154" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="prHisAct" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel160" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="prHisPric" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel154" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel159" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="prHisPerf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel155" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="prHisSDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="prHisEDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel153" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="prHisETime" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel157" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="prHisSTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel156" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -5953,70 +5944,60 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="pcHisUpdate1" min="-2" pref="110" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="50" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel123" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel125" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel124" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel127" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="pcHisAct1" min="-2" pref="200" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jLabel131" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="pcHisPric1" min="-2" pref="144" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="pcHisName1" alignment="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="pcHisSDate2" min="-2" pref="135" max="-2" attributes="0"/>
+                                              <Component id="pcHisSTime1" min="-2" pref="135" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel124" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel127" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="pcHisEDate1" min="-2" pref="24" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                  <Component id="jLabel126" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="pcHisSTime1" max="32767" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
                                                   <Component id="jLabel128" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="pcHisETime1" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                               </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="pcHisETime1" min="-2" pref="156" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="pcHisEDate2" min="-2" pref="126" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="pcHisSDate1" min="-2" pref="22" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel126" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel130" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="pcHisSDate2" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="pcHisPerf1" min="-2" pref="413" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Component id="pcHisEDate2" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel130" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel125" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel123" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="pcHisPerf1" alignment="1" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="pcHisAct1" min="-2" pref="161" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="jLabel131" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="pcHisPric1" min="-2" pref="144" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="pcHisName1" alignment="1" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -6027,89 +6008,77 @@
                                               </Group>
                                               <Component id="jLabel129" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="214" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jScrollPane22" pref="396" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="pcHisUpdate3" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="pcHisUpdate1" min="-2" pref="110" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jScrollPane22" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel183" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                          <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="pcHisBran1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel162" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="jLabel123" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="pcHisName1" alignment="1" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                              </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="pcHisBran1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel162" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                          <Component id="jLabel183" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           <Component id="jLabel129" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jScrollPane22" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="pcHisUpdate1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="pcHisUpdate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pcHisUpdate3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel125" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="pcHisAct1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel131" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="pcHisPric1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel123" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                              <Component id="pcHisName1" alignment="3" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="pcHisAct1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel131" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="pcHisPric1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel125" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel130" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="pcHisPerf1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                      <Component id="pcHisSDate1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                                          <Component id="jLabel124" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="pcHisSDate2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                                      <Component id="jLabel126" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="pcHisEDate2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Component id="pcHisEDate1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel124" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel126" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pcHisEDate2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pcHisSDate2" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -6118,9 +6087,10 @@
                                               <Component id="jLabel127" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="pcHisETime1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace pref="13" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -6128,7 +6098,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="jLabel123">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="PC Name:"/>
+                            <Property name="text" type="java.lang.String" value="Device Name:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel124">
@@ -6200,16 +6170,6 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="pcHisETime1">
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="pcHisSDate1">
-                          <Properties>
-                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                          </Properties>
-                        </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="pcHisEDate1">
-                          <Properties>
-                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JButton" name="pcHisUpdate1">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -6220,6 +6180,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Update"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcHisUpdate1ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel11">
                           <Properties>
@@ -6268,13 +6231,25 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="pcHisSDate2">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcHisSDate2ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="pcHisEDate2">
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel183">
+                        <Component class="javax.swing.JButton" name="pcHisUpdate3">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jLabel183"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="66" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Edit"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcHisUpdate3ActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -7329,7 +7304,7 @@
                                   <Component id="jLabel142" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane25" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="99" max="32767" attributes="0"/>
+                                  <EmptySpace pref="69" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="hisAddCan" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="hisSave" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -8342,7 +8317,7 @@
                                           <Component id="branchCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="branchSave" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="164" max="32767" attributes="0"/>
+                                      <EmptySpace pref="148" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -8587,7 +8562,7 @@
                                           <Component id="branchCancel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="branchSave1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="164" max="32767" attributes="0"/>
+                                      <EmptySpace pref="148" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -9282,7 +9257,7 @@
                           <EmptySpace pref="1217" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel6" min="-2" pref="1628" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -9361,7 +9336,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="14" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="toSearchtxt" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -10186,6 +10161,75 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Container class="javax.swing.JPanel" name="OtCard">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                          <CardConstraints cardName="card5"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel183" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane38" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="818" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="jLabel183" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jScrollPane38" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="jLabel183">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="24" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="From:"/>
+                          </Properties>
+                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane38">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jTable2">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="4" rowCount="4">
+                                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                  </Table>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JRadioButton" name="jRadioButton4">
@@ -10288,7 +10332,7 @@
                                   <Component id="jLabel110" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="toOwner" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="59" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton14" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton15" min="-2" max="-2" attributes="0"/>
