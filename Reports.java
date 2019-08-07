@@ -593,7 +593,7 @@ if(cond.equals("All")) {
 showTbl("SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk,Stat as Status FROM dbo.invPC ORDER by Branch");
 }
  setJTableColumnsWidth(tbl, 480, 1, 1, 1, 80, 80, 1, 1,1);
- Homepage.setCellsAlignment(tbl, SwingConstants.CENTER);
+ Reports.setCellsAlignment(tbl, SwingConstants.CENTER);
    }
    if(jRadioButton2.isSelected()){
 if(cond.equals("Working")) { 

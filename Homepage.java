@@ -1,10 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,10 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,9 +25,7 @@ import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
@@ -776,6 +769,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel85 = new javax.swing.JLabel();
         ccBR = new javax.swing.JComboBox<>();
         trSearchtxt2 = new javax.swing.JTextField();
+        OtCard = new javax.swing.JPanel();
+        jScrollPane38 = new javax.swing.JScrollPane();
+        transTbl3 = new javax.swing.JTable();
+        otBR = new javax.swing.JComboBox<>();
+        trSearchtxt3 = new javax.swing.JTextField();
+        jLabel197 = new javax.swing.JLabel();
+        jLabel198 = new javax.swing.JLabel();
+        unitPro6 = new javax.swing.JTextField();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
@@ -1069,7 +1070,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
                         .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(555, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1088,7 +1089,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Done, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-                .addGap(18, 39, Short.MAX_VALUE)
+                .addGap(18, 45, Short.MAX_VALUE)
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shipSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(shipDone)
@@ -2720,7 +2721,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(countOT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(otherTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2767,7 +2768,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addComponent(CC, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PC, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PR1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(INVcard, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE))
+                .addComponent(INVcard, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE))
         );
 
         Maincard.add(INVmaincard, "card6");
@@ -3498,7 +3499,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(AddingLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         Maincard.add(Adding, "card5");
@@ -4049,7 +4050,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HISprLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISprLayout.createSequentialGroup()
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -5032,7 +5033,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(AddHistoryLayout.createSequentialGroup()
                 .addGap(154, 154, 154)
                 .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         Maincard.add(AddHistory, "card4");
@@ -5305,7 +5306,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                                 .addComponent(jLabel44)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(uLogCnt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1209, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1245, Short.MAX_VALUE))
                                             .addGroup(LogLayout.createSequentialGroup()
                                                 .addComponent(jScrollPane5)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -6050,7 +6051,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                     .addComponent(jScrollPane32, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 93, Short.MAX_VALUE)
+                .addGap(18, 103, Short.MAX_VALUE)
                 .addGroup(SysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(branchcard, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deptcard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -6547,6 +6548,84 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jPanel6.add(CcCard, "card3");
 
+        transTbl3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        transTbl3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transTbl3MouseClicked(evt);
+            }
+        });
+        jScrollPane38.setViewportView(transTbl3);
+
+        otBR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All" }));
+        otBR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otBRActionPerformed(evt);
+            }
+        });
+
+        jLabel197.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel197.setText("FROM:");
+
+        jLabel198.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel198.setText("Device:");
+
+        unitPro6.setBackground(new java.awt.Color(231, 231, 231));
+        unitPro6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unitPro6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OtCardLayout = new javax.swing.GroupLayout(OtCard);
+        OtCard.setLayout(OtCardLayout);
+        OtCardLayout.setHorizontalGroup(
+            OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OtCardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(OtCardLayout.createSequentialGroup()
+                        .addComponent(jLabel197, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(otBR, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(trSearchtxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane38, javax.swing.GroupLayout.PREFERRED_SIZE, 1072, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel198, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(unitPro6, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        OtCardLayout.setVerticalGroup(
+            OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OtCardLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(otBR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(trSearchtxt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel197, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane38, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(OtCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel198)
+                        .addComponent(unitPro6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        jPanel6.add(OtCard, "card5");
+
         jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setSelected(true);
         jRadioButton4.setText("Computer");
@@ -6676,7 +6755,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton7))
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1217, Short.MAX_VALUE))
+                .addContainerGap(1219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransferLayout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -6705,7 +6784,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         Maincard.add(Transfer, "card3");
@@ -6855,12 +6934,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel191, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         Transfer1Layout.setVerticalGroup(
             Transfer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Transfer1Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(Transfer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Transfer1Layout.createSequentialGroup()
                         .addComponent(jLabel191, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7006,12 +7085,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel192, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         Transfer2Layout.setVerticalGroup(
             Transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Transfer2Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(Transfer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Transfer2Layout.createSequentialGroup()
                         .addComponent(jLabel192, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7173,7 +7252,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         Transfer3Layout.setVerticalGroup(
             Transfer3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Transfer3Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(Transfer3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Transfer3Layout.createSequentialGroup()
                         .addComponent(jLabel195, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7768,7 +7847,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      jPanel24.setVisible(false);
      CcCard.setVisible(false);
      PrCard.setVisible(false);
-     //OtCard.setVisible(false);
+     OtCard.setVisible(false);
      tr = "Ship";
      showPCtr();
      showdp();
@@ -7782,7 +7861,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      jPanel24.setVisible(false);
      CcCard.setVisible(true);
      PrCard.setVisible(false);
-     //OtCard.setVisible(false);
+     OtCard.setVisible(false);
      tr = "Ship";
      showCCtr();
      toOwner.setVisible(false);
@@ -7797,7 +7876,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      jPanel24.setVisible(false);
      CcCard.setVisible(false);
      PrCard.setVisible(true);
-     //OtCard.setVisible(false);
+     OtCard.setVisible(false);
      tr = "Ship";
      showPRtr();
      showdp();
@@ -9618,9 +9697,9 @@ r.setVisible(true);
      jPanel24.setVisible(false);
      CcCard.setVisible(false);
      PrCard.setVisible(false);
-     //OtCard.setVisible(true);
+     OtCard.setVisible(true);
      tr = "Ship";
-     //showOTtr();
+     showOTtr();
      showdp();
      toOwner.setVisible(true);
      toDept.setVisible(true);
@@ -9671,6 +9750,18 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void unitPro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitPro6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unitPro6ActionPerformed
+
+    private void transTbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transTbl3MouseClicked
+otSettr();        // TODO add your handling code here:
+    }//GEN-LAST:event_transTbl3MouseClicked
+
+    private void otBRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otBRActionPerformed
+otSorttr();          // TODO add your handling code here:
+    }//GEN-LAST:event_otBRActionPerformed
 
     /**
      * @param args the command line arguments
@@ -9746,6 +9837,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JPanel Log;
     private javax.swing.JPanel Maincard;
     private javax.swing.JPanel OTcard;
+    private javax.swing.JPanel OtCard;
     private javax.swing.JPanel Others;
     private javax.swing.JButton PC;
     private javax.swing.JPanel PCcard;
@@ -10049,6 +10141,8 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JLabel jLabel194;
     private javax.swing.JLabel jLabel195;
     private javax.swing.JLabel jLabel196;
+    private javax.swing.JLabel jLabel197;
+    private javax.swing.JLabel jLabel198;
     private javax.swing.JLabel jLabel1a;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -10222,12 +10316,14 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JScrollPane jScrollPane35;
     private javax.swing.JScrollPane jScrollPane36;
     private javax.swing.JScrollPane jScrollPane37;
+    private javax.swing.JScrollPane jScrollPane38;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JComboBox<String> otBR;
     private javax.swing.JTextField otBranch;
     private javax.swing.JTextField otDept;
     private javax.swing.JTextField otName;
@@ -10366,11 +10462,13 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JTable toTbl3;
     private javax.swing.JTextField trSearchtxt1;
     private javax.swing.JTextField trSearchtxt2;
+    private javax.swing.JTextField trSearchtxt3;
     private javax.swing.JComboBox<String> transBR;
     private javax.swing.JTextField transSearchtxt;
     private javax.swing.JTable transTbl;
     private javax.swing.JTable transTbl1;
     private javax.swing.JTable transTbl2;
+    private javax.swing.JTable transTbl3;
     private javax.swing.JComboBox<String> transferSelect;
     private javax.swing.JLabel uLogCnt;
     private javax.swing.JButton ulogrefresh;
@@ -10393,6 +10491,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     private javax.swing.JTextField unitPro2;
     private javax.swing.JTextField unitPro4;
     private javax.swing.JTextField unitPro5;
+    private javax.swing.JTextField unitPro6;
     private javax.swing.JTextField unitRam;
     private javax.swing.JTextField unitRam1;
     private javax.swing.JTextField unitSearch;
@@ -13680,7 +13779,6 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 }
 FilterPRtr(transTbl1,trSearchtxt1);
 }
-/*
 public void showOTtr(){
    try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
@@ -13725,7 +13823,6 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 FilterPRtr(transTbl3,trSearchtxt3);
 }
 
-*/
 public void transferPC() {
 int selectedRowIndex = transTbl.getSelectedRow();
 String Pro = unitPro1.getText();
