@@ -842,7 +842,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         LOGOUT = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         HOM = new javax.swing.JButton();
-        System = new javax.swing.JButton();
+        SYST = new javax.swing.JButton();
         System1 = new javax.swing.JButton();
         datefield = new javax.swing.JLabel();
         timefield = new javax.swing.JLabel();
@@ -967,7 +967,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
         jLabel11.setForeground(new java.awt.Color(13, 13, 129));
         jLabel11.setText("Purchases");
 
-        Done.setBackground(new java.awt.Color(255, 153, 0));
+        Done.setBackground(new java.awt.Color(0, 0, 51));
         Done.setForeground(new java.awt.Color(0, 0, 102));
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
@@ -1086,7 +1086,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Done, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(Done, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                 .addGap(18, 39, Short.MAX_VALUE)
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2513,6 +2513,11 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
 
         jButton18.setBackground(new java.awt.Color(255, 255, 255));
         jButton18.setText("View Details");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ref3.png"))); // NOI18N
         jButton24.setContentAreaFilled(false);
@@ -2630,7 +2635,6 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             .addGroup(OTcardLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel93)
                     .addGroup(OTcardLayout.createSequentialGroup()
                         .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(OTcardLayout.createSequentialGroup()
@@ -2639,40 +2643,46 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(otUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane33)
-                                .addGroup(OTcardLayout.createSequentialGroup()
-                                    .addComponent(jLabel99)
-                                    .addGap(707, 707, 707)
-                                    .addComponent(jLabel100)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(169, 169, 169)
-                        .addComponent(otherRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(OTcardLayout.createSequentialGroup()
                         .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(OTcardLayout.createSequentialGroup()
-                                .addComponent(otherSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(333, 333, 333)
+                                .addComponent(otherRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(OTcardLayout.createSequentialGroup()
+                                .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(OTcardLayout.createSequentialGroup()
+                                        .addComponent(jLabel99)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel100)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
+                                .addContainerGap(216, Short.MAX_VALUE))))
+                    .addGroup(OTcardLayout.createSequentialGroup()
+                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel93)
+                            .addGroup(OTcardLayout.createSequentialGroup()
+                                .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(OTcardLayout.createSequentialGroup()
+                                        .addComponent(otherSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(otherSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel186)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(countOT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(otherTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 1478, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(otherSearchtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel186)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(countOT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(otherTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 1478, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(prDispose1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(prPurchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(prTransfer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(prRepair1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel187))
-                .addContainerGap(59, Short.MAX_VALUE))
+                                .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(prDispose1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(prPurchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(prTransfer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(prRepair1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel187))
+                        .addContainerGap(106, Short.MAX_VALUE))))
         );
         OTcardLayout.setVerticalGroup(
             OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2692,11 +2702,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel99)
-                            .addComponent(jLabel187)))
-                    .addGroup(OTcardLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel187)
                             .addComponent(jLabel100)))
                     .addGroup(OTcardLayout.createSequentialGroup()
                         .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2714,7 +2720,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                     .addComponent(countOT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(otherTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(countHis4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(OTcardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane33, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -2723,7 +2731,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                     .addComponent(jButton18)
                     .addComponent(otUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(otUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         INVcard.add(OTcard, "card5");
@@ -3267,7 +3275,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addComponent(unitSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(661, Short.MAX_VALUE))
             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 1076, Short.MAX_VALUE))
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3649,7 +3657,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addGap(18, 18, 18)
                                 .addComponent(pcHisPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(0, 72, Short.MAX_VALUE)
+                .addGap(0, 63, Short.MAX_VALUE)
                 .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISpcLayout.createSequentialGroup()
                         .addGroup(HISpcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3666,7 +3674,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                 .addComponent(pcHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pcHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
                         .addGap(30, 30, 30))))
         );
         HISpcLayout.setVerticalGroup(
@@ -3836,7 +3844,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                                         .addComponent(jLabel147)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ccHisETime)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HISccLayout.createSequentialGroup()
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3850,10 +3858,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(HISccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(HISccLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(ccHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ccHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ccHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                                .addComponent(ccHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                         .addGap(30, 30, 30))))
         );
         HISccLayout.setVerticalGroup(
@@ -4030,9 +4038,9 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addGroup(HISprLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(HISprLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(prHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(prHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prHisUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(prHisUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane26))
                         .addGap(30, 30, 30))))
         );
@@ -6371,7 +6379,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGroup(UnitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UnitCardLayout.createSequentialGroup()
                         .addGap(0, 369, Short.MAX_VALUE)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(UnitCardLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(UnitCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -7251,16 +7259,16 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
             }
         });
 
-        System.setBackground(new java.awt.Color(0, 0, 51));
-        System.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        System.setForeground(new java.awt.Color(255, 255, 255));
-        System.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sys.png"))); // NOI18N
-        System.setText("SYSTEM");
-        System.setBorderPainted(false);
-        System.setOpaque(false);
-        System.addActionListener(new java.awt.event.ActionListener() {
+        SYST.setBackground(new java.awt.Color(0, 0, 51));
+        SYST.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
+        SYST.setForeground(new java.awt.Color(255, 255, 255));
+        SYST.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sys.png"))); // NOI18N
+        SYST.setText("SYSTEM");
+        SYST.setBorderPainted(false);
+        SYST.setOpaque(false);
+        SYST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SystemActionPerformed(evt);
+                SYSTActionPerformed(evt);
             }
         });
 
@@ -7291,7 +7299,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                         .addComponent(LOG, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(HIS, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(System, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(SYST, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -7310,7 +7318,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
                 .addGap(0, 0, 0)
                 .addComponent(System1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(System, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SYST, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(LOGOUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -7364,7 +7372,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showActLog();
@@ -7374,28 +7382,29 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
     }//GEN-LAST:event_LOGActionPerformed
 
     private void HISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HISActionPerformed
-       Filter.setVisible(false);
-       INVmaincard.setVisible(false);
-       Home.setVisible(false);
-       Log.setVisible(false);
-       HISmaincard.setVisible(true);
-       Adding.setVisible(false);
-       AddHistory.setVisible(false);
-       Transfer.setVisible(false);
+     Filter.setVisible(false);
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     Log.setVisible(false);
+     HISmaincard.setVisible(true);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
      Transfer1.setVisible(false);
      Transfer2.setVisible(false);
      Transfer3.setVisible(false);
-       Sys.setVisible(false);
+     Sys.setVisible(false);
        //Design
      HIS.setBackground(Color.ORANGE);
      INV.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showHis();
      Hiscount();
+     hisNonEditable();
     }//GEN-LAST:event_HISActionPerformed
 
     private void INVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INVActionPerformed
@@ -7418,7 +7427,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height*12/25-this.getSi
      INV.setBackground(Color.ORANGE);
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showPC();
@@ -7595,7 +7604,7 @@ hisSet();        // TODO add your handling code here:
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
     }//GEN-LAST:event_HOMActionPerformed
 
@@ -7911,7 +7920,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
 FilterPRtr(transTbl1,trSearchtxt1);
     }//GEN-LAST:event_prTransferActionPerformed
 
-    private void SystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SystemActionPerformed
+    private void SYSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SYSTActionPerformed
        INVmaincard.setVisible(false);
        Home.setVisible(false);
        Log.setVisible(false);
@@ -7925,7 +7934,7 @@ FilterPRtr(transTbl1,trSearchtxt1);
        Sys.setVisible(true);
        branchcard.setVisible(false);
        deptcard.setVisible(false);
-     System.setBackground(Color.ORANGE);
+     SYST.setBackground(Color.ORANGE);
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
@@ -7933,7 +7942,7 @@ FilterPRtr(transTbl1,trSearchtxt1);
      LOGOUT.setBackground(new Color(0,0,51, 61));
      showBra();
      showDep();
-    }//GEN-LAST:event_SystemActionPerformed
+    }//GEN-LAST:event_SYSTActionPerformed
 
     private void deptSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptSaveActionPerformed
        branchcard.setVisible(false);
@@ -8651,7 +8660,7 @@ showDepPur();
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -8739,7 +8748,7 @@ showDepPur();
      INV.setBackground(new Color(0,0,51, 61));
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      }
      else if(pu.equals("otPurchase")){
@@ -8890,7 +8899,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      INV.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showHis();
@@ -8915,7 +8924,7 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      INV.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showHis();
@@ -8942,15 +8951,68 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
     }//GEN-LAST:event_prHisUpdate2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-    String id =  compTbl.getValueAt(compTbl.getSelectedRow(), 7).toString();
+    String id =  compTbl.getValueAt(compTbl.getSelectedRow(), 8).toString();
       try {
 con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
 Statement st=con.createStatement();         
-sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID, ITEM_ID as DeviceID FROM dbo.History ORDER BY SDate DESC WHERE ITEM_ID = '"+id+"' ;";         
+sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID, ITEM_ID as DeviceID FROM dbo.History  WHERE ITEM_ID = '"+id+"' ORDER BY SDate DESC ;";         
 ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
 allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+hisNonEditable();
 rs.close();
 st.close();
+      }
+else{
+JOptionPane.showMessageDialog(null,"No History Available!"); 
+}
+ }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterHIS(allHisTbl,HISsearchf);
+     Hiscount();
+     Filter.setVisible(false);
+     INVmaincard.setVisible(false);
+     Home.setVisible(false);
+     Log.setVisible(false);
+     HISmaincard.setVisible(true);
+     Adding.setVisible(false);
+     AddHistory.setVisible(false);
+     Transfer.setVisible(false);
+     Transfer1.setVisible(false);
+     Transfer2.setVisible(false);
+     Transfer3.setVisible(false);
+     Sys.setVisible(false);
+       //Design
+     HIS.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HOM.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
+     //Functions
+
+    
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+       String id =  ccTbl.getValueAt(ccTbl.getSelectedRow(), 8).toString();
+      try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID, ITEM_ID as DeviceID FROM dbo.History  WHERE ITEM_ID = '"+id+"' ORDER BY SDate DESC ;";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+hisNonEditable();
+rs.close();
+st.close();
+      }
+else{
+JOptionPane.showMessageDialog(null,"No History Available!"); 
+}
       }
  catch (SQLException ex) {    
 JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
@@ -8975,19 +9037,54 @@ JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState());
      INV.setBackground(new Color(0,0,51, 61));
      HOM.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
-
-    
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
+       String id =  prTbl.getValueAt(prTbl.getSelectedRow(), 5).toString();
+      try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID, ITEM_ID as DeviceID FROM dbo.History  WHERE ITEM_ID = '"+id+"' ORDER BY SDate DESC ;";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+hisNonEditable();
+rs.close();
+st.close();
+      }
+else{
+JOptionPane.showMessageDialog(null,"No History Available!"); 
+}
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterHIS(allHisTbl,HISsearchf);
+     Hiscount();
+       Filter.setVisible(false);
+       INVmaincard.setVisible(false);
+       Home.setVisible(false);
+       Log.setVisible(false);
+       HISmaincard.setVisible(true);
+       Adding.setVisible(false);
+       AddHistory.setVisible(false);
+       Transfer.setVisible(false);
+           Transfer1.setVisible(false);
+     Transfer2.setVisible(false);
+     Transfer3.setVisible(false);
+       Sys.setVisible(false);
+       //Design
+     HIS.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HOM.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
+     //Functions
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -9165,7 +9262,7 @@ JOptionPane.showMessageDialog(null,"Computer for Transmittal!");
      INV.setBackground(Color.ORANGE);
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
      showPC();
@@ -9362,7 +9459,7 @@ JOptionPane.showMessageDialog(null,"CCTV HDD for Transmittal!");
      INV.setBackground(Color.ORANGE);
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
   PCcard.setVisible(false);
@@ -9487,7 +9584,7 @@ JOptionPane.showMessageDialog(null,"Printer for Transmittal!");
      INV.setBackground(Color.ORANGE);
      HIS.setBackground(new Color(0,0,51, 61));
      LOG.setBackground(new Color(0,0,51, 61));
-     System.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
      LOGOUT.setBackground(new Color(0,0,51, 61));
      //Functions
   PCcard.setVisible(false);
@@ -9529,6 +9626,51 @@ r.setVisible(true);
      toDept.setVisible(true);
      toOwner.setEditable(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        String id =  otTbl.getValueAt(otTbl.getSelectedRow(), 8).toString();
+      try {
+con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");;         
+Statement st=con.createStatement();         
+sql = "SELECT Branch, Action,Categ as Classification,Name,Perf as PerformedBy,SDate as StartDate,EDate as EndDate,STime as StartTime,ETime as EndTime,Price,Remarks,HIS_ID as ID, ITEM_ID as DeviceID FROM dbo.History  WHERE ITEM_ID = '"+id+"' ORDER BY SDate DESC ;";         
+ResultSet rs=st.executeQuery(sql); 
+if(rs.next()){
+allHisTbl.setModel(DbUtils.resultSetToTableModel(rs));
+hisNonEditable();
+rs.close();
+st.close();
+      }
+else{
+JOptionPane.showMessageDialog(null,"No History Available!"); 
+}
+      }
+ catch (SQLException ex) {    
+JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage()); 
+JOptionPane.showMessageDialog(null,"SQLState: " + ex.getSQLState()); 
+ }
+ FilterHIS(allHisTbl,HISsearchf);
+     Hiscount();
+       Filter.setVisible(false);
+       INVmaincard.setVisible(false);
+       Home.setVisible(false);
+       Log.setVisible(false);
+       HISmaincard.setVisible(true);
+       Adding.setVisible(false);
+       AddHistory.setVisible(false);
+       Transfer.setVisible(false);
+           Transfer1.setVisible(false);
+     Transfer2.setVisible(false);
+     Transfer3.setVisible(false);
+       Sys.setVisible(false);
+       //Design
+     HIS.setBackground(Color.ORANGE);
+     INV.setBackground(new Color(0,0,51, 61));
+     HOM.setBackground(new Color(0,0,51, 61));
+     LOG.setBackground(new Color(0,0,51, 61));
+     SYST.setBackground(new Color(0,0,51, 61));
+     LOGOUT.setBackground(new Color(0,0,51, 61));
+     //Functions
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -9621,8 +9763,8 @@ r.setVisible(true);
     private javax.swing.JPanel PrCard;
     private javax.swing.JPanel Printer;
     private javax.swing.JPanel Request;
+    private javax.swing.JButton SYST;
     private javax.swing.JPanel Sys;
-    private javax.swing.JButton System;
     private javax.swing.JButton System1;
     private javax.swing.JPanel Transfer;
     private javax.swing.JPanel Transfer1;
@@ -11856,6 +11998,10 @@ public void hisEditable(){
         
         pcHisUpdate.setVisible(false);
         pcHisUpdate2.setVisible(true);
+        ccHisUpdate.setVisible(false);
+        ccHisUpdate2.setVisible(true);
+        prHisUpdate.setVisible(false);
+        prHisUpdate2.setVisible(true);
 }
 public void hisNonEditable(){
         pcHisBran.setEditable(false);
@@ -11888,8 +12034,13 @@ public void hisNonEditable(){
         prHisETime.setEditable(false);
         prHisPric.setEditable(false);
         prHisRem.setEditable(false);
+        
         pcHisUpdate.setVisible(true);
         pcHisUpdate2.setVisible(false);
+        ccHisUpdate.setVisible(true);
+        ccHisUpdate2.setVisible(false);
+        prHisUpdate.setVisible(true);
+        prHisUpdate2.setVisible(false);
         
 }
 public void hisUpdate(){ 
@@ -15138,6 +15289,12 @@ JOptionPane.showMessageDialog(null,"SQLException: " + ex.getMessage());
 JOptionPane.showMessageDialog(null,"SQLOpt22 : " + ex.getSQLState()); 
  }
 }
+
+
+
+
+
+
 }
 
 
