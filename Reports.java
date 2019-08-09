@@ -2,7 +2,6 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.print.PrinterException;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +30,6 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.PropertyConfigurator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -470,7 +466,7 @@ SortAll();
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 sort();       
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+ 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
 SortAll1();       
     }//GEN-LAST:event_jComboBox3ActionPerformed
@@ -504,7 +500,9 @@ System.err.format("Cannot print %s%n", e.getMessage());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        pAll1("SELECT Branch, Dept as Department,Owner as CurrentUser,Proce as Processor, MBoard as Motherboard, Ram as Memory,HDD as HardDisk FROM dbo.invPC WHERE Stat != 'DISPOSED' ORDER by Branch");
+   
+pAll1("SELECT dbo.invPC.Branch,dbo.invPC.Dept,dbo.invPC.Owner,dbo.invPC.Proce,dbo.invPC.MBoard,dbo.invPC.Ram,dbo.invPC.HDD,dbo.invPC.Moni,dbo.invPC.UPS,dbo.invPC.KeyB,dbo.invPC.Mouse FROM dbo.invPC");
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -1123,25 +1121,6 @@ public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
     }
 }
 
-public static void setCellsAlignment(JTable table, int alignment)
-    {
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(alignment);
-
-        TableModel tableModel = table.getModel();
-
-        for (int columnIndex = 0; columnIndex < tableModel.getColumnCount(); columnIndex++)
-        {
-            table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-            table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-            table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
-            table.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
-            table.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
-            table.getColumnModel().getColumn(7).setCellRenderer(rightRenderer);
-        }
-        
-        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-    }
 public static void setCellsAlignment1(JTable table1, int alignment)
     {
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
@@ -1162,30 +1141,11 @@ public static void setCellsAlignment1(JTable table1, int alignment)
 private void setIcon() {
 setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/NEMAR LOGO 2.png")));
     }
-public void pAll(String Query) throws SQLException{
-try
-            {
-               conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");     
-               JasperDesign jd=JRXmlLoader.load("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\Main\\src\\reports\\pcInvetory.jrxml");                          // Full address of you Report in between the “”
-               System.out.println(Query);
-               JRDesignQuery newQuery=new JRDesignQuery();
-               newQuery.setText(Query);
-               jd.setQuery(newQuery);
-               JasperReport jasperReport = JasperCompileManager.compileReport(jd);
-               JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null,conn);
-               JasperViewer.viewReport(jasperprint,false);
-                   }
-            catch(JRException ex)
-            {
-                JOptionPane.showMessageDialog(null, ex.getMessage(),"Messege",JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex);
-            }     
-}
 public void pAll1(String Query){
  try
             {
                conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Newnemar", "sa", "123");     
-               JasperDesign jd=JRXmlLoader.load("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\Main\\src\\reports\\pcInvetory.jrxml");                          // Full address of you Report in between the “”
+               JasperDesign jd=JRXmlLoader.load("C:\\Users\\CSC-MITS\\Documents\\NetBeansProjects\\Try\\src\\reports\\pcInvetory.jrxml");                          // Full address of you Report in between the “”
              
 // sql is the query to get data from database   
 
@@ -1197,10 +1157,11 @@ public void pAll1(String Query){
                JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, null,conn);
                JasperViewer.viewReport(jasperprint,false);
                    }
-            catch(Exception ex)
+            catch(SQLException | JRException ex)
             {
-                JOptionPane.showMessageDialog(null, ex.getMessage(),"Messege",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex.getMessage(),"Message",JOptionPane.PLAIN_MESSAGE);
                 System.out.println(ex);
             }
+
 }
 }
